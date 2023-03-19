@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Chicken Masala</string>
+    <string name="search">Search</string>
+    <string name="home">Home</string>
+    <string name="saved">Saved</string>
+    <string name="food">Cuisine</string>
 </resources>
