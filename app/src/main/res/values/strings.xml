@@ -1,3 +1,25 @@
 <resources>
     <string name="app_name">Chicken Masala</string>
+    <string name="save">Save</string>
+    <string name="healthy_advices">Healthy advices</string>
+    <string name="advice_one_title">Avoid ultra-processed foods</string>
+    <string name="advice_one_content">Sugary drinks like sodas- fruit juices- and sweetened teas are the primary source of added sugar in the American diet.</string>
+    <string name="kitchen_history">kitchen History</string>
+    <string name="history_of_indian_food">History of Indian food</string>
+    <string name="history_content">The history of Indian food is as diverse and colorful as the country itself. India is a land of numerous religions, cultures, and traditions, each of which has contributed to the evolution of its culinary heritage.
+The earliest Indian cuisine can be traced back to the Indus Valley Civilization, which existed around 2500 BCE. The people of this civilization relied on hunting, fishing, and agriculture for their food, and they ate a variety of grains, fruits, vegetables, and dairy products.
+Over time, Indian cuisine was influenced by a number of factors, including the arrival of foreign rulers and traders, the spread of different religions, and the development of regional cuisines. The Mughal Empire, which ruled India from the 16th to the 19th century, had a significant impact on Indian food, introducing techniques such as the use of nuts and spices, the tandoor oven, and the art of dum cooking.
+Regional cuisines in India are also a significant part of its culinary heritage. Each state has its own unique cuisine, with distinct flavors and cooking styles. For example, the cuisine of the South Indian state of Kerala is known for its use of coconut milk and seafood, while the cuisine of the North Indian state of Punjab is known for its use of tandoor cooking and dairy products.
+Indian food has also had a significant impact on other parts of the world, with many Indian dishes becoming popular in other countries. For example, dishes such as curry, biryani, and tandoori chicken are now widely popular in many parts of the world.
+Today, Indian cuisine continues to evolve, with new dishes and variations being created all the time. With its rich history and diverse influences, Indian food remains one of the most beloved and fascinating cuisines in the world.</string>
+    <string name="theres_no_result_for">There’s no result for</string>
+    <string name="recent_food">Recent Food</string>
+    <string name="view_all">View All</string>
+    <string name="advice_two_title">Use extra virgin olive oil </string>
+    <string name="advice_two_content">Extra virgin olive oil is one of the healthiest vegetable oils you can use. It’s loaded with heart-healthy monounsaturated fats and powerful antioxidants that have anti-inflammatory properties. Extra virgin olive oil may benefit heart health- as people who consume it have a lower risk of dying from heart attacks and strokes according to some evidence.</string>
+    <string name="detail_food">Detail Food</string>
+    <string name="ingredients">Ingredients</string>
+    <string name="details">Details</string>
+<string name="cooking_instructions">Cooking Instructions</string>
+    
 </resources>
