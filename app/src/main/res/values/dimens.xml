@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="zero">0dp</dimen>
+
     <dimen name="margin_small">4dp</dimen>
     <dimen name="margin_normal">8dp</dimen>
     <dimen name="margin_medium">16dp</dimen>
     <dimen name="margin_large">24dp</dimen>
 
-    <dimen name="font_size_large">16sp</dimen>
-    <dimen name="font_size_label">14sp</dimen>
-    <dimen name="font_size_normal">12sp</dimen>
+    <dimen name="font_size_title">16sp</dimen>
+    <dimen name="font_size_body">14sp</dimen>
+    <dimen name="font_size_label">12sp</dimen>
 
     <dimen name="radius_normal">8dp</dimen>
 
@@ -30,4 +32,5 @@
     <dimen name="padding_normal">8dp</dimen>
     <dimen name="padding_medium">16dp</dimen>
     <dimen name="padding_chip_vertical">6dp</dimen>
+    <dimen name="padding_chip_horizontal">12dp</dimen>
 </resources>
