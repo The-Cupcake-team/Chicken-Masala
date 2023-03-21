@@ -55,5 +55,8 @@
         <item name="android:textSize">@dimen/font_size_label</item>
     </style>
 
+    <style name="ShapeOfHealthyImage" parent="">
+        <item name="cornerSize">16%</item>
+    </style>
 
 </resources>
