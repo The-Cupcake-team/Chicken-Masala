@@ -6,6 +6,7 @@
     <dimen name="spacing_normal">8dp</dimen>
     <dimen name="spacing_medium">16dp</dimen>
     <dimen name="spacing_large">24dp</dimen>
+    <dimen name="spacing_xlarge">32dp</dimen>
 
     <dimen name="font_size_title">16sp</dimen>
     <dimen name="font_size_body">14sp</dimen>

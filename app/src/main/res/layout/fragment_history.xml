@@ -18,5 +18,15 @@
         app:shapeAppearanceOverlay="@style/ShapeOverlayImage"
         android:scaleType="centerCrop"/>
 
+    <TextView
+        android:id="@+id/history_title"
+        style="@style/TextStyle.Title.Large"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_medium"
+        android:layout_marginTop="@dimen/spacing_xlarge"
+        android:text="@string/history_of_indian_food"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image_history" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
