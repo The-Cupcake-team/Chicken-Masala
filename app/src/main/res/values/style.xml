@@ -34,4 +34,12 @@
         <item name="chipStartPadding">8dp</item>
         <item name="chipEndPadding">8dp</item>
     </style>
+
+    <style name="ShapeAppearanceOverlay.MaterialCardView.Cut" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopRight">@dimen/radius_medium</item>
+        <item name="cornerSizeTopLeft">@dimen/radius_medium</item>
+        <item name="cornerSizeBottomLeft">@dimen/zero</item>
+        <item name="cornerSizeBottomRight">@dimen/zero</item>
+    </style>
 </resources>
