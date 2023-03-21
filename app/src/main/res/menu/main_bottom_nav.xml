@@ -1,20 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
- <item
-     android:id="@+id/pagehome"
-     android:icon="@drawable/baseline_home_24"
-     android:title="@string/home"/>
-     <item
-   android:id="@+id/search"
-        android:icon="@drawable/baseline_search_24"
-         android:title="@string/search"/>
     <item
-       android:id="@+id/food"
-        android:icon="@drawable/material_symbols_food_bank_outline"
-        android:title="@string/food"/>
+        android:id="@+id/home"
+        android:enabled="true"
+        android:icon="@drawable/home_icon"
+        android:title="@string/home" />
     <item
-      android:id="@+id/saved"
-        android:icon="@drawable/baseline_bookmark_border_24"
-        android:title="@string/saved"/>
+        android:id="@+id/search"
+        android:enabled="true"
+        android:icon="@drawable/search_icon"
+        android:title="@string/search" />
+    <item
+        android:id="@+id/food"
+        android:enabled="true"
+        android:icon="@drawable/food_icon"
+        android:title="@string/cuisine" />
+    <item
+        android:id="@+id/saved"
+        android:enabled="true"
+        android:icon="@drawable/history_icon"
+        android:title="@string/history" />
 
 </menu>

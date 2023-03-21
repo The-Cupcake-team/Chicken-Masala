@@ -9,10 +9,14 @@
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
+        android:id="@+id/bottom_navigation_bar"
         android:layout_height="wrap_content"
-        app:menu="@menu/main_bottom_nav"
+        android:theme="@style/BottomNavigationView"
+        app:itemIconTint="@color/bottom_nav_bar_icon"
+        app:itemTextColor="@color/primary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/main_bottom_nav" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
