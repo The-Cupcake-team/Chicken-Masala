@@ -6,7 +6,7 @@
         <item name="colorOnPrimary">@color/on_primary</item>
 
         <item name="colorSecondary">@color/secondary</item>
-        <item name="colorOnSecondary">@color/text_secondary</item>
+        <item name="colorOnSecondary">@color/on_secondary</item>
 
         <item name="android:statusBarColor">?attr/background</item>
         <item name="background">@color/background</item>
@@ -54,10 +54,15 @@
         <item name="android:fontFamily">@font/roboto_medium</item>
         <item name="android:textSize">@dimen/font_size_label</item>
     </style>
-    <style name="ShapeOverlayImage" parent="">
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">50%</item>
+
+    <style name="CardImageStyle" parent="">
+        <item name="android:layout_marginStart">@dimen/spacing_medium</item>
+        <item name="android:layout_marginEnd">@dimen/spacing_medium</item>
+        <item name="android:layout_marginTop">@dimen/spacing_medium</item>
+        <item name="android:scaleType">centerCrop</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearance.Material3.Corner.Large</item>
     </style>
+
 
 
 </resources>
