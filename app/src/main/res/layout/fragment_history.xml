@@ -69,5 +69,52 @@
             app:layout_constraintTop_toBottomOf="@+id/text_content_two"
             app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Large" />
 
+        <TextView
+            android:id="@+id/text_content_three"
+            style="style/TextStyle.Body.Medium"
+            android:layout_width="@dimen/zero"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:layout_marginEnd="@dimen/spacing_medium"
+            android:text="@string/history_content_three"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/image_history_two"
+            app:layout_constraintTop_toBottomOf="@+id/image_history_two" />
+
+        <TextView
+            android:id="@+id/text_content_four"
+            style="style/TextStyle.Body.Medium"
+            android:layout_width="@dimen/zero"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:layout_marginEnd="@dimen/spacing_medium"
+            android:text="@string/history_content_four"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/text_content_three"
+            app:layout_constraintTop_toBottomOf="@+id/text_content_three" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/image_history_three"
+            android:layout_width="@dimen/zero"
+            android:layout_height="@dimen/photo_card_height"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:scaleType="centerCrop"
+            android:src="@drawable/history_image_3"
+            app:layout_constraintEnd_toEndOf="@+id/text_content_four"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/text_content_four"
+            app:layout_constraintTop_toBottomOf="@+id/text_content_four"
+            app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Large" />
+
+        <TextView
+            android:id="@+id/text_content_five"
+            style="style/TextStyle.Body.Medium"
+            android:layout_width="@dimen/zero"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:text="@string/history_content_five"
+            app:layout_constraintEnd_toEndOf="@+id/image_history_three"
+            app:layout_constraintStart_toStartOf="@+id/image_history_three"
+            app:layout_constraintTop_toBottomOf="@+id/image_history_three" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
