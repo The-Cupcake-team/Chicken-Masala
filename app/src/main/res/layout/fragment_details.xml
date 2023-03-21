@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".DetailsFragment">
+    tools:context=".ui.details_screen.DetailsFragment">
+
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/top_bar"
         android:background="@color/background"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="@dimen/app_bar_height"
         android:layout_marginBottom="@dimen/spacing_medium">
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/action_bar"
@@ -68,13 +69,11 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <ScrollView
+        android:layout_marginTop="@dimen/app_bar_height"
         android:id="@+id/screen"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_medium"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/top_bar">
+        android:layout_height="wrap_content">
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -89,9 +88,9 @@
 
             <TextView
                 android:id="@+id/ingredients_title"
+                style="@style/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/title"
                 android:text="@string/ingredients"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/p1" />
@@ -110,9 +109,9 @@
 
             <TextView
                 android:id="@+id/instructions_title"
+                style="@style/title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/title"
                 android:fontFamily="@font/roboto_medium"
                 android:text="@string/instructions"
                 app:layout_constraintStart_toStartOf="parent"
@@ -153,4 +152,4 @@
     </ScrollView>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

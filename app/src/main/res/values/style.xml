@@ -1,4 +1,6 @@
-<?xml vermarsion="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
+
+
 <resources>
     <style name="title">
         <item name="android:textColor">@color/text_primary</item>
@@ -16,7 +18,7 @@
     </style>
     
     <style name="details_card">
-        <item name="android:textColor">text_secondary_60</item>
+        <item name="android:textColor">@color/text_secondary_60</item>
         <item name="android:textSize">@dimen/font_size_label</item>
         <item name="fontFamily">@font/roboto</item>
         <item name="android:layout_marginTop">@dimen/spacing_small</item>

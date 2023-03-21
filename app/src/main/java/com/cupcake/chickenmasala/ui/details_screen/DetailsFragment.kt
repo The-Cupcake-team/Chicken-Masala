@@ -1,10 +1,11 @@
-package com.cupcake.chickenmasala
+package com.cupcake.chickenmasala.ui.details_screen
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.cupcake.chickenmasala.R
 
 class DetailsFragment : Fragment() {
 
