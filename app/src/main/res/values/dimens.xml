@@ -42,5 +42,6 @@
 
     <dimen name="padding_chip_vertical">6dp</dimen>
     <dimen name="padding_chip_horizontal">12dp</dimen>
+    <dimen name="history_image_size">200dp</dimen>
 
 </resources>

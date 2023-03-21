@@ -54,6 +54,10 @@
         <item name="android:fontFamily">@font/roboto_medium</item>
         <item name="android:textSize">@dimen/font_size_label</item>
     </style>
+    <style name="ShapeOverlayImage" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
 
 
 </resources>
