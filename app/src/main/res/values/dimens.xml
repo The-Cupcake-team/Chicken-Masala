@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="zero">0dp</dimen>
+
+    <dimen name="spacing_small">4dp</dimen>
+    <dimen name="spacing_normal">8dp</dimen>
+    <dimen name="spacing_medium">16dp</dimen>
+    <dimen name="spacing_large">24dp</dimen>
+
+    <dimen name="font_size_title">16sp</dimen>
+    <dimen name="font_size_body">14sp</dimen>
+    <dimen name="font_size_label">12sp</dimen>
+    <dimen name="font_size_title_medium">20sp</dimen>
+    <dimen name="font_size_title_large">22sp</dimen>
+
+    <dimen name="radius_normal">16dp</dimen>
+    <dimen name="radius_medium">28dp</dimen>
+
+    <dimen name="card_height">128dp</dimen>
+    <dimen name="save_card_width">328dp</dimen>
+
+    <dimen name="home_card_width">180dp</dimen>
+    <dimen name="home_card_height">200dp</dimen>
+
+    <dimen name="item_card_recent_food_width">161dp</dimen>
+    <dimen name="item_card_recent_food_height">200dp</dimen>
+    <dimen name="item_card_cuisine_height">95dp</dimen>
+    <dimen name="item_card_recipes_height">86dp</dimen>
+
+    <dimen name="small_icon_size">16dp</dimen>
+    <dimen name="default_icon_size">24dp</dimen>
+
+    <dimen name="save_card_photo_width">162dp</dimen>
+
+    <dimen name="healthy_card_height">312dp</dimen>
+    <dimen name="healthy_card_photo_height">162dp</dimen>
+
+    <dimen name="photo_card_height">180dp</dimen>
+
+    <dimen name="button_height">40dp</dimen>
+    <dimen name="input_height">56dp</dimen>
+
+    <dimen name="padding_chip_vertical">6dp</dimen>
+    <dimen name="padding_chip_horizontal">12dp</dimen>
+
+</resources>
