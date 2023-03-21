@@ -22,8 +22,8 @@
     <dimen name="home_card_width">180dp</dimen>
     <dimen name="home_card_height">200dp</dimen>
 
-    <dimen name="item_card_recent_food_width">161dp</dimen>
-    <dimen name="item_card_recent_food_height">200dp</dimen>
+    <dimen name="item_card_recent_food_width">160dp</dimen>
+    <dimen name="item_card_recent_food_height">260dp</dimen>
     <dimen name="item_card_cuisine_height">95dp</dimen>
     <dimen name="item_card_recipes_height">86dp</dimen>
 
