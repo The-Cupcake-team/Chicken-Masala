@@ -15,6 +15,7 @@
 
 
     <dimen name="radius_normal">8dp</dimen>
+    <dimen name="radius_large">16dp</dimen>
 
     <dimen name="card_height">128dp</dimen>
     <dimen name="save_card_width">328dp</dimen>
