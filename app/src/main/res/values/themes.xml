@@ -1,46 +1,58 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+
     <style name="Theme.ChickenMasala" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <!-- Primary brand color. -->
+
         <item name="colorPrimary">@color/primary</item>
         <item name="colorOnPrimary">@color/on_primary</item>
-        <!-- Secondary brand color. -->
+
         <item name="colorSecondary">@color/secondary</item>
         <item name="colorOnSecondary">@color/text_secondary</item>
-        <!-- Status bar color. -->
+
         <item name="android:statusBarColor">?attr/background</item>
-        <!-- Customize your theme here. -->
         <item name="background">@color/background</item>
     </style>
 
 
-    <style name="defaultTextStyle" parent="@android:style/TextAppearance.Widget.TextView">
-        <item name="android:textColor">@color/black</item>
-    </style>
-
-    <style name="titleTextStyle" parent="defaultTextStyle">
-        <item name="android:fontFamily">@font/roboto_medium</item>
-        <item name="android:textSize">@dimen/font_size_title</item>
-    </style>
-
-    <style name="bodyTextStyle" parent="defaultTextStyle">
-        <item name="android:fontFamily">@font/roboto_medium</item>
-        <item name="android:textSize">@dimen/font_size_body</item>
-    </style>
-
-    <style name="labelTextStyle" parent="defaultTextStyle">
+    <style name="TextStyle" parent="@android:style/TextAppearance.Widget.TextView">
+        <item name="android:textColor">@color/text_primary</item>
         <item name="android:fontFamily">@font/roboto</item>
-        <item name="android:textSize">@dimen/font_size_label</item>
     </style>
 
-    <style name="titleTextStyleMedium" parent="defaultTextStyle">
+    <style name="TextStyle.ToolBar" parent="TextStyle">
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textSize">@dimen/font_size_title_large</item>
+    </style>
+
+    <style name="TextStyle.Title.Large" parent="TextStyle">
         <item name="android:fontFamily">@font/roboto_medium</item>
         <item name="android:textSize">@dimen/font_size_title_medium</item>
     </style>
 
-    <style name="titleTextStyleLarge" parent="defaultTextStyle">
+    <style name="TextStyle.Title.Medium" parent="TextStyle">
         <item name="android:fontFamily">@font/roboto_medium</item>
-        <item name="android:textSize">@dimen/font_size_title_large</item>
+        <item name="android:textSize">@dimen/font_size_title</item>
+    </style>
+
+
+
+    <style name="TextStyle.Body.Medium" parent="TextStyle">
+        <item name="android:fontFamily">@font/roboto_medium</item>
+        <item name="android:textSize">@dimen/font_size_body</item>
+    </style>
+
+    <style name="TextStyle.Body.Small" parent="TextStyle">
+        <item name="android:textSize">@dimen/font_size_label</item>
+    </style>
+
+
+    <style name="TextStyle.Label.Large" parent="TextStyle">
+        <item name="android:fontFamily">@font/roboto_medium</item>
+        <item name="android:textSize">@dimen/font_size_body</item>
+    </style>
+
+    <style name="TextStyle.Label.Medium" parent="TextStyle">
+        <item name="android:fontFamily">@font/roboto_medium</item>
+        <item name="android:textSize">@dimen/font_size_label</item>
     </style>
 
 
