@@ -7,7 +7,7 @@
     tools:context=".ui.HistoryFragment">
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/image_history"
+        android:id="@+id/image_history_one"
         android:layout_width="@dimen/history_image_size"
         android:layout_height="@dimen/history_image_size"
         android:layout_marginTop="@dimen/spacing_medium"
@@ -27,6 +27,41 @@
         android:layout_marginTop="@dimen/spacing_xlarge"
         android:text="@string/history_of_indian_food"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image_history" />
+        app:layout_constraintTop_toBottomOf="@+id/image_history_one" />
 
+    <TextView
+        android:id="@+id/text_content_one"
+        android:layout_width="@dimen/zero"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_medium"
+        android:layout_marginEnd="@dimen/spacing_medium"
+        android:text="@string/history_content_one"
+        style="style/TextStyle.Body.Medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/history_title"
+        app:layout_constraintTop_toBottomOf="@+id/history_title" />
+
+    <TextView
+        android:id="@+id/text_content_two"
+        style="style/TextStyle.Body.Medium"
+        android:layout_width="@dimen/zero"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_medium"
+        android:layout_marginEnd="@dimen/spacing_medium"
+        android:text="@string/history_content_two"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/text_content_one"
+        app:layout_constraintTop_toBottomOf="@+id/text_content_one" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/image_history_two"
+        android:layout_width="@dimen/zero"
+        android:layout_height="@dimen/photo_card_height"
+        android:layout_marginTop="@dimen/spacing_medium"
+        android:scaleType="centerCrop"
+        android:src="@drawable/history_image2"
+        app:layout_constraintEnd_toEndOf="@+id/text_content_two"
+        app:layout_constraintStart_toStartOf="@+id/text_content_two"
+        app:layout_constraintTop_toBottomOf="@+id/text_content_two"
+        app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Large" />
 </androidx.constraintlayout.widget.ConstraintLayout>
