@@ -9,7 +9,7 @@
         android:id="@+id/healthy_viewPager"
         android:layout_width="0dp"
         android:layout_height="@dimen/photo_card_height"
-        android:layout_marginHorizontal="@dimen/margin_medium"
+        android:paddingHorizontal="@dimen/margin_medium"
         android:layout_marginTop="@dimen/margin_medium"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
