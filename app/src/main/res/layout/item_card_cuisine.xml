@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/item_card_cuisine_height"
+    android:padding="@dimen/spacing_small">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/item_cuisine1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Large"
+        app:srcCompat="@drawable/image" />
+
+    <View
+        android:id="@+id/blur_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/blur_image"
+        app:layout_constraintBottom_toBottomOf="@+id/item_cuisine1"
+        app:layout_constraintEnd_toEndOf="@+id/item_cuisine1"
+        app:layout_constraintStart_toStartOf="@+id/item_cuisine1"
+        app:layout_constraintTop_toTopOf="@+id/item_cuisine1" />
+
+    <TextView
+        android:id="@+id/text_cuisine_name"
+        style="@style/TextStyle.Title.Medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/background"
+        app:layout_constraintBottom_toBottomOf="@+id/item_cuisine1"
+        app:layout_constraintEnd_toEndOf="@+id/item_cuisine1"
+        app:layout_constraintStart_toStartOf="@+id/item_cuisine1"
+        app:layout_constraintTop_toTopOf="@+id/item_cuisine1"
+        tool:text="Indian" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
