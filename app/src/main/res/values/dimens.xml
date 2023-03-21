@@ -45,4 +45,5 @@
 
     <dimen name="small_search_card">126dp</dimen>
 
+    <dimen name="box_stroke_width">0.25dp</dimen>
 </resources>

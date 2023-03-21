@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="searchCardView" parent="@style/Widget.Material3.CardView.Filled">
         <item name="android:width">@dimen/item_card_recent_food_width</item>
         <item name="android:height">@dimen/item_card_recent_food_height</item>
@@ -7,4 +8,30 @@
         <item name="cornerRadius">@dimen/radius_normal</item>
     </style>
 
+    <style name="SearchBoxStyle" parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxCornerRadiusBottomEnd">@dimen/radius_medium</item>
+        <item name="boxCornerRadiusBottomStart">@dimen/radius_medium</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/radius_medium</item>
+        <item name="boxCornerRadiusTopStart">@dimen/radius_medium</item>
+        <item name="boxStrokeWidth">@dimen/box_stroke_width</item>
+        <item name="boxStrokeWidthFocused">@dimen/box_stroke_width</item>
+        <item name="endIconDrawable">@drawable/filter_icon</item>
+        <item name="endIconMode">custom</item>
+        <item name="startIconDrawable">@drawable/search_icon</item>
+        <item name="boxStrokeColor">@color/text_secondary_60</item>
+        <item name="hintTextColor">@color/text_secondary_60</item>
+        <item name="android:textCursorDrawable">@null</item>
+        <item name="android:fontFamily">@font/roboto_bold</item>
+        <item name="android:textSize">@dimen/font_size_title</item>
+    </style>
+
+    <style name="chipStyle" parent="Widget.MaterialComponents.Chip.Filter">
+        <item name="chipBackgroundColor">@color/chip_background_color</item>
+        <item name="android:textColor">@color/chip_text_color</item>
+        <item name="android:textSize">@dimen/font_size_body</item>
+        <item name="android:fontFamily">@font/roboto_medium</item>
+        <item name="checkedIconVisible">false</item>
+        <item name="chipStartPadding">8dp</item>
+        <item name="chipEndPadding">8dp</item>
+    </style>
 </resources>

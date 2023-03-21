@@ -32,4 +32,19 @@ Today, Indian cuisine continues to evolve, with new dishes and variations being 
     <string name="apply">Apply</string>
     <string name="clear">Clear</string>
 <string name="cooking_instructions">Cooking Instructions</string>
+    <string name="time">Time</string>
+    <string name="fast_food">Fast Food</string>
+    <string name="_30_45_min">30 - 45 min</string>
+    <string name="_45_60_min">45 - 60 min</string>
+    <string name="more_than_hour">More Than Hour</string>
+    <string name="green_chillies">green chillies</string>
+    <string name="ginger">Ginger</string>
+    <string name="onion">Onion</string>
+    <string name="coriander_powder">coriander powder</string>
+    <string name="eggs">Eggs</string>
+    <string name="cloves_laung">cloves (laung)</string>
+    <string name="red_chill_powder">Red chill Powder</string>
+    <string name="amchur">Amchur</string>
+    <string name="karela">Karela</string>
+    <string name="salt">Salt</string>
 </resources>
