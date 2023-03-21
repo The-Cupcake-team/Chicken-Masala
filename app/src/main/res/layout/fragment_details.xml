@@ -71,15 +71,14 @@
         android:id="@+id/screen"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/spacing_medium"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/top_bar">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <include
                 android:id="@+id/p1"
@@ -92,13 +91,8 @@
                 android:id="@+id/ingredients_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/spacing_medium"
-                android:layout_marginTop="@dimen/spacing_medium"
-                android:layout_marginBottom="@dimen/spacing_normal"
-                android:fontFamily="@font/roboto_medium"
+                style="@style/title"
                 android:text="@string/ingredients"
-                android:textColor="@color/text_primary"
-                android:textSize="@dimen/font_size_title"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/p1" />
 
@@ -118,13 +112,9 @@
                 android:id="@+id/instructions_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/spacing_medium"
-                android:layout_marginTop="@dimen/spacing_medium"
-                android:layout_marginBottom="@dimen/spacing_normal"
+                style="@style/title"
                 android:fontFamily="@font/roboto_medium"
                 android:text="@string/instructions"
-                android:textColor="@color/text_primary"
-                android:textSize="@dimen/font_size_title"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/recycler_ingredients" />
 

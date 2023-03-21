@@ -9,7 +9,8 @@
         android:id="@+id/details_image"
         android:layout_width="match_parent"
         android:layout_height="240dp"
-        android:layout_margin="@dimen/spacing_medium"
+        android:layout_marginHorizontal="@dimen/spacing_medium"
+
         android:scaleType="centerCrop"
         android:src="@drawable/details_image"
         app:layout_constraintEnd_toEndOf="parent"
