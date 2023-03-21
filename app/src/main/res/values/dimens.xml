@@ -43,4 +43,8 @@
     <dimen name="padding_chip_vertical">6dp</dimen>
     <dimen name="padding_chip_horizontal">12dp</dimen>
 
+
+    <dimen name="padding_normal">12dp</dimen>
+    <dimen name="app_bar_height">56dp</dimen>
+
 </resources>
