@@ -33,4 +33,15 @@ Today, Indian cuisine continues to evolve, with new dishes and variations being 
     <string name="clear">Clear</string>
     <string name="cooking_instructions">Cooking Instructions</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="ragi_semiya_upma_recipe_ragi_millet_vermx_icelli_breakfast">Ragi Semiya Upma Recipe - Ragi Millet Vermx icelli Breakfast.</string>
+    <string name="onion">Onion</string>
+    <string name="salt">Salt</string>
+    <string name="amchuer">Amchuer</string>
+    <string name="karela">Karela</string>
+    <string name="red_chill_powder">Red chill Powder</string>
+    <string name="gram_flour">Gram flour</string>
+    <string name="details_text">Details</string>
+    <string name="_45_min">45 min</string>
+    <string name="indian">Indian</string>
+    <string name="_12">12</string>
 </resources>

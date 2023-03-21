@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/details_image"
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:layout_margin="@dimen/spacing_medium"
+        android:scaleType="centerCrop"
+        android:src="@drawable/details_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Large" />
+
+    <TextView
+        android:id="@+id/food_name"
+        style="@style/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/ragi_semiya_upma_recipe_ragi_millet_vermx_icelli_breakfast"
+        app:layout_constraintEnd_toEndOf="@id/details_image"
+        app:layout_constraintStart_toStartOf="@id/details_image"
+        app:layout_constraintTop_toBottomOf="@id/details_image" />
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/chip_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="@dimen/spacing_medium"
+        android:paddingTop="@dimen/spacing_normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/food_name">
+
+        <com.google.android.material.chip.Chip
+            style="@style/selectedChipStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/onion" />
+
+        <com.google.android.material.chip.Chip
+            style="@style/selectedChipStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/salt" />
+
+        <com.google.android.material.chip.Chip
+            style="@style/selectedChipStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/amchuer" />
+
+        <com.google.android.material.chip.Chip
+            style="@style/selectedChipStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/karela" />
+
+        <com.google.android.material.chip.Chip
+            style="@style/selectedChipStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/gram_flour" />
+
+        <com.google.android.material.chip.Chip
+            style="@style/selectedChipStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/red_chill_powder" />
+
+    </com.google.android.material.chip.ChipGroup>
+
+    <TextView
+        android:id="@+id/Details_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/spacing_medium"
+        android:layout_marginTop="@dimen/spacing_normal"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/details_text"
+        android:textColor="@color/text_primary"
+        android:textSize="@dimen/font_size_title_medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/chip_group" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/details_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_normal"
+        android:layout_marginHorizontal="@dimen/spacing_medium"
+        android:background="@drawable/layout_rounded"
+        android:paddingVertical="@dimen/spacing_normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/Details_text">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/timer_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/spacing_small"
+            android:src="@drawable/timer_icon"
+            app:layout_constraintBottom_toTopOf="@id/timer_text"
+            app:layout_constraintEnd_toEndOf="@id/timer_text"
+            app:layout_constraintStart_toStartOf="@id/timer_text"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/timer_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/_45_min"
+            android:textColor="@color/text_secondary_60"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/line_first"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <View
+            android:id="@+id/line_first"
+            android:layout_width="0.25dp"
+            android:layout_height="0dp"
+            android:layout_marginVertical="4dp"
+            android:background="@color/text_tertiary_38"
+            android:rotation="180"
+            app:layout_constraintBottom_toBottomOf="@id/timer_text"
+            app:layout_constraintEnd_toStartOf="@+id/cuisine_text"
+            app:layout_constraintStart_toEndOf="@+id/timer_text"
+            app:layout_constraintTop_toTopOf="@id/timer_icon" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/cuisine_icon"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:src="@drawable/food_icon"
+            app:layout_constraintEnd_toEndOf="@id/cuisine_text"
+            app:layout_constraintStart_toStartOf="@id/cuisine_text"
+            app:layout_constraintTop_toTopOf="parent"
+
+            />
+
+        <TextView
+            android:id="@+id/cuisine_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/indian"
+            android:textColor="@color/text_secondary_60"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/line_first"
+            app:layout_constraintEnd_toStartOf="@id/line_second"
+             />
+
+
+        <View
+            android:id="@+id/line_second"
+            android:layout_width="0.25dp"
+            android:layout_height="0dp"
+            android:layout_marginVertical="4dp"
+            android:background="@color/text_tertiary_38"
+            android:rotation="180"
+            app:layout_constraintBottom_toBottomOf="@id/cuisine_text"
+            app:layout_constraintEnd_toStartOf="@+id/ingredient_text"
+            app:layout_constraintStart_toEndOf="@+id/cuisine_text"
+            app:layout_constraintTop_toTopOf="@id/cuisine_icon" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/ingredient_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/spacing_small"
+            android:src="@drawable/whisk_icon"
+            app:layout_constraintBottom_toTopOf="@id/ingredient_text"
+            app:layout_constraintEnd_toEndOf="@id/ingredient_text"
+            app:layout_constraintStart_toStartOf="@id/ingredient_text"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/ingredient_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/_12"
+            android:textColor="@color/text_secondary_60"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/line_second"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
