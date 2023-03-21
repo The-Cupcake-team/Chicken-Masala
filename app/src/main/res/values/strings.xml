@@ -12,13 +12,24 @@ Over time, Indian cuisine was influenced by a number of factors, including the a
 Regional cuisines in India are also a significant part of its culinary heritage. Each state has its own unique cuisine, with distinct flavors and cooking styles. For example, the cuisine of the South Indian state of Kerala is known for its use of coconut milk and seafood, while the cuisine of the North Indian state of Punjab is known for its use of tandoor cooking and dairy products.
 Indian food has also had a significant impact on other parts of the world, with many Indian dishes becoming popular in other countries. For example, dishes such as curry, biryani, and tandoori chicken are now widely popular in many parts of the world.
 Today, Indian cuisine continues to evolve, with new dishes and variations being created all the time. With its rich history and diverse influences, Indian food remains one of the most beloved and fascinating cuisines in the world.</string>
-    <string name="theres_no_result_for">There’s no result for</string>
+    <string name="theres_no_result_for">There’s no result for %1$s</string>
     <string name="recent_food">Recent Food</string>
     <string name="view_all">View All</string>
     <string name="advice_two_title">Use extra virgin olive oil </string>
     <string name="advice_two_content">Extra virgin olive oil is one of the healthiest vegetable oils you can use. It’s loaded with heart-healthy monounsaturated fats and powerful antioxidants that have anti-inflammatory properties. Extra virgin olive oil may benefit heart health- as people who consume it have a lower risk of dying from heart attacks and strokes according to some evidence.</string>
     <string name="detail_food">Detail Food</string>
     <string name="ingredients">Ingredients</string>
+    <string name="instructions">Instructions</string>
     <string name="details">Details</string>
+    <string name="more_details">More Details</string>
+
+    <string name="home">Home</string>
+    <string name="search">Search</string>
+    <string name="cuisine">Cuisine</string>
+    <string name="history">History</string>
+
+    <string name="min">min</string>
+    <string name="apply">Apply</string>
+    <string name="clear">Clear</string>
 <string name="cooking_instructions">Cooking Instructions</string>
 </resources>
