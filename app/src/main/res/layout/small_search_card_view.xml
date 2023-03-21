@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="@dimen/item_card_recent_food_width"
-    android:layout_height="@dimen/item_card_recent_food_height"
+    android:layout_height="@dimen/small_search_card"
     style="@style/searchCardView">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -85,6 +85,5 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 </com.google.android.material.card.MaterialCardView>
