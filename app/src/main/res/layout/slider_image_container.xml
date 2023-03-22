@@ -11,31 +11,15 @@
 
         <ImageView
             android:id="@+id/health_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/food_image"
+            android:src="@drawable/view_pager_image_1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:layout_width="@dimen/health_advice_width"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/spacing_large"
-            android:ellipsize="end"
-            android:fontFamily="@font/bebas_neue"
-            android:gravity="center_horizontal"
-            android:letterSpacing="0.04"
-            android:lines="3"
-            android:text="@string/healthy_advice"
-            android:textAlignment="center"
-            android:textColor="@color/on_view_pager"
-            android:textSize="@dimen/font_size_view_pager"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/health_image" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

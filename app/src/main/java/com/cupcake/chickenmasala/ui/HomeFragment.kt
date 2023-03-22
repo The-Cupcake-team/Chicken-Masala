@@ -44,8 +44,9 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>() {
         viewPager2 = binding.healthyViewPager
         handler = Handler(Looper.myLooper()!!)
         imageList = ArrayList()
-        imageList.add(R.drawable.food_image)
-        imageList.add(R.drawable.food_image_2)
+        imageList.add(R.drawable.view_pager_image_1)
+        imageList.add(R.drawable.view_pager_image_2)
+        imageList.add(R.drawable.view_pager_image_3)
 
         adapter = ImageAdapter(imageList,viewPager2)
 
