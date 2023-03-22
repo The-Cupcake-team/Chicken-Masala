@@ -1,5 +1,38 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <resources>
+
+    <style name="title">
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textSize">@dimen/font_size_title_medium</item>
+        <item name="android:layout_margin">@dimen/spacing_medium</item>
+        <item name="fontFamily">@font/roboto_medium</item>
+    </style>
+    <style name="selectedChipStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/font_size_label</item>
+        <item name="android:fontFamily">@font/roboto_medium</item>
+        <item name="android:textColor">@color/on_primary</item>
+        <item name="android:backgroundTint">@color/primary</item>
+    </style>
+    <style name="details_chips" >
+        <item name="android:clickable">false</item>
+        <item name="backgroundTint">@color/card</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/font_size_label</item>
+        <item name="android:fontFamily">@font/roboto_medium</item>
+        <item name="android:textColor">@color/text_tertiary_38</item>
+    </style>
+    
+    <style name="details_card">
+        <item name="android:textColor">@color/text_secondary_60</item>
+        <item name="android:textSize">@dimen/font_size_label</item>
+        <item name="fontFamily">@font/roboto</item>
+        <item name="android:layout_marginTop">@dimen/spacing_small</item>
+        <item name="android:layout_marginBottom">@dimen/spacing_normal</item>
+
+
 
     <style name="searchCardView" parent="@style/Widget.Material3.CardView.Filled">
         <item name="android:width">@dimen/item_card_recent_food_width</item>
@@ -42,4 +75,5 @@
         <item name="cornerSizeBottomLeft">@dimen/zero</item>
         <item name="cornerSizeBottomRight">@dimen/zero</item>
     </style>
+
 </resources>

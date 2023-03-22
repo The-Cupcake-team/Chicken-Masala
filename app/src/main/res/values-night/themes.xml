@@ -7,6 +7,7 @@
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/secondary</item>
         <item name="colorOnSecondary">@color/on_secondary</item>
+
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/background</item>
         <!-- Customize your theme here. -->

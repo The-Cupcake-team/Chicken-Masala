@@ -29,7 +29,24 @@
     <string name="min">min</string>
     <string name="apply">Apply</string>
     <string name="clear">Clear</string>
-<string name="cooking_instructions">Cooking Instructions</string>
+
+    <string name="cooking_instructions">Cooking Instructions</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="ragi_semiya_upma_recipe_ragi_millet_vermx_icelli_breakfast">Ragi Semiya Upma Recipe - Ragi Millet Vermx icelli Breakfast.</string>
+    <string name="onion">Onion</string>
+    <string name="salt">Salt</string>
+    <string name="amchuer">Amchuer</string>
+    <string name="karela">Karela</string>
+    <string name="red_chill_powder">Red chill Powder</string>
+    <string name="gram_flour">Gram flour</string>
+    <string name="details_text">Details</string>
+    <string name="_45_min">45 min</string>
+    <string name="indian">Indian</string>
+    <string name="_12">12</string>
+    <string name="content_description_back">back</string>
+    <string name="content_description_share">share</string>
+
+    <string name="cooking_instructions">Cooking Instructions</string>
     <string name="time">Time</string>
     <string name="fast_food">Fast Food</string>
     <string name="_30_45_min">30 - 45 min</string>
@@ -45,4 +62,5 @@
     <string name="amchur">Amchur</string>
     <string name="karela">Karela</string>
     <string name="salt">Salt</string>
+
 </resources>
