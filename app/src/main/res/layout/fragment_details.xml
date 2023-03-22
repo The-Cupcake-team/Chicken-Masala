@@ -131,6 +131,7 @@
                 tools:listitem="@layout/instructions_item" />
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/more_details_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/spacing_medium"
