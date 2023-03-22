@@ -1,20 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="selectedChipStyle">
+
+    <style name="chipStyle" parent="Widget.MaterialComponents.Chip.Filter">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="chipBackgroundColor">@color/chip_background_color</item>
+        <item name="android:textColor">@color/chip_text_color</item>
         <item name="android:textSize">@dimen/font_size_label</item>
         <item name="android:fontFamily">@font/roboto_medium</item>
-        <item name="android:textColor">@color/on_primary</item>
-        <item name="android:backgroundTint">@color/primary</item>
+        <item name="checkedIconVisible">false</item>
+        <item name="chipStartPadding">8dp</item>
+        <item name="chipEndPadding">8dp</item>
     </style>
 
-    <style name="unSelectedChipStyle">
+    <style name="horizontalIconStyle">
+        <item name="android:background">@null</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:tint">@color/text_tertiary_38</item>
+    </style>
+
+    <style name="horizontalContentStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/roboto</item>
         <item name="android:textSize">@dimen/font_size_label</item>
-        <item name="android:fontFamily">@font/roboto_medium</item>
-        <item name="android:textColor">@color/text_tertiary</item>
-        <item name="android:backgroundTint">@color/un_selected_chip</item>
+        <item name="android:textColor">@color/text_tertiary_38</item>
     </style>
 </resources>
