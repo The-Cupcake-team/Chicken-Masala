@@ -29,6 +29,12 @@
     <string name="min">min</string>
     <string name="apply">Apply</string>
     <string name="clear">Clear</string>
+<string name="cooking_instructions">Cooking Instructions</string>
+    <string name="_5_min">5 min</string>
+    <string name="indian">Indian</string>
+    <string name="spaghetti_meatballs">Spaghetti Meatballs</string>
+    <string name="spicy_tomato_rice_recipe">Spicy Tomato Rice (Recipe)</string>
+
 
     <string name="cooking_instructions">Cooking Instructions</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>

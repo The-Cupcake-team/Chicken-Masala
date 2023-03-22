@@ -7,6 +7,17 @@
     android:layout_height="match_parent"
     tools:context=".ui.MainActivity">
 
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:name="com.cupcake.chickenmasala.ui.HomeFragment"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout="@layout/fragment_home" />
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
@@ -26,5 +37,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/main_bottom_nav" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

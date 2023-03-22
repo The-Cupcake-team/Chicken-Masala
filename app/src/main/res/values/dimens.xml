@@ -14,14 +14,17 @@
     <dimen name="font_size_title_medium">20sp</dimen>
     <dimen name="font_size_title_large">22sp</dimen>
 
-    <dimen name="radius_normal">16dp</dimen>
+
     <dimen name="radius_medium">28dp</dimen>
+
+    <dimen name="radius_normal">8dp</dimen>
+    <dimen name="radius_large">16dp</dimen>
 
     <dimen name="card_height">128dp</dimen>
     <dimen name="save_card_width">328dp</dimen>
 
-    <dimen name="home_card_width">180dp</dimen>
-    <dimen name="home_card_height">200dp</dimen>
+    <dimen name="home_card_width">160dp</dimen>
+    <dimen name="home_card_height">260dp</dimen>
 
     <dimen name="item_card_recent_food_width">160dp</dimen>
     <dimen name="item_card_recent_food_height">260dp</dimen>
