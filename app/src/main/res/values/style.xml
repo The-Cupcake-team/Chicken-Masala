@@ -8,9 +8,7 @@
         <item name="fontFamily">@font/roboto_medium</item>
     </style>
 
-<style name="selectedChipStyle">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
+    <style name="selectedChipStyle">
         <item name="android:textSize">@dimen/font_size_label</item>
         <item name="android:fontFamily">@font/roboto_medium</item>
         <item name="android:textColor">@color/on_primary</item>
@@ -18,11 +16,11 @@
     </style>
 
     <style name="unSelectedChipStyle">
-          <item name="android:textColor">@color/text_tertiary_38</item>
+        <item name="android:textColor">@color/text_tertiary_38</item>
     </style>
 
 
-    <style name="details_chips" >
+    <style name="details_chips">
         <item name="android:clickable">false</item>
         <item name="backgroundTint">@color/card</item>
 
@@ -34,8 +32,7 @@
         <item name="android:backgroundTint">@color/un_selected_chip</item>
     </style>
 
- 
-    
+
     <style name="details_card">
         <item name="android:textColor">@color/text_secondary_60</item>
         <item name="android:textSize">@dimen/font_size_label</item>
