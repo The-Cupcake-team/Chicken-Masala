@@ -1,16 +1,13 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <style name="Theme.ChickenMasala" parent="Theme.Material3.DayNight.NoActionBar">
-
         <item name="colorPrimary">@color/primary</item>
         <item name="colorOnPrimary">@color/on_primary</item>
-
         <item name="colorSecondary">@color/secondary</item>
         <item name="colorOnSecondary">@color/on_secondary</item>
         <item name="android:statusBarColor">?attr/background</item>
         <item name="android:windowLightStatusBar">true</item>
         <item name="background">@color/background</item>
-        <item name="android:windowLightStatusBar">true</item>
     </style>
 
 
@@ -69,7 +66,5 @@
         <item name="android:scaleType">centerCrop</item>
         <item name="shapeAppearanceOverlay">@style/ShapeAppearance.Material3.Corner.Large</item>
     </style>
-
-
 
 </resources>
