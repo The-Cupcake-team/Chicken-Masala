@@ -28,19 +28,27 @@
 
         <com.google.android.material.chip.Chip
             style="@style/selectedChipStyle"
-            android:text="All recipes" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/all_recipes" />
 
         <com.google.android.material.chip.Chip
             style="@style/unSelectedChipStyle"
-            android:text="Meat" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/meat" />
 
         <com.google.android.material.chip.Chip
             style="@style/unSelectedChipStyle"
-            android:text="Cheese" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cheese" />
 
         <com.google.android.material.chip.Chip
             style="@style/unSelectedChipStyle"
-            android:text="Avocado" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/avocado" />
 
     </com.google.android.material.chip.ChipGroup>
 
@@ -48,18 +56,19 @@
         android:id="@+id/recyclerView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="@dimen/spacing_medium"
         android:orientation="horizontal"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/healthy_viewPager"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
         tools:listitem="@layout/recipe_card_vertical" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="0dp"
+        android:id="@+id/constraintLayout"
+        android:layout_width="@dimen/zero"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
+        android:layout_marginTop="@dimen/spacing_medium"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_weight="1"
         app:layout_constraintStart_toStartOf="parent"
@@ -117,8 +126,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/chipGroup"
-        tools:listitem="@layout/recipe_card_horizontal"
-        />
+        tools:listitem="@layout/recipe_card_horizontal" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
