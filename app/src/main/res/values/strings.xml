@@ -61,5 +61,9 @@
     <string name="amchur">Amchur</string>
     <string name="karela">Karela</string>
     <string name="salt">Salt</string>
+    <string name="all_recipes">All recipes</string>
+    <string name="meat">Meat</string>
+    <string name="cheese">Cheese</string>
+    <string name="avocado">Avocado</string>
 
 </resources>
