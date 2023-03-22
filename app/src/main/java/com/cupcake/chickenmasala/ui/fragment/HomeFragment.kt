@@ -1,4 +1,4 @@
-package com.cupcake.chickenmasala.ui
+package com.cupcake.chickenmasala.ui.fragment
 
 import android.os.Bundle
 import android.os.Handler
@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
-import com.cupcake.chickenmasala.BaseFragment
+import com.cupcake.chickenmasala.ui.base.BaseFragment
 import com.cupcake.chickenmasala.R
 import com.cupcake.chickenmasala.databinding.FragmentHomeBinding
 import com.cupcake.chickenmasala.utill.ImageAdapter

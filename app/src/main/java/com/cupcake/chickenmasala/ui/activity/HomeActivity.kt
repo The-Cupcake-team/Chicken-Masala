@@ -1,14 +1,17 @@
-package com.cupcake.chickenmasala.ui
+package com.cupcake.chickenmasala.ui.activity
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.cupcake.chickenmasala.R
 import com.cupcake.chickenmasala.databinding.ActivityMainBinding
+import com.cupcake.chickenmasala.ui.fragment.CuisineFragment
+import com.cupcake.chickenmasala.ui.fragment.HistoryFragment
+import com.cupcake.chickenmasala.ui.fragment.HomeFragment
+import com.cupcake.chickenmasala.ui.fragment.SearchFragment
 
 
-class MainActivity : AppCompatActivity() {
+class HomeActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
