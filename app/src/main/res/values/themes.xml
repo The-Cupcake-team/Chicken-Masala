@@ -61,5 +61,14 @@
         <item name="android:textSize">@dimen/font_size_label</item>
     </style>
 
+    <style name="CardImageStyle" parent="">
+        <item name="android:layout_marginStart">@dimen/spacing_medium</item>
+        <item name="android:layout_marginEnd">@dimen/spacing_medium</item>
+        <item name="android:layout_marginTop">@dimen/spacing_medium</item>
+        <item name="android:scaleType">centerCrop</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearance.Material3.Corner.Large</item>
+    </style>
+
+
 
 </resources>

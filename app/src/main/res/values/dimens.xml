@@ -6,6 +6,7 @@
     <dimen name="spacing_normal">8dp</dimen>
     <dimen name="spacing_medium">16dp</dimen>
     <dimen name="spacing_large">24dp</dimen>
+    <dimen name="spacing_xlarge">32dp</dimen>
 
     <dimen name="font_size_title">16sp</dimen>
     <dimen name="font_size_body">14sp</dimen>
@@ -35,13 +36,14 @@
     <dimen name="healthy_card_height">312dp</dimen>
     <dimen name="healthy_card_photo_height">162dp</dimen>
 
-    <dimen name="photo_card_height">180dp</dimen>
+    <dimen name="photo_card_height">195dp</dimen>
 
     <dimen name="button_height">40dp</dimen>
     <dimen name="input_height">56dp</dimen>
 
     <dimen name="padding_chip_vertical">6dp</dimen>
     <dimen name="padding_chip_horizontal">12dp</dimen>
+    <dimen name="history_image_size">200dp</dimen>
 
     <dimen name="small_search_card">126dp</dimen>
 
