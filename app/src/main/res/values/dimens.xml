@@ -6,13 +6,14 @@
     <dimen name="spacing_normal">8dp</dimen>
     <dimen name="spacing_medium">16dp</dimen>
     <dimen name="spacing_large">24dp</dimen>
+    <dimen name="spacing_xlarge">32dp</dimen>
 
     <dimen name="font_size_title">16sp</dimen>
     <dimen name="font_size_body">14sp</dimen>
     <dimen name="font_size_label">12sp</dimen>
     <dimen name="font_size_title_medium">20sp</dimen>
     <dimen name="font_size_title_large">22sp</dimen>
-    <dimen name="font_size_view_pager">24sp</dimen>
+
 
     <dimen name="radius_medium">28dp</dimen>
 
@@ -25,8 +26,8 @@
     <dimen name="home_card_width">160dp</dimen>
     <dimen name="home_card_height">260dp</dimen>
 
-    <dimen name="item_card_recent_food_width">161dp</dimen>
-    <dimen name="item_card_recent_food_height">200dp</dimen>
+    <dimen name="item_card_recent_food_width">160dp</dimen>
+    <dimen name="item_card_recent_food_height">260dp</dimen>
     <dimen name="item_card_cuisine_height">95dp</dimen>
     <dimen name="item_card_recipes_height">86dp</dimen>
 
@@ -45,6 +46,15 @@
 
     <dimen name="padding_chip_vertical">6dp</dimen>
     <dimen name="padding_chip_horizontal">12dp</dimen>
-    <dimen name="health_advice_width">169dp</dimen>
+    <dimen name="history_image_size">200dp</dimen>
+
+
+
+    <dimen name="padding_normal">12dp</dimen>
+    <dimen name="app_bar_height">56dp</dimen>
+
+    <dimen name="small_search_card">126dp</dimen>
+
+    <dimen name="box_stroke_width">0.25dp</dimen>
 
 </resources>

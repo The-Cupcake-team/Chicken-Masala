@@ -1,16 +1,22 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="Theme.ChickenMasala" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <style name="Theme.ChickenMasala" parent="Theme.Material3.DayNight.NoActionBar">
 
         <item name="colorPrimary">@color/primary</item>
         <item name="colorOnPrimary">@color/on_primary</item>
 
         <item name="colorSecondary">@color/secondary</item>
-        <item name="colorOnSecondary">@color/text_secondary</item>
-
+        <item name="colorOnSecondary">@color/on_secondary</item>
         <item name="android:statusBarColor">?attr/background</item>
         <item name="android:windowLightStatusBar">true</item>
         <item name="background">@color/background</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+
+
+    <style name="BottomNavigationView">
+        <item name="colorPrimary">@color/card</item>
+        <item name="colorSecondaryContainer">@color/primary</item>
     </style>
 
 
@@ -35,13 +41,13 @@
     </style>
 
 
-
     <style name="TextStyle.Body.Medium" parent="TextStyle">
         <item name="android:fontFamily">@font/roboto_medium</item>
         <item name="android:textSize">@dimen/font_size_body</item>
     </style>
 
     <style name="TextStyle.Body.Small" parent="TextStyle">
+        <item name="android:fontFamily">@font/roboto</item>
         <item name="android:textSize">@dimen/font_size_label</item>
     </style>
 
@@ -55,6 +61,15 @@
         <item name="android:fontFamily">@font/roboto_medium</item>
         <item name="android:textSize">@dimen/font_size_label</item>
     </style>
+
+    <style name="CardImageStyle" parent="">
+        <item name="android:layout_marginStart">@dimen/spacing_medium</item>
+        <item name="android:layout_marginEnd">@dimen/spacing_medium</item>
+        <item name="android:layout_marginTop">@dimen/spacing_medium</item>
+        <item name="android:scaleType">centerCrop</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearance.Material3.Corner.Large</item>
+    </style>
+
 
 
 </resources>

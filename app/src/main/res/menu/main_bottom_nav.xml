@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/home_fragment"
+        android:enabled="true"
+        android:icon="@drawable/home_icon"
+        android:title="@string/home" />
+    <item
+        android:id="@+id/search_fragment"
+        android:enabled="true"
+        android:icon="@drawable/search_icon"
+        android:title="@string/search" />
+    <item
+        android:id="@+id/cuisine_fragment"
+        android:enabled="true"
+        android:icon="@drawable/food_icon"
+        android:title="@string/cuisine" />
+    <item
+        android:id="@+id/history_fragment"
+        android:enabled="true"
+        android:icon="@drawable/history_icon"
+        android:title="@string/history" />
+
+</menu>
