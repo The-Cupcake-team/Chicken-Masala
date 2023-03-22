@@ -1,4 +1,4 @@
-package com.cupcake.chickenmasala.data.domain
+package com.cupcake.chickenmasala.data.model
 
 data class Recipe(
     val translatedRecipeName: String,
@@ -7,7 +7,7 @@ data class Recipe(
     val cleanedIngredients: List<String>,
     val cuisine: String,
     val translatedInstructions: List<String>,
-    val url: String,
+    val urlDetailsRecipe: String,
     val imageUrl: String,
     val ingredientCounts: Int
 )

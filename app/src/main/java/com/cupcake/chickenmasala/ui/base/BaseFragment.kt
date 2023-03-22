@@ -1,4 +1,4 @@
-package com.cupcake.chickenmasala
+package com.cupcake.chickenmasala.ui.base
 
 import android.os.Bundle
 import android.util.Log

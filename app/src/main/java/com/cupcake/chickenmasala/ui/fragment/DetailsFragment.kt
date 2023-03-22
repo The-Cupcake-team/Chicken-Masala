@@ -1,4 +1,4 @@
-package com.cupcake.chickenmasala.ui.details_screen
+package com.cupcake.chickenmasala.ui.fragment
 
 import android.content.Intent
 import android.net.Uri

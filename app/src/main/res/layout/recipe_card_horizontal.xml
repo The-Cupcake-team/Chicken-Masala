@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/item_card_recipes_height"
+    android:layout_marginBottom="@dimen/spacing_normal"
+    android:backgroundTint="@color/card"
+    app:cardCornerRadius="@dimen/radius_large"
+    app:strokeWidth="0dp"
+    app:cardElevation="@dimen/zero">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.utils.widget.ImageFilterView
+            android:id="@+id/image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="centerCrop"
+            android:src="@drawable/image_card"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:round="@dimen/radius_large" />
+
+        <TextView
+            android:id="@+id/recipe_name"
+            style="@style/TextStyle.Label.Large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_normal"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:maxLines="2"
+            android:text="@string/spicy_tomato_rice_recipe"
+            android:textColor="@color/text_primary"
+            app:layout_constraintBottom_toTopOf="@id/timer"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/image"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/timer"
+            style="@style/horizontalContentStyle"
+            android:layout_marginStart="@dimen/spacing_normal"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:layout_marginBottom="@dimen/spacing_medium"
+            android:drawablePadding="@dimen/spacing_small"
+            android:text="@string/_5_min"
+            app:drawableStartCompat="@drawable/timer_icon"
+            app:drawableTint="@color/text_tertiary_38"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/cuisine_name"
+            app:layout_constraintTop_toBottomOf="@id/recipe_name" />
+
+        <TextView
+            android:id="@+id/cuisine_name"
+            style="@style/horizontalContentStyle"
+            android:drawablePadding="@dimen/spacing_small"
+            android:text="@string/indian"
+            app:drawableStartCompat="@drawable/cuisine_icon"
+            app:drawableTint="@color/text_tertiary_38"
+            app:layout_constraintBottom_toBottomOf="@+id/timer"
+            app:layout_constraintEnd_toStartOf="@id/timer"
+            app:layout_constraintStart_toStartOf="@id/recipe_name"
+            app:layout_constraintTop_toTopOf="@+id/timer" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</com.google.android.material.card.MaterialCardView>

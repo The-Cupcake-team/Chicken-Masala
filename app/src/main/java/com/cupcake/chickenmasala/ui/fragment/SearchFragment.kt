@@ -1,21 +1,21 @@
-package com.cupcake.chickenmasala.ui.search_screen
+package com.cupcake.chickenmasala.ui.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.cupcake.chickenmasala.BaseFragment
+import com.cupcake.chickenmasala.ui.base.BaseFragment
 import com.cupcake.chickenmasala.R
-import com.cupcake.chickenmasala.databinding.FragmentSearchScreenBinding
+import com.cupcake.chickenmasala.databinding.FragmentSearchBinding
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.chip.ChipGroup
 
 
-class SearchScreen : BaseFragment<FragmentSearchScreenBinding>() {
+class SearchFragment : BaseFragment<FragmentSearchBinding>() {
     override val LOG_TAG = "SearchScreen"
-    override val bindingInflater: (LayoutInflater, ViewGroup, Boolean) -> FragmentSearchScreenBinding =
-        FragmentSearchScreenBinding::inflate
+    override val bindingInflater: (LayoutInflater, ViewGroup, Boolean) -> FragmentSearchBinding =
+        FragmentSearchBinding::inflate
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
