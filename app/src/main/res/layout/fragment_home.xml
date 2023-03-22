@@ -3,11 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/background">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/healthy_viewPager"
             android:layout_width="0dp"
@@ -18,57 +20,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/chipGroup"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/spacing_medium"
-            android:layout_marginTop="16dp"
-            app:chipSpacingHorizontal="@dimen/spacing_small"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recyclerView">
-
-            <com.google.android.material.chip.Chip
-                style="@style/selectedChipStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/all_recipes" />
-
-            <com.google.android.material.chip.Chip
-                style="@style/unSelectedChipStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/meat" />
-
-            <com.google.android.material.chip.Chip
-                style="@style/unSelectedChipStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/cheese" />
-
-            <com.google.android.material.chip.Chip
-                style="@style/unSelectedChipStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/avocado" />
-
-        </com.google.android.material.chip.ChipGroup>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/spacing_medium"
-            android:orientation="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
-            tools:listitem="@layout/recipe_card_vertical" />
-
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout"
+            android:id="@+id/header_row"
             android:layout_width="@dimen/zero"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_medium"
@@ -78,7 +31,7 @@
             app:layout_constraintTop_toBottomOf="@id/healthy_viewPager">
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/header_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/spacing_medium"
@@ -90,37 +43,80 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/view_all_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/spacing_small"
+                android:layout_marginEnd="@dimen/spacing_medium"
+                android:drawablePadding="@dimen/spacing_small"
                 android:fontFamily="@font/roboto"
                 android:text="@string/view_all"
                 android:textColor="@color/text_secondary"
                 android:textSize="@dimen/font_size_label"
-                app:layout_constraintBottom_toBottomOf="@+id/textView"
-                app:layout_constraintEnd_toStartOf="@+id/imageButton2"
-                app:layout_constraintTop_toTopOf="@+id/textView" />
-
-            <ImageButton
-                android:id="@+id/imageButton2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/spacing_medium"
-                android:background="@null"
-                android:src="@drawable/baseline_arrow_forward_ios_24"
-                app:layout_constraintBottom_toBottomOf="@+id/textView2"
+                app:layout_constraintBottom_toBottomOf="@+id/header_title"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/textView2" />
+                app:layout_constraintTop_toTopOf="@+id/header_title"
+                android:background="@drawable/view_all_icon"
+                android:clickable="true"
+                android:padding="@dimen/radius_normal"
+                android:focusable="true"
+                app:drawableEndCompat="@drawable/baseline_arrow_forward_ios_24" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView2"
+            android:id="@+id/horizontal_recycler"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/spacing_medium"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/header_row"
+            tools:listitem="@layout/recipe_card_vertical" />
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/spacing_medium"
+            android:layout_marginTop="@dimen/spacing_medium"
+            app:checkedChip="@+id/all_recipes_chip"
+            app:chipSpacingHorizontal="@dimen/spacing_small"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/horizontal_recycler"
+            app:selectionRequired="true"
+            app:singleSelection="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/all_recipes_chip"
+                style="@style/chipStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/all_recipes" />
+
+            <com.google.android.material.chip.Chip
+                style="@style/chipStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/meat" />
+
+            <com.google.android.material.chip.Chip
+                style="@style/chipStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cheese" />
+
+            <com.google.android.material.chip.Chip
+                style="@style/chipStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/avocado" />
+
+        </com.google.android.material.chip.ChipGroup>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/vertical_recycler"
             android:layout_width="@dimen/zero"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_normal"
@@ -130,7 +126,9 @@
             app:layout_constraintStart_toStartOf="@id/chipGroup"
             app:layout_constraintTop_toBottomOf="@+id/chipGroup"
             tools:listitem="@layout/recipe_card_horizontal" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </ScrollView>
 
 
