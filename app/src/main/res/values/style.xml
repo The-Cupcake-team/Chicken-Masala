@@ -42,7 +42,7 @@
         <item name="fontFamily">@font/roboto</item>
         <item name="android:layout_marginTop">@dimen/spacing_small</item>
         <item name="android:layout_marginBottom">@dimen/spacing_normal</item>
-
+    </style>
 
 
     <style name="searchCardView" parent="@style/Widget.Material3.CardView.Filled">
