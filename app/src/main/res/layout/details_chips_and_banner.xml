@@ -127,7 +127,7 @@
             android:id="@+id/cuisine_icon"
             android:layout_width="16dp"
             android:layout_height="16dp"
-            android:src="@drawable/food_icon"
+            android:src="@drawable/cuisine_icon"
             app:layout_constraintEnd_toEndOf="@id/cuisine_text"
             app:layout_constraintStart_toStartOf="@id/cuisine_text"
             app:layout_constraintTop_toTopOf="parent"
