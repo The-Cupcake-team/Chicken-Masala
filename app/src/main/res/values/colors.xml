@@ -5,6 +5,7 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="primary">#E94040</color>
+    <color name="text_primary">#DE000000</color>
     <color name="on_primary">@color/white</color>
 
     <color name="secondary">#F8F8F8</color>
@@ -12,7 +13,7 @@
 
     <color name="background">@color/white</color>
 
-    <color name="text_primary">#DE000000</color>
+
     <color name="text_secondary_60">#99000000</color>
     <color name="text_tertiary_38">#61000000</color>
     <color name="text_variant_10">#1A000000</color>
@@ -27,8 +28,11 @@
 
 
 
+    <color name="text_secondary">#99000000</color>
 
+    <color name="text_tertiary">#61000000</color>
+    <color name="un_selected_chip">#F8F8F8</color>
 
-
+    <color name="un_selected_chip">#F8F8F8</color>
 
 </resources>
