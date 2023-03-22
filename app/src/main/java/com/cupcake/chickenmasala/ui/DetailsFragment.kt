@@ -1,4 +1,4 @@
-package com.cupcake.chickenmasala.ui.details_screen
+package com.cupcake.chickenmasala.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

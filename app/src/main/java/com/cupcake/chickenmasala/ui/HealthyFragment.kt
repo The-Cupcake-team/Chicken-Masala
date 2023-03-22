@@ -1,4 +1,4 @@
-package com.cupcake.chickenmasala.ui.fragments
+package com.cupcake.chickenmasala.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
