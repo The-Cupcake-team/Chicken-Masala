@@ -105,7 +105,9 @@
             android:layout_width="@dimen/zero"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_medium"
+            android:layout_marginBottom="@dimen/spacing_medium"
             android:text="@string/history_content_five"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/image_history_three"
             app:layout_constraintStart_toStartOf="@+id/image_history_three"
             app:layout_constraintTop_toBottomOf="@+id/image_history_three" />
