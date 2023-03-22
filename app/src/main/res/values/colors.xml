@@ -25,10 +25,6 @@
 
     <color name="Bottom_navigation_unselected_icon_color">@color/text_tertiary_38</color>
 
-
-
-
-
-
+    <color name="un_selected_chip">#F8F8F8</color>
 
 </resources>

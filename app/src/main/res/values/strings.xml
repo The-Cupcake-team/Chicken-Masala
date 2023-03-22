@@ -6,12 +6,11 @@
     <string name="advice_one_content">Sugary drinks like sodas- fruit juices- and sweetened teas are the primary source of added sugar in the American diet.</string>
     <string name="kitchen_history">kitchen History</string>
     <string name="history_of_indian_food">History of Indian food</string>
-    <string name="history_content">The history of Indian food is as diverse and colorful as the country itself. India is a land of numerous religions, cultures, and traditions, each of which has contributed to the evolution of its culinary heritage.
-The earliest Indian cuisine can be traced back to the Indus Valley Civilization, which existed around 2500 BCE. The people of this civilization relied on hunting, fishing, and agriculture for their food, and they ate a variety of grains, fruits, vegetables, and dairy products.
-Over time, Indian cuisine was influenced by a number of factors, including the arrival of foreign rulers and traders, the spread of different religions, and the development of regional cuisines. The Mughal Empire, which ruled India from the 16th to the 19th century, had a significant impact on Indian food, introducing techniques such as the use of nuts and spices, the tandoor oven, and the art of dum cooking.
-Regional cuisines in India are also a significant part of its culinary heritage. Each state has its own unique cuisine, with distinct flavors and cooking styles. For example, the cuisine of the South Indian state of Kerala is known for its use of coconut milk and seafood, while the cuisine of the North Indian state of Punjab is known for its use of tandoor cooking and dairy products.
-Indian food has also had a significant impact on other parts of the world, with many Indian dishes becoming popular in other countries. For example, dishes such as curry, biryani, and tandoori chicken are now widely popular in many parts of the world.
-Today, Indian cuisine continues to evolve, with new dishes and variations being created all the time. With its rich history and diverse influences, Indian food remains one of the most beloved and fascinating cuisines in the world.</string>
+    <string name="history_content_one">The history of Indian food is as diverse and colorful as the country itself. India is a land of numerous religions, cultures, and traditions, each of which has contributed to the evolution of its culinary heritage.</string>
+    <string name="history_content_two">The earliest Indian cuisine can be traced back to the Indus Valley Civilization, which existed around 2500 BCE. The people of this civilization relied on hunting, fishing, and agriculture for their food, and they ate a variety of grains, fruits, vegetables, and dairy products.</string>
+    <string name="history_content_three">Over time, Indian cuisine was influenced by a number of factors, including the arrival of foreign rulers and traders, the spread of different religions, and the development of regional cuisines. The Mughal Empire, which ruled India from the 16th to the 19th century, had a significant impact on Indian food, introducing techniques such as the use of nuts and spices, the tandoor oven, and the art of dum cooking.</string>
+    <string name="history_content_four">Regional cuisines in India are also a significant part of its culinary heritage. Each state has its own unique cuisine, with distinct flavors and cooking styles. For example, the cuisine of the South Indian state of Kerala is known for its use of coconut milk and seafood, while the cuisine of the North Indian state of Punjab is known for its use of tandoor cooking and dairy products.</string>
+<string name="history_content_five">Indian food has also had a significant impact on other parts of the world, with many Indian dishes becoming popular in other countries. For example, dishes such as curry, biryani, and tandoori chicken are now widely popular in many parts of the world.Today, Indian cuisine continues to evolve, with new dishes and variations being created all the time. With its rich history and diverse influences, Indian food remains one of the most beloved and fascinating cuisines in the world.</string>
     <string name="theres_no_result_for">There’s no result for %1$s</string>
     <string name="recent_food">Recent Food</string>
     <string name="view_all">View All</string>
@@ -27,10 +26,10 @@ Today, Indian cuisine continues to evolve, with new dishes and variations being 
     <string name="search">Search</string>
     <string name="cuisine">Cuisine</string>
     <string name="history">History</string>
-
     <string name="min">min</string>
     <string name="apply">Apply</string>
     <string name="clear">Clear</string>
+
     <string name="cooking_instructions">Cooking Instructions</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="ragi_semiya_upma_recipe_ragi_millet_vermx_icelli_breakfast">Ragi Semiya Upma Recipe - Ragi Millet Vermx icelli Breakfast.</string>
@@ -46,4 +45,22 @@ Today, Indian cuisine continues to evolve, with new dishes and variations being 
     <string name="_12">12</string>
     <string name="content_description_back">back</string>
     <string name="content_description_share">share</string>
+
+    <string name="cooking_instructions">Cooking Instructions</string>
+    <string name="time">Time</string>
+    <string name="fast_food">Fast Food</string>
+    <string name="_30_45_min">30 - 45 min</string>
+    <string name="_45_60_min">45 - 60 min</string>
+    <string name="more_than_hour">More Than Hour</string>
+    <string name="green_chillies">green chillies</string>
+    <string name="ginger">Ginger</string>
+    <string name="onion">Onion</string>
+    <string name="coriander_powder">coriander powder</string>
+    <string name="eggs">Eggs</string>
+    <string name="cloves_laung">cloves (laung)</string>
+    <string name="red_chill_powder">Red chill Powder</string>
+    <string name="amchur">Amchur</string>
+    <string name="karela">Karela</string>
+    <string name="salt">Salt</string>
+
 </resources>
