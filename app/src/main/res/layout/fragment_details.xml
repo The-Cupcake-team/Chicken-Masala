@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/background"
     tools:context=".ui.DetailsFragment">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -16,6 +17,7 @@
         android:layout_height="@dimen/app_bar_height"
         android:layout_marginBottom="@dimen/spacing_medium">
         <com.google.android.material.card.MaterialCardView
+            app:strokeWidth="@dimen/zero"
             android:id="@+id/action_bar"
             android:layout_width="match_parent"
             android:layout_height="@dimen/app_bar_height"
