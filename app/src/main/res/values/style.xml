@@ -23,6 +23,13 @@
     </style>
 
     <style name="horizontalContentStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textSize">@dimen/font_size_label</item>
+        <item name="android:textColor">@color/text_tertiary_38</item>
+    </style>
+
     <style name="unSelectedChipStyle">
         <item name="android:textColor">@color/text_tertiary_38</item>
     </style>
@@ -31,7 +38,6 @@
     <style name="details_chips">
         <item name="android:clickable">false</item>
         <item name="backgroundTint">@color/card</item>
-
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:fontFamily">@font/roboto</item>
