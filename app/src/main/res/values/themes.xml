@@ -46,6 +46,7 @@
     </style>
 
     <style name="TextStyle.Body.Small" parent="TextStyle">
+        <item name="android:fontFamily">@font/roboto</item>
         <item name="android:textSize">@dimen/font_size_label</item>
     </style>
 
