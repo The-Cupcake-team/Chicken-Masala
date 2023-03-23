@@ -60,21 +60,23 @@
                 android:clickable="true"
                 android:padding="@dimen/radius_normal"
                 android:focusable="true"
-                app:drawableEndCompat="@drawable/baseline_arrow_forward_ios_24" />
+                app:drawableEndCompat="@drawable/baseline_arrow_forward_24" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/horizontal_recycler"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/spacing_medium"
+            android:layout_marginStart="@dimen/spacing_normal"
+            android:layout_marginTop="@dimen/spacing_normal"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/header_row"
-            tools:listitem="@layout/recipe_card_vertical" />
+            tools:listitem="@layout/search_card_view" />
+
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/chipGroup"
             android:layout_width="match_parent"

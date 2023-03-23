@@ -11,11 +11,10 @@
         android:layout_height="match_parent"
         >
 
-        <com.google.android.material.imageview.ShapeableImageView
+        <ImageView
             android:id="@+id/save_card_image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Large"
             android:src="@drawable/save_image"
             android:foreground="@drawable/foreground"
             android:scaleType="centerCrop"
