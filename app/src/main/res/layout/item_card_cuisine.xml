@@ -2,8 +2,10 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tool="http://schemas.android.com/tools"
-    android:layout_width="@dimen/item_card_cuisine_width"
+    android:layout_width="match_parent"
     android:layout_height="@dimen/item_card_cuisine_height"
+    android:layout_marginBottom="@dimen/spacing_normal"
+    android:layout_marginEnd="@dimen/spacing_normal"
     app:cardCornerRadius="@dimen/radius_large">
 
     <androidx.constraintlayout.widget.ConstraintLayout
