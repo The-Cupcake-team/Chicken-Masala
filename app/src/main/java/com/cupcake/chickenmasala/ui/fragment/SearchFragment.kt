@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.cupcake.chickenmasala.ui.base.BaseFragment
 import com.cupcake.chickenmasala.R
+import com.cupcake.chickenmasala.data.DataManagerImpl
 import com.cupcake.chickenmasala.databinding.FragmentSearchBinding
+import com.cupcake.chickenmasala.ui.activity.HomeActivity
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.chip.ChipGroup
@@ -20,6 +22,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupBottomSheet()
+
     }
 
     private fun setupBottomSheet() {
