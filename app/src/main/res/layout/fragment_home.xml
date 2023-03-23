@@ -48,33 +48,35 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/spacing_medium"
+                android:background="@drawable/view_all_icon"
+                android:clickable="true"
                 android:drawablePadding="@dimen/spacing_small"
+                android:focusable="true"
                 android:fontFamily="@font/roboto"
+                android:padding="@dimen/radius_normal"
                 android:text="@string/view_all"
                 android:textColor="@color/text_secondary"
                 android:textSize="@dimen/font_size_label"
+                app:drawableEndCompat="@drawable/baseline_arrow_forward_ios_24"
                 app:layout_constraintBottom_toBottomOf="@+id/header_title"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/header_title"
-                android:background="@drawable/view_all_icon"
-                android:clickable="true"
-                android:padding="@dimen/radius_normal"
-                android:focusable="true"
-                app:drawableEndCompat="@drawable/baseline_arrow_forward_ios_24" />
+                app:layout_constraintTop_toTopOf="@+id/header_title" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/horizontal_recycler"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/spacing_medium"
+            android:layout_marginStart="@dimen/spacing_normal"
+            android:layout_marginTop="@dimen/spacing_normal"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/header_row"
-            tools:listitem="@layout/recipe_card_vertical" />
+            tools:listitem="@layout/search_card_view" />
+
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/chipGroup"
             android:layout_width="match_parent"
@@ -115,6 +117,7 @@
                 android:text="@string/avocado" />
 
         </com.google.android.material.chip.ChipGroup>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/vertical_recycler"
             android:layout_width="@dimen/zero"
