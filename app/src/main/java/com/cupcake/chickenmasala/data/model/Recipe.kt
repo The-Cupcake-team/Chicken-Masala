@@ -1,6 +1,7 @@
 package com.cupcake.chickenmasala.data.model
 
 data class Recipe(
+    val id: Int,
     val translatedRecipeName: String,
     val translatedIngredients: List<String>,
     val totalTimeInMin: Int,
