@@ -1,4 +1,4 @@
-package com.cupcake.chickenmasala.data
+package com.cupcake.chickenmasala.usecase
 
 import com.cupcake.chickenmasala.data.model.HealthyAdvices
 import com.cupcake.chickenmasala.data.model.Recipe

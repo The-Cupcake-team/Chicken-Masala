@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.cupcake.chickenmasala.R
-import com.cupcake.chickenmasala.data.DataManager
+import com.cupcake.chickenmasala.usecase.DataManager
 import com.cupcake.chickenmasala.data.DataManagerImpl
 import com.cupcake.chickenmasala.data.model.HealthyAdvices
 import com.cupcake.chickenmasala.data.model.Recipe
@@ -23,7 +23,7 @@ class HomeActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
 
     private lateinit var csvParser: CsvParser
-    private lateinit var dataManager: DataManager
+     lateinit var dataManager: DataManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,10 +36,10 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun initialDataManager() {
-        dataManager = DataManagerImpl(getRecipe(), getHealthyAdvice())
+        dataManager = DataManagerImpl(getRecipes(), getHealthyAdvice())
     }
 
-    private fun getRecipe(): List<Recipe> {
+    private fun getRecipes(): List<Recipe> {
         return csvParser.parseFile(openFile("Indian_food.csv"), TypeModel.RECIPE) as List<Recipe>
     }
 

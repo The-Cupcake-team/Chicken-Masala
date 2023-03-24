@@ -15,15 +15,13 @@ class CsvParser {
                 TypeModel.RECIPE -> data.add(getRecipe(tokens, index))
                 TypeModel.HEALTH_ADVICE -> data.add(getHealthyAdvice(tokens, index))
             }
-
-
         }
         return data
     }
 
-    private fun getRecipe(line: List<String>, id: Int): Recipe {
+    private fun getRecipe(line: List<String>, index: Int): Recipe {
         return Recipe(
-            id = id,
+            id = index,
             translatedRecipeName = line[TRANSLATED_RECIPE_NAME],
             translatedIngredients = line[TRANSLATED_INGREDIENTS].split(";"),
             cleanedIngredients = line[CLEANED_INGREDIENTS].split(";"),
@@ -36,9 +34,9 @@ class CsvParser {
         )
     }
 
-    private fun getHealthyAdvice(line: List<String>, id: Int): HealthyAdvices {
+    private fun getHealthyAdvice(line: List<String>, index: Int): HealthyAdvices {
         return HealthyAdvices(
-            id = id,
+            id = index,
             title = line[TITLE],
             description = line[DESCRIPTION],
         )

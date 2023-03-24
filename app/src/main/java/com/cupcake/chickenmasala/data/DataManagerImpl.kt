@@ -2,6 +2,7 @@ package com.cupcake.chickenmasala.data
 
 import com.cupcake.chickenmasala.data.model.HealthyAdvices
 import com.cupcake.chickenmasala.data.model.Recipe
+import com.cupcake.chickenmasala.usecase.DataManager
 
 class DataManagerImpl(
     private val parseIndianFile: List<Recipe>,
