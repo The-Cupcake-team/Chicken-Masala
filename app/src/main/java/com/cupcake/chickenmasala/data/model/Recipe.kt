@@ -11,4 +11,8 @@ data class Recipe(
     val urlDetailsRecipe: String,
     val imageUrl: String,
     val ingredientCounts: Int
-)
+) {
+    fun doesMathRecipeName(recipeName: String): Boolean {
+        return translatedRecipeName.contains(recipeName, ignoreCase = true)
+    }
+}
