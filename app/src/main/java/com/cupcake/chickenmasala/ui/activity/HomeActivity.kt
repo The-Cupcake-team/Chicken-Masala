@@ -23,7 +23,7 @@ class HomeActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
 
     private lateinit var csvParser: CsvParser
-    lateinit var dataManager: DataManager
+    private lateinit var dataManager: DataManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,11 +37,6 @@ class HomeActivity : AppCompatActivity() {
 
     private fun initialDataManager() {
         dataManager = DataManagerImpl(getRecipe(), getHealthyAdvice())
-    }
-
-    private fun openFile(fileName: String): InputStreamReader {
-        val inputStream = assets.open(fileName)
-        return InputStreamReader(inputStream)
     }
 
     private fun getRecipe(): List<Recipe> {
@@ -85,6 +80,11 @@ class HomeActivity : AppCompatActivity() {
             replace(R.id.fragmentContainer, fragment)
             commit()
         }
+    }
+
+    private fun openFile(fileName: String): InputStreamReader {
+        val inputStream = assets.open(fileName)
+        return InputStreamReader(inputStream)
     }
 
 }
