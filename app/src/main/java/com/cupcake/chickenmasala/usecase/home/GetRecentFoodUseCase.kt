@@ -9,5 +9,4 @@ class GetRecentFoodUseCase(private val dataManager: DataManager) {
         return dataManager.getRecipes()
     }
 
-
 }
