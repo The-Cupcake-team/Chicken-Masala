@@ -11,14 +11,15 @@
         android:layout_height="wrap_content">
 
         <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/healthy_viewPager"
+            android:id="@+id/healthy_view_pager"
             android:layout_width="0dp"
             android:layout_height="@dimen/photo_card_height"
             android:layout_marginTop="@dimen/spacing_medium"
             android:paddingHorizontal="@dimen/spacing_medium"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/header_row"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/header_row"
@@ -28,7 +29,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_weight="1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/healthy_viewPager">
+            app:layout_constraintTop_toBottomOf="@id/healthy_view_pager">
 
             <TextView
                 android:id="@+id/header_title"
@@ -69,8 +70,8 @@
             android:id="@+id/horizontal_recycler"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/spacing_normal"
             android:layout_marginTop="@dimen/spacing_normal"
+            android:clipToPadding="false"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintStart_toStartOf="parent"
@@ -123,6 +124,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_normal"
             android:orientation="vertical"
+            android:clipToPadding="false"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="@id/chipGroup"
             app:layout_constraintStart_toStartOf="@id/chipGroup"
