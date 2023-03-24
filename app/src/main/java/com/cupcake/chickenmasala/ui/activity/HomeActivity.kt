@@ -13,6 +13,7 @@ import com.cupcake.chickenmasala.ui.fragment.CuisineFragment
 import com.cupcake.chickenmasala.ui.fragment.HistoryFragment
 import com.cupcake.chickenmasala.ui.fragment.HomeFragment
 import com.cupcake.chickenmasala.ui.fragment.SearchFragment
+import com.cupcake.chickenmasala.utill.TypeModel
 import com.cupcake.chickenmasala.utill.parsers.CsvParser
 import java.io.InputStreamReader
 
@@ -20,6 +21,7 @@ import java.io.InputStreamReader
 class HomeActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityMainBinding
+
     private lateinit var csvParser: CsvParser
     lateinit var dataManager: DataManager
 
@@ -28,12 +30,13 @@ class HomeActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         addNavigationListener()
+
         csvParser = CsvParser()
         initialDataManager()
     }
 
     private fun initialDataManager() {
-        dataManager = DataManagerImpl(parseIndianFile(), parseHealthAdviceFile())
+        dataManager = DataManagerImpl(getRecipe(), getHealthyAdvice())
     }
 
     private fun openFile(fileName: String): InputStreamReader {
@@ -41,12 +44,15 @@ class HomeActivity : AppCompatActivity() {
         return InputStreamReader(inputStream)
     }
 
-    private fun parseIndianFile(): MutableList<Recipe> {
-        return csvParser.parseIndianFile(openFile("indian_food.csv"))
+    private fun getRecipe(): List<Recipe> {
+        return csvParser.parseFile(openFile("Indian_food.csv"), TypeModel.RECIPE) as List<Recipe>
     }
 
-    private fun parseHealthAdviceFile(): MutableList<HealthyAdvices> {
-        return csvParser.parseHealthAdviceFile(openFile("health_advice.csv"))
+    private fun getHealthyAdvice(): List<HealthyAdvices> {
+        return csvParser.parseFile(
+            openFile("health_advices.csv"),
+            TypeModel.HEALTH_ADVICE
+        ) as List<HealthyAdvices>
     }
 
     private fun addNavigationListener() {

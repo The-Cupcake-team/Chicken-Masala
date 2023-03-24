@@ -4,15 +4,15 @@ import com.cupcake.chickenmasala.data.model.HealthyAdvices
 import com.cupcake.chickenmasala.data.model.Recipe
 
 class DataManagerImpl(
-    private val parseIndianFile: MutableList<Recipe>?,
-    private val parseHealthAdviceFile: MutableList<HealthyAdvices>?
+    private val parseIndianFile: List<Recipe>,
+    private val parseHealthAdviceFile: List<HealthyAdvices>
 ) : DataManager {
 
-    override fun getRecipes(): MutableList<Recipe>? {
+    override fun getRecipes(): List<Recipe> {
         return parseIndianFile
     }
 
-    override fun getHealthyAdvice(): List<HealthyAdvices>? {
+    override fun getHealthyAdvice(): List<HealthyAdvices> {
         return parseHealthAdviceFile
     }
 
