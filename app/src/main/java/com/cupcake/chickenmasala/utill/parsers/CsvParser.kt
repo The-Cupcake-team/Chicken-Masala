@@ -7,7 +7,7 @@ import java.io.InputStreamReader
 
 class CsvParser {
 
-    fun parseFile(inputStreamReader: InputStreamReader, type: TypeModel): MutableList<Any> {
+    fun parseFile(inputStreamReader: InputStreamReader, type: TypeModel): List<Any> {
         val data = mutableListOf<Any>()
         inputStreamReader.readLines().forEachIndexed { index, item ->
             val tokens = item.split(",")
