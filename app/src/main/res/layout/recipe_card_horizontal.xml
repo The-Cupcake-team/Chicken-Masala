@@ -15,11 +15,12 @@
         android:layout_height="wrap_content">
 
         <androidx.constraintlayout.utils.widget.ImageFilterView
-            android:id="@+id/image"
+            android:id="@+id/card_image"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="150dp"
             android:scaleType="centerCrop"
             android:src="@drawable/image_card"
+            app:layout_constraintEnd_toStartOf="@id/recipe_name"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -32,12 +33,13 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/spacing_normal"
             android:layout_marginTop="@dimen/spacing_medium"
-            android:maxLines="2"
+            android:maxLines="1"
+            android:ellipsize="end"
             android:text="@string/spicy_tomato_rice_recipe"
             android:textColor="@color/text_primary"
             app:layout_constraintBottom_toTopOf="@id/timer"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/image"
+            app:layout_constraintStart_toEndOf="@+id/card_image"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
