@@ -4,11 +4,10 @@ import com.cupcake.chickenmasala.data.model.Recipe
 import com.cupcake.chickenmasala.usecase.DataManager
 
 class SearchByRecipeNameUseCase(private val dataManager: DataManager) {
-    operator fun invoke(recipeName: String, limit: Int = 10): List<Recipe>? {
+    operator fun invoke(recipeName: String): List<Recipe>? {
         return dataManager
             .getRecipes()
-            .filter { it.doesMathRecipeName(recipeName) }
-            .take(limit)
+            .filter { it.doesMatchRecipeName(recipeName) }
             .takeIf { it.isNotEmpty() }
     }
 }
