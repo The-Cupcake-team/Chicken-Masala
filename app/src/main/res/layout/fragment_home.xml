@@ -66,7 +66,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/horizontal_recycler"
+            android:id="@+id/recyclerView_recentFood"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/spacing_normal"
@@ -87,7 +87,7 @@
             app:chipSpacingHorizontal="@dimen/spacing_small"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/horizontal_recycler"
+            app:layout_constraintTop_toBottomOf="@+id/recyclerView_recentFood"
             app:selectionRequired="true"
             app:singleSelection="true">
 
