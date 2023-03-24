@@ -39,6 +39,7 @@ class CsvParser {
             id = index,
             title = line[TITLE],
             description = line[DESCRIPTION],
+            imageUrl = line[IMAGE_URL_HEALTHY],
         )
     }
 
@@ -56,6 +57,7 @@ class CsvParser {
 
         private const val TITLE = 0
         private const val DESCRIPTION = 1
+        private const val IMAGE_URL_HEALTHY = 2
     }
 
 }
