@@ -58,16 +58,18 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/vertical_recycler"
-        android:layout_width="0dp"
-        android:layout_marginStart="@dimen/spacing_normal"
-        android:layout_marginEnd="@dimen/spacing_medium"
-        android:layout_height="wrap_content"
+        android:id="@+id/recycler_cuisine_dishes"
+        android:layout_height="@dimen/zero"
+        android:layout_width="@dimen/zero"
+        android:layout_marginTop="@dimen/spacing_medium"
+        android:layout_marginStart="@dimen/spacing_medium"
+        android:layout_marginEnd="@dimen/spacing_normal"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/top_bar"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:spanCount="2"
-        tools:listitem="@layout/recipe_card_vertical" />
+        tools:listitem="@layout/cuisine_dish_card" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
