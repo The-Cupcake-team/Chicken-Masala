@@ -22,13 +22,16 @@
 
         <TextView
             android:id="@+id/dish_name"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             style="@style/TextStyle.Body.Medium"
+            android:ellipsize="end"
+            android:lines="1"
             app:layout_constraintStart_toStartOf="@+id/food_icon"
             app:layout_constraintBottom_toTopOf="@+id/food_icon"
+            app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginBottom="@dimen/spacing_small"
-            tools:text="Spagehetti Meatballs"
+            tools:text="Spagehetti Meatballs abse"
             android:textColor="@color/background"
             />
 
@@ -50,6 +53,9 @@
             android:layout_height="wrap_content"
             style="@style/TextStyle.Body.Small"
             tools:text="Indian"
+            android:maxLines="1"
+            android:maxLength="6"
+            android:ellipsize="end"
             android:textColor="@color/background"
             android:layout_marginStart="@dimen/spacing_small"
             app:layout_constraintStart_toEndOf="@+id/food_icon"
