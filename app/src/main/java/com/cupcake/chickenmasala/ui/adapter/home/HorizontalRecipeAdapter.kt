@@ -11,7 +11,8 @@ import com.cupcake.chickenmasala.data.model.Recipe
 import com.cupcake.chickenmasala.databinding.SearchCardViewBinding
 
 
-class HorizontalRecipeAdapter(private var recipeList: List<Recipe>) : RecyclerView.Adapter<HorizontalRecipeAdapter.HorizontalRecipeViewHolder>() {
+class HorizontalRecipeAdapter(private var recipeList: List<Recipe>, private val listener : RecentFoodInteractionClickListener)
+    : RecyclerView.Adapter<HorizontalRecipeAdapter.HorizontalRecipeViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HorizontalRecipeViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.search_card_view, parent, false)
@@ -25,7 +26,7 @@ class HorizontalRecipeAdapter(private var recipeList: List<Recipe>) : RecyclerVi
             dishName.text = currentHome.translatedRecipeName
             cuisineName.text = currentHome.cuisine
             prepareTime.text = currentHome.totalTimeInMin.toString()
-
+            root.setOnClickListener { listener.onClickRecentFoodItem(currentHome.id) }
         }
     }
 
