@@ -10,6 +10,7 @@ import com.cupcake.chickenmasala.R
 import com.cupcake.chickenmasala.databinding.FilterSheetCardBinding
 import com.cupcake.chickenmasala.databinding.FragmentSearchBinding
 import com.cupcake.chickenmasala.ui.activity.HomeActivity
+import com.cupcake.chickenmasala.ui.adpter.search.RecipeClickListener
 import com.cupcake.chickenmasala.ui.adpter.search.SearchAdapter
 import com.cupcake.chickenmasala.ui.base.BaseFragment
 import com.cupcake.chickenmasala.usecase.search.SearchUseCases
@@ -17,7 +18,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import java.util.Timer
 import java.util.TimerTask
 
-class SearchFragment : BaseFragment<FragmentSearchBinding>(), TextWatcher {
+class SearchFragment : BaseFragment<FragmentSearchBinding>(), TextWatcher, RecipeClickListener {
     override val LOG_TAG = "SearchScreen"
     override val bindingInflater: (LayoutInflater, ViewGroup, Boolean) -> FragmentSearchBinding =
         FragmentSearchBinding::inflate
@@ -25,7 +26,8 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), TextWatcher {
     private val searchUseCases by lazy { SearchUseCases((activity as HomeActivity).dataManager) }
     private val searchAdapter by lazy {
         SearchAdapter(
-            searchUseCases.dataManager.getRecipes().shuffled()
+            searchUseCases.dataManager.getRecipes().shuffled(),
+            this
         )
     }
 
@@ -48,6 +50,10 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), TextWatcher {
 
     private fun setupRecycleAdapter() {
         binding.rvLarge.adapter = searchAdapter
+    }
+
+    override fun onRecipeClick(id: Int) {
+
     }
 
     private fun showFilterSheet() {
@@ -179,4 +185,5 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), TextWatcher {
         val RANGE_MORE_THAN_HOUR = 60..Int.MAX_VALUE
         const val SEARCH_DELAY = 600L
     }
+
 }

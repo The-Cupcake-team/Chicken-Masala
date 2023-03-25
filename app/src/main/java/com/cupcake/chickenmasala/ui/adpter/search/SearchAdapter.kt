@@ -12,7 +12,10 @@ import com.cupcake.chickenmasala.data.model.Recipe
 import com.cupcake.chickenmasala.databinding.SearchCardBinding
 import com.cupcake.chickenmasala.databinding.SearchCardSmallBinding
 
-class SearchAdapter(private var recipes: List<Recipe>) :
+class SearchAdapter(
+    private var recipes: List<Recipe>,
+    private val recipeClickListener: RecipeClickListener
+) :
     RecyclerView.Adapter<SearchAdapter.BaseSearchHolder>() {
 
     fun updateRecipes(newRecipes: List<Recipe>) {
@@ -23,7 +26,7 @@ class SearchAdapter(private var recipes: List<Recipe>) :
 
     override fun getItemCount() = recipes.size
     override fun onBindViewHolder(holder: BaseSearchHolder, position: Int) {
-        holder.bind(recipes[position])
+        holder.bind(recipes[position], recipeClickListener)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseSearchHolder {
@@ -35,7 +38,8 @@ class SearchAdapter(private var recipes: List<Recipe>) :
             }
             else -> {
                 val view =
-                    LayoutInflater.from(parent.context).inflate(R.layout.search_card_small, parent, false)
+                    LayoutInflater.from(parent.context)
+                        .inflate(R.layout.search_card_small, parent, false)
                 SmallRecipeHolder(view)
             }
         }
@@ -46,29 +50,31 @@ class SearchAdapter(private var recipes: List<Recipe>) :
     }
 
     abstract class BaseSearchHolder(viewItem: View) : RecyclerView.ViewHolder(viewItem) {
-        abstract fun bind(recipe: Recipe)
+        abstract fun bind(recipe: Recipe, recipeClickListener: RecipeClickListener)
     }
 
     class SmallRecipeHolder(viewItem: View) : BaseSearchHolder(viewItem) {
         val binding = SearchCardSmallBinding.bind(viewItem)
-        override fun bind(recipe: Recipe) {
+        override fun bind(recipe: Recipe, recipeClickListener: RecipeClickListener) {
             with(binding) {
                 textViewRecipeName.text = recipe.translatedRecipeName
                 textViewRecipeCusine.text = recipe.cuisine
                 textViewTotalTime.text = recipe.totalTimeInMin.toString()
                 imageView.updateImage(recipe.imageUrl)
+                root.setOnClickListener { recipeClickListener.onRecipeClick(recipe.id) }
             }
         }
     }
 
     class RecipeHolder(viewItem: View) : BaseSearchHolder(viewItem) {
         val binding = SearchCardBinding.bind(viewItem)
-        override fun bind(recipe: Recipe) {
+        override fun bind(recipe: Recipe, recipeClickListener: RecipeClickListener) {
             with(binding) {
                 textViewRecipeName.text = recipe.translatedRecipeName
                 textViewRecipeCusine.text = recipe.cuisine
                 textViewTotalTime.text = recipe.totalTimeInMin.toString()
                 imageView.updateImage(recipe.imageUrl)
+                root.setOnClickListener { recipeClickListener.onRecipeClick(recipe.id) }
             }
         }
     }
