@@ -4,28 +4,35 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.cupcake.chickenmasala.ui.base.BaseFragment
+import android.widget.Toast
+import androidx.core.view.iterator
 import com.cupcake.chickenmasala.R
+import com.cupcake.chickenmasala.data.model.Recipe
+import com.cupcake.chickenmasala.databinding.FilterSheetCardBinding
 import com.cupcake.chickenmasala.databinding.FragmentSearchBinding
 import com.cupcake.chickenmasala.ui.activity.HomeActivity
+import com.cupcake.chickenmasala.ui.adpter.search.SearchAdapter
+import com.cupcake.chickenmasala.ui.base.BaseFragment
+import com.cupcake.chickenmasala.usecase.search.SearchUseCases
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.android.material.button.MaterialButton
+import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
-
 
 class SearchFragment : BaseFragment<FragmentSearchBinding>() {
     override val LOG_TAG = "SearchScreen"
     override val bindingInflater: (LayoutInflater, ViewGroup, Boolean) -> FragmentSearchBinding =
         FragmentSearchBinding::inflate
+    private val searchUseCases by lazy { SearchUseCases((activity as HomeActivity).dataManager) }
+    private val searchAdapter by lazy { SearchAdapter(searchUseCases.dataManager.getRecipes()) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupBottomSheet()
+        setupRecycleView()
+    }
 
-        (activity as HomeActivity).dataManager.getRecipes().forEach {
-            log(it.id.toString())
-        }
-
+    private fun setupRecycleView() {
+        binding.rvLarge.adapter = searchAdapter
     }
 
     private fun setupBottomSheet() {
@@ -35,24 +42,24 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>() {
     }
 
     private fun showFilterSheet() {
+        val binding = FilterSheetCardBinding.inflate(layoutInflater)
         val dialog = BottomSheetDialog(requireContext())
-        val view = layoutInflater.inflate(R.layout.filter_sheet_card, null)
-        with(view) {
-            findViewById<MaterialButton>(R.id.btn_apply).setOnClickListener {
-                filterList()
+        with(binding) {
+            btnApply.setOnClickListener {
+                filterList(this)
                 dialog.dismiss()
             }
-            findViewById<MaterialButton>(R.id.btn_clear).setOnClickListener {
-                findViewById<ChipGroup>(R.id.time_group).clearCheck()
-                findViewById<ChipGroup>(R.id.ingredients_group).clearCheck()
+            btnClear.setOnClickListener {
+                timeGroup.clearCheck()
+                ingredientsGroup.clearCheck()
             }
         }
-        dialog.setContentView(view)
+        dialog.setCancelable(false)
+        dialog.setContentView(binding.root)
         dialog.show()
     }
 
-    private fun filterList() {
+    private fun filterList(binder: FilterSheetCardBinding) {
 
     }
-
 }

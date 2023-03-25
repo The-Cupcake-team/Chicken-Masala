@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/searchCardView"
-    android:layout_width="@dimen/item_card_recent_food_width"
+    android:layout_width="match_parent"
+    android:layout_marginVertical="@dimen/spacing_small"
     android:layout_height="@dimen/item_card_recent_food_height">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -11,16 +12,17 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/save_card_image"
+            android:id="@+id/image_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:contentDescription="@string/image"
             android:foreground="@drawable/foreground"
             android:scaleType="centerCrop"
             android:src="@drawable/save_image"
             tools:ignore="UnusedAttribute" />
 
         <TextView
-            android:id="@+id/dish_name"
+            android:id="@+id/text_view_recipe_name"
             style="@style/TextStyle.Body.Medium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -29,12 +31,12 @@
             android:maxLines="2"
             android:paddingHorizontal="8dp"
             android:textColor="@color/background"
-            app:layout_constraintBottom_toTopOf="@+id/cuisine_name"
-            tools:text="Spagehettadasdasddasdasdassdadasdi Meatballs" />
+            app:layout_constraintBottom_toTopOf="@+id/text_view_recipe_cusine"
+            tools:text="Spagehettadasdasddasdasdassdadasdi Mksl;dls;daldlak;akdladlakdlhajhdjsdjshdhsjdjsdhdhdhshdajajjajajjajajajajajajajajajajeatballs" />
 
 
         <TextView
-            android:id="@+id/cuisine_name"
+            android:id="@+id/text_view_recipe_cusine"
             style="@style/TextStyle.Body.Small"
             android:layout_width="@dimen/zero"
             android:layout_height="wrap_content"
@@ -46,13 +48,13 @@
             android:textColor="@color/background"
             app:drawableStartCompat="@drawable/cuisine_icon"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/prepare_time"
+            app:layout_constraintEnd_toStartOf="@id/text_view_total_time"
             app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toStartOf="parent"
-            tools:text="Indasdasdasdasdsadian" />
+            tools:text="Indasdasdasdasdsadikskskskskskskskskskalalallaalalalalaljdjdjan" />
 
         <TextView
-            android:id="@+id/prepare_time"
+            android:id="@+id/text_view_total_time"
             style="@style/TextStyle.Body.Small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -39,8 +39,8 @@ android {
         jvmTarget = "1.8"
     }
 
-    buildFeatures{
-        viewBinding = true
+    viewBinding {
+        enable = true
     }
 }
 
@@ -57,4 +57,7 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     implementation("androidx.fragment:fragment-ktx:1.5.5")
 
+    // Glide
+    implementation ("com.github.bumptech.glide:glide:4.15.0")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.15.0")
 }
