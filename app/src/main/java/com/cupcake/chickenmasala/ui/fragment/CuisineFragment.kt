@@ -4,17 +4,22 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.cupcake.chickenmasala.data.RepositoryImpl
 import com.cupcake.chickenmasala.ui.base.BaseFragment
 import com.cupcake.chickenmasala.databinding.FragmentCuisineBinding
+import com.cupcake.chickenmasala.usecase.Repository
+import com.cupcake.chickenmasala.utill.DataSourceProvider
 
 
-class CuisineFragment: BaseFragment<FragmentCuisineBinding>() {
-    override val LOG_TAG: String
-        get() = "CUISINE_FRAGMENT"
+class CuisineFragment : BaseFragment<FragmentCuisineBinding>() {
+    override val LOG_TAG: String = this::class.java.name
     override val bindingInflater: (LayoutInflater, ViewGroup, Boolean) -> FragmentCuisineBinding
         get() = FragmentCuisineBinding::inflate
 
+    private lateinit var repository: Repository
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        repository = RepositoryImpl(DataSourceProvider.getDataSource(requireActivity().application))
     }
 }

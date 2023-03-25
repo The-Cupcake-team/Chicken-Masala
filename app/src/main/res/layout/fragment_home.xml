@@ -52,7 +52,7 @@
                 android:drawablePadding="@dimen/spacing_small"
                 android:fontFamily="@font/roboto"
                 android:text="@string/view_all"
-                android:textColor="@color/text_secondary"
+                android:textColor="@color/text_secondary_60"
                 android:textSize="@dimen/font_size_label"
                 app:layout_constraintBottom_toBottomOf="@+id/header_title"
                 app:layout_constraintEnd_toEndOf="parent"
