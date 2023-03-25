@@ -1,5 +1,6 @@
 package com.cupcake.chickenmasala.ui.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -48,14 +49,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), RecentFoodInteractionC
         setupHorizontalRecyclerView()
         setupVerticalRecyclerView()
         setupTransformer()
-        healthyViewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-            override fun onPageSelected(position: Int) {
-                super.onPageSelected(position)
-                handler.removeCallbacks(runnable)
-                handler.postDelayed(runnable, 4000)
-            }
-        })
+        addCallbacks()
     }
+
 
     private fun setupHorizontalRecyclerView() {
         val recipes = GetRecentFoodUseCase(repository)(RECENT_FOOD_LIMIT)
@@ -94,6 +90,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), RecentFoodInteractionC
             page.scaleY = 0.85f + r * 0.14f
         }
         healthyViewPager.setPageTransformer(transformer)
+    }
+
+    private fun addCallbacks(){
+        healthyViewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                handler.removeCallbacks(runnable)
+                handler.postDelayed(runnable, 4000)
+            }
+        })
     }
 
     override fun onPause() {
