@@ -51,7 +51,7 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>() {
     private fun setupHorizontalRecyclerView(){
         val recipes = (activity as HomeActivity).dataManager.getRecipes()
         horizontalRecipeAdapter = HorizontalRecipeAdapter(recipes)
-        binding.horizontalRecycler.adapter = horizontalRecipeAdapter
+        binding.horizontalRecyclerView.adapter = horizontalRecipeAdapter
     }
 
     private fun setupVerticalRecyclerView(){
