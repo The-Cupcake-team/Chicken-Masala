@@ -1,9 +1,8 @@
-package com.cupcake.chickenmasala.data.data_source
-
+package com.cupcake.chickenmasala.usecase
 import com.cupcake.chickenmasala.data.model.HealthyAdvices
 import com.cupcake.chickenmasala.data.model.Recipe
 
-interface DataSource {
+interface Repository {
     fun getRecipes(): List<Recipe>
     fun getHealthAdvices(): List<HealthyAdvices>
 }
