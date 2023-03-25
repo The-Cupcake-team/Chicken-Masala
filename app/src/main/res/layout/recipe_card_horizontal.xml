@@ -11,12 +11,12 @@
     app:cardElevation="@dimen/zero">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <androidx.constraintlayout.utils.widget.ImageFilterView
             android:id="@+id/card_image"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="150dp"
             android:scaleType="centerCrop"
             android:src="@drawable/image_card"
@@ -29,11 +29,11 @@
         <TextView
             android:id="@+id/recipe_name"
             style="@style/TextStyle.Label.Large"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/spacing_normal"
             android:layout_marginTop="@dimen/spacing_medium"
-            android:maxLines="1"
+            android:maxLines="2"
             android:ellipsize="end"
             android:text="@string/spicy_tomato_rice_recipe"
             android:textColor="@color/text_primary"
