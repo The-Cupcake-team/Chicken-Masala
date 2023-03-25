@@ -5,6 +5,11 @@ import com.cupcake.chickenmasala.usecase.Repository
 
 class FoodTypeFilterUseCase(
     private val repository: Repository
-    ){
-    operator fun invoke():List<Recipe> = repository.getRecipes()
+) {
+    operator fun invoke(ingredient: String): List<Recipe> {
+        return repository.getRecipes()
+            .filter { ingredient in it.cleanedIngredients }
+            .takeIf { it.isNotEmpty() }
+            ?: repository.getRecipes().shuffled()
+    }
 }
