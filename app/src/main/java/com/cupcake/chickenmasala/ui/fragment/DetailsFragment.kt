@@ -112,8 +112,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(){
         ingredientsAdapter = IngredientsAdapter(listOf())
         val recyclerView = binding.recyclerIngredients
         recyclerView.adapter = ingredientsAdapter
-        val myData = ingredientsList
-        ingredientsAdapter.setData(myData)
+        ingredientsAdapter.setData(ingredientsList)
     }
 
 
@@ -121,8 +120,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(){
         instructionsAdapter = InstructionsAdapter(listOf())
         val recyclerView = binding.recyclerInstructions
         recyclerView.adapter = instructionsAdapter
-        val myData = instructionsList
-        instructionsAdapter.setData(myData)
+        instructionsAdapter.setData(instructionsList)
     }
 
 
