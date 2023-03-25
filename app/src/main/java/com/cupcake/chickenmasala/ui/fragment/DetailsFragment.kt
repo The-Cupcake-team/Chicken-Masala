@@ -27,20 +27,25 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         repository = RepositoryImpl(DataSourceProvider.getDataSource(requireActivity().application))
-        shareLink(getData().urlDetailsRecipe)
-        loadImage(getData().imageUrl)
-        openWebsite(getData().urlDetailsRecipe)
-        setRecipeName(getData().translatedRecipeName)
-        setCuisineName(getData().cuisine)
-        setIngredientsCount(getData().ingredientCounts)
-        setTimeForRecipe(getData().totalTimeInMin)
-        setupIngredientsRecycleView(getData().translatedIngredients)
-        setupInstructionsRecycleView(getData().translatedInstructions)
+        setupRecipeDetails(getRecipeData())
 
 
     }
 
-    private fun getData():Recipe{
+
+    private fun setupRecipeDetails(recipe: Recipe) {
+        shareLink(recipe.urlDetailsRecipe)
+        loadImage(recipe.imageUrl)
+        openWebsite(recipe.urlDetailsRecipe)
+        setRecipeName(recipe.translatedRecipeName)
+        setCuisineName(recipe.cuisine)
+        setIngredientsCount(recipe.ingredientCounts)
+        setTimeForRecipe(recipe.totalTimeInMin)
+        setupIngredientsRecycleView(recipe.translatedIngredients)
+        setupInstructionsRecycleView(recipe.translatedInstructions)
+    }
+
+    private fun getRecipeData():Recipe{
         val id = arguments.let { it?.getInt(ID) }
         val data = repository.getRecipes()
         return data[id!!]
