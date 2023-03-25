@@ -32,7 +32,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginBottom="@dimen/spacing_small"
             tools:text="Spagehetti Meatballs abse"
-            android:textColor="@color/background"
+            android:textColor="@color/secondary"
             />
 
         <ImageView
@@ -42,7 +42,7 @@
             android:src="@drawable/cuisine_icon"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:tint="@color/background"
+            app:tint="@color/secondary"
             android:layout_marginStart="@dimen/spacing_normal"
             android:layout_marginBottom="@dimen/spacing_normal"
             />
@@ -56,7 +56,7 @@
             android:maxLines="1"
             android:maxLength="6"
             android:ellipsize="end"
-            android:textColor="@color/background"
+            android:textColor="@color/secondary"
             android:layout_marginStart="@dimen/spacing_small"
             app:layout_constraintStart_toEndOf="@+id/food_icon"
             app:layout_constraintTop_toTopOf="@+id/food_icon"
@@ -74,7 +74,7 @@
             app:layout_constraintTop_toTopOf="@id/cuisine_name"
             android:layout_marginStart="@dimen/spacing_large"
             app:layout_constraintVertical_bias="0.0"
-            app:tint="@color/background" />
+            app:tint="@color/secondary" />
 
         <TextView
             android:id="@+id/prepare_time"
@@ -82,7 +82,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="5 min"
-            android:textColor="@color/background"
+            android:textColor="@color/secondary"
             android:layout_marginStart="@dimen/spacing_small"
             app:layout_constraintBottom_toBottomOf="@id/cuisine_name"
             app:layout_constraintStart_toEndOf="@id/timer_icon"
