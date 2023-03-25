@@ -9,6 +9,7 @@ import com.cupcake.chickenmasala.R
 import com.cupcake.chickenmasala.data.model.Recipe
 import com.cupcake.chickenmasala.databinding.RecipeCardHorizontalBinding
 import com.cupcake.chickenmasala.databinding.RecipeCardVerticalBinding
+import com.cupcake.chickenmasala.utill.setImage
 
 class VerticalRecipeAdapter(private var recipeList: List<Recipe>): RecyclerView.Adapter<VerticalRecipeAdapter.VerticalRecipeViewHolder>() {
 
@@ -24,11 +25,13 @@ class VerticalRecipeAdapter(private var recipeList: List<Recipe>): RecyclerView.
     override fun getItemCount() = recipeList.size
 
     override fun onBindViewHolder(holder: VerticalRecipeViewHolder, position: Int) {
+        val currentRecipe = recipeList[position]
+
         holder.binding.apply {
-            recipeName.text = recipeList[position].translatedRecipeName
-            cuisineName.text = recipeList[position].cuisine
-            timer.text = recipeList[position].totalTimeInMin.toString()
-            Glide.with(holder.itemView.context).load(recipeList[position].imageUrl).into(cardImage)
+            recipeName.text =currentRecipe.translatedRecipeName
+            cuisineName.text = currentRecipe.cuisine
+            timer.text = currentRecipe.totalTimeInMin.toString()
+            cardImage.setImage(currentRecipe.imageUrl)
         }
     }
 
