@@ -8,19 +8,25 @@ import com.cupcake.chickenmasala.R
 import com.cupcake.chickenmasala.databinding.InstructionsItemBinding
 
 
-class InstructionsAdapter(): RecyclerView.Adapter<InstructionsAdapter.InstructionsViewHolder>() {
+class InstructionsAdapter(private var list: List<String>): RecyclerView.Adapter<InstructionsAdapter.InstructionsViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): InstructionsViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.instructions_item,parent,false)
         return InstructionsViewHolder(view)
     }
 
-    override fun getItemCount(): Int {
-        TODO("Not yet implemented")
-    }
+    override fun getItemCount() = list.size
 
     override fun onBindViewHolder(holder: InstructionsViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        val currentInstruction = list[position]
+        holder.binding.apply {
+            instructionsDetails.text = currentInstruction
+        }
+    }
+
+    fun setData(newData: List<String>) {
+        list = newData
+        notifyDataSetChanged()
     }
 
 

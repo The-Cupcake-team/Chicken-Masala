@@ -5,21 +5,27 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.cupcake.chickenmasala.R
+import com.cupcake.chickenmasala.data.model.Recipe
 import com.cupcake.chickenmasala.databinding.IngredientsItemBinding
 
-class IngredientsAdapter():RecyclerView.Adapter<IngredientsAdapter.IngredientsViewHolder>() {
-
+    class IngredientsAdapter(private var list: List<String>):RecyclerView.Adapter<IngredientsAdapter.IngredientsViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IngredientsViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.ingredients_item,parent,false)
         return IngredientsViewHolder(view)
     }
 
-    override fun getItemCount(): Int {
-        TODO("Not yet implemented")
-    }
+    override fun getItemCount() = list.size
 
     override fun onBindViewHolder(holder: IngredientsViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        val currentIngredient = list[position]
+        holder.binding.apply {
+               ingredientsName.text = currentIngredient
+        }
+    }
+
+    fun setData(newData: List<String>) {
+        list = newData
+        notifyDataSetChanged()
     }
 
 
