@@ -12,10 +12,13 @@ import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import com.cupcake.chickenmasala.ui.base.BaseFragment
 import com.cupcake.chickenmasala.R
+import com.cupcake.chickenmasala.data.RepositoryImpl
 import com.cupcake.chickenmasala.databinding.FragmentHomeBinding
 import com.cupcake.chickenmasala.ui.activity.HomeActivity
 import com.cupcake.chickenmasala.ui.adapter.home.VerticalRecipeAdapter
 import com.cupcake.chickenmasala.ui.adapter.home.HorizontalRecipeAdapter
+import com.cupcake.chickenmasala.usecase.Repository
+import com.cupcake.chickenmasala.utill.DataSourceProvider
 import com.cupcake.chickenmasala.utill.ImageAdapter
 import java.lang.Math.abs
 
@@ -32,8 +35,11 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>() {
     private lateinit var horizontalRecipeAdapter: HorizontalRecipeAdapter
     private lateinit var verticalRecipeAdapter: VerticalRecipeAdapter
 
+    private lateinit var repository: Repository
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        repository = RepositoryImpl(DataSourceProvider.getDataSource(requireActivity().application))
 
         setupViewPager()
         setupHorizontalRecyclerView()
@@ -49,13 +55,13 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>() {
     }
 
     private fun setupHorizontalRecyclerView(){
-        val recipes = (activity as HomeActivity).dataManager.getRecipes()
+        val recipes = repository.getRecipes()
         horizontalRecipeAdapter = HorizontalRecipeAdapter(recipes)
         binding.horizontalRecyclerView.adapter = horizontalRecipeAdapter
     }
 
     private fun setupVerticalRecyclerView(){
-        val recipes = (activity as HomeActivity).dataManager.getRecipes()
+        val recipes = repository.getRecipes()
         verticalRecipeAdapter = VerticalRecipeAdapter(recipes)
         binding.verticalRecycler.adapter = verticalRecipeAdapter
     }
