@@ -9,5 +9,7 @@ class FoodTypeFilterUseCase(
     operator fun invoke(ingredient: String): List<Recipe> {
         return repository.getRecipes()
             .filter { ingredient in it.cleanedIngredients }
+            .takeIf { it.isNotEmpty() }
+            ?: repository.getRecipes().shuffled()
     }
 }
