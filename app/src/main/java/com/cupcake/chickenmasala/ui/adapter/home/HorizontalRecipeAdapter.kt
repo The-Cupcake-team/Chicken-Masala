@@ -3,9 +3,7 @@ package com.cupcake.chickenmasala.ui.adapter.home
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.cupcake.chickenmasala.R
 import com.cupcake.chickenmasala.data.model.Recipe
 import com.cupcake.chickenmasala.databinding.SearchCardViewBinding
@@ -20,14 +18,14 @@ class HorizontalRecipeAdapter(private var recipeList: List<Recipe>, private val 
         return HorizontalRecipeViewHolder(view)
     }
     override fun onBindViewHolder(holder: HorizontalRecipeViewHolder, position: Int) {
-        val currentHome = recipeList[position]
+        val currentRecipe = recipeList[position]
 
         holder.binding.apply {
-            saveCardImage.setImage(currentHome.imageUrl)
-            dishName.text = currentHome.translatedRecipeName
-            cuisineName.text = currentHome.cuisine
-            prepareTime.text = currentHome.totalTimeInMin.toString()
-            root.setOnClickListener { listener.onClickRecentFoodItem(currentHome.id) }
+            saveCardImage.setImage(currentRecipe.imageUrl)
+            dishName.text = currentRecipe.translatedRecipeName
+            cuisineName.text = currentRecipe.cuisine
+            prepareTime.text = currentRecipe.totalTimeInMin.toString()
+            root.setOnClickListener { listener.onClickRecentFoodItem(currentRecipe.id) }
         }
     }
 
