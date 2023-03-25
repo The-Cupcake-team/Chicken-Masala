@@ -9,6 +9,7 @@ import com.bumptech.glide.Glide
 import com.cupcake.chickenmasala.R
 import com.cupcake.chickenmasala.data.model.Recipe
 import com.cupcake.chickenmasala.databinding.SearchCardViewBinding
+import com.cupcake.chickenmasala.utill.setImage
 
 
 class HorizontalRecipeAdapter(private var recipeList: List<Recipe>, private val listener : RecentFoodInteractionClickListener)
@@ -31,14 +32,9 @@ class HorizontalRecipeAdapter(private var recipeList: List<Recipe>, private val 
     }
 
     override fun getItemCount() = recipeList.size
-    private fun ImageView.setImage(url: String?) {
-        Glide.with(context).load(url)
-            .into(this)
-    }
 
     class HorizontalRecipeViewHolder(viewItem: View) : RecyclerView.ViewHolder(viewItem) {
         val binding = SearchCardViewBinding.bind(viewItem)
-
     }
 
     fun setData(newRecipeList: List<Recipe>){
