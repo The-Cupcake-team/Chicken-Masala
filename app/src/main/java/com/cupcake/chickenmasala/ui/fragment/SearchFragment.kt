@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import com.cupcake.chickenmasala.ui.base.BaseFragment
 import com.cupcake.chickenmasala.R
 import com.cupcake.chickenmasala.databinding.FragmentSearchBinding
+import com.cupcake.chickenmasala.utill.RepositoryProvider
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.chip.ChipGroup
@@ -19,7 +20,13 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // Don't make this instance of repo as a global variable
+        // just pass the repo to the functions that need repo
+        // Don't forget delete this comment
+        val repository = RepositoryProvider.getInstance(requireActivity().application).getRepo()
         setupBottomSheet()
+
     }
 
     private fun setupBottomSheet() {

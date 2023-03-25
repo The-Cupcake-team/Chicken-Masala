@@ -2,24 +2,17 @@ package com.cupcake.chickenmasala.ui.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import com.cupcake.chickenmasala.R
+import com.cupcake.chickenmasala.utill.RepositoryProvider
 
 class DetailsFragment : Fragment() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // Don't make this instance of repo as a global variable
+        // just pass the repo to the functions that need repo
+        // Don't forget delete this comment
+        val repository = RepositoryProvider.getInstance(requireActivity().application).getRepo()
     }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_details, container, false)
-    }
-
-
 }

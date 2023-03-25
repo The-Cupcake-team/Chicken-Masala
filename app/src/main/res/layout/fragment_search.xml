@@ -29,6 +29,8 @@
             android:textColor="@color/text_primary" />
     </com.google.android.material.textfield.TextInputLayout>
 
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_large"
         android:layout_width="match_parent"
@@ -40,6 +42,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/search_box"
         tools:listitem="@layout/search_card_view" />
+    <Button
+        android:id="@+id/search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/search"
+        android:elevation="100dp"
+        app:layout_constraintTop_toTopOf="@+id/rv_large" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
