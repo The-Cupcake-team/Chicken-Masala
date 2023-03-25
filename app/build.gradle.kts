@@ -62,8 +62,6 @@ dependencies {
     implementation("androidx.fragment:fragment-ktx:1.5.5")
     implementation ("com.github.bumptech.glide:glide:4.12.0")
 
-    implementation ("com.github.bumptech.glide:glide:4.12.0")
-
     // Glid
     implementation("com.github.bumptech.glide:glide:4.12.0")
     implementation("com.airbnb.android:lottie:4.2.0")
