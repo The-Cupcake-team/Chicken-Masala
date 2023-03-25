@@ -1,4 +1,4 @@
-package com.cupcake.chickenmasala.data.data_sourse
+package com.cupcake.chickenmasala.data.data_source
 
 import android.app.Application
 import com.cupcake.chickenmasala.data.model.HealthAdvice
