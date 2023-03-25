@@ -1,6 +1,6 @@
 package com.cupcake.chickenmasala.data.model
 
-data class HealthyAdvice(
+data class HealthAdvice(
     val id: Int,
     val title: String,
     val description: String,

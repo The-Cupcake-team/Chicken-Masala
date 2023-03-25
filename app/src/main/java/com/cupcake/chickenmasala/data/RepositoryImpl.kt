@@ -1,7 +1,7 @@
 package com.cupcake.chickenmasala.data
 
 import com.cupcake.chickenmasala.data.data_sourse.DataSource
-import com.cupcake.chickenmasala.data.model.HealthyAdvice
+import com.cupcake.chickenmasala.data.model.HealthAdvice
 import com.cupcake.chickenmasala.data.model.Recipe
 import com.cupcake.chickenmasala.usecase.Repository
 
@@ -13,8 +13,8 @@ class RepositoryImpl(
         return dataSource.getRecipes()
     }
 
-    override fun getHealthyAdvices(): List<HealthyAdvice> {
-        return dataSource.getHealthyAdvices()
+    override fun getHealthAdvices(): List<HealthAdvice> {
+        return dataSource.getHealthAdvices()
     }
 
 }

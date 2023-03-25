@@ -6,27 +6,25 @@ import android.view.View
 import android.view.ViewGroup
 import com.cupcake.chickenmasala.ui.base.BaseFragment
 import com.cupcake.chickenmasala.R
+import com.cupcake.chickenmasala.data.RepositoryImpl
 import com.cupcake.chickenmasala.databinding.FragmentSearchBinding
-import com.cupcake.chickenmasala.utill.RepositoryProvider
+import com.cupcake.chickenmasala.usecase.Repository
+import com.cupcake.chickenmasala.utill.DataSourceProvider
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.chip.ChipGroup
 
 
 class SearchFragment : BaseFragment<FragmentSearchBinding>() {
-    override val LOG_TAG = "SearchScreen"
+    override val LOG_TAG: String = this::class.java.name
     override val bindingInflater: (LayoutInflater, ViewGroup, Boolean) -> FragmentSearchBinding =
         FragmentSearchBinding::inflate
+    private lateinit var repository: Repository
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        // Don't make this instance of repo as a global variable
-        // just pass the repo to the functions that need repo
-        // Don't forget delete this comment
-        val repository = RepositoryProvider.getInstance(requireActivity().application).getRepo()
+        repository = RepositoryImpl(DataSourceProvider.getDataSource(requireActivity().application))
         setupBottomSheet()
-
     }
 
     private fun setupBottomSheet() {

@@ -12,14 +12,15 @@ import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import com.cupcake.chickenmasala.ui.base.BaseFragment
 import com.cupcake.chickenmasala.R
+import com.cupcake.chickenmasala.data.RepositoryImpl
 import com.cupcake.chickenmasala.databinding.FragmentHomeBinding
+import com.cupcake.chickenmasala.usecase.Repository
+import com.cupcake.chickenmasala.utill.DataSourceProvider
 import com.cupcake.chickenmasala.utill.ImageAdapter
-import com.cupcake.chickenmasala.utill.RepositoryProvider
 import java.lang.Math.abs
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
-    override val LOG_TAG: String
-        get() = "HOME_FRAGMENT"
+    override val LOG_TAG: String = this::class.java.name
     override val bindingInflater: (LayoutInflater, ViewGroup, Boolean) -> FragmentHomeBinding
         get() = FragmentHomeBinding::inflate
 
@@ -28,14 +29,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     private lateinit var imageList: ArrayList<Int>
     private lateinit var adapter: ImageAdapter
 
+    private lateinit var repository: Repository
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        repository = RepositoryImpl(DataSourceProvider.getDataSource(requireActivity().application))
 
-        // Don't make this instance of repo as a global variable
-        // just pass the repo to the functions that need repo
-        // Don't forget delete this comment
-        val repository = RepositoryProvider.getInstance(requireActivity().application).getRepo()
 
         init()
         setUpTransformer()
