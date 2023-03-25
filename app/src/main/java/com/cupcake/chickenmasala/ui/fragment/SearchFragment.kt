@@ -1,6 +1,8 @@
 package com.cupcake.chickenmasala.ui.fragment
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,11 +14,14 @@ import com.cupcake.chickenmasala.ui.adpter.search.SearchAdapter
 import com.cupcake.chickenmasala.ui.base.BaseFragment
 import com.cupcake.chickenmasala.usecase.search.SearchUseCases
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import java.util.Timer
+import java.util.TimerTask
 
-class SearchFragment : BaseFragment<FragmentSearchBinding>() {
+class SearchFragment : BaseFragment<FragmentSearchBinding>(), TextWatcher {
     override val LOG_TAG = "SearchScreen"
     override val bindingInflater: (LayoutInflater, ViewGroup, Boolean) -> FragmentSearchBinding =
         FragmentSearchBinding::inflate
+
     private val searchUseCases by lazy { SearchUseCases((activity as HomeActivity).dataManager) }
     private val searchAdapter by lazy {
         SearchAdapter(
@@ -24,28 +29,34 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>() {
         )
     }
 
+    private var timerForDelaySearch: Timer? = null
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupBottomSheet()
-        setupRecycleView()
+        initialRecycleAdapter()
+        addSearchCallBack()
     }
 
-    private fun setupRecycleView() {
+    private fun initialRecycleAdapter() {
+        setupRecycleAdapter()
+    }
+
+    private fun addSearchCallBack() {
+        binding.searchBox.setEndIconOnClickListener { showFilterSheet() }
+        binding.nameEditText.addTextChangedListener(this)
+    }
+
+    private fun setupRecycleAdapter() {
         binding.rvLarge.adapter = searchAdapter
-    }
-
-    private fun setupBottomSheet() {
-        binding.searchBox.setEndIconOnClickListener {
-            showFilterSheet()
-        }
     }
 
     private fun showFilterSheet() {
         val binding = FilterSheetCardBinding.inflate(layoutInflater)
         val dialog = BottomSheetDialog(requireContext())
+
         with(binding) {
             btnApply.setOnClickListener {
-                filterList(this)
+                filterRecipes()
                 dialog.dismiss()
             }
             btnClear.setOnClickListener {
@@ -53,36 +64,52 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>() {
                 ingredientsGroup.clearCheck()
             }
         }
+
         dialog.setContentView(binding.root)
         dialog.show()
     }
 
-    private fun filterList(binder: FilterSheetCardBinding) {
+    private fun FilterSheetCardBinding.filterRecipes() {
         val selectedRanges = mutableListOf<IntRange>()
         val selectedIngredients = mutableListOf<String>()
 
-        binder.apply {
-           fillSelected(selectedRanges, selectedIngredients)
+        fillSelected(selectedRanges, selectedIngredients)
 
-            val filteredList = searchUseCases
-                .filterByIngredientsAndTimeUseCase(
-                    ingredients = selectedIngredients,
-                    timeRange = if (selectedRanges.isEmpty()) listOf(DEFAULT_RANGE) else selectedRanges
-                )
+        val filteredList = searchUseCases
+            .filterByIngredientsAndTimeUseCase(
+                ingredients = selectedIngredients,
+                timeRange = if (selectedRanges.isEmpty()) listOf(DEFAULT_RANGE) else selectedRanges
+            )
 
-            if (selectedRanges.isNotEmpty() || selectedIngredients.isNotEmpty()) {
-                searchAdapter.updateRecipes(filteredList.toList())
-            }
+        if (selectedRanges.isNotEmpty() || selectedIngredients.isNotEmpty()) {
+            searchAdapter.updateRecipes(filteredList.toList())
         }
     }
 
-    private companion object {
-        val DEFAULT_RANGE = Int.MIN_VALUE..Int.MAX_VALUE
-        val RANGE_FAST_FOOD = 0..30
-        val RANGE_30_45 = 30..45
-        val RANGE_45_60 = 45..60
-        val RANGE_MORE_THAN_HOUR = 60..Int.MAX_VALUE
+    override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+        timerForDelaySearch?.cancel()
     }
+
+    override fun afterTextChanged(recipeName: Editable?) {
+        timerForDelaySearch = Timer()
+        timerForDelaySearch!!.schedule(object : TimerTask() {
+            override fun run() {
+                requireActivity().runOnUiThread {
+                    applySearch(recipeName.toString())
+                }
+            }
+        }, SEARCH_DELAY)
+    }
+
+    private fun applySearch(recipeName: String) {
+        val searchResult = searchUseCases.searchByRecipeNameUseCase(recipeName)
+        if (searchResult != null) {
+            searchAdapter.updateRecipes(searchResult)
+        } else {
+            searchAdapter.updateRecipes(emptyList())
+        }
+    }
+
     private fun FilterSheetCardBinding.fillSelected(
         selectedRanges: MutableList<IntRange>,
         selectedIngredients: MutableList<String>
@@ -138,5 +165,18 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>() {
                 }
             }
         }
+    }
+
+    override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+    }
+
+    private companion object {
+        val DEFAULT_RANGE = Int.MIN_VALUE..Int.MAX_VALUE
+        val RANGE_FAST_FOOD = 0..30
+        val RANGE_30_45 = 30..45
+        val RANGE_45_60 = 45..60
+        val RANGE_MORE_THAN_HOUR = 60..Int.MAX_VALUE
+        const val SEARCH_DELAY = 600L
     }
 }
