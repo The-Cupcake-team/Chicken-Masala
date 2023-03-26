@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import com.cupcake.chickenmasala.R
 import com.cupcake.chickenmasala.data.RepositoryImpl
 import com.cupcake.chickenmasala.data.data_source.DataSource
-import com.cupcake.chickenmasala.data.data_source.DataSourceImpl
+import com.cupcake.chickenmasala.data.data_sourse.DataSourceImpl
 import com.cupcake.chickenmasala.databinding.FilterBottomSheetBinding
 import com.cupcake.chickenmasala.databinding.FragmentSearchBinding
 import com.cupcake.chickenmasala.ui.adpter.search.RecipeClickListener
@@ -17,7 +17,7 @@ import com.cupcake.chickenmasala.ui.adpter.search.SearchAdapter
 import com.cupcake.chickenmasala.ui.base.BaseFragment
 import com.cupcake.chickenmasala.usecase.Repository
 import com.cupcake.chickenmasala.usecase.search.SearchUseCases
-import com.cupcake.chickenmasala.ui.activity.HomeActivity
+import com.cupcake.chickenmasala.ui.fragment.details.DetailsFragment
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import java.util.Timer
 import java.util.TimerTask

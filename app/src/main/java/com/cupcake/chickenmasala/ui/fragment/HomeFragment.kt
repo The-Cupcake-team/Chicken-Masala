@@ -12,12 +12,14 @@ import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import com.cupcake.chickenmasala.ui.base.BaseFragment
 import com.cupcake.chickenmasala.R
+import com.cupcake.chickenmasala.data.RepositoryImpl
 import com.cupcake.chickenmasala.databinding.FragmentHomeBinding
-import com.cupcake.chickenmasala.ui.activity.HomeActivity
 import com.cupcake.chickenmasala.ui.adapter.home.VerticalRecipeAdapter
 import com.cupcake.chickenmasala.ui.adapter.home.HorizontalRecipeAdapter
+import com.cupcake.chickenmasala.usecase.Repository
+import com.cupcake.chickenmasala.utill.DataSourceProvider
 import com.cupcake.chickenmasala.utill.ImageAdapter
-import java.lang.Math.abs
+import kotlin.math.abs
 
 class HomeFragment: BaseFragment<FragmentHomeBinding>() {
     override val LOG_TAG: String
@@ -25,6 +27,9 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>() {
     override val bindingInflater: (LayoutInflater, ViewGroup, Boolean) -> FragmentHomeBinding
         get() = FragmentHomeBinding::inflate
 
+    private val repository: Repository by lazy {
+        RepositoryImpl(DataSourceProvider.getDataSource(requireActivity().application))
+    }
     private lateinit var healthyViewPager: ViewPager2
     private lateinit var handler: Handler
     private lateinit var imageList: ArrayList<Int>
@@ -49,14 +54,12 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>() {
     }
 
     private fun setupHorizontalRecyclerView(){
-        val recipes = (activity as HomeActivity).dataManager.getRecipes()
-        horizontalRecipeAdapter = HorizontalRecipeAdapter(recipes)
+        horizontalRecipeAdapter = HorizontalRecipeAdapter(repository.getRecipes())
         binding.horizontalRecyclerView.adapter = horizontalRecipeAdapter
     }
 
     private fun setupVerticalRecyclerView(){
-        val recipes = (activity as HomeActivity).dataManager.getRecipes()
-        verticalRecipeAdapter = VerticalRecipeAdapter(recipes)
+        verticalRecipeAdapter = VerticalRecipeAdapter(repository.getRecipes())
         binding.verticalRecycler.adapter = verticalRecipeAdapter
     }
     private fun setupViewPager(){
