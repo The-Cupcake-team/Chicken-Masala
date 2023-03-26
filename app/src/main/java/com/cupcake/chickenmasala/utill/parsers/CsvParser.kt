@@ -1,6 +1,6 @@
 package com.cupcake.chickenmasala.utill.parsers
 
-import com.cupcake.chickenmasala.data.model.HealthyAdvices
+import com.cupcake.chickenmasala.data.model.HealthAdvice
 import com.cupcake.chickenmasala.data.model.Recipe
 import com.cupcake.chickenmasala.utill.TypeModel
 import java.io.InputStreamReader
@@ -34,8 +34,8 @@ class CsvParser {
         )
     }
 
-    private fun getHealthyAdvice(line: List<String>, index: Int): HealthyAdvices {
-        return HealthyAdvices(
+    private fun getHealthyAdvice(line: List<String>, index: Int): HealthAdvice {
+        return HealthAdvice(
             id = index,
             title = line[TITLE],
             description = line[DESCRIPTION],

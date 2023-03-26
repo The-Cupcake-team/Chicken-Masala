@@ -2,7 +2,7 @@ package com.cupcake.chickenmasala.data.data_sourse
 
 import android.app.Application
 import com.cupcake.chickenmasala.data.data_source.DataSource
-import com.cupcake.chickenmasala.data.model.HealthyAdvices
+import com.cupcake.chickenmasala.data.model.HealthAdvice
 import com.cupcake.chickenmasala.data.model.Recipe
 import java.io.InputStreamReader
 
@@ -45,12 +45,12 @@ class DataSourceImpl(private val context: Application) : DataSource {
         return recipes
     }
 
-    override fun getHealthAdvices(): List<HealthyAdvices> {
-        val advices = mutableListOf<HealthyAdvices>()
+    override fun getHealthAdvices(): List<HealthAdvice> {
+        val advices = mutableListOf<HealthAdvice>()
         val fileReader = openFile(HEALTH_ADVICES_FILE_PATH)
         parseFile(fileReader).forEach { (key, data) ->
             advices.add(
-                HealthyAdvices(
+                HealthAdvice(
                     id = key,
                     title = data[TITLE],
                     description = data[DESCRIPTION],

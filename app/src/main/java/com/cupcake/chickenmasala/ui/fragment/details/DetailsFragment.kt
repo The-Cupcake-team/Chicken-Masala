@@ -6,13 +6,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.bumptech.glide.Glide
+import com.cupcake.chickenmasala.R
 import com.cupcake.chickenmasala.databinding.FragmentDetailsBinding
 import com.cupcake.chickenmasala.ui.base.BaseFragment
 import com.cupcake.chickenmasala.data.RepositoryImpl
 import com.cupcake.chickenmasala.data.model.Recipe
 import com.cupcake.chickenmasala.usecase.Repository
 import com.cupcake.chickenmasala.utill.DataSourceProvider
+import com.cupcake.chickenmasala.utill.setImage
 
 
 class DetailsFragment : BaseFragment<FragmentDetailsBinding>() {
@@ -29,79 +30,56 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         repository = RepositoryImpl(DataSourceProvider.getDataSource(requireActivity().application))
-        setupRecipeDetails(getRecipeById())
+        val id = arguments.let { it?.getInt(ID) }
+        setupRecipeDetails(getRecipeById(id!!))
     }
 
     private fun setupRecipeDetails(recipe: Recipe) {
         shareLink(recipe.urlDetailsRecipe)
-        loadImage(recipe.imageUrl)
-        openWebsite(recipe.urlDetailsRecipe)
-        setRecipeName(recipe.translatedRecipeName)
-        setCuisineName(recipe.cuisine)
-        setIngredientsCount(recipe.ingredientCounts)
-        setTimeForRecipe(recipe.totalTimeInMin)
+        setDataToUiViews(recipe)
         setupIngredientsRecycleView(recipe.translatedIngredients)
         setupInstructionsRecycleView(recipe.translatedInstructions)
         setupCleanedIngredientsRecycleView(recipe.cleanedIngredients)
     }
 
-    private fun getRecipeById(): Recipe {
-        val id = arguments.let { it?.getInt(ID) }
+    private fun getRecipeById(id: Int): Recipe {
         val data = repository.getRecipes()
-        return data[id!!]
+        return data[id]
     }
 
     private fun shareLink(link: String) {
         binding.shareButton.setOnClickListener {
             val sharingIntent = Intent(Intent.ACTION_SEND)
             sharingIntent.type = "text/plain"
-            sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "check out this link!")
+            sharingIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.share_subject))
             sharingIntent.putExtra(Intent.EXTRA_TEXT, link)
-            startActivity(Intent.createChooser(sharingIntent, "Share via"))
+            startActivity(Intent.createChooser(sharingIntent, getString(R.string.share_via)))
             setupBackButton()
         }
     }
+
 
     private fun setupBackButton() {
         binding.backButton.setOnClickListener {
             activity?.onBackPressedDispatcher?.onBackPressed()
         }
     }
-
-    private fun openWebsite(url: String) {
+    private fun setDataToUiViews(recipe: Recipe){
         binding.moreDetailsButton.setOnClickListener {
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-            activity?.startActivity(intent)
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(recipe.imageUrl))
+            startActivity(intent)
         }
-    }
+        binding.container.detailsImage.setImage(recipe.imageUrl)
+        binding.container.foodName.text = recipe.translatedRecipeName
+        binding.container.ingredientCount.text = recipe.ingredientCounts.toString()
+        binding.container.cuisineText.text = recipe.cuisine
+        binding.container.timerText.text = recipe.totalTimeInMin.toString()
+        binding.moreDetailsButton.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(recipe.urlDetailsRecipe))
+            startActivity(intent)
+        }
 
-    private fun loadImage(imageUrl: String) {
-        val imageView = binding.container.detailsImage
-        Glide.with(this)
-            .load(imageUrl)
-            .into(imageView)
     }
-
-    private fun setRecipeName(recipeName: String) {
-        val recipe = binding.container.foodName
-        recipe.text = recipeName
-    }
-
-    private fun setIngredientsCount(ingredientsCount: Int) {
-        val ingredients = binding.container.ingredientCount
-        ingredients.text = ingredientsCount.toString()
-    }
-
-    private fun setCuisineName(cuisineName: String) {
-        val cuisine = binding.container.cuisineText
-        cuisine.text = cuisineName
-    }
-
-    private fun setTimeForRecipe(time: Int) {
-        val timeForRecipe = binding.container.timerText
-        timeForRecipe.text = time.toString()
-    }
-
     private fun setupIngredientsRecycleView(ingredientsList: List<String>) {
         ingredientsAdapter = IngredientsAdapter()
         ingredientsAdapter.submitList(ingredientsList)
