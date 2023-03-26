@@ -6,7 +6,6 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.cupcake.chickenmasala.R
 import com.cupcake.chickenmasala.data.RepositoryImpl
 import com.cupcake.chickenmasala.data.data_source.DataSource
@@ -59,7 +58,15 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), TextWatcher, Recip
     }
 
     override fun onRecipeClick(id: Int) {
-        Toast.makeText(requireContext(), "$id", Toast.LENGTH_SHORT).show()
+        navigateToDetailsFragment(id)
+    }
+
+    private fun navigateToDetailsFragment(id: Int) {
+        val detailsFragment = DetailsFragment.newInstance(id)
+        requireActivity().supportFragmentManager.beginTransaction().apply {
+            replace(R.id.fragmentContainer, detailsFragment)
+            commit()
+        }
     }
 
     private fun showFilterSheet() {
