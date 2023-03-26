@@ -12,13 +12,13 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
-import com.cupcake.chickenmasala.ui.base.BaseFragment
 import com.cupcake.chickenmasala.R
 import com.cupcake.chickenmasala.data.RepositoryImpl
 import com.cupcake.chickenmasala.data.model.Recipe
 import com.cupcake.chickenmasala.databinding.FragmentHomeBinding
+import com.cupcake.chickenmasala.ui.base.BaseFragment
 import com.cupcake.chickenmasala.ui.base.OnItemClickListener
-import com.cupcake.chickenmasala.ui.fragment.DetailsFragment
+import com.cupcake.chickenmasala.ui.fragment.details.DetailsFragment
 import com.cupcake.chickenmasala.usecase.Repository
 import com.cupcake.chickenmasala.utill.DataSourceProvider
 import java.lang.Math.abs
@@ -103,8 +103,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnItemClickListener<Re
     }
 
     override fun onItemClicked(item: Recipe) {
-//        val destinationFragment = DetailsFragment().newInstance(item.id)
-//        navigateToFragment(destinationFragment)
+        val destinationFragment = DetailsFragment.newInstance(item.id)
+        navigateToFragment(destinationFragment)
        Toast.makeText(this.context,item.totalTimeInMin.toString(), Toast.LENGTH_LONG).show()
     }
     private fun navigateToFragment(fragment: Fragment){
