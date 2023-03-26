@@ -10,6 +10,7 @@ import com.cupcake.chickenmasala.databinding.FragmentHealthyBinding
 import com.cupcake.chickenmasala.ui.base.BaseFragment
 import com.cupcake.chickenmasala.usecase.Repository
 import com.cupcake.chickenmasala.usecase.healthy.GetHealthyAdviceByIDUseCase
+import com.cupcake.chickenmasala.utill.Constant
 import com.cupcake.chickenmasala.utill.DataSourceProvider
 import com.cupcake.chickenmasala.utill.setImage
 
@@ -25,23 +26,29 @@ class HealthyFragment : BaseFragment<FragmentHealthyBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val adviceID = arguments?.getInt("adviceID")
-        adviceID?.let {
-
-        }
-        initialData(1)
+        initView()
 
     }
 
-    private fun initialData(adviceID: Int) {
-        val advice = GetHealthyAdviceByIDUseCase(repository).invoke(adviceID)
-        bindViews(advice)
+    private fun initView() {
+        val adviceID = arguments?.getInt(Constant.Key.ADVICE_ID)
+        adviceID?.let {
+            getHealthAdviceById(adviceID).apply {
+                bindViews(this)
+            }
+        }
+    }
+
+    private fun getHealthAdviceById(adviceID: Int): HealthAdvice {
+        return GetHealthyAdviceByIDUseCase(repository).invoke(adviceID)
     }
 
     private fun bindViews(healthyAdvice: HealthAdvice) {
-        binding.toolbar.title = healthyAdvice.title
-        binding.healthyImage.setImage(healthyAdvice.imageUrl)
-        binding.healthyDescription.text = healthyAdvice.description
+        with(binding) {
+            toolbar.title = healthyAdvice.title
+            healthyImage.setImage(healthyAdvice.imageUrl)
+            healthyDescription.text = healthyAdvice.description
+        }
     }
+
 }
