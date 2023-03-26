@@ -15,50 +15,36 @@
     <dimen name="font_size_title_large">22sp</dimen>
     <dimen name="font_size_title_x_large">24sp</dimen>
 
-
-    <dimen name="radius_medium">28dp</dimen>
-
     <dimen name="radius_normal">8dp</dimen>
-    <dimen name="radius_large">16dp</dimen>
-
-    <dimen name="card_height_small">86dp</dimen>
-    <dimen name="card_height">128dp</dimen>
-    <dimen name="save_card_width">328dp</dimen>
+    <dimen name="radius_medium">16dp</dimen>
+    <dimen name="radius_large">28dp</dimen>
 
     <dimen name="card_width">128dp</dimen>
-    <dimen name="home_card_width">160dp</dimen>
     <dimen name="home_card_height">260dp</dimen>
+    <dimen name="card_height_small">86dp</dimen>
 
     <dimen name="item_card_recent_food_width">160dp</dimen>
     <dimen name="item_card_recent_food_height">260dp</dimen>
     <dimen name="item_card_cuisine_height">96dp</dimen>
-    <dimen name="item_card_cuisine_width">160dp</dimen>
     <dimen name="item_card_recipes_height">86dp</dimen>
 
-    <dimen name="small_icon_size">16dp</dimen>
-    <dimen name="default_icon_size">24dp</dimen>
-
-    <dimen name="save_card_photo_width">162dp</dimen>
-
     <dimen name="healthy_card_height">312dp</dimen>
-    <dimen name="healthy_card_photo_height">162dp</dimen>
-
     <dimen name="photo_card_height">195dp</dimen>
 
     <dimen name="button_height">40dp</dimen>
     <dimen name="input_height">56dp</dimen>
 
-    <dimen name="padding_chip_vertical">6dp</dimen>
-    <dimen name="padding_chip_horizontal">12dp</dimen>
-    <dimen name="history_image_size">200dp</dimen>
-
-
-
     <dimen name="padding_normal">12dp</dimen>
     <dimen name="app_bar_height">56dp</dimen>
 
     <dimen name="small_search_card">130dp</dimen>
-
     <dimen name="box_stroke_width">0.25dp</dimen>
+
+    <dimen name="padding_chip_vertical">6dp</dimen>
+    <dimen name="padding_chip_horizontal">12dp</dimen>
+    <dimen name="history_image_size">200dp</dimen>
+
+    <dimen name="small_icon_size">16dp</dimen>
+    <dimen name="default_icon_size">24dp</dimen>
 
 </resources>

@@ -6,7 +6,7 @@
     android:layout_height="@dimen/card_height_small"
     android:layout_marginBottom="@dimen/spacing_normal"
     android:backgroundTint="@color/card"
-    app:cardCornerRadius="@dimen/radius_large"
+    app:cardCornerRadius="@dimen/radius_medium"
     app:cardElevation="@dimen/zero"
     app:strokeWidth="@dimen/zero">
 
@@ -23,7 +23,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:round="@dimen/radius_large" />
+            app:round="@dimen/radius_medium" />
 
         <TextView
             android:id="@+id/recipe_name"

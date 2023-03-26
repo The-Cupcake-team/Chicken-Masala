@@ -6,7 +6,7 @@
     android:layout_height="@dimen/item_card_cuisine_height"
     android:layout_marginEnd="@dimen/spacing_normal"
     android:layout_marginBottom="@dimen/spacing_normal"
-    app:cardCornerRadius="@dimen/radius_large">
+    app:cardCornerRadius="@dimen/radius_medium">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

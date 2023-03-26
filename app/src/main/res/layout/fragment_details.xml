@@ -142,7 +142,7 @@
                 android:layout_marginTop="@dimen/spacing_medium"
                 android:layout_marginBottom="@dimen/spacing_medium"
                 android:text="@string/more_details"
-                app:cornerRadius="@dimen/radius_medium"
+                app:cornerRadius="@dimen/radius_large"
                 style="@style/TextStyle.Title.Medium.Button"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
