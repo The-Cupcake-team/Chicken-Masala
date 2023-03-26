@@ -50,11 +50,11 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), TextWatcher, Recip
 
     private fun addSearchCallBack() {
         binding.searchBox.setEndIconOnClickListener { showFilterSheet() }
-        binding.nameEditText.addTextChangedListener(this)
+        binding.editTextName.addTextChangedListener(this)
     }
 
     private fun setupRecycleAdapter() {
-        binding.rvLarge.adapter = searchAdapter
+        binding.recyclerViewSearch.adapter = searchAdapter
     }
 
     override fun onRecipeClick(id: Int) {
