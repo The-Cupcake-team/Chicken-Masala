@@ -1,14 +1,11 @@
 package com.cupcake.chickenmasala.ui
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.cupcake.chickenmasala.R
 import com.cupcake.chickenmasala.data.model.Cuisine
 import com.cupcake.chickenmasala.databinding.ItemCardCuisineBinding
 import com.cupcake.chickenmasala.ui.base.BaseAdapter
+import com.cupcake.chickenmasala.utill.setImage
 
 class CuisineAdapter(private val listener :CuisineAdapter.CuisineInteractionListener)
     : BaseAdapter<Cuisine, ItemCardCuisineBinding>() {
@@ -25,9 +22,7 @@ class CuisineAdapter(private val listener :CuisineAdapter.CuisineInteractionList
     override fun bindItem(binding: ItemCardCuisineBinding, cuisine: Cuisine) {
         with(binding){
             textCuisineName.text = cuisine.name
-            Glide.with(binding.root)
-                .load(cuisine.imageUrl)
-                .into(cuisineImage)
+            cuisineImage.setImage(cuisine.imageUrl)
 
             root.setOnClickListener { listener.onClickCuisine(cuisine) }
         }
