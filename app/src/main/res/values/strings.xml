@@ -73,4 +73,9 @@
     <string name="cuisine_dishes">Cuisine Dishes</string>
     <string name="image">image</string>
 
+
+    <string name="share_subject">check out this link!</string>
+    <string name="share_via">Share via</string>
+
+
 </resources>
