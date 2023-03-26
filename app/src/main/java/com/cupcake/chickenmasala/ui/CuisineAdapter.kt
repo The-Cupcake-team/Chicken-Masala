@@ -8,32 +8,29 @@ import com.bumptech.glide.Glide
 import com.cupcake.chickenmasala.R
 import com.cupcake.chickenmasala.data.model.Cuisine
 import com.cupcake.chickenmasala.databinding.ItemCardCuisineBinding
+import com.cupcake.chickenmasala.ui.base.BaseAdapter
 
-class CuisineAdapter(private val cuisines: List<Cuisine>,
-                     private val listener: CuisineAdapter.CuisineInteractionListener)
-    : RecyclerView.Adapter<CuisineAdapter.CuisineViewHolder>() {
+class CuisineAdapter(private val listener :CuisineAdapter.CuisineInteractionListener)
+    : BaseAdapter<Cuisine, ItemCardCuisineBinding>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CuisineViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_card_cuisine, parent, false)
-        return CuisineViewHolder(view)
-    }
+    override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> ItemCardCuisineBinding
+            = ItemCardCuisineBinding::inflate
 
-    override fun getItemCount() = cuisines.size
+    override fun <T> areItemsTheSame(
+        oldItemPosition: Int,
+        newItemPosition: Int,
+        newItems: List<T> ) = getOldItems()[oldItemPosition].key == (newItems[newItemPosition] as Cuisine).key
 
-    override fun onBindViewHolder(holder: CuisineViewHolder, position: Int) {
-        val cuisine = cuisines[position]
-        holder.binding.apply {
+
+    override fun bindItem(binding: ItemCardCuisineBinding, cuisine: Cuisine) {
+        with(binding){
             textCuisineName.text = cuisine.name
-            Glide.with(holder.binding.root)
+            Glide.with(binding.root)
                 .load(cuisine.imageUrl)
                 .into(cuisineImage)
+
             root.setOnClickListener { listener.onClickCuisine(cuisine) }
         }
-    }
-
-    class CuisineViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val binding = ItemCardCuisineBinding.bind(itemView)
     }
 
     interface CuisineInteractionListener{
