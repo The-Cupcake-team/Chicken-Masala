@@ -12,13 +12,15 @@ import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import com.cupcake.chickenmasala.ui.base.BaseFragment
 import com.cupcake.chickenmasala.R
+import com.cupcake.chickenmasala.data.RepositoryImpl
 import com.cupcake.chickenmasala.databinding.FragmentHomeBinding
+import com.cupcake.chickenmasala.usecase.Repository
+import com.cupcake.chickenmasala.utill.DataSourceProvider
 import com.cupcake.chickenmasala.utill.ImageAdapter
 import java.lang.Math.abs
 
-class HomeFragment: BaseFragment<FragmentHomeBinding>() {
-    override val LOG_TAG: String
-        get() = "HOME_FRAGMENT"
+class HomeFragment : BaseFragment<FragmentHomeBinding>() {
+    override val LOG_TAG: String = this::class.java.name
     override val bindingInflater: (LayoutInflater, ViewGroup, Boolean) -> FragmentHomeBinding
         get() = FragmentHomeBinding::inflate
 
@@ -27,20 +29,25 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>() {
     private lateinit var imageList: ArrayList<Int>
     private lateinit var adapter: ImageAdapter
 
+    private lateinit var repository: Repository
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        repository = RepositoryImpl(DataSourceProvider.getDataSource(requireActivity().application))
+
+
         init()
         setUpTransformer()
-        viewPager2.registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback(){
+        viewPager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 handler.removeCallbacks(runnable)
-                handler.postDelayed(runnable,4000)
+                handler.postDelayed(runnable, 4000)
             }
         })
-        super.onViewCreated(view, savedInstanceState)
     }
 
-    private fun init(){
+    private fun init() {
         viewPager2 = binding.healthyViewPager
         handler = Handler(Looper.myLooper()!!)
         imageList = ArrayList()
@@ -48,7 +55,7 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>() {
         imageList.add(R.drawable.view_pager_image_2)
         imageList.add(R.drawable.view_pager_image_3)
 
-        adapter = ImageAdapter(imageList,viewPager2)
+        adapter = ImageAdapter(imageList, viewPager2)
 
         viewPager2.adapter = adapter
         viewPager2.offscreenPageLimit = 3
@@ -57,10 +64,10 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>() {
         viewPager2.getChildAt(0).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
     }
 
-    private fun setUpTransformer(){
+    private fun setUpTransformer() {
         val transformer = CompositePageTransformer()
         transformer.addTransformer(MarginPageTransformer(40))
-        transformer.addTransformer{ page,position ->
+        transformer.addTransformer { page, position ->
             val r = 1 - abs(position)
             page.scaleY = 0.85f + r * 0.14f
         }
@@ -74,10 +81,10 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>() {
 
     override fun onResume() {
         super.onResume()
-        handler.postDelayed(runnable,4000)
+        handler.postDelayed(runnable, 4000)
     }
 
-    private val runnable = Runnable{
+    private val runnable = Runnable {
         viewPager2.currentItem = viewPager2.currentItem + 1
     }
 }

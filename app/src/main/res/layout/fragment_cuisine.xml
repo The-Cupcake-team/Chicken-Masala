@@ -1,84 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/background"
-    tools:context=".ui.fragment.CuisineFragment">
+    tools:context=".ui.fragment.cuisine.CuisineFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="@dimen/spacing_medium">
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_cuisine"
+        android:layout_width="@dimen/zero"
+        android:layout_height="@dimen/zero"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        android:layout_marginTop="@dimen/spacing_medium"
+        android:layout_marginStart="@dimen/spacing_medium"
+        android:layout_marginEnd="@dimen/spacing_normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:spanCount="2"
+        tools:listitem="@layout/item_card_cuisine" />
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/item_cuisine1"
-            android:layout_width="@dimen/zero"
-            android:layout_height="@dimen/item_card_cuisine_height"
-            android:layout_marginEnd="@dimen/spacing_small"
-            android:scaleType="centerCrop"
-            app:layout_constraintEnd_toStartOf="@+id/item_cuisine2"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Large"
-            app:srcCompat="@drawable/image" />
-
-        <View
-            android:id="@+id/blur_image"
-            android:layout_width="@dimen/zero"
-            android:layout_height="@dimen/zero"
-            android:background="@drawable/blur_image"
-            app:layout_constraintBottom_toBottomOf="@+id/item_cuisine1"
-            app:layout_constraintEnd_toEndOf="@+id/item_cuisine1"
-            app:layout_constraintStart_toStartOf="@+id/item_cuisine1"
-            app:layout_constraintTop_toTopOf="@+id/item_cuisine1" />
-
-        <TextView
-            android:id="@+id/text_cuisine_name"
-            style="@style/TextStyle.Title.Medium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Meeeee"
-            android:textColor="@color/background"
-            app:layout_constraintBottom_toBottomOf="@+id/item_cuisine1"
-            app:layout_constraintEnd_toEndOf="@+id/item_cuisine1"
-            app:layout_constraintStart_toStartOf="@+id/item_cuisine1"
-            app:layout_constraintTop_toTopOf="@+id/item_cuisine1" />
-
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/item_cuisine2"
-            android:layout_width="@dimen/zero"
-            android:layout_height="@dimen/item_card_cuisine_height"
-            android:layout_marginStart="@dimen/spacing_small"
-            android:scaleType="centerCrop"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/item_cuisine1"
-            app:layout_constraintTop_toTopOf="parent"
-            app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Large"
-            app:srcCompat="@drawable/image" />
-
-        <View
-            android:id="@+id/blur_image2"
-            android:layout_width="@dimen/zero"
-            android:layout_height="@dimen/zero"
-            android:background="@drawable/blur_image"
-            app:layout_constraintBottom_toBottomOf="@+id/item_cuisine2"
-            app:layout_constraintEnd_toEndOf="@+id/item_cuisine2"
-            app:layout_constraintStart_toStartOf="@+id/item_cuisine2"
-            app:layout_constraintTop_toTopOf="@+id/item_cuisine2" />
-
-        <TextView
-            android:id="@+id/text_cuisine_name2"
-            style="@style/TextStyle.Title.Medium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Meeeee2"
-            android:textColor="@color/background"
-            app:layout_constraintBottom_toBottomOf="@+id/item_cuisine2"
-            app:layout_constraintEnd_toEndOf="@+id/item_cuisine2"
-            app:layout_constraintStart_toStartOf="@+id/item_cuisine2"
-            app:layout_constraintTop_toTopOf="@+id/item_cuisine2" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
