@@ -1,6 +1,5 @@
-package com.cupcake.chickenmasala.ui.fragment
+package com.cupcake.chickenmasala.ui.fragment.home
 
-import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -8,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
@@ -15,20 +15,17 @@ import androidx.viewpager2.widget.ViewPager2
 import com.cupcake.chickenmasala.ui.base.BaseFragment
 import com.cupcake.chickenmasala.R
 import com.cupcake.chickenmasala.data.RepositoryImpl
+import com.cupcake.chickenmasala.data.model.Recipe
 import com.cupcake.chickenmasala.databinding.FragmentHomeBinding
-import com.cupcake.chickenmasala.ui.activity.HomeActivity
-import com.cupcake.chickenmasala.ui.adapter.home.VerticalRecipeAdapter
-import com.cupcake.chickenmasala.ui.adapter.home.HorizontalRecipeAdapter
-import com.cupcake.chickenmasala.ui.adapter.home.RecentFoodInteractionClickListener
+import com.cupcake.chickenmasala.ui.base.OnItemClickListener
+import com.cupcake.chickenmasala.ui.fragment.DetailsFragment
 import com.cupcake.chickenmasala.usecase.Repository
-import com.cupcake.chickenmasala.usecase.home.GetRecentFoodUseCase
 import com.cupcake.chickenmasala.utill.DataSourceProvider
-import com.cupcake.chickenmasala.utill.ImageAdapter
 import java.lang.Math.abs
 
-class HomeFragment : BaseFragment<FragmentHomeBinding>(), RecentFoodInteractionClickListener {
+class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnItemClickListener<Recipe> {
     override val LOG_TAG: String
-        get() = "HOME_FRAGMENT"
+        get() = this::class.java.name
     override val bindingInflater: (LayoutInflater, ViewGroup, Boolean) -> FragmentHomeBinding
         get() = FragmentHomeBinding::inflate
 
@@ -36,33 +33,25 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), RecentFoodInteractionC
     private lateinit var handler: Handler
     private lateinit var imageList: ArrayList<Int>
     private lateinit var imageAdapter: ImageAdapter
-    private lateinit var horizontalRecipeAdapter: HorizontalRecipeAdapter
-    private lateinit var verticalRecipeAdapter: VerticalRecipeAdapter
+    private lateinit var verticalRecipeRecyclerAdapter: VerticalRecipeRecyclerAdapter
 
-    private lateinit var repository: Repository
+    private val repository: Repository by lazy {
+        RepositoryImpl(DataSourceProvider.getDataSource(requireActivity().application))
+    }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        repository = RepositoryImpl(DataSourceProvider.getDataSource(requireActivity().application))
-
         setupViewPager()
-        setupHorizontalRecyclerView()
-        setupVerticalRecyclerView()
+        setupVerticalRecipeRecyclerView()
         setupTransformer()
         addCallbacks()
     }
 
-
-    private fun setupHorizontalRecyclerView() {
-        val recipes = GetRecentFoodUseCase(repository)(RECENT_FOOD_LIMIT)
-        horizontalRecipeAdapter = HorizontalRecipeAdapter(recipes, this)
-        binding.horizontalRecyclerView.adapter = horizontalRecipeAdapter
-    }
-
-    private fun setupVerticalRecyclerView() {
-        val recipes = repository.getRecipes()
-        verticalRecipeAdapter = VerticalRecipeAdapter(recipes)
-        binding.verticalRecycler.adapter = verticalRecipeAdapter
+    private fun setupVerticalRecipeRecyclerView() {
+        verticalRecipeRecyclerAdapter = VerticalRecipeRecyclerAdapter(this)
+        verticalRecipeRecyclerAdapter.submitList(repository.getRecipes())
+        binding.verticalRecycler.adapter = verticalRecipeRecyclerAdapter
     }
 
     private fun setupViewPager() {
@@ -81,7 +70,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), RecentFoodInteractionC
         healthyViewPager.clipChildren = false
         healthyViewPager.getChildAt(0).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
     }
-
     private fun setupTransformer() {
         val transformer = CompositePageTransformer()
         transformer.addTransformer(MarginPageTransformer(40))
@@ -91,8 +79,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), RecentFoodInteractionC
         }
         healthyViewPager.setPageTransformer(transformer)
     }
-
     private fun addCallbacks(){
+
         healthyViewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
@@ -106,20 +94,24 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), RecentFoodInteractionC
         super.onPause()
         handler.removeCallbacks(runnable)
     }
-
     override fun onResume() {
         super.onResume()
         handler.postDelayed(runnable, 4000)
     }
-
     private val runnable = Runnable {
         healthyViewPager.currentItem = healthyViewPager.currentItem + 1
     }
 
-    override fun onClickRecentFoodItem(id: Int) {
-        Toast.makeText(requireContext(), id, Toast.LENGTH_SHORT).show()
+    override fun onItemClicked(item: Recipe) {
+//        val destinationFragment = DetailsFragment().newInstance(item.id)
+//        navigateToFragment(destinationFragment)
+       Toast.makeText(this.context,item.totalTimeInMin.toString(), Toast.LENGTH_LONG).show()
     }
-
+    private fun navigateToFragment(fragment: Fragment){
+        val transition = requireActivity().supportFragmentManager.beginTransaction()
+        transition.add(R.id.fragmentContainer,fragment)
+        transition.commit()
+    }
     companion object {
         const val RECENT_FOOD_LIMIT = 10
     }
