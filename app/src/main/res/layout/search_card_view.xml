@@ -22,71 +22,68 @@
 
         <TextView
             android:id="@+id/dish_name"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
             style="@style/TextStyle.Body.Medium"
+            android:layout_width="@dimen/zero"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_normal"
+            android:layout_marginEnd="@dimen/spacing_normal"
+            android:layout_marginBottom="@dimen/spacing_small"
             android:ellipsize="end"
-            android:lines="1"
-            app:layout_constraintStart_toStartOf="@+id/food_icon"
+            android:lines="2"
+            android:textColor="@color/secondary"
             app:layout_constraintBottom_toTopOf="@+id/food_icon"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginBottom="@dimen/spacing_small"
-            tools:text="Spagehetti Meatballs abse"
-            android:textColor="@color/background"
-            />
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="Spagehetti Meatballs abse" />
 
         <ImageView
             android:id="@+id/food_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/spacing_normal"
             android:src="@drawable/cuisine_icon"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:tint="@color/background"
-            android:layout_marginStart="@dimen/spacing_normal"
-            android:layout_marginBottom="@dimen/spacing_normal"
-            />
+            app:layout_constraintStart_toStartOf="@+id/dish_name"
+            app:tint="@color/secondary" />
 
         <TextView
             android:id="@+id/cuisine_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             style="@style/TextStyle.Body.Small"
-            tools:text="Indian"
-            android:maxLines="1"
-            android:maxLength="6"
-            android:ellipsize="end"
-            android:textColor="@color/background"
+            android:layout_width="@dimen/zero"
+            android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/spacing_small"
+            android:layout_marginEnd="4dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/secondary"
+            app:layout_constraintBottom_toBottomOf="@+id/food_icon"
+            app:layout_constraintEnd_toStartOf="@+id/timer_icon"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/food_icon"
             app:layout_constraintTop_toTopOf="@+id/food_icon"
-            app:layout_constraintBottom_toBottomOf="@+id/food_icon"
-            />
+            tools:text="Indian Indian" />
 
         <ImageView
             android:id="@+id/timer_icon"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
+            android:layout_width="@dimen/spacing_medium"
+            android:layout_height="@dimen/spacing_medium"
             android:layout_marginEnd="@dimen/spacing_small"
             android:src="@drawable/timer_icon"
-            app:layout_constraintBottom_toBottomOf="@id/cuisine_name"
-            app:layout_constraintStart_toEndOf="@id/cuisine_name"
-            app:layout_constraintTop_toTopOf="@id/cuisine_name"
-            android:layout_marginStart="@dimen/spacing_large"
-            app:layout_constraintVertical_bias="0.0"
-            app:tint="@color/background" />
+            app:layout_constraintBottom_toBottomOf="@+id/prepare_time"
+            app:layout_constraintEnd_toStartOf="@+id/prepare_time"
+            app:layout_constraintTop_toTopOf="@+id/prepare_time"
+            app:tint="@color/secondary" />
 
         <TextView
             android:id="@+id/prepare_time"
             style="@style/TextStyle.Body.Small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="5 min"
-            android:textColor="@color/background"
-            android:layout_marginStart="@dimen/spacing_small"
-            app:layout_constraintBottom_toBottomOf="@id/cuisine_name"
-            app:layout_constraintStart_toEndOf="@id/timer_icon"
-            app:layout_constraintTop_toTopOf="@id/cuisine_name" />
+            android:layout_marginBottom="@dimen/spacing_normal"
+            android:textColor="@color/secondary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/dish_name"
+            tools:text="5 min" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

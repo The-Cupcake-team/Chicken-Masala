@@ -12,7 +12,7 @@
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/healthy_view_pager"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero"
             android:layout_height="@dimen/photo_card_height"
             android:layout_marginTop="@dimen/spacing_medium"
             android:paddingHorizontal="@dimen/spacing_medium"
@@ -68,12 +68,15 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/horizontal_recycler_view"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero"
+            android:paddingEnd="@dimen/spacing_medium"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_normal"
             android:layout_marginTop="@dimen/spacing_normal"
             android:clipToPadding="false"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/header_row"
             tools:listitem="@layout/search_card_view" />
