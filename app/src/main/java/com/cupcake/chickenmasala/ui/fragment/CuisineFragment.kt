@@ -44,7 +44,8 @@ class CuisineFragment: BaseFragment<FragmentCuisineBinding>(), CuisineAdapter.Cu
 
     override fun onClickCuisine(cuisine: Cuisine) {
         val transition = requireActivity().supportFragmentManager.beginTransaction()
-        transition.add(R.id.fragmentContainer, CuisineDishesFragment())
+        transition.replace(R.id.fragmentContainer, CuisineDishesFragment())
+        transition.addToBackStack(CuisineFragment().javaClass.simpleName)
         transition.commit()
     }
 }
