@@ -32,7 +32,7 @@
             android:paddingHorizontal="8dp"
             android:textColor="@color/background"
             app:layout_constraintBottom_toTopOf="@+id/text_view_recipe_cusine"
-            tools:text="Spagehettadasdasddasdasdassdadasdi Mksl;dls;daldlak;akdladlakdlhajhdjsdjshdhsjdjsdhdhdhshdajajjajajjajajajajajajajajajajeatballs" />
+            tools:text="@tools:sample/lorem/random" />
 
 
         <TextView
@@ -51,7 +51,7 @@
             app:layout_constraintEnd_toStartOf="@id/text_view_total_time"
             app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toStartOf="parent"
-            tools:text="Indasdasdasdasdsadikskskskskskskskskskalalallaalalalalaljdjdjan" />
+            tools:text="@tools:sample/lorem/random" />
 
         <TextView
             android:id="@+id/text_view_total_time"
