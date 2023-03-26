@@ -1,4 +1,4 @@
-package com.cupcake.chickenmasala.utill
+package com.cupcake.chickenmasala.ui.fragment.home
 
 import android.view.LayoutInflater
 import android.view.View
