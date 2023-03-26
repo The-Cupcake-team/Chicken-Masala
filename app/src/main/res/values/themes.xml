@@ -10,6 +10,10 @@
         <item name="background">@color/background</item>
     </style>
 
+    <style name="splashScreenTheme" parent="Theme.ChickenMasala">
+        <item name="android:windowBackground">@drawable/splash_image</item>
+    </style>
+
 
     <style name="BottomNavigationView">
         <item name="colorPrimary">@color/card</item>
