@@ -32,7 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:textColor="@color/background"
+            android:textColor="@color/secondary"
             app:layout_constraintBottom_toBottomOf="@+id/cuisine_image"
             app:layout_constraintEnd_toEndOf="@+id/cuisine_image"
             app:layout_constraintStart_toStartOf="@+id/cuisine_image"

@@ -34,8 +34,8 @@
                     android:id="@+id/back_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/white"
                     android:padding="@dimen/padding_normal"
+                    android:background="@android:color/transparent"
                     android:src="@drawable/back_icon"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -59,8 +59,8 @@
                     android:id="@+id/share_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/white"
                     android:padding="@dimen/padding_normal"
+                    android:background="@android:color/transparent"
                     android:src="@drawable/baseline_share_24"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -101,11 +101,12 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_ingredients"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="0dp"
                 android:layout_marginStart="@dimen/spacing_medium"
                 android:layout_marginTop="@dimen/spacing_normal"
-                android:layout_marginEnd="@dimen/spacing_medium"
+                android:layout_marginEnd="16dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/ingredients_title"
                 tools:listitem="@layout/ingredients_item" />
@@ -123,14 +124,14 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_instructions"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
+                android:layout_height="0dp"
                 android:layout_marginStart="@dimen/spacing_medium"
                 android:layout_marginTop="@dimen/spacing_normal"
                 android:layout_marginEnd="@dimen/spacing_medium"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/instructions_title"
+                app:layout_constraintTop_toBottomOf="@id/instructions_title"
                 tools:listitem="@layout/instructions_item" />
 
             <com.google.android.material.button.MaterialButton
@@ -139,15 +140,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/spacing_medium"
                 android:layout_marginTop="@dimen/spacing_medium"
-                android:fontFamily="@font/roboto_medium"
+                android:layout_marginBottom="@dimen/spacing_medium"
                 android:text="@string/more_details"
-                android:textAllCaps="false"
-                android:textColor="@color/on_primary"
-                android:textSize="@dimen/font_size_title"
                 app:cornerRadius="@dimen/radius_medium"
+                style="@style/TextStyle.Title.Medium.Button"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/recycler_instructions" />
+                app:layout_constraintTop_toBottomOf="@+id/recycler_instructions" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

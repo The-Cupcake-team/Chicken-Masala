@@ -11,6 +11,30 @@
         android:layout_height="match_parent">
 
         <TextView
+            android:id="@+id/tv_filter"
+            style="@style/TextStyle.Title.Large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/spacing_medium"
+            android:text="@string/filter"
+            android:textColor="@color/text_secondary_60"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/btn_clear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/spacing_medium"
+            android:padding="@dimen/spacing_normal"
+            android:background="@drawable/custom_borderless_ripple"
+            android:contentDescription="@string/clear"
+            android:src="@drawable/ic_clear"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/text_secondary_60" />
+
+        <TextView
             android:id="@+id/tv_time"
             style="@style/TextStyle.Body.Medium"
             android:layout_width="wrap_content"
@@ -19,7 +43,7 @@
             android:layout_marginTop="@dimen/spacing_medium"
             android:text="@string/time"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/tv_filter" />
 
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/time_group"
@@ -74,7 +98,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/spacing_medium"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_ingredients">
 
             <com.google.android.material.chip.Chip
@@ -153,30 +176,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/spacing_medium"
-            android:layout_marginTop="@dimen/spacing_medium"
+            android:layout_marginVertical="@dimen/spacing_medium"
             android:fontFamily="@font/roboto_medium"
             android:text="@string/apply"
             android:textAllCaps="false"
             app:cornerRadius="@dimen/radius_medium"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ingredients_group" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_clear"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/spacing_medium"
-            android:layout_marginBottom="@dimen/spacing_medium"
-            android:fontFamily="@font/roboto_medium"
-            android:text="@string/clear"
-            android:textAllCaps="false"
-            app:cornerRadius="@dimen/radius_medium"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btn_apply"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:strokeColor="@color/primary" />
+            app:layout_constraintTop_toBottomOf="@id/ingredients_group" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

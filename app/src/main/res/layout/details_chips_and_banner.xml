@@ -33,10 +33,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/spacing_medium"
         android:layout_marginTop="@dimen/spacing_normal"
-        android:layout_marginEnd="@dimen/spacing_medium"
+        android:clipToPadding="true"
         android:orientation="horizontal"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/food_name"
         tools:listitem="@layout/item_chip" />
@@ -110,9 +109,7 @@
             android:tint="@color/text_tertiary_38"
             app:layout_constraintEnd_toEndOf="@id/cuisine_text"
             app:layout_constraintStart_toStartOf="@id/cuisine_text"
-            app:layout_constraintTop_toTopOf="parent"
-
-            />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/cuisine_text"
@@ -143,6 +140,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/spacing_small"
             android:src="@drawable/whisk_icon"
+            android:tint="@color/text_tertiary_38"
             app:layout_constraintBottom_toTopOf="@id/ingredient_count"
             app:layout_constraintEnd_toEndOf="@id/ingredient_count"
             app:layout_constraintStart_toStartOf="@id/ingredient_count"

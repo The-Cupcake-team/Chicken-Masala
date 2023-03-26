@@ -4,11 +4,12 @@ import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.cupcake.chickenmasala.R
 
+fun ImageView.setImage(url: String) {
 
-fun ImageView.setImage(url: String?) {
-    Glide.with(context)
-        .load(url)
-        .placeholder(R.drawable.ic_launcher_foreground)
-        .error(R.drawable.ic_launcher_background)
-        .into(this)
+    Glide.with(context).load(url)
+        .thumbnail(Glide.with(context).load(R.raw.loading))
+        .fitCenter()
+        .centerCrop()
+        .into(this);
+
 }
