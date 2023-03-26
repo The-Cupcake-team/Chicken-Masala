@@ -32,6 +32,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>() {
         repository = RepositoryImpl(DataSourceProvider.getDataSource(requireActivity().application))
         val id = arguments.let { it?.getInt(ID) }
         setupRecipeDetails(getRecipeById(id!!))
+        setupBackButton()
     }
 
     private fun setupRecipeDetails(recipe: Recipe) {
@@ -61,7 +62,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>() {
 
     private fun setupBackButton() {
         binding.backButton.setOnClickListener {
-            activity?.onBackPressedDispatcher?.onBackPressed()
+            requireActivity().supportFragmentManager.popBackStack()
         }
     }
     private fun setDataToUiViews(recipe: Recipe){

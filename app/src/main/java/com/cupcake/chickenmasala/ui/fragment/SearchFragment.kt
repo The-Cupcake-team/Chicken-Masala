@@ -66,6 +66,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), TextWatcher, Recip
         val detailsFragment = DetailsFragment.newInstance(id)
         requireActivity().supportFragmentManager.beginTransaction().apply {
             replace(R.id.fragmentContainer, detailsFragment)
+            addToBackStack(detailsFragment.javaClass.simpleName)
             commit()
         }
     }
