@@ -28,7 +28,7 @@
         app:layout_constraintTop_toBottomOf="@id/details_image" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/chip_group"
+        android:id="@+id/clean_ingredient_recycle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/spacing_medium"
@@ -54,7 +54,7 @@
         android:textSize="@dimen/font_size_title_medium"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/chip_group" />
+        app:layout_constraintTop_toBottomOf="@id/clean_ingredient_recycle" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/details_container"
@@ -133,7 +133,7 @@
             android:background="@color/text_tertiary_38"
             android:rotation="180"
             app:layout_constraintBottom_toBottomOf="@id/cuisine_text"
-            app:layout_constraintEnd_toStartOf="@+id/ingredient_text"
+            app:layout_constraintEnd_toStartOf="@+id/ingredient_count"
             app:layout_constraintStart_toEndOf="@+id/cuisine_text"
             app:layout_constraintTop_toTopOf="@id/cuisine_icon" />
 
@@ -143,13 +143,13 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/spacing_small"
             android:src="@drawable/whisk_icon"
-            app:layout_constraintBottom_toTopOf="@id/ingredient_text"
-            app:layout_constraintEnd_toEndOf="@id/ingredient_text"
-            app:layout_constraintStart_toStartOf="@id/ingredient_text"
+            app:layout_constraintBottom_toTopOf="@id/ingredient_count"
+            app:layout_constraintEnd_toEndOf="@id/ingredient_count"
+            app:layout_constraintStart_toStartOf="@id/ingredient_count"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/ingredient_text"
+            android:id="@+id/ingredient_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/_12"
