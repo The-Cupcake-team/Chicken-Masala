@@ -3,14 +3,13 @@ package com.cupcake.chickenmasala.ui.adpter.search
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.cupcake.chickenmasala.R
 import com.cupcake.chickenmasala.data.model.Recipe
 import com.cupcake.chickenmasala.databinding.SearchCardBinding
 import com.cupcake.chickenmasala.databinding.SearchCardSmallBinding
+import com.cupcake.chickenmasala.utill.setImage
 
 class SearchAdapter(
     private var recipes: List<Recipe>,
@@ -64,7 +63,7 @@ class SearchAdapter(
                 textViewRecipeName.text = recipe.translatedRecipeName
                 textViewRecipeCusine.text = recipe.cuisine
                 textViewTotalTime.text = recipe.totalTimeInMin.toString()
-                imageView.updateImage(recipe.imageUrl)
+                imageView.setImage(recipe.imageUrl)
                 root.setOnClickListener { recipeClickListener.onRecipeClick(recipe.id) }
             }
         }
@@ -77,7 +76,7 @@ class SearchAdapter(
                 textViewRecipeName.text = recipe.translatedRecipeName
                 textViewRecipeCusine.text = recipe.cuisine
                 textViewTotalTime.text = recipe.totalTimeInMin.toString()
-                imageView.updateImage(recipe.imageUrl)
+                imageView.setImage(recipe.imageUrl)
                 root.setOnClickListener { recipeClickListener.onRecipeClick(recipe.id) }
             }
         }
@@ -87,8 +86,4 @@ class SearchAdapter(
         const val SMALL = 1911
         const val LARGE = 2001
     }
-}
-
-fun ImageView.updateImage(url: String) {
-    Glide.with(context).load(url).into(this)
 }
