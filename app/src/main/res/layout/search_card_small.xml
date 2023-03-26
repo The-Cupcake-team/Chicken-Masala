@@ -17,7 +17,7 @@
             android:layout_height="match_parent"
             android:contentDescription="@string/image"
             android:scaleType="centerCrop"
-            android:src="@drawable/save_image"
+            tools:src="@drawable/save_image"
             tools:ignore="UnusedAttribute" />
 
         <View
@@ -35,7 +35,7 @@
             android:ellipsize="end"
             android:maxLines="2"
             android:paddingHorizontal="8dp"
-            android:textColor="@color/background"
+            android:textColor="@color/secondary"
             app:layout_constraintBottom_toTopOf="@+id/text_view_recipe_cusine"
             tools:text="@tools:sample/lorem/random" />
 
@@ -50,7 +50,7 @@
             android:drawablePadding="@dimen/spacing_small"
             android:ellipsize="end"
             android:maxLines="1"
-            android:textColor="@color/background"
+            android:textColor="@color/secondary"
             app:drawableStartCompat="@drawable/cuisine_icon"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/text_view_total_time"
@@ -67,7 +67,7 @@
             android:layout_marginBottom="@dimen/spacing_normal"
             android:drawablePadding="@dimen/spacing_small"
             android:maxLength="6"
-            android:textColor="@color/background"
+            android:textColor="@color/secondary"
             app:drawableStartCompat="@drawable/timer_icon"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
