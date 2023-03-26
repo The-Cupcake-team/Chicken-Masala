@@ -16,10 +16,15 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:contentDescription="@string/image"
-            android:foreground="@drawable/foreground"
             android:scaleType="centerCrop"
             android:src="@drawable/save_image"
             tools:ignore="UnusedAttribute" />
+
+        <View
+            android:id="@+id/blur_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/blur_image" />
 
         <TextView
             android:id="@+id/text_view_recipe_name"
@@ -33,8 +38,6 @@
             android:textColor="@color/background"
             app:layout_constraintBottom_toTopOf="@+id/text_view_recipe_cusine"
             tools:text="@tools:sample/lorem/random" />
-
-
         <TextView
             android:id="@+id/text_view_recipe_cusine"
             style="@style/TextStyle.Body.Small"
@@ -52,7 +55,6 @@
             app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toStartOf="parent"
             tools:text="@tools:sample/lorem/random" />
-
         <TextView
             android:id="@+id/text_view_total_time"
             style="@style/TextStyle.Body.Small"
@@ -67,8 +69,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             tools:text="150" />
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

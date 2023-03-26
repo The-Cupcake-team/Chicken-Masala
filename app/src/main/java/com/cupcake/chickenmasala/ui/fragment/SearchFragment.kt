@@ -32,7 +32,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), TextWatcher, Recip
     private val searchUseCases by lazy { SearchUseCases(repository) }
     private val searchAdapter by lazy {
         SearchAdapter(
-            searchUseCases.repository.getRecipes().shuffled(),
+            searchUseCases.repository.getRecipes().shuffled().take(INITIAL_RECIPE_SIZE),
             this
         )
     }
@@ -187,11 +187,10 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), TextWatcher, Recip
         }
     }
 
-    override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-
-    }
+    override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
     private companion object {
+        const val INITIAL_RECIPE_SIZE = 50
         val DEFAULT_RANGE = Int.MIN_VALUE..Int.MAX_VALUE
         val RANGE_FAST_FOOD = 0..30
         val RANGE_30_45 = 30..45
@@ -199,5 +198,4 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), TextWatcher, Recip
         val RANGE_MORE_THAN_HOUR = 60..Int.MAX_VALUE
         const val SEARCH_DELAY = 600L
     }
-
 }
