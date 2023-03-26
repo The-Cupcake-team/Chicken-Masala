@@ -26,6 +26,7 @@
     <color name="Bottom_navigation_unselected_icon_color">@color/text_tertiary_38</color>
 
     <color name="un_selected_chip">@color/card</color>
+    <color name="blur_color">#80000000</color>
 
     <color name="ripple_color">#DFDDDF</color>
 </resources>
