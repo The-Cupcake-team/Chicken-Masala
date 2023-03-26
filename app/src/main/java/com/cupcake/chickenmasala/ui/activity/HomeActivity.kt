@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.cupcake.chickenmasala.R
 import com.cupcake.chickenmasala.databinding.ActivityMainBinding
-import com.cupcake.chickenmasala.ui.fragment.cuisine.CuisineFragment
+import com.cupcake.chickenmasala.ui.fragment.CuisineFragment
 import com.cupcake.chickenmasala.ui.fragment.HistoryFragment
 import com.cupcake.chickenmasala.ui.fragment.home.HomeFragment
 import com.cupcake.chickenmasala.ui.fragment.SearchFragment

@@ -10,7 +10,7 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/imageCard"
+            android:id="@+id/card_Image"
             android:layout_width="@dimen/zero"
             android:layout_height="@dimen/zero"
             android:scaleType="centerCrop"
@@ -32,12 +32,12 @@
             android:text="@string/spaghetti_meatballs"
             android:textColor="@color/white"
             android:textSize="@dimen/font_size_body"
-            app:layout_constraintBottom_toTopOf="@+id/country"
+            app:layout_constraintBottom_toTopOf="@+id/cuisine"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/imageCard" />
+            app:layout_constraintStart_toStartOf="@+id/card_Image" />
 
         <TextView
-            android:id="@+id/country"
+            android:id="@+id/cuisine"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_small"
@@ -47,11 +47,11 @@
             android:textColor="@color/white"
             app:drawableStartCompat="@drawable/cuisine_icon"
             app:drawableTint="@color/white"
-            app:layout_constraintBottom_toBottomOf="@+id/imageCard"
+            app:layout_constraintBottom_toBottomOf="@+id/card_Image"
             app:layout_constraintStart_toStartOf="@+id/recipe_name" />
 
         <TextView
-            android:id="@+id/time_icon"
+            android:id="@+id/time"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/zero"
             android:layout_marginStart="@dimen/spacing_large"
@@ -60,9 +60,9 @@
             android:textColor="@color/white"
             app:drawableStartCompat="@drawable/timer_icon"
             app:drawableTint="@color/white"
-            app:layout_constraintBottom_toBottomOf="@+id/country"
-            app:layout_constraintStart_toEndOf="@id/country"
-            app:layout_constraintTop_toTopOf="@id/country" />
+            app:layout_constraintBottom_toBottomOf="@+id/cuisine"
+            app:layout_constraintStart_toEndOf="@id/cuisine"
+            app:layout_constraintTop_toTopOf="@id/cuisine" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

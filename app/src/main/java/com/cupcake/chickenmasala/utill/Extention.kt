@@ -12,4 +12,3 @@ fun ImageView.setImage(url: String?) {
         .error(R.drawable.ic_launcher_background)
         .into(this)
 }
-

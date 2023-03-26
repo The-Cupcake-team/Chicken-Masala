@@ -36,8 +36,9 @@
         <TextView
             android:id="@+id/text_cuisine_name"
             style="@style/TextStyle.Title.Medium"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:textColor="@color/background"
             app:layout_constraintBottom_toBottomOf="@+id/cuisine_image"
             app:layout_constraintEnd_toEndOf="@+id/cuisine_image"
