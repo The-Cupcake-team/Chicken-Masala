@@ -1,7 +1,7 @@
 package com.cupcake.chickenmasala.data.data_sourse
 
 import android.app.Application
-import com.cupcake.chickenmasala.data.data_source.DataSource
+import com.cupcake.chickenmasala.data.dataSource.DataSource
 import com.cupcake.chickenmasala.data.model.HealthAdvice
 import com.cupcake.chickenmasala.data.model.Recipe
 import java.io.InputStreamReader

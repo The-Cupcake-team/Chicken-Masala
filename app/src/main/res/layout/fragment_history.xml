@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:background="@color/background"
     android:layout_height="match_parent"
-    tools:context=".ui.fragment.HistoryFragment">
+    tools:context=".ui.fragment.history.HistoryFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -16,6 +16,7 @@
             style="@style/CardImageStyle"
             android:layout_width="@dimen/zero"
             android:layout_height="@dimen/photo_card_height"
+            android:layout_marginTop="16dp"
             android:src="@drawable/history_image"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

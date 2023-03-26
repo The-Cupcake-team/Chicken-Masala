@@ -5,10 +5,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.cupcake.chickenmasala.R
 import com.cupcake.chickenmasala.databinding.ActivityMainBinding
-import com.cupcake.chickenmasala.ui.fragment.CuisineFragment
-import com.cupcake.chickenmasala.ui.fragment.HistoryFragment
+import com.cupcake.chickenmasala.ui.fragment.cuisine.CuisineFragment
+import com.cupcake.chickenmasala.ui.fragment.history.HistoryFragment
 import com.cupcake.chickenmasala.ui.fragment.home.HomeFragment
-import com.cupcake.chickenmasala.ui.fragment.SearchFragment
+import com.cupcake.chickenmasala.ui.fragment.search.SearchFragment
 
 
 class HomeActivity : AppCompatActivity() {
@@ -20,27 +20,35 @@ class HomeActivity : AppCompatActivity() {
         setTheme(R.style.Theme_ChickenMasala)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         addNavigationListener()
     }
 
 
     private fun addNavigationListener() {
+
+        val homeFragment = HomeFragment()
+        val searchFragment = SearchFragment()
+        val cuisineFragment = CuisineFragment()
+        val historyFragment = HistoryFragment()
+
         binding.bottomNavigationBar.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.home_fragment -> {
-                    replaceFragment(HomeFragment())
+                    replaceFragment(homeFragment)
                     true
                 }
+
                 R.id.search_fragment -> {
-                    replaceFragment(SearchFragment())
+                    replaceFragment(searchFragment)
                     true
                 }
                 R.id.cuisine_fragment -> {
-                    replaceFragment(CuisineFragment())
+                    replaceFragment(cuisineFragment)
                     true
                 }
                 R.id.history_fragment -> {
-                    replaceFragment(HistoryFragment())
+                    replaceFragment(historyFragment)
                     true
                 }
                 else -> false

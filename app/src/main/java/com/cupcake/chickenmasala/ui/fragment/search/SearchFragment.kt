@@ -1,4 +1,4 @@
-package com.cupcake.chickenmasala.ui.fragment
+package com.cupcake.chickenmasala.ui.fragment.search
 
 import android.os.Bundle
 import android.text.Editable
@@ -8,12 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import com.cupcake.chickenmasala.R
 import com.cupcake.chickenmasala.data.RepositoryImpl
-import com.cupcake.chickenmasala.data.data_source.DataSource
+import com.cupcake.chickenmasala.data.dataSource.DataSource
 import com.cupcake.chickenmasala.data.data_sourse.DataSourceImpl
 import com.cupcake.chickenmasala.databinding.FilterBottomSheetBinding
 import com.cupcake.chickenmasala.databinding.FragmentSearchBinding
-import com.cupcake.chickenmasala.ui.adpter.search.RecipeClickListener
-import com.cupcake.chickenmasala.ui.adpter.search.SearchAdapter
+import com.cupcake.chickenmasala.ui.fragment.search.adapter.RecipeClickListener
+import com.cupcake.chickenmasala.ui.fragment.search.adapter.SearchAdapter
 import com.cupcake.chickenmasala.ui.base.BaseFragment
 import com.cupcake.chickenmasala.usecase.Repository
 import com.cupcake.chickenmasala.usecase.search.SearchUseCases

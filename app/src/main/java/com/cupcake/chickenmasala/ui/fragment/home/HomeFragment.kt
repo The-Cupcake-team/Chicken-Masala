@@ -16,8 +16,8 @@ import com.cupcake.chickenmasala.data.RepositoryImpl
 import com.cupcake.chickenmasala.data.model.Recipe
 import com.cupcake.chickenmasala.databinding.FragmentHomeBinding
 import com.cupcake.chickenmasala.ui.base.BaseFragment
-import com.cupcake.chickenmasala.ui.base.OnItemClickListener
-import com.cupcake.chickenmasala.ui.fragment.HealthyFragment
+import com.cupcake.chickenmasala.ui.util.OnItemClickListener
+import com.cupcake.chickenmasala.ui.fragment.health.HealthyFragment
 import com.cupcake.chickenmasala.ui.fragment.details.DetailsFragment
 import com.cupcake.chickenmasala.ui.fragment.home.adapter.HorizontalRecipeRecyclerAdapter
 import com.cupcake.chickenmasala.ui.fragment.home.adapter.VerticalRecipeRecyclerAdapter

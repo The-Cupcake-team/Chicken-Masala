@@ -1,21 +1,17 @@
-package com.cupcake.chickenmasala.ui.fragment
+package com.cupcake.chickenmasala.ui.fragment.cuisine
 
-import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.cupcake.chickenmasala.R
 import com.cupcake.chickenmasala.data.RepositoryImpl
 import com.cupcake.chickenmasala.data.model.Cuisine
-import com.cupcake.chickenmasala.data.model.Recipe
 import com.cupcake.chickenmasala.ui.base.BaseFragment
 import com.cupcake.chickenmasala.databinding.FragmentCuisineBinding
-import com.cupcake.chickenmasala.ui.CuisineAdapter
-import com.cupcake.chickenmasala.ui.activity.HomeActivity
-import com.cupcake.chickenmasala.ui.base.OnItemClickListener
-import com.cupcake.chickenmasala.usecase.GetCuisineUseCase
+import com.cupcake.chickenmasala.ui.fragment.cuisineDishes.CuisineDishesFragment
+import com.cupcake.chickenmasala.ui.fragment.cuisine.adapter.CuisineAdapter
+import com.cupcake.chickenmasala.usecase.cuisine.GetCuisineUseCase
 import com.cupcake.chickenmasala.usecase.Repository
 import com.cupcake.chickenmasala.utill.DataSourceProvider
 

@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import com.cupcake.chickenmasala.data.model.Recipe
 import com.cupcake.chickenmasala.databinding.SearchCardViewBinding
 import com.cupcake.chickenmasala.ui.base.BaseAdapter
-import com.cupcake.chickenmasala.ui.base.OnItemClickListener
+import com.cupcake.chickenmasala.ui.util.OnItemClickListener
 import com.cupcake.chickenmasala.utill.setImage
 
 

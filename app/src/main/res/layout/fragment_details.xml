@@ -109,7 +109,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/ingredients_title"
-                tools:listitem="@layout/ingredients_item" />
+                tools:listitem="@layout/item_ingredients" />
 
             <TextView
                 android:id="@+id/instructions_title"
@@ -132,7 +132,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/instructions_title"
-                tools:listitem="@layout/instructions_item" />
+                tools:listitem="@layout/item_instructions" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/more_details_button"

@@ -1,4 +1,4 @@
-package com.cupcake.chickenmasala.ui
+package com.cupcake.chickenmasala.ui.fragment.cuisine.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,7 +7,7 @@ import com.cupcake.chickenmasala.databinding.ItemCardCuisineBinding
 import com.cupcake.chickenmasala.ui.base.BaseAdapter
 import com.cupcake.chickenmasala.utill.setImage
 
-class CuisineAdapter(private val listener :CuisineAdapter.CuisineInteractionListener)
+class CuisineAdapter(private val listener : CuisineInteractionListener)
     : BaseAdapter<Cuisine, ItemCardCuisineBinding>() {
 
     override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> ItemCardCuisineBinding

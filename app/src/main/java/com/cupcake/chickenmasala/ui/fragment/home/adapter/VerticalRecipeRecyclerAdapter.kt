@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import com.cupcake.chickenmasala.data.model.Recipe
 import com.cupcake.chickenmasala.databinding.RecipeCardHorizontalBinding
 import com.cupcake.chickenmasala.ui.base.BaseAdapter
-import com.cupcake.chickenmasala.ui.base.OnItemClickListener
+import com.cupcake.chickenmasala.ui.util.OnItemClickListener
 import com.cupcake.chickenmasala.utill.setImage
 
 class VerticalRecipeRecyclerAdapter(private val listener: OnItemClickListener<Recipe>) : BaseAdapter<Recipe, RecipeCardHorizontalBinding>() {

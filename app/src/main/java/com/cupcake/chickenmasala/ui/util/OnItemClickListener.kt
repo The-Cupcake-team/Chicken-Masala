@@ -1,4 +1,4 @@
-package com.cupcake.chickenmasala.ui.base
+package com.cupcake.chickenmasala.ui.util
 
 interface OnItemClickListener<T> {
     fun onItemClicked(item:T)

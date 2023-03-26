@@ -1,4 +1,4 @@
-package com.cupcake.chickenmasala.data.data_source
+package com.cupcake.chickenmasala.data.dataSource
 
 import com.cupcake.chickenmasala.data.model.HealthAdvice
 import com.cupcake.chickenmasala.data.model.Recipe

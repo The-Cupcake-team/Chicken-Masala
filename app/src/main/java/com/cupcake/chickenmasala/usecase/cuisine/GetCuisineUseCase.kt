@@ -1,4 +1,4 @@
-package com.cupcake.chickenmasala.usecase
+package com.cupcake.chickenmasala.usecase.cuisine
 
 import com.cupcake.chickenmasala.data.model.Cuisine
 import com.cupcake.chickenmasala.data.model.Recipe

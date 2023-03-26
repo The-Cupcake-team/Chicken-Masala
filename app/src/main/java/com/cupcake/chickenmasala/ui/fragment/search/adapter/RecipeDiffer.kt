@@ -1,4 +1,4 @@
-package com.cupcake.chickenmasala.ui.adpter.search
+package com.cupcake.chickenmasala.ui.fragment.search.adapter
 
 import androidx.recyclerview.widget.DiffUtil
 import com.cupcake.chickenmasala.data.model.Recipe

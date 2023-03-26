@@ -10,6 +10,6 @@ fun ImageView.setImage(url: String) {
         .thumbnail(Glide.with(context).load(R.raw.loading))
         .fitCenter()
         .centerCrop()
-        .into(this);
+        .into(this)
 
 }

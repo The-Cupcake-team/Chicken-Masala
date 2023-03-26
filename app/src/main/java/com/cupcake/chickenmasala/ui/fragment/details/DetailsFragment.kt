@@ -11,6 +11,9 @@ import com.cupcake.chickenmasala.databinding.FragmentDetailsBinding
 import com.cupcake.chickenmasala.ui.base.BaseFragment
 import com.cupcake.chickenmasala.data.RepositoryImpl
 import com.cupcake.chickenmasala.data.model.Recipe
+import com.cupcake.chickenmasala.ui.fragment.details.adapter.CleanIngredientsAdapter
+import com.cupcake.chickenmasala.ui.fragment.details.adapter.IngredientsAdapter
+import com.cupcake.chickenmasala.ui.fragment.details.adapter.InstructionsAdapter
 import com.cupcake.chickenmasala.usecase.Repository
 import com.cupcake.chickenmasala.utill.DataSourceProvider
 import com.cupcake.chickenmasala.utill.setImage

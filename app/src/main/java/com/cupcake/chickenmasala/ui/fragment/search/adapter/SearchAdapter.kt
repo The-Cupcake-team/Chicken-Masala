@@ -1,4 +1,4 @@
-package com.cupcake.chickenmasala.ui.adpter.search
+package com.cupcake.chickenmasala.ui.fragment.search.adapter
 
 import android.view.LayoutInflater
 import android.view.View
