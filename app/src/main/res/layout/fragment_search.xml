@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     tools:context=".ui.fragment.SearchFragment">
 
     <com.google.android.material.textfield.TextInputLayout
@@ -33,13 +34,15 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/zero"
         android:layout_marginTop="@dimen/spacing_normal"
+        android:clipToPadding="false"
+        android:orientation="vertical"
+        android:paddingVertical="@dimen/spacing_normal"
         android:paddingStart="@dimen/spacing_normal"
         android:paddingEnd="@dimen/spacing_medium"
-        android:orientation="vertical"
-        app:spanCount="2"
         app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/search_box"
+        app:spanCount="2"
         tools:listitem="@layout/search_card" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -16,10 +16,15 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:contentDescription="@string/image"
-            android:foreground="@drawable/foreground"
             android:scaleType="centerCrop"
             android:src="@drawable/save_image"
             tools:ignore="UnusedAttribute" />
+
+        <View
+            android:id="@+id/blur_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/blur_image" />
 
         <TextView
             android:id="@+id/text_view_recipe_name"
@@ -67,8 +72,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             tools:text="150" />
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </com.google.android.material.card.MaterialCardView>
