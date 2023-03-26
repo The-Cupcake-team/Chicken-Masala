@@ -121,8 +121,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnItemClickListener<Re
     }
 
     override fun onItemClicked(item: Recipe) {
-        val destinationFragment = DetailsFragment.newInstance(item.id)
-        navigateToFragment(destinationFragment)
+        val detailsFragment = DetailsFragment.newInstance(item.id)
+        requireActivity().supportFragmentManager.beginTransaction().apply {
+            replace(R.id.fragmentContainer, detailsFragment)
+            addToBackStack(detailsFragment.javaClass.simpleName)
+            commit()
+        }
     }
 
     private fun navigateToFragment(fragment: Fragment) {
