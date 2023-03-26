@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/spacing_medium"
             android:text="@string/filter"
-            android:textColor="@color/text_secondary_60"
+            android:textColor="@color/tertiary_60"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -32,7 +32,7 @@
             android:src="@drawable/ic_clear"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/text_secondary_60" />
+            app:tint="@color/tertiary_60" />
 
         <TextView
             android:id="@+id/tv_time"

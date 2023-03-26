@@ -31,7 +31,7 @@
                 android:layout_marginBottom="@dimen/spacing_medium"
                 android:fontFamily="@font/roboto_medium"
                 android:padding="@dimen/spacing_small"
-                android:textColor="@color/text_secondary_60"
+                android:textColor="@color/tertiary_60"
                 android:textSize="@dimen/font_size_body"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

@@ -49,7 +49,7 @@
                     android:layout_marginStart="@dimen/spacing_small"
                     android:fontFamily="@font/roboto"
                     android:text="@string/detail_food"
-                    android:textColor="@color/text_primary"
+                    android:textColor="@color/tertiary_87"
                     android:textSize="@dimen/font_size_title_large"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@id/back_button"

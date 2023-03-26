@@ -22,7 +22,7 @@
 
 
     <style name="TextStyle" parent="@android:style/TextAppearance.Widget.TextView">
-        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textColor">@color/tertiary_87</item>
         <item name="android:fontFamily">@font/roboto</item>
     </style>
 

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
@@ -8,24 +7,20 @@
     <color name="on_primary">@color/white</color>
 
     <color name="secondary">#F8F8F8</color>
-    <color name="on_secondary">@color/text_tertiary_38</color>
+    <color name="on_secondary">@color/tertiary_38</color>
+
+    <color name="tertiary_87">#DEFFFFFF</color>
+    <color name="tertiary_60">#99FFFFFF</color>
+    <color name="tertiary_38">#61FFFFFF</color>
+    <color name="tertiary_10">#1AFFFFFF</color>
 
     <color name="background">#232323</color>
-
-    <color name="text_primary">#DEFFFFFF</color>
-    <color name="text_secondary_60">#99FFFFFF</color>
-    <color name="text_tertiary_38">#61FFFFFF</color>
-    <color name="text_variant_10">#1AFFFFFF</color>
-
     <color name="card">#363636</color>
     <color name="border">#61FFFFFF</color>
 
     <color name="active_slider_indicator">@color/primary</color>
     <color name="inactive_slider_indicator">#14FFFFFF</color>
 
-    <color name="Bottom_navigation_unselected_icon_color">@color/text_tertiary_38</color>
-
-    <color name="un_selected_chip">@color/card</color>
-
-    <color name="ripple_color">#363436</color>
+    <color name="unselected_chip">@color/card</color>
+    <color name="ripple">#363436</color>
 </resources>

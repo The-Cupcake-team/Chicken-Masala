@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/spacing_medium"
         android:layout_marginTop="@dimen/spacing_large"
-        android:textColorHint="@color/text_secondary_60"
+        android:textColorHint="@color/tertiary_60"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -26,7 +26,7 @@
             android:hint="@string/search"
             android:maxLines="1"
             android:singleLine="true"
-            android:textColor="@color/text_primary" />
+            android:textColor="@color/tertiary_87" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.recyclerview.widget.RecyclerView

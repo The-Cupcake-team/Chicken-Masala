@@ -2,7 +2,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <style name="title">
-        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textColor">@color/tertiary_87</item>
         <item name="android:textSize">@dimen/font_size_title_medium</item>
         <item name="android:layout_margin">@dimen/spacing_medium</item>
         <item name="fontFamily">@font/roboto_medium</item>
@@ -20,7 +20,7 @@
         <item name="android:background">@null</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:tint">@color/text_tertiary_38</item>
+        <item name="android:tint">@color/tertiary_38</item>
     </style>
 
     <style name="horizontalContentStyle">
@@ -28,11 +28,11 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:fontFamily">@font/roboto</item>
         <item name="android:textSize">@dimen/font_size_label</item>
-        <item name="android:textColor">@color/text_tertiary_38</item>
+        <item name="android:textColor">@color/tertiary_38</item>
     </style>
 
     <style name="unSelectedChipStyle">
-        <item name="android:textColor">@color/text_tertiary_38</item>
+        <item name="android:textColor">@color/tertiary_38</item>
     </style>
 
 
@@ -43,12 +43,12 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:fontFamily">@font/roboto</item>
         <item name="android:textSize">@dimen/font_size_label</item>
-        <item name="android:textColor">@color/text_tertiary_38</item>
+        <item name="android:textColor">@color/tertiary_38</item>
     </style>
 
 
     <style name="details_card">
-        <item name="android:textColor">@color/text_secondary_60</item>
+        <item name="android:textColor">@color/tertiary_60</item>
         <item name="android:textSize">@dimen/font_size_label</item>
         <item name="fontFamily">@font/roboto</item>
         <item name="android:layout_marginTop">@dimen/spacing_small</item>
@@ -74,8 +74,8 @@
         <item name="endIconDrawable">@drawable/filter_icon</item>
         <item name="endIconMode">custom</item>
         <item name="startIconDrawable">@drawable/search_icon</item>
-        <item name="boxStrokeColor">@color/text_secondary_60</item>
-        <item name="hintTextColor">@color/text_secondary_60</item>
+        <item name="boxStrokeColor">@color/tertiary_60</item>
+        <item name="hintTextColor">@color/tertiary_60</item>
         <item name="android:textCursorDrawable">@null</item>
         <item name="android:fontFamily">@font/roboto_bold</item>
         <item name="android:textSize">@dimen/font_size_title</item>
@@ -114,7 +114,7 @@
 
     <style name="TitleStyle_Medium" parent="TitleStyle">
         <item name="android:maxLines">2</item>
-        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textColor">@color/tertiary_87</item>
     </style>
 
     <style name="CuisineStyle" parent="Widget.AppCompat.TextView">
@@ -130,8 +130,8 @@
     </style>
 
     <style name="CuisineNameStyle" parent="CuisineStyle">
-        <item name="android:textColor">@color/text_tertiary_38</item>
-        <item name="android:drawableTint">@color/text_tertiary_38</item>
+        <item name="android:textColor">@color/tertiary_38</item>
+        <item name="android:drawableTint">@color/tertiary_38</item>
     </style>
 
     <style name="TimerStyle" parent="CuisineStyle">
@@ -140,8 +140,8 @@
     </style>
 
     <style name="TimerDifferentColorStyle" parent="TimerStyle">
-        <item name="android:textColor">@color/text_tertiary_38</item>
-        <item name="android:drawableTint">@color/text_tertiary_38</item>
+        <item name="android:textColor">@color/tertiary_38</item>
+        <item name="android:drawableTint">@color/tertiary_38</item>
     </style>
 
 </resources>

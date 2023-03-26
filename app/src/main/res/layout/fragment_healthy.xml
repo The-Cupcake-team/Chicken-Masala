@@ -77,7 +77,7 @@
             android:paddingHorizontal="@dimen/padding_normal"
             android:paddingVertical="@dimen/padding_normal"
             android:text="@string/sugary_drinks_like_sodas_fruit_juices_and_sweetened_teas_are_the_primary_source_of_added_sugar_in_the_american_diet"
-            android:textColor="@color/text_tertiary_38" />
+            android:textColor="@color/tertiary_38" />
 
 
     </androidx.core.widget.NestedScrollView>
