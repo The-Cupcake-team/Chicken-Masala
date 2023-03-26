@@ -6,7 +6,8 @@ import com.cupcake.chickenmasala.usecase.Repository
 class FilterByIngredientsAndTimeUseCase(private val repository: Repository) {
     operator fun invoke(
         ingredients: List<String>,
-        timeRange: List<IntRange>
+        timeRange: List<IntRange>,
+        limit: Int = 100
     ): List<Recipe> {
         return repository
             .getRecipes()
@@ -14,7 +15,8 @@ class FilterByIngredientsAndTimeUseCase(private val repository: Repository) {
                 ingredients.all { recipe.doesContainIngredient(it) } &&
                         timeRange.any { recipe.isInRange(it) }
             }
+            .take(limit)
             .takeIf { it.isNotEmpty() }
-            ?: repository.getRecipes()
+            ?: repository.getRecipes().take(limit)
     }
 }
