@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/background"
-    tools:context=".ui.fragment.DetailsFragment">
+    tools:context=".ui.fragment.details.DetailsFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/top_bar"
@@ -56,6 +56,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageButton
+                    android:id="@+id/share_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
@@ -82,7 +83,7 @@
             android:layout_height="wrap_content">
 
             <include
-                android:id="@+id/p1"
+                android:id="@+id/container"
                 layout="@layout/details_chips_and_banner"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -95,7 +96,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/ingredients"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/p1" />
+                app:layout_constraintTop_toBottomOf="@+id/container" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_ingredients"
@@ -133,6 +134,7 @@
                 tools:listitem="@layout/instructions_item" />
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/more_details_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/spacing_medium"

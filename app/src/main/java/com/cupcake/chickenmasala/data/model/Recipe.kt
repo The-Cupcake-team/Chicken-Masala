@@ -11,4 +11,16 @@ data class Recipe(
     val urlDetailsRecipe: String,
     val imageUrl: String,
     val ingredientCounts: Int
-)
+) {
+    fun doesMatchRecipeName(recipeName: String): Boolean {
+        return translatedRecipeName.contains(recipeName, ignoreCase = true)
+    }
+
+    fun isInRange(intRange: IntRange): Boolean{
+        return totalTimeInMin in intRange
+    }
+
+    fun doesContainIngredient(ingredient: String): Boolean{
+        return cleanedIngredients.map { it.lowercase() }.contains(ingredient.lowercase())
+    }
+}
