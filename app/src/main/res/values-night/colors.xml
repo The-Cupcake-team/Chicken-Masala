@@ -27,4 +27,5 @@
 
     <color name="un_selected_chip">@color/card</color>
 
+    <color name="ripple_color">#363436</color>
 </resources>
