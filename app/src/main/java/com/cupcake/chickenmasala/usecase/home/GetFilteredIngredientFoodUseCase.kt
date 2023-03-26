@@ -3,7 +3,7 @@ package com.cupcake.chickenmasala.usecase.home
 import com.cupcake.chickenmasala.data.model.Recipe
 import com.cupcake.chickenmasala.usecase.Repository
 
-class FoodTypeFilterUseCase(
+class GetFilteredIngredientFoodUseCase(
     private val repository: Repository
 ) {
     operator fun invoke(ingredient: String): List<Recipe> {
