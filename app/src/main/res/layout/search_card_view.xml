@@ -2,87 +2,50 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/searchCardView"
     android:layout_width="@dimen/item_card_recent_food_width"
-    android:layout_height="@dimen/item_card_recent_food_height"
-    style="@style/searchCardView">
+    android:layout_height="@dimen/item_card_recent_food_height">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/save_card_image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/save_image"
             android:foreground="@drawable/foreground"
             android:scaleType="centerCrop"
+            android:src="@drawable/save_image"
             tools:ignore="UnusedAttribute" />
 
         <TextView
             android:id="@+id/dish_name"
-            style="@style/TextStyle.Body.Medium"
-            android:layout_width="@dimen/zero"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/spacing_normal"
-            android:layout_marginEnd="@dimen/spacing_normal"
-            android:layout_marginBottom="@dimen/spacing_small"
-            android:ellipsize="end"
-            android:lines="2"
-            android:textColor="@color/secondary"
-            app:layout_constraintBottom_toTopOf="@+id/food_icon"
+            style="@style/TitleStyle"
+            app:layout_constraintBottom_toTopOf="@+id/cuisine_name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             tools:text="Spagehetti Meatballs abse" />
 
-        <ImageView
-            android:id="@+id/food_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/spacing_normal"
-            android:src="@drawable/cuisine_icon"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/dish_name"
-            app:tint="@color/secondary" />
 
         <TextView
             android:id="@+id/cuisine_name"
-            style="@style/TextStyle.Body.Small"
+            style="@style/CuisineStyle"
             android:layout_width="@dimen/zero"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/spacing_small"
-            android:layout_marginEnd="4dp"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:textColor="@color/secondary"
-            app:layout_constraintBottom_toBottomOf="@+id/food_icon"
-            app:layout_constraintEnd_toStartOf="@+id/timer_icon"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/food_icon"
-            app:layout_constraintTop_toTopOf="@+id/food_icon"
-            tools:text="Indian Indian" />
-
-        <ImageView
-            android:id="@+id/timer_icon"
-            android:layout_width="@dimen/spacing_medium"
-            android:layout_height="@dimen/spacing_medium"
+            app:drawableTint="@color/secondary"
             android:layout_marginEnd="@dimen/spacing_small"
-            android:src="@drawable/timer_icon"
-            app:layout_constraintBottom_toBottomOf="@+id/prepare_time"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/prepare_time"
-            app:layout_constraintTop_toTopOf="@+id/prepare_time"
-            app:tint="@color/secondary" />
+            app:layout_constraintStart_toStartOf="@+id/dish_name"
+            tools:text="Indian Indian" />
 
         <TextView
             android:id="@+id/prepare_time"
-            style="@style/TextStyle.Body.Small"
+            style="@style/TimerStyle"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/spacing_normal"
-            android:textColor="@color/secondary"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/cuisine_name"
             app:layout_constraintEnd_toEndOf="@+id/dish_name"
+            app:layout_constraintTop_toTopOf="@+id/cuisine_name"
             tools:text="5 min" />
 
 

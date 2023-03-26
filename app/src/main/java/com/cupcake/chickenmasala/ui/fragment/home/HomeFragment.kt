@@ -19,6 +19,7 @@ import com.cupcake.chickenmasala.ui.base.BaseFragment
 import com.cupcake.chickenmasala.ui.base.OnItemClickListener
 import com.cupcake.chickenmasala.ui.fragment.details.DetailsFragment
 import com.cupcake.chickenmasala.usecase.Repository
+import com.cupcake.chickenmasala.usecase.home.GetHealthAdvicesUseCase
 import com.cupcake.chickenmasala.utill.DataSourceProvider
 import java.lang.Math.abs
 
@@ -29,10 +30,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnItemClickListener<Re
         get() = FragmentHomeBinding::inflate
 
     private lateinit var horizontalRecipeRecyclerAdapter: HorizontalRecipeRecyclerAdapter
-    private lateinit var healthyViewPager: ViewPager2
+    private lateinit var viewPager: ViewPager2
     private lateinit var handler: Handler
-    private lateinit var imageList: ArrayList<Int>
-    private lateinit var imageAdapter: ImageAdapter
+    private lateinit var viewPagerAdapter: ViewPagerAdapter
     private lateinit var verticalRecipeRecyclerAdapter: VerticalRecipeRecyclerAdapter
 
     private val repository: Repository by lazy {
@@ -63,7 +63,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnItemClickListener<Re
     }
 
     private fun addCallbacks() {
-        healthyViewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+        viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 handler.removeCallbacks(runnable)
@@ -77,33 +77,29 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnItemClickListener<Re
         }
     }
 
-
-
     private fun setupViewPager() {
-        healthyViewPager = binding.healthyViewPager
         handler = Handler(Looper.myLooper()!!)
-        imageList = ArrayList()
-        imageList.add(R.drawable.view_pager_image_1)
-        imageList.add(R.drawable.view_pager_image_2)
-        imageList.add(R.drawable.view_pager_image_3)
+        viewPager = binding.viewPager
 
-        imageAdapter = ImageAdapter(imageList, healthyViewPager)
-        healthyViewPager.adapter = imageAdapter
+        val advices = GetHealthAdvicesUseCase(repository).invoke(ADVICES_LIMIT)
+        viewPagerAdapter = ViewPagerAdapter(viewPager, advices)
+        viewPagerAdapter.submitList(advices)
 
-        healthyViewPager.offscreenPageLimit = 3
-        healthyViewPager.clipToPadding = false
-        healthyViewPager.clipChildren = false
-        healthyViewPager.getChildAt(0).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
+        viewPager.adapter = viewPagerAdapter
+        viewPager.offscreenPageLimit = 3
+        viewPager.clipToPadding = false
+        viewPager.clipChildren = false
+        viewPager.getChildAt(0).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
     }
 
     private fun setUpTransformer() {
         val transformer = CompositePageTransformer()
         transformer.addTransformer(MarginPageTransformer(40))
         transformer.addTransformer { page, position ->
-            val r = 1 - abs(position)
+            val r = 1 - kotlin.math.abs(position)
             page.scaleY = 0.85f + r * 0.14f
         }
-        healthyViewPager.setPageTransformer(transformer)
+        viewPager.setPageTransformer(transformer)
     }
 
     override fun onPause() {
@@ -117,7 +113,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnItemClickListener<Re
     }
 
     private val runnable = Runnable {
-        healthyViewPager.currentItem = healthyViewPager.currentItem + 1
+        viewPager.currentItem = viewPager.currentItem + 1
     }
 
     override fun onItemClicked(item: Recipe) {
@@ -133,6 +129,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnItemClickListener<Re
 
     companion object {
         const val RECENT_FOOD_LIMIT = 10
+        const val ADVICES_LIMIT = 7
     }
 
 }

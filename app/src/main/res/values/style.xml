@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
     <style name="title">
         <item name="android:textColor">@color/text_primary</item>
         <item name="android:textSize">@dimen/font_size_title_medium</item>
@@ -96,6 +97,51 @@
         <item name="cornerSizeTopLeft">@dimen/radius_medium</item>
         <item name="cornerSizeBottomLeft">@dimen/zero</item>
         <item name="cornerSizeBottomRight">@dimen/zero</item>
+    </style>
+
+    <style name="TitleStyle" parent="TextStyle">
+        <item name="android:fontFamily">@font/roboto_medium</item>
+        <item name="android:textSize">@dimen/font_size_title</item>
+        <item name="android:layout_width">@dimen/zero</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:textColor">@color/secondary</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:gravity">center|start</item>
+        <item name="android:layout_marginVertical" tools:targetApi="o">@dimen/spacing_normal</item>
+        <item name="android:layout_marginHorizontal" tools:targetApi="o">@dimen/spacing_normal</item>
+    </style>
+
+    <style name="TitleStyle_Medium" parent="TitleStyle">
+        <item name="android:maxLines">2</item>
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+
+    <style name="CuisineStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/secondary</item>
+        <item name="android:lines">1</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:drawableStart">@drawable/cuisine_icon</item>
+        <item name="android:layout_marginBottom">@dimen/spacing_normal</item>
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:drawablePadding">@dimen/spacing_small</item>
+        <item name="android:textSize">@dimen/font_size_label</item>
+    </style>
+
+    <style name="CuisineNameStyle" parent="CuisineStyle">
+        <item name="android:textColor">@color/text_tertiary_38</item>
+        <item name="android:drawableTint">@color/text_tertiary_38</item>
+    </style>
+
+    <style name="TimerStyle" parent="CuisineStyle">
+        <item name="android:drawableStart">@drawable/timer_icon</item>
+        <item name="android:layout_marginBottom">0dp</item>
+    </style>
+
+    <style name="TimerDifferentColorStyle" parent="TimerStyle">
+        <item name="android:textColor">@color/text_tertiary_38</item>
+        <item name="android:drawableTint">@color/text_tertiary_38</item>
     </style>
 
 </resources>

@@ -4,8 +4,8 @@
     xmlns:tool="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="@dimen/item_card_cuisine_height"
-    android:layout_marginBottom="@dimen/spacing_normal"
     android:layout_marginEnd="@dimen/spacing_normal"
+    android:layout_marginBottom="@dimen/spacing_normal"
     app:cardCornerRadius="@dimen/radius_large">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,21 +17,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            app:srcCompat="@drawable/image"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:srcCompat="@drawable/image" />
 
-        <View
-            android:id="@+id/blur_image"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/blur_image"
-            app:layout_constraintBottom_toBottomOf="@+id/cuisine_image"
-            app:layout_constraintEnd_toEndOf="@+id/cuisine_image"
-            app:layout_constraintStart_toStartOf="@+id/cuisine_image"
-            app:layout_constraintTop_toTopOf="@+id/cuisine_image" />
+
+        <include layout="@layout/item_cover" />
 
         <TextView
             android:id="@+id/text_cuisine_name"
