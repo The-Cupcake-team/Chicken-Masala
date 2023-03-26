@@ -1,11 +1,11 @@
 package com.cupcake.chickenmasala.usecase.search
 
-import com.cupcake.chickenmasala.usecase.DataManager
+import com.cupcake.chickenmasala.usecase.Repository
 
 data class SearchUseCases(
-    val dataManager: DataManager,
+    val repository: Repository,
     val searchByRecipeNameUseCase: SearchByRecipeNameUseCase =
-        SearchByRecipeNameUseCase(dataManager),
+        SearchByRecipeNameUseCase(repository),
     val filterByIngredientsAndTimeUseCase: FilterByIngredientsAndTimeUseCase =
-        FilterByIngredientsAndTimeUseCase(dataManager)
+        FilterByIngredientsAndTimeUseCase(repository)
 )

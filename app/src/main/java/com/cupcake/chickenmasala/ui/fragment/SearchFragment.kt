@@ -6,13 +6,17 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.cupcake.chickenmasala.R
+import com.cupcake.chickenmasala.data.RepositoryImpl
+import com.cupcake.chickenmasala.data.data_source.DataSource
+import com.cupcake.chickenmasala.data.data_source.DataSourceImpl
 import com.cupcake.chickenmasala.databinding.FilterSheetCardBinding
 import com.cupcake.chickenmasala.databinding.FragmentSearchBinding
-import com.cupcake.chickenmasala.ui.activity.HomeActivity
 import com.cupcake.chickenmasala.ui.adpter.search.RecipeClickListener
 import com.cupcake.chickenmasala.ui.adpter.search.SearchAdapter
 import com.cupcake.chickenmasala.ui.base.BaseFragment
+import com.cupcake.chickenmasala.usecase.Repository
 import com.cupcake.chickenmasala.usecase.search.SearchUseCases
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import java.util.Timer
@@ -23,10 +27,12 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), TextWatcher, Recip
     override val bindingInflater: (LayoutInflater, ViewGroup, Boolean) -> FragmentSearchBinding =
         FragmentSearchBinding::inflate
 
-    private val searchUseCases by lazy { SearchUseCases((activity as HomeActivity).dataManager) }
+    private val dataSource: DataSource by lazy { DataSourceImpl(requireActivity().application) }
+    private val repository: Repository by lazy { RepositoryImpl(dataSource) }
+    private val searchUseCases by lazy { SearchUseCases(repository) }
     private val searchAdapter by lazy {
         SearchAdapter(
-            searchUseCases.dataManager.getRecipes().shuffled(),
+            searchUseCases.repository.getRecipes().shuffled(),
             this
         )
     }
@@ -53,7 +59,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), TextWatcher, Recip
     }
 
     override fun onRecipeClick(id: Int) {
-
+        Toast.makeText(requireContext(), "$id", Toast.LENGTH_SHORT).show()
     }
 
     private fun showFilterSheet() {

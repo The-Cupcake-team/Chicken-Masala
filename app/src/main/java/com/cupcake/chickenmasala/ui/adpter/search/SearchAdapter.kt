@@ -46,7 +46,7 @@ class SearchAdapter(
     }
 
     override fun getItemViewType(position: Int): Int {
-       return if (position % 3 == 0 || position % 3 == 2) SMALL else LARGE
+         return if (position % 2 == 0) LARGE else SMALL
     }
 
     abstract class BaseSearchHolder(viewItem: View) : RecyclerView.ViewHolder(viewItem) {
