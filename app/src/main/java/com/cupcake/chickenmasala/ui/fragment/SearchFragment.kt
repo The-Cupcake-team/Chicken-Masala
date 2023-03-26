@@ -10,7 +10,7 @@ import com.cupcake.chickenmasala.R
 import com.cupcake.chickenmasala.data.RepositoryImpl
 import com.cupcake.chickenmasala.data.data_source.DataSource
 import com.cupcake.chickenmasala.data.data_source.DataSourceImpl
-import com.cupcake.chickenmasala.databinding.FilterSheetCardBinding
+import com.cupcake.chickenmasala.databinding.FilterBottomSheetBinding
 import com.cupcake.chickenmasala.databinding.FragmentSearchBinding
 import com.cupcake.chickenmasala.ui.adpter.search.RecipeClickListener
 import com.cupcake.chickenmasala.ui.adpter.search.SearchAdapter
@@ -70,10 +70,10 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), TextWatcher, Recip
     }
 
     private fun showFilterSheet() {
-        val binding = FilterSheetCardBinding.inflate(layoutInflater)
+        val bottomSheetBinding = FilterBottomSheetBinding.inflate(layoutInflater)
         val dialog = BottomSheetDialog(requireContext())
 
-        with(binding) {
+        with(bottomSheetBinding) {
             btnApply.setOnClickListener {
                 filterRecipes()
                 dialog.dismiss()
@@ -84,11 +84,11 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), TextWatcher, Recip
             }
         }
 
-        dialog.setContentView(binding.root)
+        dialog.setContentView(bottomSheetBinding.root)
         dialog.show()
     }
 
-    private fun FilterSheetCardBinding.filterRecipes() {
+    private fun FilterBottomSheetBinding.filterRecipes() {
         val selectedRanges = mutableListOf<IntRange>()
         val selectedIngredients = mutableListOf<String>()
 
@@ -129,7 +129,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), TextWatcher, Recip
         }
     }
 
-    private fun FilterSheetCardBinding.fillSelected(
+    private fun FilterBottomSheetBinding.fillSelected(
         selectedRanges: MutableList<IntRange>,
         selectedIngredients: MutableList<String>
     ) {
