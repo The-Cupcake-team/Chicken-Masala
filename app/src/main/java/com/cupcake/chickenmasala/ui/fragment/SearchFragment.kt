@@ -29,6 +29,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), TextWatcher, Recip
 
     private val dataSource: DataSource by lazy { DataSourceImpl(requireActivity().application) }
     private val repository: Repository by lazy { RepositoryImpl(dataSource) }
+
     private val searchUseCases by lazy { SearchUseCases(repository) }
     private val searchAdapter by lazy {
         SearchAdapter(

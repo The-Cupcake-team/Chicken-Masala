@@ -8,6 +8,7 @@ import com.cupcake.chickenmasala.data.RepositoryImpl
 import com.cupcake.chickenmasala.data.model.HealthAdvice
 import com.cupcake.chickenmasala.databinding.FragmentHealthyBinding
 import com.cupcake.chickenmasala.ui.base.BaseFragment
+import com.cupcake.chickenmasala.ui.fragment.details.DetailsFragment
 import com.cupcake.chickenmasala.usecase.Repository
 import com.cupcake.chickenmasala.usecase.healthy.GetHealthyAdviceByIDUseCase
 import com.cupcake.chickenmasala.utill.Constant
@@ -15,7 +16,7 @@ import com.cupcake.chickenmasala.utill.DataSourceProvider
 import com.cupcake.chickenmasala.utill.setImage
 
 class HealthyFragment : BaseFragment<FragmentHealthyBinding>() {
-    override val LOG_TAG = "HealthFragment"
+    override val LOG_TAG = this::class.java.name
 
     override val bindingInflater: (LayoutInflater, ViewGroup, Boolean) -> FragmentHealthyBinding =
         FragmentHealthyBinding::inflate
@@ -31,9 +32,10 @@ class HealthyFragment : BaseFragment<FragmentHealthyBinding>() {
     }
 
     private fun initView() {
-        val adviceID = arguments?.getInt(Constant.Key.ADVICE_ID)
-        adviceID?.let {
-            getHealthAdviceById(adviceID).apply {
+        val id = arguments.let { it?.getInt(ADVICE_ID) }
+        log(id.toString())
+        id?.let {
+            getHealthAdviceById(id).apply {
                 bindViews(this)
             }
         }
@@ -51,4 +53,14 @@ class HealthyFragment : BaseFragment<FragmentHealthyBinding>() {
         }
     }
 
+    companion object {
+        fun newInstance(id: Int) = HealthyFragment().apply {
+            arguments = Bundle().apply {
+                putInt(ADVICE_ID, id)
+            }
+        }
+
+        private const val ADVICE_ID = "adviceID"
+    }
 }
+

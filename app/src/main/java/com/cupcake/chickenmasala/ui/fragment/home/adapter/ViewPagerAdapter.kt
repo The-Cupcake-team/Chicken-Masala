@@ -1,4 +1,4 @@
-package com.cupcake.chickenmasala.ui.fragment.home
+package com.cupcake.chickenmasala.ui.fragment.home.adapter
 
 
 import android.view.LayoutInflater
@@ -17,11 +17,18 @@ class ViewPagerAdapter(
     override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> SliderImageContainerBinding =
         SliderImageContainerBinding::inflate
 
+    private var onItemClickListener: ((Int) -> Unit)? = null
+    fun onItemClickListener(listener: (Int) -> Unit) {
+        onItemClickListener = listener
+    }
+
     override fun bindItem(binding: SliderImageContainerBinding, item: HealthAdvice) {
         binding.apply {
             viewPager.post(runnable)
             healthImage.setImage(item.imageUrl)
             adviceName.text = item.title
+            healthImage.setOnClickListener {
+                onItemClickListener?.let { it(item.id) } }
         }
     }
 

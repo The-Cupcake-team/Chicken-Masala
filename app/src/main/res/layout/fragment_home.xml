@@ -71,7 +71,6 @@
             android:layout_width="@dimen/zero"
             android:paddingEnd="@dimen/spacing_medium"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/spacing_normal"
             android:layout_marginTop="@dimen/spacing_normal"
             android:clipToPadding="false"
             android:orientation="horizontal"

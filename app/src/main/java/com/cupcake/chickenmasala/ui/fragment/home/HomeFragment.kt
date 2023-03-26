@@ -17,11 +17,15 @@ import com.cupcake.chickenmasala.data.model.Recipe
 import com.cupcake.chickenmasala.databinding.FragmentHomeBinding
 import com.cupcake.chickenmasala.ui.base.BaseFragment
 import com.cupcake.chickenmasala.ui.base.OnItemClickListener
+import com.cupcake.chickenmasala.ui.fragment.HealthyFragment
 import com.cupcake.chickenmasala.ui.fragment.details.DetailsFragment
+import com.cupcake.chickenmasala.ui.fragment.home.adapter.HorizontalRecipeRecyclerAdapter
+import com.cupcake.chickenmasala.ui.fragment.home.adapter.VerticalRecipeRecyclerAdapter
+import com.cupcake.chickenmasala.ui.fragment.home.adapter.ViewPagerAdapter
 import com.cupcake.chickenmasala.usecase.Repository
 import com.cupcake.chickenmasala.usecase.home.GetHealthAdvicesUseCase
+import com.cupcake.chickenmasala.usecase.home.GetRecentFoodUseCase
 import com.cupcake.chickenmasala.utill.DataSourceProvider
-import java.lang.Math.abs
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnItemClickListener<Recipe> {
     override val LOG_TAG: String = this::class.java.name
@@ -51,7 +55,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnItemClickListener<Re
 
     private fun horizontalRecipeRecycler() {
         horizontalRecipeRecyclerAdapter = HorizontalRecipeRecyclerAdapter(this)
-        horizontalRecipeRecyclerAdapter.submitList(repository.getRecipes())
+        val data = GetRecentFoodUseCase(repository)(RECENT_FOOD_LIMIT)
+        horizontalRecipeRecyclerAdapter.submitList(data)
         binding.horizontalRecyclerView.adapter = horizontalRecipeRecyclerAdapter
     }
 
@@ -81,15 +86,25 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnItemClickListener<Re
         handler = Handler(Looper.myLooper()!!)
         viewPager = binding.viewPager
 
-        val advices = GetHealthAdvicesUseCase(repository).invoke(ADVICES_LIMIT)
+        val advices = GetHealthAdvicesUseCase(repository)(ADVICES_LIMIT)
         viewPagerAdapter = ViewPagerAdapter(viewPager, advices)
         viewPagerAdapter.submitList(advices)
+
 
         viewPager.adapter = viewPagerAdapter
         viewPager.offscreenPageLimit = 3
         viewPager.clipToPadding = false
         viewPager.clipChildren = false
         viewPager.getChildAt(0).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
+    }
+
+    private fun navigateToHealthFragment(id: Int) {
+        val healthFragment = HealthyFragment.newInstance(id)
+        requireActivity().supportFragmentManager.beginTransaction().apply {
+            replace(R.id.fragmentContainer, healthFragment)
+            addToBackStack(healthFragment.javaClass.simpleName)
+            commit()
+        }
     }
 
     private fun setUpTransformer() {

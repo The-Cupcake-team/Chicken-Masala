@@ -65,7 +65,8 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>() {
             requireActivity().supportFragmentManager.popBackStack()
         }
     }
-    private fun setDataToUiViews(recipe: Recipe){
+
+    private fun setDataToUiViews(recipe: Recipe) {
         binding.moreDetailsButton.setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(recipe.imageUrl))
             startActivity(intent)
@@ -81,6 +82,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>() {
         }
 
     }
+
     private fun setupIngredientsRecycleView(ingredientsList: List<String>) {
         ingredientsAdapter = IngredientsAdapter()
         ingredientsAdapter.submitList(ingredientsList)
@@ -105,7 +107,6 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>() {
                 putInt(ID, id)
             }
         }
-
-        const val ID = "ID"
+        private const val ID = "ID"
     }
 }
