@@ -61,7 +61,7 @@ class SearchAdapter(
         override fun bind(recipe: Recipe, recipeClickListener: RecipeClickListener) {
             with(binding) {
                 textViewRecipeName.text = recipe.translatedRecipeName
-                textViewRecipeCusine.text = recipe.cuisine
+                textViewRecipeCuisine.text = recipe.cuisine
                 textViewTotalTime.text = recipe.totalTimeInMin.toString()
                 imageView.setImage(recipe.imageUrl)
                 root.setOnClickListener { recipeClickListener.onRecipeClick(recipe.id) }
@@ -74,7 +74,7 @@ class SearchAdapter(
         override fun bind(recipe: Recipe, recipeClickListener: RecipeClickListener) {
             with(binding) {
                 textViewRecipeName.text = recipe.translatedRecipeName
-                textViewRecipeCusine.text = recipe.cuisine
+                textViewRecipeCuisine.text = recipe.cuisine
                 textViewTotalTime.text = recipe.totalTimeInMin.toString()
                 imageView.setImage(recipe.imageUrl)
                 root.setOnClickListener { recipeClickListener.onRecipeClick(recipe.id) }

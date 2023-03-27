@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/searchCardView"
     android:layout_width="match_parent"
-    android:layout_marginVertical="@dimen/spacing_small"
     android:layout_height="@dimen/small_search_card">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,8 +15,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:contentDescription="@string/image"
-            android:scaleType="centerCrop"
             android:foreground="@drawable/overlay"
+            android:scaleType="centerCrop"
             tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
         <TextView
@@ -25,17 +24,16 @@
             style="@style/TextStyle.Body.Medium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/spacing_normal"
             android:layout_marginBottom="@dimen/spacing_small"
             android:ellipsize="end"
-            android:maxLines="2"
-            android:paddingHorizontal="8dp"
+            android:maxLines="1"
             android:textColor="@color/secondary"
-            app:layout_constraintBottom_toTopOf="@+id/text_view_recipe_cusine"
+            app:layout_constraintBottom_toTopOf="@+id/text_view_recipe_cuisine"
             tools:text="@tools:sample/lorem/random" />
 
-
         <TextView
-            android:id="@+id/text_view_recipe_cusine"
+            android:id="@+id/text_view_recipe_cuisine"
             style="@style/TextStyle.Body.Small"
             android:layout_width="@dimen/zero"
             android:layout_height="wrap_content"
