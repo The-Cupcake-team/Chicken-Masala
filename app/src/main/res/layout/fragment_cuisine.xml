@@ -10,12 +10,10 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_cuisine"
-        android:layout_width="@dimen/zero"
-        android:layout_height="@dimen/zero"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        android:layout_marginTop="@dimen/spacing_medium"
-        android:layout_marginStart="@dimen/spacing_medium"
-        android:layout_marginEnd="@dimen/spacing_normal"
+        android:padding="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
