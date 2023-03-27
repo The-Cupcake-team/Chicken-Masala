@@ -47,24 +47,24 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnItemClickListener<Re
         super.onViewCreated(view, savedInstanceState)
 
         setupViewPager()
-        horizontalRecipeRecycler()
+        setupHorizontalRecipeRecycler()
         setupVerticalRecipeRecyclerView()
         setUpTransformer()
         addCallbacks()
     }
 
-    private fun horizontalRecipeRecycler() {
+    private fun setupHorizontalRecipeRecycler() {
         horizontalRecipeRecyclerAdapter = HorizontalRecipeRecyclerAdapter(this)
         val data = GetRecentFoodUseCase(repository)(RECENT_FOOD_LIMIT)
         horizontalRecipeRecyclerAdapter.submitList(data)
-        binding.horizontalRecyclerView.adapter = horizontalRecipeRecyclerAdapter
+        binding.recyclerViewHorizontal.adapter = horizontalRecipeRecyclerAdapter
     }
 
 
     private fun setupVerticalRecipeRecyclerView() {
         verticalRecipeRecyclerAdapter = VerticalRecipeRecyclerAdapter(this)
         verticalRecipeRecyclerAdapter.submitList(repository.getRecipes())
-        binding.verticalRecycler.adapter = verticalRecipeRecyclerAdapter
+        binding.recyclerViewVertical.adapter = verticalRecipeRecyclerAdapter
     }
 
     private fun addCallbacks() {
@@ -76,7 +76,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnItemClickListener<Re
             }
         })
 
-        binding.viewAllIcon.setOnClickListener {
+        binding.viewAll.setOnClickListener {
             // DishesFragment not implemented yet
             //  navigateToFragment(DishesFragment)
         }
