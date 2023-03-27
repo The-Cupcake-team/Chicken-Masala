@@ -96,25 +96,25 @@
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/all_recipes_chip"
-                style="@style/chipStyle"
+                style="@style/ChipStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/all_recipes" />
 
             <com.google.android.material.chip.Chip
-                style="@style/chipStyle"
+                style="@style/ChipStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/meat" />
 
             <com.google.android.material.chip.Chip
-                style="@style/chipStyle"
+                style="@style/ChipStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/cheese" />
 
             <com.google.android.material.chip.Chip
-                style="@style/chipStyle"
+                style="@style/ChipStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/avocado" />

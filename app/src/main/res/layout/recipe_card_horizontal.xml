@@ -28,7 +28,7 @@
 
         <TextView
             android:id="@+id/recipe_name"
-            style="@style/TitleStyle_Medium"
+            style="@style/TitleTwoLine"
             app:layout_constraintEnd_toEndOf="@+id/timer"
             app:layout_constraintStart_toEndOf="@+id/card_image"
             app:layout_constraintTop_toTopOf="@+id/card_image"

@@ -106,7 +106,7 @@
             android:id="@+id/cuisine_icon"
             android:layout_width="16dp"
             android:layout_height="16dp"
-            android:src="@drawable/icon_cuisin"
+            android:src="@drawable/icon_cuisine"
             android:tint="@color/tertiary_38"
             app:layout_constraintEnd_toEndOf="@id/cuisine_text"
             app:layout_constraintStart_toStartOf="@id/cuisine_text"
