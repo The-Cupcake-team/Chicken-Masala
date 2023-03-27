@@ -14,19 +14,14 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/spacing_medium"
         android:layout_marginTop="@dimen/spacing_large"
-        android:textColorHint="@color/tertiary_60"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edit_text_name"
+            style="@style/SearchEditTextStyle"
             android:layout_width="match_parent"
             android:layout_height="@dimen/input_height"
-            android:hint="@string/search"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:textColor="@color/tertiary_87" />
+            android:hint="@string/search" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.recyclerview.widget.RecyclerView
