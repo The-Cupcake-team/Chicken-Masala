@@ -18,9 +18,9 @@ data class SearchQuery(
         const val CORIANDER_POWDER = "coriander powder"
         const val EGGS = "Eggs"
         const val CLOVES_LAUNG = "cloves (laung)"
-        const val RED_CHILL_POWDER = "Red chill Powder"
+        const val RED_CHILL_POWDER = "red chilli powder chilli flakes"
         const val AMCHUR = "Amchur"
-        const val KARELA = "Karela"
+        const val KARELA = "karela (bitter gourd pavakkai)"
         const val SALT = "Salt"
         const val ONION = "Onion"
     }
