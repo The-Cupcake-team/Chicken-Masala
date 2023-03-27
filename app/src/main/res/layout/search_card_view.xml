@@ -14,10 +14,10 @@
             android:id="@+id/save_card_image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:foreground="@drawable/foreground"
+            android:foreground="@drawable/linear_overlay"
             android:scaleType="centerCrop"
-            android:src="@drawable/save_image"
-            tools:ignore="UnusedAttribute" />
+            android:contentDescription="@string/image"
+            tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
         <TextView
             android:id="@+id/dish_name"
@@ -25,8 +25,7 @@
             app:layout_constraintBottom_toTopOf="@+id/cuisine_name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            tools:text="Spagehetti Meatballs abse" />
-
+            tools:text="@tools:sample/lorem/random" />
 
         <TextView
             android:id="@+id/cuisine_name"

@@ -19,11 +19,12 @@
             android:layout_width="@dimen/card_width"
             android:layout_height="0dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/image_card"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:round="@dimen/radius_medium" />
+            app:layout_constraintVertical_bias="0.0"
+            app:round="@dimen/radius_medium"
+            tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
         <TextView
             android:id="@+id/recipe_name"

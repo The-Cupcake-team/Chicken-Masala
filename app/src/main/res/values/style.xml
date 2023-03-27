@@ -71,9 +71,9 @@
         <item name="boxCornerRadiusTopStart">@dimen/radius_large</item>
         <item name="boxStrokeWidth">@dimen/box_stroke_width</item>
         <item name="boxStrokeWidthFocused">@dimen/box_stroke_width</item>
-        <item name="endIconDrawable">@drawable/filter_icon</item>
+        <item name="endIconDrawable">@drawable/icon_filter</item>
         <item name="endIconMode">custom</item>
-        <item name="startIconDrawable">@drawable/search_icon</item>
+        <item name="startIconDrawable">@drawable/icon_search</item>
         <item name="boxStrokeColor">@color/tertiary_60</item>
         <item name="hintTextColor">@color/tertiary_60</item>
         <item name="android:textCursorDrawable">@null</item>
@@ -122,7 +122,7 @@
         <item name="android:textColor">@color/secondary</item>
         <item name="android:lines">1</item>
         <item name="android:ellipsize">end</item>
-        <item name="android:drawableStart">@drawable/cuisine_icon</item>
+        <item name="android:drawableStart">@drawable/icon_cuisin</item>
         <item name="android:layout_marginBottom">@dimen/spacing_normal</item>
         <item name="android:fontFamily">@font/roboto</item>
         <item name="android:drawablePadding">@dimen/spacing_small</item>
@@ -135,7 +135,7 @@
     </style>
 
     <style name="TimerStyle" parent="CuisineStyle">
-        <item name="android:drawableStart">@drawable/timer_icon</item>
+        <item name="android:drawableStart">@drawable/icon_timer</item>
         <item name="android:layout_marginBottom">0dp</item>
     </style>
 

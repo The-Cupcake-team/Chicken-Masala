@@ -17,7 +17,7 @@
             android:layout_width="@dimen/zero"
             android:layout_height="@dimen/photo_card_height"
             android:layout_marginTop="16dp"
-            android:src="@drawable/history_image"
+            tools:srcCompat="@tools:sample/backgrounds/scenic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -62,7 +62,7 @@
             style="@style/CardImageStyle"
             android:layout_width="@dimen/zero"
             android:layout_height="@dimen/photo_card_height"
-            android:src="@drawable/history_image2"
+            tools:srcCompat="@tools:sample/backgrounds/scenic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_content_two" />
@@ -96,7 +96,7 @@
             style="@style/CardImageStyle"
             android:layout_width="@dimen/zero"
             android:layout_height="@dimen/photo_card_height"
-            android:src="@drawable/history_image_3"
+            tools:srcCompat="@tools:sample/backgrounds/scenic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_content_four" />

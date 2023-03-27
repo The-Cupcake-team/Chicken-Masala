@@ -6,6 +6,7 @@
     android:layout_height="@dimen/item_card_cuisine_height"
     android:layout_marginEnd="@dimen/spacing_normal"
     android:layout_marginBottom="@dimen/spacing_normal"
+    android:backgroundTint="@color/card"
     app:cardCornerRadius="@dimen/radius_medium">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -21,10 +22,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/image" />
+            android:contentDescription="@string/image"
+            tool:srcCompat="@tools:sample/backgrounds/scenic" />
 
-
-        <include layout="@layout/item_cover" />
+        <include layout="@layout/item_overlay" />
 
         <TextView
             android:id="@+id/text_cuisine_name"
@@ -39,4 +40,5 @@
             app:layout_constraintTop_toTopOf="@+id/cuisine_image"
             tool:text="Indian" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.cardview.widget.CardView>

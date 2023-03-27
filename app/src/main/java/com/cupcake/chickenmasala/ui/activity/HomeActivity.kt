@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.cupcake.chickenmasala.R
-import com.cupcake.chickenmasala.databinding.ActivityMainBinding
+import com.cupcake.chickenmasala.databinding.ActivityHomeBinding
 import com.cupcake.chickenmasala.ui.fragment.cuisine.CuisineFragment
 import com.cupcake.chickenmasala.ui.fragment.history.HistoryFragment
 import com.cupcake.chickenmasala.ui.fragment.home.HomeFragment
@@ -13,12 +13,12 @@ import com.cupcake.chickenmasala.ui.fragment.search.SearchFragment
 
 class HomeActivity : AppCompatActivity() {
 
-    lateinit var binding: ActivityMainBinding
+    lateinit var binding: ActivityHomeBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setTheme(R.style.Theme_ChickenMasala)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         addNavigationListener()

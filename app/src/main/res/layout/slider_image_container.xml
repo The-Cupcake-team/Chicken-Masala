@@ -19,10 +19,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/image_card_healthy" />
-
-        <include layout="@layout/item_cover" />
-
+            android:contentDescription="@string/image"
+            android:foreground="@drawable/overlay"
+            tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
         <TextView
             android:id="@+id/advice_name"
@@ -32,7 +31,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Choose whole foods avoid junk stay hydrated" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

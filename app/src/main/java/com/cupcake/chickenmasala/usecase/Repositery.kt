@@ -5,4 +5,5 @@ import com.cupcake.chickenmasala.data.model.Recipe
 interface Repository {
     fun getRecipes(): List<Recipe>
     fun getHealthAdvices(): List<HealthAdvice>
+    fun getHistoryImagesUrl(): List<String>
 }

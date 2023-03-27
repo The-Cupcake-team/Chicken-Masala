@@ -35,7 +35,7 @@
                     android:background="@color/white"
                     android:contentDescription="@string/content_description_back"
                     android:padding="@dimen/padding_normal"
-                    android:src="@drawable/back_icon"
+                    android:src="@drawable/icon_back"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />

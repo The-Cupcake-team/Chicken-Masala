@@ -35,13 +35,14 @@
                 android:layout_height="match_parent"
                 android:fitsSystemWindows="true"
                 android:scaleType="centerCrop"
-                tools:src="@drawable/image_card_healthy" />
+                android:contentDescription="@string/image"
+                tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
             <View
                 android:id="@+id/shadow"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/shape_shadow" />
+                android:background="@drawable/linear_overlay" />
 
 
             <com.google.android.material.appbar.MaterialToolbar
@@ -52,7 +53,7 @@
                 android:minHeight="?attr/actionBarSize"
                 android:paddingBottom="@dimen/spacing_large"
                 app:layout_collapseMode="pin"
-                app:navigationIcon="@drawable/back_icon"
+                app:navigationIcon="@drawable/icon_back"
                 app:title="Avoid ultra-processed food" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>

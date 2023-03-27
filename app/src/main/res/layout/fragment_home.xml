@@ -57,11 +57,11 @@
                 app:layout_constraintBottom_toBottomOf="@+id/header_title"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/header_title"
-                android:background="@drawable/view_all_icon"
+                android:background="@drawable/button_rectangle_ripple"
                 android:clickable="true"
                 android:padding="@dimen/radius_normal"
                 android:focusable="true"
-                app:drawableEndCompat="@drawable/baseline_arrow_forward_24" />
+                app:drawableEndCompat="@drawable/icon_forward" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="@dimen/home_card_height"
     style="@style/searchCardView">
@@ -13,13 +14,16 @@
             android:id="@+id/card_Image"
             android:layout_width="@dimen/zero"
             android:layout_height="@dimen/zero"
+            android:contentDescription="@string/image"
+            android:foreground="@drawable/linear_overlay"
             android:scaleType="centerCrop"
-            android:src="@drawable/image_card"
-            android:foreground="@drawable/foreground"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
         <TextView
             android:id="@+id/recipe_name"
@@ -45,7 +49,7 @@
             android:drawablePadding="@dimen/spacing_small"
             android:text="@string/indian"
             android:textColor="@color/white"
-            app:drawableStartCompat="@drawable/cuisine_icon"
+            app:drawableStartCompat="@drawable/icon_cuisin"
             app:drawableTint="@color/white"
             app:layout_constraintBottom_toBottomOf="@+id/card_Image"
             app:layout_constraintStart_toStartOf="@+id/recipe_name" />
@@ -58,7 +62,7 @@
             android:drawablePadding="@dimen/spacing_small"
             android:text="@string/_5_min"
             android:textColor="@color/white"
-            app:drawableStartCompat="@drawable/timer_icon"
+            app:drawableStartCompat="@drawable/icon_timer"
             app:drawableTint="@color/white"
             app:layout_constraintBottom_toBottomOf="@+id/cuisine"
             app:layout_constraintStart_toEndOf="@id/cuisine"

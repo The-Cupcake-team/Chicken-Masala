@@ -27,9 +27,9 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/spacing_medium"
             android:padding="@dimen/spacing_normal"
-            android:background="@drawable/custom_borderless_ripple"
+            android:background="@drawable/button_circular_ripple"
             android:contentDescription="@string/clear"
-            android:src="@drawable/ic_clear"
+            android:src="@drawable/icon_clear"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:tint="@color/tertiary_60" />
