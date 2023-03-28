@@ -29,20 +29,18 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), TextWatcher, Recip
     override val bindingInflater: (LayoutInflater, ViewGroup, Boolean) -> FragmentSearchBinding =
         FragmentSearchBinding::inflate
 
+    private var timerForDelaySearch: Timer? = null
+    private var searchQuery: SearchQuery = SearchQuery()
+
     private val dataSource: DataSource by lazy {
         DataSourceProvider.getDataSource(requireActivity().application)
     }
     private val repository: Repository by lazy { RepositoryImpl(dataSource) }
     private val searchUseCase by lazy { SearchUseCase(repository) }
     private val getRandomRecipesUseCase by lazy { GetRandomRecipesUseCase(repository) }
-
     private val searchAdapter by lazy {
         SearchAdapter(getRandomRecipesUseCase(INITIAL_RECIPE_SIZE), this)
     }
-
-    private var timerForDelaySearch: Timer? = null
-
-    private var searchQuery: SearchQuery = SearchQuery()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -66,10 +64,8 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), TextWatcher, Recip
     private fun showFilterSheet() {
         val bottomSheetBinding = FilterBottomSheetBinding.inflate(layoutInflater)
         val dialog = BottomSheetDialog(requireContext())
-
         with(bottomSheetBinding) {
             checkSelectedSelections()
-
             btnApply.setOnClickListener {
                 filterRecipes()
                 dialog.dismiss()
@@ -83,19 +79,15 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), TextWatcher, Recip
                 ingredientsGroup.clearCheck()
             }
         }
-
         dialog.setCancelable(false)
         dialog.setContentView(bottomSheetBinding.root)
         dialog.show()
     }
 
-
     private fun FilterBottomSheetBinding.filterRecipes() {
         val selectedRanges = mutableListOf<IntRange>()
         val selectedIngredients = mutableListOf<String>()
-
         fillSelectedSelections(selectedRanges, selectedIngredients)
-
         searchQuery = searchQuery.copy(
             ingredients = selectedIngredients,
             timeRanges = if (selectedRanges.isEmpty()) listOf(SearchQuery.DEFAULT_RANGE) else selectedRanges,
@@ -116,12 +108,27 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), TextWatcher, Recip
     }
 
     private fun applySearch() {
-        val searchResult = searchUseCase(searchQuery)
-        if (searchResult != null) {
-            searchAdapter.updateRecipes(searchResult)
-        } else {
-            searchAdapter.updateRecipes(emptyList())
-            log("no result")
+        with(binding) {
+            val searchResult = searchUseCase(searchQuery)
+            val searchQueryRecipeName = searchQuery.name
+            if (searchResult != null) {
+                searchAdapter.updateRecipes(searchResult)
+                recyclerViewSearch.toggleVisibility()
+                textViewSearchError.toggleVisibility()
+            } else {
+                textViewSearchError.text =
+                    String.format(getString(R.string.theres_no_result_for), searchQueryRecipeName)
+                recyclerViewSearch.toggleVisibility()
+                textViewSearchError.toggleVisibility()
+            }
+        }
+    }
+
+    private fun View.toggleVisibility() {
+        if (visibility == View.VISIBLE) {
+            visibility = View.VISIBLE
+        } else if (visibility == View.VISIBLE) {
+            visibility = View.INVISIBLE
         }
     }
 
@@ -179,7 +186,6 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), TextWatcher, Recip
                 }
             }
         }
-
         val ingredients = searchQuery.ingredients
         for (ingredient in ingredients) {
             when (ingredient) {
@@ -219,6 +225,6 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), TextWatcher, Recip
 
     private companion object {
         const val INITIAL_RECIPE_SIZE = 20
-        const val SEARCH_DELAY = 800L
+        const val SEARCH_DELAY = 500L
     }
 }

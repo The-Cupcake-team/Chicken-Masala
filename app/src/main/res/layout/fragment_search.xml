@@ -30,12 +30,27 @@
         android:layout_height="@dimen/zero"
         android:clipToPadding="false"
         android:orientation="vertical"
-        android:paddingHorizontal="@dimen/spacing_medium"
-        android:paddingVertical="@dimen/spacing_normal"
+        android:padding="@dimen/padding_normal"
+        android:visibility="visible"
         app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/search_box"
         app:spanCount="2"
         tools:listitem="@layout/search_card" />
 
+    <TextView
+        android:id="@+id/text_view_search_error"
+        style="@style/TextStyle.Title.Medium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawablePadding="0dp"
+        android:gravity="center"
+        android:textColor="@color/tertiary_60"
+        android:visibility="invisible"
+        app:drawableTint="@color/tertiary_60"
+        app:drawableTopCompat="@drawable/icon_cock"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/search_box"
+        android:text="@string/theres_no_result_for"
+        tools:text="There is no result for “Andrew“" />
 </androidx.constraintlayout.widget.ConstraintLayout>
