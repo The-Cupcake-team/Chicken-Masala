@@ -25,7 +25,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>() {
     private lateinit var instructionsAdapter: InstructionsAdapter
     private lateinit var cleanIngredientsAdapter: CleanIngredientsAdapter
 
-    override val bindingInflater: (LayoutInflater, ViewGroup, Boolean) -> FragmentDetailsBinding =
+    override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentDetailsBinding =
         FragmentDetailsBinding::inflate
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

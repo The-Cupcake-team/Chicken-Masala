@@ -26,7 +26,7 @@ import java.util.TimerTask
 
 class SearchFragment : BaseFragment<FragmentSearchBinding>(), TextWatcher, RecipeClickListener {
     override val LOG_TAG = "SearchScreen"
-    override val bindingInflater: (LayoutInflater, ViewGroup, Boolean) -> FragmentSearchBinding =
+    override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentSearchBinding =
         FragmentSearchBinding::inflate
 
     private var timerForDelaySearch: Timer? = null
@@ -96,9 +96,11 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), TextWatcher, Recip
         timerForDelaySearch = Timer()
         timerForDelaySearch!!.schedule(object : TimerTask() {
             override fun run() {
-                requireActivity().runOnUiThread {
-                    searchQuery = searchQuery.copy(name = recipeName.toString())
-                    applySearch()
+                activity?.let {
+                    it.runOnUiThread {
+                        searchQuery = searchQuery.copy(name = recipeName.toString())
+                        applySearch()
+                    }
                 }
             }
         }, SEARCH_DELAY)

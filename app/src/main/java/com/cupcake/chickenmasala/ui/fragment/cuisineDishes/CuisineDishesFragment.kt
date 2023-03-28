@@ -8,6 +8,6 @@ import com.cupcake.chickenmasala.ui.base.BaseFragment
 class CuisineDishesFragment: BaseFragment<FragmentCuisineDishesBinding>() {
     override val LOG_TAG: String
         get() = "CUISINE_DISHES"
-    override val bindingInflater: (LayoutInflater, ViewGroup, Boolean) -> FragmentCuisineDishesBinding
+    override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentCuisineDishesBinding
         get() = FragmentCuisineDishesBinding::inflate
 }

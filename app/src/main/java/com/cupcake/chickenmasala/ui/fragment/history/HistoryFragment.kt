@@ -14,7 +14,7 @@ import com.cupcake.chickenmasala.utill.setImage
 class HistoryFragment : BaseFragment<FragmentHistoryBinding>() {
     override val LOG_TAG: String = "HistoryFragment"
 
-    override val bindingInflater: (LayoutInflater, ViewGroup, Boolean) -> FragmentHistoryBinding
+    override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentHistoryBinding
         get() = FragmentHistoryBinding::inflate
 
     private val repository: Repository by lazy {

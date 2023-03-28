@@ -30,7 +30,7 @@ import com.cupcake.chickenmasala.utill.DataSourceProvider
 class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnItemClickListener<Recipe> {
     override val LOG_TAG: String = this::class.java.name
 
-    override val bindingInflater: (LayoutInflater, ViewGroup, Boolean) -> FragmentHomeBinding
+    override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentHomeBinding
         get() = FragmentHomeBinding::inflate
 
     private lateinit var horizontalRecipeRecyclerAdapter: HorizontalRecipeRecyclerAdapter

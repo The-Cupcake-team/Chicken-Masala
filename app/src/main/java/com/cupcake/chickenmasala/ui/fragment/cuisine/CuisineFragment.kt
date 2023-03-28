@@ -17,7 +17,7 @@ import com.cupcake.chickenmasala.utill.DataSourceProvider
 
 class CuisineFragment: BaseFragment<FragmentCuisineBinding>(), CuisineAdapter.CuisineInteractionListener {
     override val LOG_TAG: String = "CUISINE_FRAGMENT"
-    override val bindingInflater: (LayoutInflater, ViewGroup, Boolean) -> FragmentCuisineBinding
+    override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentCuisineBinding
             = FragmentCuisineBinding::inflate
 
     private val repository: Repository by lazy {
