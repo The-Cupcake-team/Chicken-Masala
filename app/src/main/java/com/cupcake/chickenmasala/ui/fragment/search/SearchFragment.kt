@@ -9,15 +9,17 @@ import android.view.ViewGroup
 import com.cupcake.chickenmasala.R
 import com.cupcake.chickenmasala.data.RepositoryImpl
 import com.cupcake.chickenmasala.data.dataSource.DataSource
-import com.cupcake.chickenmasala.data.data_sourse.DataSourceImpl
+import com.cupcake.chickenmasala.data.model.Recipe
 import com.cupcake.chickenmasala.databinding.FilterBottomSheetBinding
 import com.cupcake.chickenmasala.databinding.FragmentSearchBinding
 import com.cupcake.chickenmasala.ui.fragment.search.adapter.RecipeClickListener
 import com.cupcake.chickenmasala.ui.fragment.search.adapter.SearchAdapter
 import com.cupcake.chickenmasala.ui.base.BaseFragment
 import com.cupcake.chickenmasala.usecase.Repository
-import com.cupcake.chickenmasala.usecase.search.SearchUseCases
 import com.cupcake.chickenmasala.ui.fragment.details.DetailsFragment
+import com.cupcake.chickenmasala.usecase.search.SearchQuery
+import com.cupcake.chickenmasala.usecase.search.SearchUseCase
+import com.cupcake.chickenmasala.utill.DataSourceProvider
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import java.util.Timer
 import java.util.TimerTask
@@ -27,27 +29,24 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), TextWatcher, Recip
     override val bindingInflater: (LayoutInflater, ViewGroup, Boolean) -> FragmentSearchBinding =
         FragmentSearchBinding::inflate
 
-    private val dataSource: DataSource by lazy { DataSourceImpl(requireActivity().application) }
-    private val repository: Repository by lazy { RepositoryImpl(dataSource) }
-
-    private val searchUseCases by lazy { SearchUseCases(repository) }
-    private val searchAdapter by lazy {
-        SearchAdapter(
-            searchUseCases.repository.getRecipes().shuffled().take(INITIAL_RECIPE_SIZE),
-            this
-        )
-    }
-
     private var timerForDelaySearch: Timer? = null
+    private var searchQuery: SearchQuery = SearchQuery()
+
+    private val dataSource: DataSource by lazy {
+        DataSourceProvider.getDataSource(requireActivity().application)
+    }
+    private val repository: Repository by lazy { RepositoryImpl(dataSource) }
+    private val searchUseCase by lazy { SearchUseCase(repository) }
+    private val searchAdapter by lazy { SearchAdapter(emptyList(), this) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initialRecycleAdapter()
+        setupRecycleAdapter()
         addSearchCallBack()
     }
 
-    private fun initialRecycleAdapter() {
-        setupRecycleAdapter()
+    private fun setupRecycleAdapter() {
+        binding.recyclerViewSearch.adapter = searchAdapter
     }
 
     private fun addSearchCallBack() {
@@ -55,38 +54,29 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), TextWatcher, Recip
         binding.editTextName.addTextChangedListener(this)
     }
 
-    private fun setupRecycleAdapter() {
-        binding.recyclerViewSearch.adapter = searchAdapter
-    }
-
     override fun onRecipeClick(id: Int) {
         navigateToDetailsFragment(id)
-    }
-
-    private fun navigateToDetailsFragment(id: Int) {
-        val detailsFragment = DetailsFragment.newInstance(id)
-        requireActivity().supportFragmentManager.beginTransaction().apply {
-            replace(R.id.fragmentContainer, detailsFragment)
-            addToBackStack(detailsFragment.javaClass.simpleName)
-            commit()
-        }
     }
 
     private fun showFilterSheet() {
         val bottomSheetBinding = FilterBottomSheetBinding.inflate(layoutInflater)
         val dialog = BottomSheetDialog(requireContext())
-
         with(bottomSheetBinding) {
-            btnApply.setOnClickListener {
+            checkSelectedSelections()
+            buttonApply.setOnClickListener {
                 filterRecipes()
                 dialog.dismiss()
             }
-            btnClear.setOnClickListener {
-                timeGroup.clearCheck()
-                ingredientsGroup.clearCheck()
+            buttonClear.setOnClickListener {
+                searchQuery = searchQuery.copy(
+                    timeRanges = listOf(SearchQuery.DEFAULT_RANGE),
+                    ingredients = emptyList()
+                )
+                chipGroupTime.clearCheck()
+                chipGroupIngredients.clearCheck()
             }
         }
-
+        dialog.setCancelable(false)
         dialog.setContentView(bottomSheetBinding.root)
         dialog.show()
     }
@@ -94,22 +84,12 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), TextWatcher, Recip
     private fun FilterBottomSheetBinding.filterRecipes() {
         val selectedRanges = mutableListOf<IntRange>()
         val selectedIngredients = mutableListOf<String>()
-
-        fillSelected(selectedRanges, selectedIngredients)
-
-        val filteredList = searchUseCases
-            .filterByIngredientsAndTimeUseCase(
-                ingredients = selectedIngredients,
-                timeRange = if (selectedRanges.isEmpty()) listOf(DEFAULT_RANGE) else selectedRanges
-            )
-
-        if (selectedRanges.isNotEmpty() || selectedIngredients.isNotEmpty()) {
-            searchAdapter.updateRecipes(filteredList.toList())
-        }
-    }
-
-    override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-        timerForDelaySearch?.cancel()
+        fillSelectedSelections(selectedRanges, selectedIngredients)
+        searchQuery = searchQuery.copy(
+            ingredients = selectedIngredients,
+            timeRanges = if (selectedRanges.isEmpty()) listOf(SearchQuery.DEFAULT_RANGE) else selectedRanges,
+        )
+        applySearch()
     }
 
     override fun afterTextChanged(recipeName: Editable?) {
@@ -117,87 +97,147 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), TextWatcher, Recip
         timerForDelaySearch!!.schedule(object : TimerTask() {
             override fun run() {
                 requireActivity().runOnUiThread {
-                    applySearch(recipeName.toString())
+                    searchQuery = searchQuery.copy(name = recipeName.toString())
+                    applySearch()
                 }
             }
         }, SEARCH_DELAY)
     }
 
-    private fun applySearch(recipeName: String) {
-        val searchResult = searchUseCases.searchByRecipeNameUseCase(recipeName)
+    private fun applySearch() {
+        if (searchQuery.name.isBlank()){
+            showEmptyRecipes()
+            return
+        }
+        val searchResult = searchUseCase(searchQuery)
+        val searchQueryRecipeName = searchQuery.name
         if (searchResult != null) {
-            searchAdapter.updateRecipes(searchResult)
+            showRecipeResult(searchResult)
         } else {
-            searchAdapter.updateRecipes(emptyList())
+            showErrorMessage(searchQueryRecipeName)
         }
     }
 
-    private fun FilterBottomSheetBinding.fillSelected(
-        selectedRanges: MutableList<IntRange>,
-        selectedIngredients: MutableList<String>
-    ) {
-        for (chipId in timeGroup.checkedChipIds) {
-            when (chipId) {
-                R.id.fast_food_chip -> {
-                    selectedRanges.add(RANGE_FAST_FOOD)
-                }
-                R.id.time_range_30_to_45 -> {
-                    selectedRanges.add(RANGE_30_45)
-                }
-                R.id.time_range_45_to_60 -> {
-                    selectedRanges.add(RANGE_45_60)
-                }
-                R.id.time_more_than_60 -> {
-                    selectedRanges.add(RANGE_MORE_THAN_HOUR)
-                }
-            }
-        }
+    private fun showEmptyRecipes() {
+        searchAdapter.updateRecipes(emptyList())
+    }
 
-        for (chipId in ingredientsGroup.checkedChipIds) {
-            when (chipId) {
-                R.id.ingredient_green_chillies -> {
-                    selectedIngredients.add(getString(R.string.green_chillies))
-                }
-                R.id.ingredient_ginger -> {
-                    selectedIngredients.add(getString(R.string.ginger))
-                }
-                R.id.ingredient_onion -> {
-                    selectedIngredients.add(getString(R.string.onion))
-                }
-                R.id.ingredient_coriander_powder -> {
-                    selectedIngredients.add(getString(R.string.coriander_powder))
-                }
-                R.id.ingredient_eggs -> {
-                    selectedIngredients.add(getString(R.string.eggs))
-                }
-                R.id.ingredient_cloves -> {
-                    selectedIngredients.add(getString(R.string.cloves_laung))
-                }
-                R.id.ingredient_red_chill_powder -> {
-                    selectedIngredients.add(getString(R.string.red_chill_powder))
-                }
-                R.id.ingredient_amchurr -> {
-                    selectedIngredients.add(getString(R.string.amchuer))
-                }
-                R.id.ingredient_karela -> {
-                    selectedIngredients.add(getString(R.string.karela))
-                }
-                R.id.ingredient_salt -> {
-                    selectedIngredients.add(getString(R.string.salt))
-                }
-            }
+    private fun showRecipeResult(searchResult: List<Recipe>) {
+        searchAdapter.updateRecipes(searchResult)
+        with(binding) {
+            recyclerViewSearch.show()
+            textViewSearchError.hide()
         }
+    }
+
+    private fun showErrorMessage(searchQueryRecipeName: String) {
+        with(binding) {
+            textViewSearchError.text =
+                getString(R.string.theres_no_result_for, searchQueryRecipeName)
+            recyclerViewSearch.hide()
+            textViewSearchError.show()
+        }
+    }
+
+    private fun View.hide() {
+        visibility = View.INVISIBLE
+    }
+
+    private fun View.show() {
+        visibility = View.VISIBLE
+    }
+
+    override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+        timerForDelaySearch?.cancel()
     }
 
     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+    private fun navigateToDetailsFragment(id: Int) {
+        val detailsFragment = DetailsFragment.newInstance(id)
+        requireActivity().supportFragmentManager.beginTransaction().apply {
+            add(R.id.fragmentContainer, detailsFragment)
+            addToBackStack(detailsFragment.javaClass.simpleName)
+            commit()
+        }
+    }
+
+    private fun FilterBottomSheetBinding.fillSelectedSelections(
+        selectedRanges: MutableList<IntRange>,
+        selectedIngredients: MutableList<String>
+    ) {
+        if (chipFastFood.isChecked) selectedRanges.add(SearchQuery.RANGE_FAST_FOOD)
+        if (timeRange30To45.isChecked) selectedRanges.add(SearchQuery.RANGE_30_45)
+        if (timeRange45To60.isChecked) selectedRanges.add(SearchQuery.RANGE_45_60)
+        if (timeMoreThan60.isChecked) selectedRanges.add(SearchQuery.RANGE_MORE_THAN_HOUR)
+
+        if (ingredientGreenChillies.isChecked) selectedIngredients.add(SearchQuery.GREEN_CHILLIES)
+        if (ingredientGinger.isChecked) selectedIngredients.add(SearchQuery.GINGER)
+        if (ingredientOnion.isChecked) selectedIngredients.add(SearchQuery.ONION)
+        if (ingredientCorianderPowder.isChecked) selectedIngredients.add(SearchQuery.CORIANDER_POWDER)
+        if (ingredientEggs.isChecked) selectedIngredients.add(SearchQuery.EGGS)
+        if (ingredientCloves.isChecked) selectedIngredients.add(SearchQuery.CLOVES_LAUNG)
+        if (ingredientRedChillPowder.isChecked) selectedIngredients.add(SearchQuery.RED_CHILL_POWDER)
+        if (ingredientAmchurr.isChecked) selectedIngredients.add(SearchQuery.AMCHUR)
+        if (ingredientKarela.isChecked) selectedIngredients.add(SearchQuery.KARELA)
+        if (ingredientSalt.isChecked) selectedIngredients.add(SearchQuery.SALT)
+    }
+
+    private fun FilterBottomSheetBinding.checkSelectedSelections() {
+        val ranges = searchQuery.timeRanges
+        for (range in ranges) {
+            when (range) {
+                SearchQuery.RANGE_FAST_FOOD -> {
+                    chipFastFood.isChecked = true
+                }
+                SearchQuery.RANGE_30_45 -> {
+                    timeRange30To45.isChecked = true
+                }
+                SearchQuery.RANGE_45_60 -> {
+                    timeRange45To60.isChecked = true
+                }
+                SearchQuery.RANGE_MORE_THAN_HOUR -> {
+                    timeMoreThan60.isChecked = true
+                }
+            }
+        }
+        val ingredients = searchQuery.ingredients
+        for (ingredient in ingredients) {
+            when (ingredient) {
+                SearchQuery.GREEN_CHILLIES -> {
+                    ingredientGreenChillies.isChecked = true
+                }
+                SearchQuery.GINGER -> {
+                    ingredientGinger.isChecked = true
+                }
+                SearchQuery.CORIANDER_POWDER -> {
+                    ingredientCorianderPowder.isChecked = true
+                }
+                SearchQuery.EGGS -> {
+                    ingredientEggs.isChecked = true
+                }
+                SearchQuery.CLOVES_LAUNG -> {
+                    ingredientCloves.isChecked = true
+                }
+                SearchQuery.RED_CHILL_POWDER -> {
+                    ingredientRedChillPowder.isChecked = true
+                }
+                SearchQuery.AMCHUR -> {
+                    ingredientAmchurr.isChecked = true
+                }
+                SearchQuery.KARELA -> {
+                    ingredientKarela.isChecked = true
+                }
+                SearchQuery.SALT -> {
+                    ingredientSalt.isChecked = true
+                }
+                SearchQuery.ONION -> {
+                    ingredientOnion.isChecked = true
+                }
+            }
+        }
+    }
 
     private companion object {
-        const val INITIAL_RECIPE_SIZE = 50
-        val DEFAULT_RANGE = Int.MIN_VALUE..Int.MAX_VALUE
-        val RANGE_FAST_FOOD = 0..30
-        val RANGE_30_45 = 30..45
-        val RANGE_45_60 = 45..60
-        val RANGE_MORE_THAN_HOUR = 60..Int.MAX_VALUE
-        const val SEARCH_DELAY = 600L
+        const val SEARCH_DELAY = 500L
     }
 }
