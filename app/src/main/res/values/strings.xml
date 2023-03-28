@@ -36,9 +36,10 @@
     <string name="spaghetti_meatballs">Spaghetti Meatballs</string>
     <string name="spicy_tomato_rice_recipe">Spicy Tomato Rice (Recipe)</string>
     <string name="all_recipes">All recipes</string>
-    <string name="breakfast">Breakfast</string>
+    <string name="breakfast">World Breakfast</string>
     <string name="dessert">Dessert</string>
     <string name="dinner">Dinner</string>
+    <string name="snack">Snack</string>
     <string name="view_all_cards_icon">view all cards icon</string>
     <string name="timer_icon_string">Timer icon</string>
     <string name="cuisine_icon_string">cuisine icon</string>
@@ -79,6 +80,5 @@
     <string name="filter">Filter</string>
 
     <string name="sugary_drinks_like_sodas_fruit_juices_and_sweetened_teas_are_the_primary_source_of_added_sugar_in_the_american_diet">Sugary drinks like sodas- fruit juices- and sweetened teas are the primary source of added sugar in the American diet.</string>
-    <string name="snack">snack</string>
 
 </resources>
