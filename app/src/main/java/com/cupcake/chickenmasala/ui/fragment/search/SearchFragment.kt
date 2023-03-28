@@ -17,7 +17,6 @@ import com.cupcake.chickenmasala.ui.fragment.search.adapter.SearchAdapter
 import com.cupcake.chickenmasala.ui.base.BaseFragment
 import com.cupcake.chickenmasala.usecase.Repository
 import com.cupcake.chickenmasala.ui.fragment.details.DetailsFragment
-import com.cupcake.chickenmasala.usecase.core.GetRandomRecipesUseCase
 import com.cupcake.chickenmasala.usecase.search.SearchQuery
 import com.cupcake.chickenmasala.usecase.search.SearchUseCase
 import com.cupcake.chickenmasala.utill.DataSourceProvider
@@ -38,10 +37,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), TextWatcher, Recip
     }
     private val repository: Repository by lazy { RepositoryImpl(dataSource) }
     private val searchUseCase by lazy { SearchUseCase(repository) }
-    private val getRandomRecipesUseCase by lazy { GetRandomRecipesUseCase(repository) }
-    private val searchAdapter by lazy {
-        SearchAdapter(getRandomRecipesUseCase(INITIAL_RECIPE_SIZE), this)
-    }
+    private val searchAdapter by lazy { SearchAdapter(emptyList(), this) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -180,7 +176,6 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), TextWatcher, Recip
 
     private fun FilterBottomSheetBinding.checkSelectedSelections() {
         val ranges = searchQuery.timeRanges
-        log(ranges.toString())
         for (range in ranges) {
             when (range) {
                 SearchQuery.RANGE_FAST_FOOD -> {
@@ -235,7 +230,6 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), TextWatcher, Recip
     }
 
     private companion object {
-        const val INITIAL_RECIPE_SIZE = 20
         const val SEARCH_DELAY = 500L
     }
 }
