@@ -61,7 +61,7 @@
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/icon_timer"
-            style="@style/horizontalIconStyle"
+            style="@style/HorizontalIconStyle"
             android:layout_marginBottom="@dimen/spacing_small"
             android:src="@drawable/icon_timer"
             app:layout_constraintBottom_toTopOf="@id/text_view_timer"
@@ -89,9 +89,9 @@
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/icon_cuisine"
-            style="@style/horizontalIconStyle"
+            style="@style/HorizontalIconStyle"
             android:layout_marginBottom="@dimen/spacing_small"
-            android:src="@drawable/icon_cuisin"
+            android:src="@drawable/icon_cuisine"
             app:layout_constraintEnd_toEndOf="@id/text_view_cuisine"
             app:layout_constraintStart_toStartOf="@id/text_view_cuisine"
             app:layout_constraintTop_toTopOf="parent" />
@@ -116,7 +116,7 @@
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/icon_ingredient"
-            style="@style/horizontalIconStyle"
+            style="@style/HorizontalIconStyle"
             android:src="@drawable/icon_whisk"
             android:layout_marginBottom="@dimen/spacing_small"
             app:layout_constraintBottom_toTopOf="@id/text_view_ingredient_count"
