@@ -3,10 +3,7 @@ package com.cupcake.chickenmasala.ui.fragment.details
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.Menu
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import com.cupcake.chickenmasala.R
 import com.cupcake.chickenmasala.databinding.FragmentDetailsBinding
 import com.cupcake.chickenmasala.ui.base.BaseFragment
@@ -36,6 +33,8 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>() {
         repository = RepositoryImpl(DataSourceProvider.getDataSource(requireActivity().application))
         val id = arguments.let { it?.getInt(ID) }
         setupRecipeDetails(getRecipeById(id!!))
+
+
     }
 
     private fun setupRecipeDetails(recipe: Recipe) {
@@ -43,6 +42,20 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>() {
         setupIngredientsRecycleView(recipe.translatedIngredients)
         setupInstructionsRecycleView(recipe.translatedInstructions)
         setupCleanedIngredientsRecycleView(recipe.cleanedIngredients)
+        setupBackButton()
+        setUpShareButton(recipe.urlDetailsRecipe)
+
+    }
+
+    private fun setUpShareButton(url:String) {
+        binding.toolBar.setOnMenuItemClickListener {
+            when(it.itemId){
+                R.id.icon_share ->{
+                    shareLink(url)
+                }
+            }
+            true
+        }
     }
 
     private fun getRecipeById(id: Int): Recipe {
@@ -50,15 +63,29 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>() {
         return data[id]
     }
 
+    private fun shareLink(link: String) {
+        val sharingIntent = Intent(Intent.ACTION_SEND)
+        sharingIntent.type = "text/plain"
+        sharingIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.share_subject))
+        sharingIntent.putExtra(Intent.EXTRA_TEXT, link)
+        startActivity(Intent.createChooser(sharingIntent, getString(R.string.share_via)))
+        setupBackButton()
+    }
+
+    private fun setupBackButton() {
+        binding.toolBar.setNavigationOnClickListener {
+            requireActivity().supportFragmentManager.popBackStack()
+        }
+    }
 
 
     private fun setDataToUiViews(recipe: Recipe) {
         binding.container.apply {
-            imageDetails.setImage(recipe.imageUrl)
+            imageViewDetails.setImage(recipe.imageUrl)
             textViewFoodName.text = recipe.translatedRecipeName
-            ingredientCount.text = recipe.ingredientCounts.toString()
-            textCuisine.text = recipe.cuisine
-            textTimer.text = recipe.totalTimeInMin.toString()
+            textViewIngredientCount.text = recipe.ingredientCounts.toString()
+            textViewCuisine.text = recipe.cuisine
+            textViewTimer.text = recipe.totalTimeInMin.toString()
         }
 
         binding.buttonMoreDetails.setOnClickListener {
@@ -82,7 +109,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>() {
     private fun setupCleanedIngredientsRecycleView(cleanedIngredients: List<String>) {
         cleanIngredientsAdapter = CleanIngredientsAdapter()
         cleanIngredientsAdapter.submitList(cleanedIngredients)
-        binding.container.cleanIngredientRecycle.adapter = cleanIngredientsAdapter
+        binding.container.recyclerViewCleanIngredient.adapter = cleanIngredientsAdapter
     }
 
     companion object {
@@ -91,6 +118,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>() {
                 putInt(ID, id)
             }
         }
+
         private const val ID = "ID"
     }
 }
