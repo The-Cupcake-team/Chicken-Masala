@@ -55,28 +55,28 @@
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/fast_food_chip"
-                style="@style/chipStyle"
+                style="@style/ChipStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/fast_food" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/time_range_30_to_45"
-                style="@style/chipStyle"
+                style="@style/ChipStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/_30_45_min" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/time_range_45_to_60"
-                style="@style/chipStyle"
+                style="@style/ChipStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/_45_60_min" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/time_more_than_60"
-                style="@style/chipStyle"
+                style="@style/ChipStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/more_than_hour" />
@@ -102,70 +102,70 @@
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/ingredient_green_chillies"
-                style="@style/chipStyle"
+                style="@style/ChipStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/green_chillies" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/ingredient_ginger"
-                style="@style/chipStyle"
+                style="@style/ChipStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/ginger" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/ingredient_onion"
-                style="@style/chipStyle"
+                style="@style/ChipStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/onion" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/ingredient_coriander_powder"
-                style="@style/chipStyle"
+                style="@style/ChipStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/coriander_powder" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/ingredient_eggs"
-                style="@style/chipStyle"
+                style="@style/ChipStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/eggs" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/ingredient_cloves"
-                style="@style/chipStyle"
+                style="@style/ChipStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/cloves_laung" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/ingredient_red_chill_powder"
-                style="@style/chipStyle"
+                style="@style/ChipStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/red_chill_powder" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/ingredient_amchurr"
-                style="@style/chipStyle"
+                style="@style/ChipStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/amchur" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/ingredient_karela"
-                style="@style/chipStyle"
+                style="@style/ChipStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/karela" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/ingredient_salt"
-                style="@style/chipStyle"
+                style="@style/ChipStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/salt" />

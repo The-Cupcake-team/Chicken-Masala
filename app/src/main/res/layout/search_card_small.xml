@@ -2,7 +2,7 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/searchCardView"
+    style="@style/SearchCardViewStyle"
     android:layout_width="match_parent"
     android:layout_marginVertical="@dimen/spacing_small"
     android:layout_height="@dimen/small_search_card">
@@ -45,7 +45,7 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:textColor="@color/secondary"
-            app:drawableStartCompat="@drawable/icon_cuisin"
+            app:drawableStartCompat="@drawable/icon_cuisine"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/text_view_total_time"
             app:layout_constraintHorizontal_bias="0"

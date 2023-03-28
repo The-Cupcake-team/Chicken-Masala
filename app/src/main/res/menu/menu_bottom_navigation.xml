@@ -13,7 +13,7 @@
     <item
         android:id="@+id/cuisine_fragment"
         android:enabled="true"
-        android:icon="@drawable/icon_cuisin"
+        android:icon="@drawable/icon_cuisine"
         android:title="@string/cuisine" />
     <item
         android:id="@+id/history_fragment"
