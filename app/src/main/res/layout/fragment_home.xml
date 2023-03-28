@@ -98,19 +98,19 @@
                 style="@style/chipStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/meat" />
+                android:text="@string/breakfast" />
 
             <com.google.android.material.chip.Chip
                 style="@style/chipStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/cheese" />
+                android:text="@string/dessert" />
 
             <com.google.android.material.chip.Chip
                 style="@style/chipStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/avocado" />
+                android:text="@string/dinner" />
 
         </com.google.android.material.chip.ChipGroup>
 

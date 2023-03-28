@@ -60,7 +60,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnItemClickListener<Re
         binding.recyclerViewHorizontal.adapter = horizontalRecipeRecyclerAdapter
     }
 
-
     private fun setupVerticalRecipeRecyclerView() {
         verticalRecipeRecyclerAdapter = VerticalRecipeRecyclerAdapter(this)
         verticalRecipeRecyclerAdapter.submitList(repository.getRecipes())
@@ -80,6 +79,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnItemClickListener<Re
             // DishesFragment not implemented yet
             //  navigateToFragment(DishesFragment)
         }
+
+        binding.viewPager.setOnClickListener {
+            val healthyFragment = HealthyFragment.newInstance(id)
+            navigateToFragment(healthyFragment)
+        }
     }
 
     private fun setupViewPager() {
@@ -90,21 +94,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnItemClickListener<Re
         viewPagerAdapter = ViewPagerAdapter(viewPager, advices)
         viewPagerAdapter.submitList(advices)
 
-
         viewPager.adapter = viewPagerAdapter
         viewPager.offscreenPageLimit = 3
         viewPager.clipToPadding = false
         viewPager.clipChildren = false
         viewPager.getChildAt(0).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
-    }
-
-    private fun navigateToHealthFragment(id: Int) {
-        val healthFragment = HealthyFragment.newInstance(id)
-        requireActivity().supportFragmentManager.beginTransaction().apply {
-            replace(R.id.fragmentContainer, healthFragment)
-            addToBackStack(healthFragment.javaClass.simpleName)
-            commit()
-        }
     }
 
     private fun setUpTransformer() {
@@ -115,6 +109,19 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnItemClickListener<Re
             page.scaleY = 0.85f + r * 0.14f
         }
         viewPager.setPageTransformer(transformer)
+    }
+
+    override fun onItemClicked(item: Recipe) {
+        val detailsFragment = DetailsFragment.newInstance(item.id)
+        navigateToFragment(detailsFragment)
+    }
+
+    private fun navigateToFragment(fragment: Fragment) {
+        requireActivity().supportFragmentManager.beginTransaction().apply {
+            add(R.id.fragmentContainer, fragment)
+            addToBackStack(fragment.javaClass.simpleName)
+            commit()
+        }
     }
 
     override fun onPause() {
@@ -129,21 +136,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnItemClickListener<Re
 
     private val runnable = Runnable {
         viewPager.currentItem = viewPager.currentItem + 1
-    }
-
-    override fun onItemClicked(item: Recipe) {
-        val detailsFragment = DetailsFragment.newInstance(item.id)
-        requireActivity().supportFragmentManager.beginTransaction().apply {
-            replace(R.id.fragmentContainer, detailsFragment)
-            addToBackStack(detailsFragment.javaClass.simpleName)
-            commit()
-        }
-    }
-
-    private fun navigateToFragment(fragment: Fragment) {
-        val transition = requireActivity().supportFragmentManager.beginTransaction()
-        transition.add(R.id.fragmentContainer, fragment)
-        transition.commit()
     }
 
     companion object {
