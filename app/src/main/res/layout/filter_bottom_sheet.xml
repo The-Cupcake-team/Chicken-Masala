@@ -26,9 +26,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/spacing_medium"
-            android:padding="@dimen/spacing_normal"
             android:background="@drawable/button_circular_ripple"
             android:contentDescription="@string/clear"
+            android:padding="@dimen/spacing_normal"
             android:src="@drawable/icon_clear"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -50,6 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/spacing_medium"
+            app:chipSpacingVertical="@dimen/zero"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_time">
 
@@ -98,6 +99,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/spacing_medium"
+            app:chipSpacingVertical="@dimen/zero"
             app:layout_constraintTop_toBottomOf="@id/tv_ingredients">
 
             <com.google.android.material.chip.Chip
