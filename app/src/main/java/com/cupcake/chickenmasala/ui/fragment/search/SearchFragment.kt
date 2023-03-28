@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import com.cupcake.chickenmasala.R
 import com.cupcake.chickenmasala.data.RepositoryImpl
 import com.cupcake.chickenmasala.data.dataSource.DataSource
+import com.cupcake.chickenmasala.data.model.Recipe
 import com.cupcake.chickenmasala.databinding.FilterBottomSheetBinding
 import com.cupcake.chickenmasala.databinding.FragmentSearchBinding
 import com.cupcake.chickenmasala.ui.fragment.search.adapter.RecipeClickListener
@@ -108,28 +109,38 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), TextWatcher, Recip
     }
 
     private fun applySearch() {
-        with(binding) {
-            val searchResult = searchUseCase(searchQuery)
-            val searchQueryRecipeName = searchQuery.name
-            if (searchResult != null) {
-                searchAdapter.updateRecipes(searchResult)
-                recyclerViewSearch.toggleVisibility()
-                textViewSearchError.toggleVisibility()
-            } else {
-                textViewSearchError.text =
-                    String.format(getString(R.string.theres_no_result_for), searchQueryRecipeName)
-                recyclerViewSearch.toggleVisibility()
-                textViewSearchError.toggleVisibility()
-            }
+        val searchResult = searchUseCase(searchQuery)
+        val searchQueryRecipeName = searchQuery.name
+        if (searchResult != null) {
+            showRecipeResult(searchResult)
+        } else {
+            showErrorMessage(searchQueryRecipeName)
         }
     }
 
-    private fun View.toggleVisibility() {
-        if (visibility == View.VISIBLE) {
-            visibility = View.VISIBLE
-        } else if (visibility == View.VISIBLE) {
-            visibility = View.INVISIBLE
+    private fun showRecipeResult(searchResult: List<Recipe>) {
+        searchAdapter.updateRecipes(searchResult)
+        with(binding) {
+            recyclerViewSearch.show()
+            textViewSearchError.hide()
         }
+    }
+
+    private fun showErrorMessage(searchQueryRecipeName: String) {
+        with(binding) {
+            textViewSearchError.text =
+                String.format(getString(R.string.theres_no_result_for), searchQueryRecipeName)
+            recyclerViewSearch.hide()
+            textViewSearchError.show()
+        }
+    }
+
+    private fun View.hide() {
+        visibility = View.INVISIBLE
+    }
+
+    private fun View.show() {
+        visibility = View.VISIBLE
     }
 
     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
