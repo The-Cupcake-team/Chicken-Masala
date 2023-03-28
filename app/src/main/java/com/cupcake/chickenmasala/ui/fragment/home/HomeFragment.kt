@@ -89,8 +89,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnItemClickListener<Re
 
         binding.chipsFilter.setOnCheckedStateChangeListener { group, checkedIds ->
             val chip = group.findViewById<Chip>(checkedIds[0])
-            val data = GetFilteredFoodUseCase(repository)(chip.text.toString())
-            verticalRecipeRecyclerAdapter.submitList(data)
+            if(chip.text.toString() == "All recipes"){
+                val data = repository.getRecipes()
+                verticalRecipeRecyclerAdapter.submitList(data)
+            }else{
+                val data = GetFilteredFoodUseCase(repository)(chip.text.toString())
+                verticalRecipeRecyclerAdapter.submitList(data)
+            }
         }
     }
 
