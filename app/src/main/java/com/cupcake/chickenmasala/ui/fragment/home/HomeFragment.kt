@@ -23,9 +23,11 @@ import com.cupcake.chickenmasala.ui.fragment.home.adapter.HorizontalRecipeRecycl
 import com.cupcake.chickenmasala.ui.fragment.home.adapter.VerticalRecipeRecyclerAdapter
 import com.cupcake.chickenmasala.ui.fragment.home.adapter.ViewPagerAdapter
 import com.cupcake.chickenmasala.usecase.Repository
+import com.cupcake.chickenmasala.usecase.home.GetFilteredFoodUseCase
 import com.cupcake.chickenmasala.usecase.home.GetHealthAdvicesUseCase
 import com.cupcake.chickenmasala.usecase.home.GetRecentFoodUseCase
 import com.cupcake.chickenmasala.utill.DataSourceProvider
+import com.google.android.material.chip.Chip
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnItemClickListener<Recipe> {
     override val LOG_TAG: String = this::class.java.name
@@ -83,6 +85,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnItemClickListener<Re
         binding.viewPager.setOnClickListener {
             val healthyFragment = HealthyFragment.newInstance(id)
             navigateToFragment(healthyFragment)
+        }
+
+        binding.chipsFilter.setOnCheckedStateChangeListener { group, checkedIds ->
+            val chip = group.findViewById<Chip>(checkedIds[0])
+            val data = GetFilteredFoodUseCase(repository)(chip.text.toString())
+            verticalRecipeRecyclerAdapter.submitList(data)
         }
     }
 
