@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import com.cupcake.chickenmasala.R
@@ -35,11 +36,9 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>() {
         repository = RepositoryImpl(DataSourceProvider.getDataSource(requireActivity().application))
         val id = arguments.let { it?.getInt(ID) }
         setupRecipeDetails(getRecipeById(id!!))
-        setupBackButton()
     }
 
     private fun setupRecipeDetails(recipe: Recipe) {
-        shareLink(recipe.urlDetailsRecipe)
         setDataToUiViews(recipe)
         setupIngredientsRecycleView(recipe.translatedIngredients)
         setupInstructionsRecycleView(recipe.translatedInstructions)
@@ -51,39 +50,18 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>() {
         return data[id]
     }
 
-    private fun shareLink(link: String) {
-        binding.shareButton.setOnClickListener {
-            val sharingIntent = Intent(Intent.ACTION_SEND)
-            sharingIntent.type = "text/plain"
-            sharingIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.share_subject))
-            sharingIntent.putExtra(Intent.EXTRA_TEXT, link)
-            startActivity(Intent.createChooser(sharingIntent, getString(R.string.share_via)))
-            setupBackButton()
-        }
-    }
 
-
-    private fun setupBackButton() {
-        binding.backButton.setOnClickListener {
-            requireActivity().supportFragmentManager.popBackStack()
-        }
-    }
 
     private fun setDataToUiViews(recipe: Recipe) {
-        binding.moreDetailsButton.setOnClickListener {
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(recipe.imageUrl))
-            startActivity(intent)
-        }
-        binding.container.detailsImage.setImage(recipe.imageUrl)
-        binding.container.foodName.text = recipe.translatedRecipeName
+        binding.container.imageDetails.setImage(recipe.imageUrl)
+        binding.container.textViewFoodName.text = recipe.translatedRecipeName
         binding.container.ingredientCount.text = recipe.ingredientCounts.toString()
-        binding.container.cuisineText.text = recipe.cuisine
-        binding.container.timerText.text = recipe.totalTimeInMin.toString()
-        binding.moreDetailsButton.setOnClickListener {
+        binding.container.textCuisine.text = recipe.cuisine
+        binding.container.textTimer.text = recipe.totalTimeInMin.toString()
+        binding.buttonMoreDetails.setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(recipe.urlDetailsRecipe))
             startActivity(intent)
         }
-
     }
 
     private fun setupIngredientsRecycleView(ingredientsList: List<String>) {
