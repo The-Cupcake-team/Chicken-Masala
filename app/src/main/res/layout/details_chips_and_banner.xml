@@ -7,7 +7,7 @@
     android:background="@color/background">
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/image_details"
+        android:id="@+id/image_view_details"
         style="@style/CardImageStyle"
         tools:srcCompat="@tools:sample/backgrounds/scenic"
         android:layout_width="match_parent"
@@ -23,10 +23,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/recipe_name"
-        app:layout_constraintTop_toBottomOf="@id/image_details" />
+        app:layout_constraintTop_toBottomOf="@id/image_view_details" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/clean_ingredient_recycle"
+        android:id="@+id/recycler_view_clean_ingredient"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingHorizontal="@dimen/spacing_medium"
@@ -38,14 +38,14 @@
         tools:listitem="@layout/item_chip" />
 
     <TextView
-        android:id="@+id/text_details"
+        android:id="@+id/text_view_details"
         style="@style/TextStyle.Title.Medium"
         android:layout_marginHorizontal="@dimen/spacing_medium"
         android:layout_marginTop="@dimen/spacing_normal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/details_text"
-        app:layout_constraintTop_toBottomOf="@id/clean_ingredient_recycle" />
+        app:layout_constraintTop_toBottomOf="@id/recycler_view_clean_ingredient" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/container_details"
@@ -57,34 +57,34 @@
         android:paddingVertical="@dimen/spacing_normal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_details">
+        app:layout_constraintTop_toBottomOf="@id/text_view_details">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/icon_timer"
             style="@style/horizontalIconStyle"
             android:layout_marginBottom="@dimen/spacing_small"
             android:src="@drawable/icon_timer"
-            app:layout_constraintBottom_toTopOf="@id/text_timer"
-            app:layout_constraintEnd_toEndOf="@id/text_timer"
-            app:layout_constraintStart_toStartOf="@id/text_timer"
+            app:layout_constraintBottom_toTopOf="@id/text_view_timer"
+            app:layout_constraintEnd_toEndOf="@id/text_view_timer"
+            app:layout_constraintStart_toStartOf="@id/text_view_timer"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/text_timer"
+            android:id="@+id/text_view_timer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/_45_min"
             android:textColor="@color/tertiary_60"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/line_first"
+            app:layout_constraintEnd_toStartOf="@id/divider_time_and_cuisine"
             app:layout_constraintStart_toStartOf="parent" />
 
         <View
-            android:id="@+id/line_first"
+            android:id="@+id/divider_time_and_cuisine"
             style="@style/detailsDivider"
-            app:layout_constraintBottom_toBottomOf="@id/text_timer"
-            app:layout_constraintEnd_toStartOf="@+id/text_cuisine"
-            app:layout_constraintStart_toEndOf="@+id/text_timer"
+            app:layout_constraintBottom_toBottomOf="@id/text_view_timer"
+            app:layout_constraintEnd_toStartOf="@+id/text_view_cuisine"
+            app:layout_constraintStart_toEndOf="@+id/text_view_timer"
             app:layout_constraintTop_toTopOf="@id/icon_timer" />
 
         <com.google.android.material.imageview.ShapeableImageView
@@ -92,26 +92,26 @@
             style="@style/horizontalIconStyle"
             android:layout_marginBottom="@dimen/spacing_small"
             android:src="@drawable/icon_cuisin"
-            app:layout_constraintEnd_toEndOf="@id/text_cuisine"
-            app:layout_constraintStart_toStartOf="@id/text_cuisine"
+            app:layout_constraintEnd_toEndOf="@id/text_view_cuisine"
+            app:layout_constraintStart_toStartOf="@id/text_view_cuisine"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/text_cuisine"
+            android:id="@+id/text_view_cuisine"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/indian"
             android:textColor="@color/tertiary_60"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/line_second"
-            app:layout_constraintStart_toEndOf="@id/line_first" />
+            app:layout_constraintEnd_toStartOf="@id/divider_cuisine_and_ingredients"
+            app:layout_constraintStart_toEndOf="@id/divider_time_and_cuisine" />
 
         <View
-            android:id="@+id/line_second"
+            android:id="@+id/divider_cuisine_and_ingredients"
             style="@style/detailsDivider"
-            app:layout_constraintBottom_toBottomOf="@id/text_cuisine"
-            app:layout_constraintEnd_toStartOf="@+id/ingredient_count"
-            app:layout_constraintStart_toEndOf="@+id/text_cuisine"
+            app:layout_constraintBottom_toBottomOf="@id/text_view_cuisine"
+            app:layout_constraintEnd_toStartOf="@+id/text_view_ingredient_count"
+            app:layout_constraintStart_toEndOf="@+id/text_view_cuisine"
             app:layout_constraintTop_toTopOf="@id/icon_cuisine" />
 
         <com.google.android.material.imageview.ShapeableImageView
@@ -119,20 +119,20 @@
             style="@style/horizontalIconStyle"
             android:src="@drawable/icon_whisk"
             android:layout_marginBottom="@dimen/spacing_small"
-            app:layout_constraintBottom_toTopOf="@id/ingredient_count"
-            app:layout_constraintEnd_toEndOf="@id/ingredient_count"
-            app:layout_constraintStart_toStartOf="@id/ingredient_count"
+            app:layout_constraintBottom_toTopOf="@id/text_view_ingredient_count"
+            app:layout_constraintEnd_toEndOf="@id/text_view_ingredient_count"
+            app:layout_constraintStart_toStartOf="@id/text_view_ingredient_count"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/ingredient_count"
+            android:id="@+id/text_view_ingredient_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/_12"
             android:textColor="@color/tertiary_60"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/line_second" />
+            app:layout_constraintStart_toEndOf="@id/divider_cuisine_and_ingredients" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
