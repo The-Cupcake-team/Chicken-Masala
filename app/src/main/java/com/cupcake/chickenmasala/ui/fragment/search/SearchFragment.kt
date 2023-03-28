@@ -105,6 +105,10 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), TextWatcher, Recip
     }
 
     private fun applySearch() {
+        if (searchQuery.name.isBlank()){
+            showEmptyRecipes()
+            return
+        }
         val searchResult = searchUseCase(searchQuery)
         val searchQueryRecipeName = searchQuery.name
         if (searchResult != null) {
@@ -112,6 +116,10 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), TextWatcher, Recip
         } else {
             showErrorMessage(searchQueryRecipeName)
         }
+    }
+
+    private fun showEmptyRecipes() {
+        searchAdapter.updateRecipes(emptyList())
     }
 
     private fun showRecipeResult(searchResult: List<Recipe>) {
