@@ -63,17 +63,17 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), TextWatcher, Recip
         val dialog = BottomSheetDialog(requireContext())
         with(bottomSheetBinding) {
             checkSelectedSelections()
-            btnApply.setOnClickListener {
+            buttonApply.setOnClickListener {
                 filterRecipes()
                 dialog.dismiss()
             }
-            btnClear.setOnClickListener {
+            buttonClear.setOnClickListener {
                 searchQuery = searchQuery.copy(
                     timeRanges = listOf(SearchQuery.DEFAULT_RANGE),
                     ingredients = emptyList()
                 )
-                timeGroup.clearCheck()
-                ingredientsGroup.clearCheck()
+                chipGroupTime.clearCheck()
+                chipGroupIngredients.clearCheck()
             }
         }
         dialog.setCancelable(false)
@@ -165,7 +165,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), TextWatcher, Recip
         selectedRanges: MutableList<IntRange>,
         selectedIngredients: MutableList<String>
     ) {
-        if (fastFoodChip.isChecked) selectedRanges.add(SearchQuery.RANGE_FAST_FOOD)
+        if (chipFastFood.isChecked) selectedRanges.add(SearchQuery.RANGE_FAST_FOOD)
         if (timeRange30To45.isChecked) selectedRanges.add(SearchQuery.RANGE_30_45)
         if (timeRange45To60.isChecked) selectedRanges.add(SearchQuery.RANGE_45_60)
         if (timeMoreThan60.isChecked) selectedRanges.add(SearchQuery.RANGE_MORE_THAN_HOUR)
@@ -187,7 +187,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), TextWatcher, Recip
         for (range in ranges) {
             when (range) {
                 SearchQuery.RANGE_FAST_FOOD -> {
-                    fastFoodChip.isChecked = true
+                    chipFastFood.isChecked = true
                 }
                 SearchQuery.RANGE_30_45 -> {
                     timeRange30To45.isChecked = true

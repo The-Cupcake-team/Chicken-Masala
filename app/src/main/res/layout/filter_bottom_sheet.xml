@@ -11,7 +11,7 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/tv_filter"
+            android:id="@+id/text_view_filter"
             style="@style/TextStyle.Title.Large"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -22,7 +22,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
-            android:id="@+id/btn_clear"
+            android:id="@+id/button_clear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/spacing_medium"
@@ -35,7 +35,7 @@
             app:tint="@color/tertiary_60" />
 
         <TextView
-            android:id="@+id/tv_time"
+            android:id="@+id/text_view_time"
             style="@style/TextStyle.Body.Medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -43,19 +43,19 @@
             android:layout_marginTop="@dimen/spacing_medium"
             android:text="@string/time"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_filter" />
+            app:layout_constraintTop_toBottomOf="@id/text_view_filter" />
 
         <com.google.android.material.chip.ChipGroup
-            android:id="@+id/time_group"
+            android:id="@+id/chip_group_time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/spacing_medium"
             app:chipSpacingVertical="@dimen/zero"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_time">
+            app:layout_constraintTop_toBottomOf="@id/text_view_time">
 
             <com.google.android.material.chip.Chip
-                android:id="@+id/fast_food_chip"
+                android:id="@+id/chip_fast_food"
                 style="@style/chipStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -84,7 +84,7 @@
         </com.google.android.material.chip.ChipGroup>
 
         <TextView
-            android:id="@+id/tv_ingredients"
+            android:id="@+id/text_view_ingredients"
             style="@style/TextStyle.Body.Medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -92,15 +92,15 @@
             android:layout_marginTop="@dimen/spacing_medium"
             android:text="@string/ingredients"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/time_group" />
+            app:layout_constraintTop_toBottomOf="@id/chip_group_time" />
 
         <com.google.android.material.chip.ChipGroup
-            android:id="@+id/ingredients_group"
+            android:id="@+id/chip_group_ingredients"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/spacing_medium"
             app:chipSpacingVertical="@dimen/zero"
-            app:layout_constraintTop_toBottomOf="@id/tv_ingredients">
+            app:layout_constraintTop_toBottomOf="@id/text_view_ingredients">
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/ingredient_green_chillies"
@@ -174,7 +174,7 @@
         </com.google.android.material.chip.ChipGroup>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_apply"
+            android:id="@+id/button_apply"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/spacing_medium"
@@ -184,6 +184,6 @@
             android:textAllCaps="false"
             app:cornerRadius="@dimen/radius_large"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ingredients_group" />
+            app:layout_constraintTop_toBottomOf="@id/chip_group_ingredients" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>
