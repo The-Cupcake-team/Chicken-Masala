@@ -23,7 +23,7 @@ class VerticalRecipeRecyclerAdapter(private val listener: OnItemClickListener<Re
         with(binding){
             cuisineName.text = item.cuisine
             recipeName.text = item.translatedRecipeName
-            timer.text = item.totalTimeInMin.toString()
+            recipeTime.text = item.totalTimeInMin.toString()
             cardImage.setImage(item.imageUrl)
             root.setOnClickListener{
                 listener.onItemClicked(item)
