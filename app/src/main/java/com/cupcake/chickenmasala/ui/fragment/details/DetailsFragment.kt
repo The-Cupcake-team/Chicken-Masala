@@ -53,11 +53,14 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>() {
 
 
     private fun setDataToUiViews(recipe: Recipe) {
-        binding.container.imageDetails.setImage(recipe.imageUrl)
-        binding.container.textViewFoodName.text = recipe.translatedRecipeName
-        binding.container.ingredientCount.text = recipe.ingredientCounts.toString()
-        binding.container.textCuisine.text = recipe.cuisine
-        binding.container.textTimer.text = recipe.totalTimeInMin.toString()
+        binding.container.apply {
+            imageDetails.setImage(recipe.imageUrl)
+            textViewFoodName.text = recipe.translatedRecipeName
+            ingredientCount.text = recipe.ingredientCounts.toString()
+            textCuisine.text = recipe.cuisine
+            textTimer.text = recipe.totalTimeInMin.toString()
+        }
+
         binding.buttonMoreDetails.setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(recipe.urlDetailsRecipe))
             startActivity(intent)
