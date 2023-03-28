@@ -17,7 +17,7 @@
             style="@style/CardImageStyle"
             android:layout_width="match_parent"
             android:layout_height="@dimen/photo_card_height"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="@dimen/spacing_medium"
             tools:srcCompat="@tools:sample/backgrounds/scenic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
