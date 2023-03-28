@@ -129,7 +129,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), TextWatcher, Recip
     private fun showErrorMessage(searchQueryRecipeName: String) {
         with(binding) {
             textViewSearchError.text =
-                String.format(getString(R.string.theres_no_result_for), searchQueryRecipeName)
+                getString(R.string.theres_no_result_for, searchQueryRecipeName)
             recyclerViewSearch.hide()
             textViewSearchError.show()
         }
