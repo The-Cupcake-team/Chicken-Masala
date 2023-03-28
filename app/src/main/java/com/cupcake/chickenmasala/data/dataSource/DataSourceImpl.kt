@@ -12,9 +12,9 @@ class DataSourceImpl(private val context: Application) : DataSource {
         inputStreamReader.buffered().useLines { it.map { line -> line.split(",") }.toList() }
 
 
-
     private fun openFile(fileName: String): InputStreamReader =
         InputStreamReader(context.assets.open(fileName))
+
     override fun getRecipes(): List<Recipe> =
         openFile(INDIAN_FOOD_FILE_PATH).use { fileReader ->
             parseFile(fileReader).mapIndexed { key, data ->
@@ -32,7 +32,7 @@ class DataSourceImpl(private val context: Application) : DataSource {
                 )
             }
         }
-    override fun getHealthAdvices(): List<HealthAdvice> =
+    override fun getHealthAdvices() : List<HealthAdvice> =
         openFile(HEALTH_ADVICES_FILE_PATH).use { fileReader ->
             parseFile(fileReader).mapIndexed { key, data ->
                 HealthAdvice(
