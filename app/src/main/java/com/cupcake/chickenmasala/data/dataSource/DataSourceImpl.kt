@@ -8,25 +8,16 @@ import java.io.InputStreamReader
 
 class DataSourceImpl(private val context: Application) : DataSource {
 
-    private fun parseFile(inputStreamReader: InputStreamReader): MutableMap<Int, List<String>> {
-        val data = mutableMapOf<Int, List<String>>()
-        inputStreamReader.readLines().forEachIndexed { index, item ->
-            val tokens = item.split(",")
-            data[index] = tokens
-        }
-        return data
-    }
+    private fun parseFile(inputStreamReader: InputStreamReader): List<List<String>> =
+        inputStreamReader.buffered().useLines { it.map { line -> line.split(",") }.toList() }
 
-    private fun openFile(fileName: String): InputStreamReader {
-        val inputStream = context.assets.open(fileName)
-        return InputStreamReader(inputStream)
-    }
 
-    override fun getRecipes(): List<Recipe> {
-        val recipes = mutableListOf<Recipe>()
-        val fileReader = openFile(INDIAN_FOOD_FILE_PATH)
-        parseFile(fileReader).forEach { (key, data) ->
-            recipes.add(
+
+    private fun openFile(fileName: String): InputStreamReader =
+        InputStreamReader(context.assets.open(fileName))
+    override fun getRecipes(): List<Recipe> =
+        openFile(INDIAN_FOOD_FILE_PATH).use { fileReader ->
+            parseFile(fileReader).mapIndexed { key, data ->
                 Recipe(
                     id = key,
                     translatedRecipeName = data[TRANSLATED_RECIPE_NAME],
@@ -39,29 +30,19 @@ class DataSourceImpl(private val context: Application) : DataSource {
                     imageUrl = data[IMAGE_URL],
                     ingredientCounts = data[INGREDIENT_COUNTS].toInt()
                 )
-            )
+            }
         }
-        fileReader.close()
-        return recipes
-    }
-
-    override fun getHealthAdvices(): List<HealthAdvice> {
-        val advices = mutableListOf<HealthAdvice>()
-        val fileReader = openFile(HEALTH_ADVICES_FILE_PATH)
-        parseFile(fileReader).forEach { (key, data) ->
-            advices.add(
+    override fun getHealthAdvices(): List<HealthAdvice> =
+        openFile(HEALTH_ADVICES_FILE_PATH).use { fileReader ->
+            parseFile(fileReader).mapIndexed { key, data ->
                 HealthAdvice(
                     id = key,
                     title = data[TITLE],
                     description = data[DESCRIPTION],
                     imageUrl = data[IMAGEURL]
                 )
-            )
+            }
         }
-        fileReader.close()
-        return advices
-    }
-
     companion object {
         private const val TRANSLATED_RECIPE_NAME = 0
         private const val TRANSLATED_INGREDIENTS = 1
@@ -72,7 +53,6 @@ class DataSourceImpl(private val context: Application) : DataSource {
         private const val CLEANED_INGREDIENTS = 6
         private const val IMAGE_URL = 7
         private const val INGREDIENT_COUNTS = 8
-
 
         private const val TITLE = 0
         private const val DESCRIPTION = 1
