@@ -216,4 +216,12 @@
         <item name="android:drawableTint">@color/tertiary_38</item>
     </style>
 
+    <style name="detailsDivider">
+        <item name="android:background">@color/tertiary_38</item>
+        <item name="android:layout_width">@dimen/box_stroke_width</item>
+        <item name="android:layout_height">@dimen/zero</item>
+        <item name="android:layout_marginTop">@dimen/spacing_small</item>
+        <item name="android:layout_marginBottom">@dimen/spacing_small</item>
+    </style>
+
 </resources>

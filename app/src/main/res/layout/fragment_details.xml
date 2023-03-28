@@ -1,81 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/background"
     tools:context=".ui.fragment.details.DetailsFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/top_bar"
-        android:background="@color/background"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         android:layout_width="match_parent"
         android:layout_height="@dimen/app_bar_height"
-        android:layout_marginBottom="@dimen/spacing_medium">
-        <com.google.android.material.card.MaterialCardView
-            app:strokeWidth="@dimen/zero"
-            android:id="@+id/action_bar"
+        android:layout_marginBottom="@dimen/spacing_medium"
+        android:background="@color/background"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/tool_bar"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/app_bar_height"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:backgroundTint="@color/background"
-            app:layout_constraintEnd_toEndOf="parent">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageButton
-                    android:id="@+id/back_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/padding_normal"
-                    android:background="@android:color/transparent"
-                    android:src="@drawable/icon_back"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:contentDescription="@string/content_description_back" />
-
-                <TextView
-                    android:id="@+id/action_bar_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/spacing_small"
-                    android:fontFamily="@font/roboto"
-                    android:text="@string/detail_food"
-                    android:textColor="@color/tertiary_87"
-                    android:textSize="@dimen/font_size_title_large"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/back_button"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageButton
-                    android:id="@+id/share_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/padding_normal"
-                    android:background="@android:color/transparent"
-                    android:src="@drawable/icon_share"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:contentDescription="@string/content_description_share" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </com.google.android.material.card.MaterialCardView>
+            android:layout_height="wrap_content"
+            android:title=""
+            app:navigationIcon="@drawable/icon_back"
+            app:menu="@menu/tool_bar_icons"
+            />
 
     </com.google.android.material.appbar.AppBarLayout>
 
     <ScrollView
-        android:layout_marginTop="@dimen/app_bar_height"
         android:id="@+id/screen"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/app_bar_height">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -91,7 +47,10 @@
 
             <TextView
                 android:id="@+id/ingredients_title"
-                style="@style/title"
+                style="@style/TextStyle.Title.Medium"
+                android:layout_marginStart="@dimen/spacing_medium"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:layout_marginBottom="@dimen/spacing_normal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/ingredients"
@@ -101,10 +60,9 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_ingredients"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginStart="@dimen/spacing_medium"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/spacing_medium"
                 android:layout_marginTop="@dimen/spacing_normal"
-                android:layout_marginEnd="16dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -113,10 +71,12 @@
 
             <TextView
                 android:id="@+id/instructions_title"
-                style="@style/title"
-                android:layout_width="match_parent"
+                style="@style/TextStyle.Title.Medium"
+                android:layout_marginStart="@dimen/spacing_medium"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:layout_marginBottom="@dimen/spacing_normal"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_medium"
                 android:text="@string/instructions"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/recycler_ingredients" />
@@ -124,10 +84,9 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_instructions"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginStart="@dimen/spacing_medium"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/spacing_medium"
                 android:layout_marginTop="@dimen/spacing_normal"
-                android:layout_marginEnd="@dimen/spacing_medium"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -135,7 +94,8 @@
                 tools:listitem="@layout/item_instructions" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/more_details_button"
+                android:id="@+id/button_more_details"
+                style="@style/TextStyle.Title.Medium.Button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/spacing_medium"
@@ -143,7 +103,6 @@
                 android:layout_marginBottom="@dimen/spacing_medium"
                 android:text="@string/more_details"
                 app:cornerRadius="@dimen/radius_large"
-                style="@style/TextStyle.Title.Medium.Button"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

@@ -46,7 +46,7 @@
 
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="ragi_semiya_upma_recipe_ragi_millet_vermx_icelli_breakfast">Ragi Semiya Upma Recipe - Ragi Millet Vermx icelli Breakfast.</string>
+    <string name="recipe_name">Ragi Semiya Upma Recipe - Ragi Millet Vermx icelli Breakfast.</string>
     <string name="onion">Onion</string>
     <string name="amchuer">Amchuer</string>
     <string name="gram_flour">Gram flour</string>
@@ -79,5 +79,6 @@
     <string name="filter">Filter</string>
 
     <string name="sugary_drinks_like_sodas_fruit_juices_and_sweetened_teas_are_the_primary_source_of_added_sugar_in_the_american_diet">Sugary drinks like sodas- fruit juices- and sweetened teas are the primary source of added sugar in the American diet.</string>
+    <string name="icon_share">icon_share</string>
 
 </resources>
