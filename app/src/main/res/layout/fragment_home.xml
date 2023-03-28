@@ -75,44 +75,61 @@
             app:layout_constraintTop_toBottomOf="@+id/header_row"
             tools:listitem="@layout/search_card_view" />
 
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/chips_filter"
+        <HorizontalScrollView
+            android:id="@+id/chips_horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/spacing_medium"
             android:layout_marginTop="@dimen/spacing_medium"
-            app:checkedChip="@+id/chip_all_recipes"
-            app:chipSpacingHorizontal="@dimen/spacing_small"
-            app:layout_constraintTop_toBottomOf="@+id/recycler_view_horizontal"
-            app:selectionRequired="true"
-            app:singleSelection="true">
+            android:scrollbars="none"
+            app:layout_constraintTop_toBottomOf="@+id/recycler_view_horizontal">
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip_all_recipes"
-                style="@style/chipStyle"
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chips_filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/all_recipes" />
+                app:checkedChip="@+id/chip_all_recipes"
+                app:chipSpacingHorizontal="@dimen/spacing_small"
+                app:selectionRequired="true"
+                app:singleSelection="true">
 
-            <com.google.android.material.chip.Chip
-                style="@style/chipStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/breakfast" />
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_all_recipes"
+                    style="@style/chipStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/all_recipes" />
 
-            <com.google.android.material.chip.Chip
-                style="@style/chipStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/dessert" />
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_breakfast"
+                    style="@style/chipStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/breakfast" />
 
-            <com.google.android.material.chip.Chip
-                style="@style/chipStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/dinner" />
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_desert"
+                    style="@style/chipStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/dessert" />
 
-        </com.google.android.material.chip.ChipGroup>
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_dinner"
+                    style="@style/chipStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/dinner" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_snack"
+                    style="@style/chipStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/snack" />
+
+            </com.google.android.material.chip.ChipGroup>
+        </HorizontalScrollView>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view_vertical"
@@ -122,9 +139,9 @@
             android:clipToPadding="false"
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintEnd_toEndOf="@id/chips_filter"
-            app:layout_constraintStart_toStartOf="@id/chips_filter"
-            app:layout_constraintTop_toBottomOf="@+id/chips_filter"
+            app:layout_constraintEnd_toEndOf="@id/chips_horizontal"
+            app:layout_constraintStart_toStartOf="@id/chips_horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/chips_horizontal"
             tools:listitem="@layout/recipe_card_horizontal" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
