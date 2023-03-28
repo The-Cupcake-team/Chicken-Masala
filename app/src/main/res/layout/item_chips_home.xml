@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:scrollbars="none"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.google.android.material.chip.ChipGroup
         android:id="@+id/chips_filter"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginHorizontal="@dimen/spacing_medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:checkedChip="@+id/chip_all_recipes"
         app:chipSpacingHorizontal="@dimen/spacing_small"
         app:selectionRequired="true"
@@ -30,18 +30,11 @@
             android:text="@string/breakfast" />
 
         <com.google.android.material.chip.Chip
-            android:id="@+id/chip_dessert"
+            android:id="@+id/chip_desert"
             style="@style/chipStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/dessert" />
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip_snack"
-            style="@style/chipStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/snack"/>
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip_dinner"
@@ -50,6 +43,13 @@
             android:layout_height="wrap_content"
             android:text="@string/dinner" />
 
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_snack"
+            style="@style/chipStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/snack" />
+
     </com.google.android.material.chip.ChipGroup>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</HorizontalScrollView>
