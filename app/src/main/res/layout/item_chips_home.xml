@@ -17,35 +17,35 @@
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip_all_recipes"
-            style="@style/chipStyle"
+            style="@style/ChipStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/all_recipes" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip_breakfast"
-            style="@style/chipStyle"
+            style="@style/ChipStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/breakfast" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip_desert"
-            style="@style/chipStyle"
+            style="@style/ChipStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/dessert" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip_dinner"
-            style="@style/chipStyle"
+            style="@style/ChipStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/dinner" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip_snack"
-            style="@style/chipStyle"
+            style="@style/ChipStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/snack" />
