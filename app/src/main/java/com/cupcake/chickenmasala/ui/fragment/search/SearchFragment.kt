@@ -21,7 +21,6 @@ import com.cupcake.chickenmasala.usecase.search.SearchQuery
 import com.cupcake.chickenmasala.usecase.search.SearchUseCase
 import com.cupcake.chickenmasala.utill.DataSourceProvider
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.android.material.chip.Chip
 import java.util.Timer
 import java.util.TimerTask
 
@@ -39,8 +38,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), TextWatcher, Recip
     private val repository: Repository by lazy { RepositoryImpl(dataSource) }
     private val searchUseCase by lazy { SearchUseCase(repository) }
     private val searchAdapter by lazy { SearchAdapter(emptyList(), this) }
-    private val selectedTimerRanges: MutableList<IntRange> = mutableListOf()
-    private val selectedIngredients: MutableList<String> = mutableListOf()
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -65,7 +63,8 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), TextWatcher, Recip
         val bottomSheetBinding = FilterBottomSheetBinding.inflate(layoutInflater)
         val dialog = BottomSheetDialog(requireContext())
         with(bottomSheetBinding) {
-            checkSelectedSelections()
+            checkIngredientsSelected()
+            checkTimerRangeSelected()
             buttonApply.setOnClickListener {
                 filterRecipes()
                 dialog.dismiss()
@@ -154,22 +153,31 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), TextWatcher, Recip
     }
 
     private fun FilterBottomSheetBinding.filterRecipes() {
-        fillSelectedSelections()
+        val selectedTimerRanges = mutableListOf<IntRange>()
+        val selectedIngredients = mutableListOf<String>()
+        filterIngredients(selectedIngredients)
+        filterTimerRange(selectedTimerRanges)
         searchQuery = searchQuery.copy(
             ingredients = selectedIngredients,
-            timeRanges = if (selectedTimerRanges.isEmpty()) listOf(SearchQuery.DEFAULT_RANGE) else selectedTimerRanges,
+            timeRanges = if (selectedTimerRanges.isEmpty())
+                listOf(SearchQuery.DEFAULT_RANGE)
+            else
+                selectedTimerRanges
         )
         applySearch()
     }
 
-    private fun FilterBottomSheetBinding.fillSelectedSelections() {
-        val ranges = listOf(
+    private fun FilterBottomSheetBinding.filterTimerRange(selectedTimerRanges: MutableList<IntRange>) {
+        val timerRanges = listOf(
             Pair(chipFastFood, SearchQuery.RANGE_FAST_FOOD),
             Pair(timeRange30To45, SearchQuery.RANGE_30_45),
             Pair(timeRange45To60, SearchQuery.RANGE_45_60),
             Pair(timeMoreThan60, SearchQuery.RANGE_MORE_THAN_HOUR)
         )
+        timerRanges.filter { it.first.isChecked }.mapTo(selectedTimerRanges) { it.second }
+    }
 
+    private fun FilterBottomSheetBinding.filterIngredients(selectedIngredients: MutableList<String>) {
         val ingredients = listOf(
             Pair(ingredientGreenChillies, SearchQuery.GREEN_CHILLIES),
             Pair(ingredientGinger, SearchQuery.GINGER),
@@ -182,23 +190,11 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), TextWatcher, Recip
             Pair(ingredientKarela, SearchQuery.KARELA),
             Pair(ingredientSalt, SearchQuery.SALT)
         )
-
-        filterTimerRange(ranges, selectedTimerRanges)
-        filterIngredients(ingredients, selectedIngredients)
-    }
-
-    private fun filterTimerRange(list: List<Pair<Chip, IntRange>>, selected: MutableList<IntRange>) {
-        list.filter { it.first.isChecked }
-            .mapTo(selected) { it.second }
-    }
-
-    private fun filterIngredients(list: List<Pair<Chip, String>>, selected: MutableList<String>) {
-        list.filter { it.first.isChecked }
-            .mapTo(selected) { it.second }
+        ingredients.filter { it.first.isChecked }.mapTo(selectedIngredients) { it.second }
     }
 
 
-    private fun FilterBottomSheetBinding.checkSelectedSelections() {
+    private fun FilterBottomSheetBinding.checkTimerRangeSelected(){
         val ranges = searchQuery.timeRanges
         for (range in ranges) {
             when (range) {
@@ -216,6 +212,10 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), TextWatcher, Recip
                 }
             }
         }
+    }
+
+
+    private fun FilterBottomSheetBinding.checkIngredientsSelected() {
         val ingredients = searchQuery.ingredients
         for (ingredient in ingredients) {
             when (ingredient) {
