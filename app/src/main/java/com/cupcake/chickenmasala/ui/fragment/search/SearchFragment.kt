@@ -56,24 +56,32 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), TextWatcher, Recip
     private fun showFilterSheet() {
         val bottomSheetBinding = FilterBottomSheetBinding.inflate(layoutInflater)
         val dialog = BottomSheetDialog(requireContext())
-        with(bottomSheetBinding) {
+
+        bottomSheetBinding.apply {
             checkTimerRangeSelected()
             checkIngredientsSelected()
+
             buttonApply.setOnClickListener {
                 filterRecipes()
                 dialog.dismiss()
             }
+
             buttonClear.setOnClickListener {
                 clearFiltration()
             }
         }
-        dialog.setCancelable(false)
-        dialog.setContentView(bottomSheetBinding.root)
-        dialog.show()
+
+        dialog.apply {
+            setCancelable(false)
+            setContentView(bottomSheetBinding.root)
+            show()
+        }
     }
+
 
     private fun FilterBottomSheetBinding.checkTimerRangeSelected() {
         val ranges = searchQuery.timeRanges
+
         for (range in ranges) {
             when (range) {
                 SearchQuery.RANGE_FAST_FOOD -> {
@@ -94,6 +102,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), TextWatcher, Recip
 
     private fun FilterBottomSheetBinding.checkIngredientsSelected() {
         val ingredients = searchQuery.ingredients
+
         for (ingredient in ingredients) {
             when (ingredient) {
                 SearchQuery.GREEN_CHILLIES -> {
@@ -135,12 +144,14 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), TextWatcher, Recip
             timeRanges = listOf(SearchQuery.DEFAULT_RANGE),
             ingredients = emptyList()
         )
+
         chipGroupTime.clearCheck()
         chipGroupIngredients.clearCheck()
     }
 
     private fun FilterBottomSheetBinding.filterRecipes() {
         val selectedRanges = getSelectedTimerRanges()
+
         searchQuery = searchQuery.copy(
             ingredients = getSelectedIngredients(),
             timeRanges = if (selectedRanges.isEmpty())
@@ -210,13 +221,9 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), TextWatcher, Recip
             showEmptyRecipes()
             return
         }
-        val searchResult = SearchUseCase(repository)(searchQuery)
-        val searchQueryRecipeName = searchQuery.name
-        if (searchResult != null) {
+        SearchUseCase(repository)(searchQuery)?.let { searchResult ->
             showRecipeResult(searchResult)
-        } else {
-            showErrorMessage(searchQueryRecipeName)
-        }
+        } ?: showErrorMessage(searchQuery.name)
     }
 
     private fun showEmptyRecipes() {
