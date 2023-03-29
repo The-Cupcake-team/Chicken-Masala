@@ -36,7 +36,6 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), TextWatcher, Recip
         DataSourceProvider.getDataSource(requireActivity().application)
     }
     private val repository: Repository by lazy { RepositoryImpl(dataSource) }
-    private val searchUseCase by lazy { SearchUseCase(repository) }
     private val searchAdapter by lazy { SearchAdapter(emptyList(), this) }
 
 
@@ -70,17 +69,21 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), TextWatcher, Recip
                 dialog.dismiss()
             }
             buttonClear.setOnClickListener {
-                searchQuery = searchQuery.copy(
-                    timeRanges = listOf(SearchQuery.DEFAULT_RANGE),
-                    ingredients = emptyList()
-                )
-                chipGroupTime.clearCheck()
-                chipGroupIngredients.clearCheck()
+                clearFiltration()
             }
         }
         dialog.setCancelable(false)
         dialog.setContentView(bottomSheetBinding.root)
         dialog.show()
+    }
+
+    private fun FilterBottomSheetBinding.clearFiltration() {
+        searchQuery = searchQuery.copy(
+            timeRanges = listOf(SearchQuery.DEFAULT_RANGE),
+            ingredients = emptyList()
+        )
+        chipGroupTime.clearCheck()
+        chipGroupIngredients.clearCheck()
     }
 
     override fun afterTextChanged(recipeName: Editable?) {
@@ -100,7 +103,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), TextWatcher, Recip
             showEmptyRecipes()
             return
         }
-        val searchResult = searchUseCase(searchQuery)
+        val searchResult = SearchUseCase(repository)(searchQuery)
         val searchQueryRecipeName = searchQuery.name
         if (searchResult != null) {
             showRecipeResult(searchResult)
@@ -194,7 +197,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), TextWatcher, Recip
     }
 
 
-    private fun FilterBottomSheetBinding.checkTimerRangeSelected(){
+    private fun FilterBottomSheetBinding.checkTimerRangeSelected() {
         val ranges = searchQuery.timeRanges
         for (range in ranges) {
             when (range) {
