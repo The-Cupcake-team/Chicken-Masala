@@ -7,12 +7,12 @@ import android.view.ViewGroup
 import com.cupcake.chickenmasala.R
 import com.cupcake.chickenmasala.data.RepositoryImpl
 import com.cupcake.chickenmasala.data.model.Cuisine
-import com.cupcake.chickenmasala.ui.base.BaseFragment
 import com.cupcake.chickenmasala.databinding.FragmentCuisineBinding
-import com.cupcake.chickenmasala.ui.fragment.cuisineDishes.CuisineDishesFragment
+import com.cupcake.chickenmasala.ui.base.BaseFragment
 import com.cupcake.chickenmasala.ui.fragment.cuisine.adapter.CuisineAdapter
-import com.cupcake.chickenmasala.usecase.cuisine.GetCuisineUseCase
+import com.cupcake.chickenmasala.ui.fragment.cuisineDishes.CuisineDishesFragment
 import com.cupcake.chickenmasala.usecase.Repository
+import com.cupcake.chickenmasala.usecase.cuisine.GetCuisineUseCase
 import com.cupcake.chickenmasala.utill.DataSourceProvider
 
 class CuisineFragment: BaseFragment<FragmentCuisineBinding>(), CuisineAdapter.CuisineInteractionListener {
@@ -39,8 +39,9 @@ class CuisineFragment: BaseFragment<FragmentCuisineBinding>(), CuisineAdapter.Cu
     }
 
     override fun onClickCuisine(cuisine: Cuisine) {
+        val cuisineDishesFragment = CuisineDishesFragment.newInstance(cuisine.key)
         val transition = requireActivity().supportFragmentManager.beginTransaction()
-        transition.replace(R.id.fragmentContainer, CuisineDishesFragment())
+        transition.replace(R.id.fragmentContainer, cuisineDishesFragment)
         transition.addToBackStack(CuisineFragment().javaClass.simpleName)
         transition.commit()
     }
