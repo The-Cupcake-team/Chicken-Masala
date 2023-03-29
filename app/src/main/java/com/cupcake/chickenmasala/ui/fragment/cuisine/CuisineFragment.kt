@@ -24,18 +24,18 @@ class CuisineFragment: BaseFragment<FragmentCuisineBinding>(), CuisineAdapter.Cu
         RepositoryImpl(DataSourceProvider.getDataSource(requireActivity().application))
     }
 
-    private lateinit var cuisines:List<Cuisine>
+    private lateinit var adapter:CuisineAdapter
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         setUpCuisineAdapter()
+        binding.recyclerCuisine.adapter = adapter
     }
 
     private fun setUpCuisineAdapter(){
-        cuisines = GetCuisineUseCase(repository.getRecipes()).invoke()
-        val adapter = CuisineAdapter(this)
+        val cuisines = GetCuisineUseCase(repository).invoke()
+        adapter = CuisineAdapter(this)
         adapter.submitList(cuisines)
-        binding.recyclerCuisine.adapter = adapter
     }
 
     override fun onClickCuisine(cuisine: Cuisine) {

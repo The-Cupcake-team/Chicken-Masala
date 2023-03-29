@@ -3,6 +3,8 @@ package com.cupcake.chickenmasala.utill
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.cupcake.chickenmasala.R
+import com.cupcake.chickenmasala.data.data_sourse.DataSourceImpl
+import com.cupcake.chickenmasala.data.model.Recipe
 
 fun ImageView.setImage(url: String) {
 
@@ -13,3 +15,5 @@ fun ImageView.setImage(url: String) {
         .into(this)
 
 }
+
+
