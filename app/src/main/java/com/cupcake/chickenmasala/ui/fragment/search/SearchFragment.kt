@@ -29,15 +29,14 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), TextWatcher, Recip
     override val bindingInflater: (LayoutInflater, ViewGroup, Boolean) -> FragmentSearchBinding =
         FragmentSearchBinding::inflate
 
-    private var timerForDelaySearch: Timer? = null
-    private var searchQuery: SearchQuery = SearchQuery()
-
     private val dataSource: DataSource by lazy {
         DataSourceProvider.getDataSource(requireActivity().application)
     }
     private val repository: Repository by lazy { RepositoryImpl(dataSource) }
-    private val searchUseCase by lazy { SearchUseCase(repository) }
     private val searchAdapter by lazy { SearchAdapter(emptyList(), this) }
+    private var timerForDelaySearch: Timer? = null
+    private var searchQuery: SearchQuery = SearchQuery()
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -54,43 +53,136 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), TextWatcher, Recip
         binding.editTextName.addTextChangedListener(this)
     }
 
+    private fun showFilterSheet() {
+        val bottomSheetBinding = FilterBottomSheetBinding.inflate(layoutInflater)
+        val dialog = BottomSheetDialog(requireContext())
+
+        bottomSheetBinding.apply {
+            checkSelectedTimerRange(this)
+            checkSelectedIngredients(this)
+
+            buttonApply.setOnClickListener {
+                filterRecipes(this)
+                dialog.dismiss()
+            }
+
+            buttonClear.setOnClickListener {
+                clearFiltration(this)
+            }
+        }
+
+        dialog.apply {
+            setCancelable(false)
+            setContentView(bottomSheetBinding.root)
+            show()
+        }
+    }
+
+    private fun checkSelectedTimerRange(bottomSheetBinding: FilterBottomSheetBinding) {
+        with(bottomSheetBinding) {
+            searchQuery.timeRanges.forEach { range ->
+                when (range) {
+                    SearchQuery.RANGE_FAST_FOOD -> chipFastFood
+                    SearchQuery.RANGE_30_45 -> timeRange30To45
+                    SearchQuery.RANGE_45_60 -> timeRange45To60
+                    SearchQuery.RANGE_MORE_THAN_HOUR -> timeMoreThan60
+                    else -> null
+                }?.isChecked = true
+            }
+        }
+    }
+
+    private fun checkSelectedIngredients(bottomSheetBinding: FilterBottomSheetBinding) {
+        with(bottomSheetBinding) {
+            searchQuery.ingredients.forEach { ingredient ->
+                when (ingredient) {
+                    SearchQuery.GREEN_CHILLIES -> ingredientGreenChillies
+                    SearchQuery.GINGER -> ingredientGinger
+                    SearchQuery.CORIANDER_POWDER -> ingredientCorianderPowder
+                    SearchQuery.EGGS -> ingredientEggs
+                    SearchQuery.CLOVES_LAUNG -> ingredientCloves
+                    SearchQuery.RED_CHILL_POWDER -> ingredientRedChillPowder
+                    SearchQuery.AMCHUR -> ingredientAmchurr
+                    SearchQuery.KARELA -> ingredientKarela
+                    SearchQuery.SALT -> ingredientSalt
+                    SearchQuery.ONION -> ingredientOnion
+                    else -> null
+                }?.isChecked = true
+            }
+        }
+    }
+
+    private fun clearFiltration(bottomSheetBinding: FilterBottomSheetBinding) {
+        searchQuery = searchQuery.copy(
+            timeRanges = listOf(SearchQuery.DEFAULT_RANGE),
+            ingredients = emptyList()
+        )
+        with(bottomSheetBinding) {
+            chipGroupTime.clearCheck()
+            chipGroupIngredients.clearCheck()
+        }
+    }
+
+    private fun filterRecipes(bottomSheetBinding: FilterBottomSheetBinding) {
+        with(bottomSheetBinding) {
+            val selectedRanges = getSelectedTimerRanges(this)
+            searchQuery = searchQuery.copy(
+                ingredients = getSelectedIngredients(this),
+                timeRanges = if (selectedRanges.isEmpty())
+                    listOf(SearchQuery.DEFAULT_RANGE)
+                else
+                    selectedRanges
+            )
+        }
+        applySearch()
+    }
+
+    private fun getSelectedTimerRanges(bottomSheetBinding: FilterBottomSheetBinding): MutableList<IntRange> {
+        with(bottomSheetBinding) {
+            val selectedRanges = mutableListOf<IntRange>()
+            val timerRangePairs = listOf(
+                Pair(chipFastFood, SearchQuery.RANGE_FAST_FOOD),
+                Pair(timeRange30To45, SearchQuery.RANGE_30_45),
+                Pair(timeRange45To60, SearchQuery.RANGE_45_60),
+                Pair(timeMoreThan60, SearchQuery.RANGE_MORE_THAN_HOUR)
+            )
+            return timerRangePairs.filter { it.first.isChecked }.mapTo(selectedRanges) { it.second }
+        }
+    }
+
+    private fun getSelectedIngredients(bottomSheetBinding: FilterBottomSheetBinding): MutableList<String> {
+        with(bottomSheetBinding) {
+            val selectedIngredients = mutableListOf<String>()
+            val ingredients = listOf(
+                Pair(ingredientGreenChillies, SearchQuery.GREEN_CHILLIES),
+                Pair(ingredientGinger, SearchQuery.GINGER),
+                Pair(ingredientOnion, SearchQuery.ONION),
+                Pair(ingredientCorianderPowder, SearchQuery.CORIANDER_POWDER),
+                Pair(ingredientEggs, SearchQuery.EGGS),
+                Pair(ingredientCloves, SearchQuery.CLOVES_LAUNG),
+                Pair(ingredientRedChillPowder, SearchQuery.RED_CHILL_POWDER),
+                Pair(ingredientAmchurr, SearchQuery.AMCHUR),
+                Pair(ingredientKarela, SearchQuery.KARELA),
+                Pair(ingredientSalt, SearchQuery.SALT)
+            )
+            return ingredients.filter { it.first.isChecked }
+                .mapTo(selectedIngredients) { it.second }
+        }
+    }
+
     override fun onRecipeClick(id: Int) {
         navigateToDetailsFragment(id)
     }
 
-    private fun showFilterSheet() {
-        val bottomSheetBinding = FilterBottomSheetBinding.inflate(layoutInflater)
-        val dialog = BottomSheetDialog(requireContext())
-        with(bottomSheetBinding) {
-            checkSelectedSelections()
-            buttonApply.setOnClickListener {
-                filterRecipes()
-                dialog.dismiss()
-            }
-            buttonClear.setOnClickListener {
-                searchQuery = searchQuery.copy(
-                    timeRanges = listOf(SearchQuery.DEFAULT_RANGE),
-                    ingredients = emptyList()
-                )
-                chipGroupTime.clearCheck()
-                chipGroupIngredients.clearCheck()
-            }
+    private fun navigateToDetailsFragment(id: Int) {
+        val detailsFragment = DetailsFragment.newInstance(id)
+        requireActivity().supportFragmentManager.beginTransaction().apply {
+            add(R.id.fragmentContainer, detailsFragment)
+            addToBackStack(detailsFragment.javaClass.simpleName)
+            commit()
         }
-        dialog.setCancelable(false)
-        dialog.setContentView(bottomSheetBinding.root)
-        dialog.show()
     }
 
-    private fun FilterBottomSheetBinding.filterRecipes() {
-        val selectedRanges = mutableListOf<IntRange>()
-        val selectedIngredients = mutableListOf<String>()
-        fillSelectedSelections(selectedRanges, selectedIngredients)
-        searchQuery = searchQuery.copy(
-            ingredients = selectedIngredients,
-            timeRanges = if (selectedRanges.isEmpty()) listOf(SearchQuery.DEFAULT_RANGE) else selectedRanges,
-        )
-        applySearch()
-    }
 
     override fun afterTextChanged(recipeName: Editable?) {
         timerForDelaySearch = Timer()
@@ -105,17 +197,13 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), TextWatcher, Recip
     }
 
     private fun applySearch() {
-        if (searchQuery.name.isBlank()){
+        if (searchQuery.name.isBlank()) {
             showEmptyRecipes()
             return
         }
-        val searchResult = searchUseCase(searchQuery)
-        val searchQueryRecipeName = searchQuery.name
-        if (searchResult != null) {
+        SearchUseCase(repository)(searchQuery)?.let { searchResult ->
             showRecipeResult(searchResult)
-        } else {
-            showErrorMessage(searchQueryRecipeName)
-        }
+        } ?: showErrorMessage(searchQuery.name)
     }
 
     private fun showEmptyRecipes() {
@@ -152,90 +240,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), TextWatcher, Recip
     }
 
     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-    private fun navigateToDetailsFragment(id: Int) {
-        val detailsFragment = DetailsFragment.newInstance(id)
-        requireActivity().supportFragmentManager.beginTransaction().apply {
-            add(R.id.fragmentContainer, detailsFragment)
-            addToBackStack(detailsFragment.javaClass.simpleName)
-            commit()
-        }
-    }
 
-    private fun FilterBottomSheetBinding.fillSelectedSelections(
-        selectedRanges: MutableList<IntRange>,
-        selectedIngredients: MutableList<String>
-    ) {
-        if (chipFastFood.isChecked) selectedRanges.add(SearchQuery.RANGE_FAST_FOOD)
-        if (timeRange30To45.isChecked) selectedRanges.add(SearchQuery.RANGE_30_45)
-        if (timeRange45To60.isChecked) selectedRanges.add(SearchQuery.RANGE_45_60)
-        if (timeMoreThan60.isChecked) selectedRanges.add(SearchQuery.RANGE_MORE_THAN_HOUR)
-
-        if (ingredientGreenChillies.isChecked) selectedIngredients.add(SearchQuery.GREEN_CHILLIES)
-        if (ingredientGinger.isChecked) selectedIngredients.add(SearchQuery.GINGER)
-        if (ingredientOnion.isChecked) selectedIngredients.add(SearchQuery.ONION)
-        if (ingredientCorianderPowder.isChecked) selectedIngredients.add(SearchQuery.CORIANDER_POWDER)
-        if (ingredientEggs.isChecked) selectedIngredients.add(SearchQuery.EGGS)
-        if (ingredientCloves.isChecked) selectedIngredients.add(SearchQuery.CLOVES_LAUNG)
-        if (ingredientRedChillPowder.isChecked) selectedIngredients.add(SearchQuery.RED_CHILL_POWDER)
-        if (ingredientAmchurr.isChecked) selectedIngredients.add(SearchQuery.AMCHUR)
-        if (ingredientKarela.isChecked) selectedIngredients.add(SearchQuery.KARELA)
-        if (ingredientSalt.isChecked) selectedIngredients.add(SearchQuery.SALT)
-    }
-
-    private fun FilterBottomSheetBinding.checkSelectedSelections() {
-        val ranges = searchQuery.timeRanges
-        for (range in ranges) {
-            when (range) {
-                SearchQuery.RANGE_FAST_FOOD -> {
-                    chipFastFood.isChecked = true
-                }
-                SearchQuery.RANGE_30_45 -> {
-                    timeRange30To45.isChecked = true
-                }
-                SearchQuery.RANGE_45_60 -> {
-                    timeRange45To60.isChecked = true
-                }
-                SearchQuery.RANGE_MORE_THAN_HOUR -> {
-                    timeMoreThan60.isChecked = true
-                }
-            }
-        }
-        val ingredients = searchQuery.ingredients
-        for (ingredient in ingredients) {
-            when (ingredient) {
-                SearchQuery.GREEN_CHILLIES -> {
-                    ingredientGreenChillies.isChecked = true
-                }
-                SearchQuery.GINGER -> {
-                    ingredientGinger.isChecked = true
-                }
-                SearchQuery.CORIANDER_POWDER -> {
-                    ingredientCorianderPowder.isChecked = true
-                }
-                SearchQuery.EGGS -> {
-                    ingredientEggs.isChecked = true
-                }
-                SearchQuery.CLOVES_LAUNG -> {
-                    ingredientCloves.isChecked = true
-                }
-                SearchQuery.RED_CHILL_POWDER -> {
-                    ingredientRedChillPowder.isChecked = true
-                }
-                SearchQuery.AMCHUR -> {
-                    ingredientAmchurr.isChecked = true
-                }
-                SearchQuery.KARELA -> {
-                    ingredientKarela.isChecked = true
-                }
-                SearchQuery.SALT -> {
-                    ingredientSalt.isChecked = true
-                }
-                SearchQuery.ONION -> {
-                    ingredientOnion.isChecked = true
-                }
-            }
-        }
-    }
 
     private companion object {
         const val SEARCH_DELAY = 500L
