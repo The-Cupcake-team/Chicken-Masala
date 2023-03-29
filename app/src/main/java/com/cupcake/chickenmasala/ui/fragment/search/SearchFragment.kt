@@ -140,31 +140,30 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), TextWatcher, Recip
     }
 
     private fun FilterBottomSheetBinding.filterRecipes() {
-        val selectedTimerRanges = mutableListOf<IntRange>()
-        val selectedIngredients = mutableListOf<String>()
-        filterTimerRange(selectedTimerRanges)
-        filterIngredients(selectedIngredients)
+        val selectedRanges = getSelectedTimerRanges()
         searchQuery = searchQuery.copy(
-            ingredients = selectedIngredients,
-            timeRanges = if (selectedTimerRanges.isEmpty())
+            ingredients = getSelectedIngredients(),
+            timeRanges = if (selectedRanges.isEmpty())
                 listOf(SearchQuery.DEFAULT_RANGE)
             else
-                selectedTimerRanges
+                selectedRanges
         )
         applySearch()
     }
 
-    private fun FilterBottomSheetBinding.filterTimerRange(selectedTimerRanges: MutableList<IntRange>) {
-        val timerRanges = listOf(
+    private fun FilterBottomSheetBinding.getSelectedTimerRanges(): MutableList<IntRange> {
+        val selectedRanges = mutableListOf<IntRange>()
+        val timerRangePairs = listOf(
             Pair(chipFastFood, SearchQuery.RANGE_FAST_FOOD),
             Pair(timeRange30To45, SearchQuery.RANGE_30_45),
             Pair(timeRange45To60, SearchQuery.RANGE_45_60),
             Pair(timeMoreThan60, SearchQuery.RANGE_MORE_THAN_HOUR)
         )
-        timerRanges.filter { it.first.isChecked }.mapTo(selectedTimerRanges) { it.second }
+        return timerRangePairs.filter { it.first.isChecked }.mapTo(selectedRanges) { it.second }
     }
 
-    private fun FilterBottomSheetBinding.filterIngredients(selectedIngredients: MutableList<String>) {
+    private fun FilterBottomSheetBinding.getSelectedIngredients(): MutableList<String> {
+        val selectedIngredients = mutableListOf<String>()
         val ingredients = listOf(
             Pair(ingredientGreenChillies, SearchQuery.GREEN_CHILLIES),
             Pair(ingredientGinger, SearchQuery.GINGER),
@@ -177,12 +176,13 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), TextWatcher, Recip
             Pair(ingredientKarela, SearchQuery.KARELA),
             Pair(ingredientSalt, SearchQuery.SALT)
         )
-        ingredients.filter { it.first.isChecked }.mapTo(selectedIngredients) { it.second }
+        return ingredients.filter { it.first.isChecked }.mapTo(selectedIngredients) { it.second }
     }
 
     override fun onRecipeClick(id: Int) {
         navigateToDetailsFragment(id)
     }
+
     private fun navigateToDetailsFragment(id: Int) {
         val detailsFragment = DetailsFragment.newInstance(id)
         requireActivity().supportFragmentManager.beginTransaction().apply {
