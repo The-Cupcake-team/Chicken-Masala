@@ -36,7 +36,7 @@ class DataSourceImpl(private val context: Application) : DataSource {
                     cuisine = data[CUISINE],
                     translatedInstructions = data[TRANSLATED_INSTRUCTIONS].split(";"),
                     urlDetailsRecipe = data[URL],
-                    imageUrl = data[IMAGE_URL],
+                    imageUrl = data[IMAGE_RECIPE_URL],
                     ingredientCounts = data[INGREDIENT_COUNTS].toInt()
                 )
             )
@@ -54,7 +54,7 @@ class DataSourceImpl(private val context: Application) : DataSource {
                     id = key,
                     title = data[TITLE],
                     description = data[DESCRIPTION],
-                    imageUrl = data[IMAGEURL]
+                    imageUrl = data[IMAGE_HEALTH_URL]
                 )
             )
         }
@@ -70,13 +70,13 @@ class DataSourceImpl(private val context: Application) : DataSource {
         private const val TRANSLATED_INSTRUCTIONS = 4
         private const val URL = 5
         private const val CLEANED_INGREDIENTS = 6
-        private const val IMAGE_URL = 7
+        private const val IMAGE_RECIPE_URL = 7
         private const val INGREDIENT_COUNTS = 8
 
 
         private const val TITLE = 0
         private const val DESCRIPTION = 1
-        private const val IMAGEURL = 2
+        private const val IMAGE_HEALTH_URL = 2
 
         private const val INDIAN_FOOD_FILE_PATH = "Indian_food.csv"
         private const val HEALTH_ADVICES_FILE_PATH = "health_advices.csv"

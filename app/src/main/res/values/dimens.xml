@@ -47,4 +47,6 @@
     <dimen name="small_icon_size">16dp</dimen>
     <dimen name="default_icon_size">24dp</dimen>
 
+    <dimen name="bottom_navigation_item_height">80dp</dimen>
+
 </resources>

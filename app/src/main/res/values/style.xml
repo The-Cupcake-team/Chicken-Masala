@@ -49,7 +49,8 @@
         <item name="android:fontFamily">@font/roboto_bold</item>
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginHorizontal" tools:targetApi="o">@dimen/spacing_medium</item>
+        <item name="android:layout_marginHorizontal" tools:targetApi="o">@dimen/spacing_medium
+        </item>
         <item name="android:gravity">center</item>
         <item name="android:textAllCaps">true</item>
         <item name="android:textSize">@dimen/font_size_title_x_large</item>
@@ -69,7 +70,7 @@
         <item name="fontFamily">@font/roboto_medium</item>
     </style>
 
-    <style name="selectedChipStyle">
+    <style name="SelectedChipStyle">
         <item name="android:textSize">@dimen/font_size_label</item>
         <item name="android:fontFamily">@font/roboto_medium</item>
         <item name="checkedIconVisible">false</item>
@@ -77,14 +78,14 @@
         <item name="chipEndPadding">8dp</item>
     </style>
 
-    <style name="horizontalIconStyle">
+    <style name="HorizontalIconStyle">
         <item name="android:background">@null</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:tint">@color/tertiary_38</item>
     </style>
 
-    <style name="horizontalContentStyle">
+    <style name="HorizontalContentStyle">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:fontFamily">@font/roboto</item>
@@ -92,12 +93,12 @@
         <item name="android:textColor">@color/tertiary_38</item>
     </style>
 
-    <style name="unSelectedChipStyle">
+    <style name="UnSelectedChipStyle">
         <item name="android:textColor">@color/tertiary_38</item>
     </style>
 
 
-    <style name="details_chips">
+    <style name="DetailsChipsStyle">
         <item name="android:clickable">false</item>
         <item name="backgroundTint">@color/card</item>
         <item name="android:layout_width">wrap_content</item>
@@ -108,7 +109,7 @@
     </style>
 
 
-    <style name="details_card">
+    <style name="DetailsCardStyle">
         <item name="android:textColor">@color/tertiary_60</item>
         <item name="android:textSize">@dimen/font_size_label</item>
         <item name="fontFamily">@font/roboto</item>
@@ -117,10 +118,16 @@
     </style>
 
 
-    <style name="searchCardView" parent="@style/Widget.Material3.CardView.Filled">
+    <style name="CardViewStyle" parent="@style/Widget.Material3.CardView.Filled">
+        <item name="cardCornerRadius">@dimen/radius_medium</item>
+        <item name="cardElevation">@dimen/zero</item>
+    </style>
+
+    <style name="SearchCardViewStyle" parent="CardViewStyle">
         <item name="android:width">@dimen/item_card_recent_food_width</item>
         <item name="android:height">@dimen/item_card_recent_food_height</item>
-        <item name="android:layout_marginStart">@dimen/spacing_normal</item>
+        <item name="android:layout_marginHorizontal" tools:ignore="NewApi">@dimen/spacing_small</item>
+        <item name="android:layout_marginVertical" tools:ignore="NewApi">@dimen/spacing_small</item>
         <item name="cardCornerRadius">@dimen/radius_medium</item>
         <item name="cardElevation">@dimen/zero</item>
     </style>
@@ -134,15 +141,23 @@
         <item name="boxStrokeWidthFocused">@dimen/box_stroke_width</item>
         <item name="endIconDrawable">@drawable/icon_filter</item>
         <item name="endIconMode">custom</item>
+        <item name="hintEnabled">false</item>
         <item name="startIconDrawable">@drawable/icon_search</item>
         <item name="boxStrokeColor">@color/tertiary_60</item>
         <item name="hintTextColor">@color/tertiary_60</item>
-        <item name="android:textCursorDrawable">@null</item>
         <item name="android:fontFamily">@font/roboto_bold</item>
         <item name="android:textSize">@dimen/font_size_title</item>
     </style>
 
-    <style name="chipStyle" parent="Widget.MaterialComponents.Chip.Filter">
+    <style name="SearchEditTextStyle">
+        <item name="android:maxLines">1</item>
+        <item name="android:inputType">textFilter</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textCursorDrawable">@null</item>
+        <item name="android:textColor">@color/tertiary_87</item>
+    </style>
+
+    <style name="ChipStyle" parent="Widget.MaterialComponents.Chip.Filter">
         <item name="chipBackgroundColor">@color/chip_background_color</item>
         <item name="android:textColor">@color/chip_text_color</item>
         <item name="android:textSize">@dimen/font_size_body</item>
@@ -170,10 +185,11 @@
         <item name="android:ellipsize">end</item>
         <item name="android:gravity">center|start</item>
         <item name="android:layout_marginVertical" tools:targetApi="o">@dimen/spacing_normal</item>
-        <item name="android:layout_marginHorizontal" tools:targetApi="o">@dimen/spacing_normal</item>
+        <item name="android:layout_marginHorizontal" tools:targetApi="o">@dimen/spacing_normal
+        </item>
     </style>
 
-    <style name="TitleStyle_Medium" parent="TitleStyle">
+    <style name="TitleTwoLine" parent="TitleStyle">
         <item name="android:maxLines">2</item>
         <item name="android:textColor">@color/tertiary_87</item>
     </style>
@@ -183,7 +199,7 @@
         <item name="android:textColor">@color/secondary</item>
         <item name="android:lines">1</item>
         <item name="android:ellipsize">end</item>
-        <item name="android:drawableStart">@drawable/icon_cuisin</item>
+        <item name="android:drawableStart">@drawable/icon_cuisine</item>
         <item name="android:layout_marginBottom">@dimen/spacing_normal</item>
         <item name="android:fontFamily">@font/roboto</item>
         <item name="android:drawablePadding">@dimen/spacing_small</item>
@@ -203,6 +219,14 @@
     <style name="TimerDifferentColorStyle" parent="TimerStyle">
         <item name="android:textColor">@color/tertiary_38</item>
         <item name="android:drawableTint">@color/tertiary_38</item>
+    </style>
+
+    <style name="detailsDivider">
+        <item name="android:background">@color/tertiary_38</item>
+        <item name="android:layout_width">@dimen/box_stroke_width</item>
+        <item name="android:layout_height">@dimen/zero</item>
+        <item name="android:layout_marginTop">@dimen/spacing_small</item>
+        <item name="android:layout_marginBottom">@dimen/spacing_small</item>
     </style>
 
 </resources>

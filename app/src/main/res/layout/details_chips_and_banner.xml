@@ -7,57 +7,48 @@
     android:background="@color/background">
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/details_image"
-        android:layout_width="match_parent"
-        android:layout_height="240dp"
-        android:layout_margin="@dimen/spacing_medium"
-        android:scaleType="centerCrop"
+        android:id="@+id/image_view_details"
+        style="@style/CardImageStyle"
         tools:srcCompat="@tools:sample/backgrounds/scenic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Large" />
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/zero"
+        app:layout_constraintDimensionRatio="16:9"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/food_name"
-        style="@style/title"
+        android:id="@+id/text_view_food_name"
+        style="@style/TextStyle.Title.Medium"
+        android:layout_marginHorizontal="@dimen/spacing_medium"
+        android:layout_marginTop="@dimen/spacing_medium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/ragi_semiya_upma_recipe_ragi_millet_vermx_icelli_breakfast"
-        app:layout_constraintEnd_toEndOf="@id/details_image"
-        app:layout_constraintStart_toStartOf="@id/details_image"
-        app:layout_constraintTop_toBottomOf="@id/details_image" />
+        android:text="@string/recipe_name"
+        app:layout_constraintTop_toBottomOf="@id/image_view_details" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/clean_ingredient_recycle"
+        android:id="@+id/recycler_view_clean_ingredient"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/spacing_medium"
+        android:paddingHorizontal="@dimen/spacing_medium"
         android:layout_marginTop="@dimen/spacing_normal"
-        android:clipToPadding="true"
+        android:clipToPadding="false"
         android:orientation="horizontal"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/food_name"
+        app:layout_constraintTop_toBottomOf="@id/text_view_food_name"
         tools:listitem="@layout/item_chip" />
 
-
     <TextView
-        android:id="@+id/Details_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:id="@+id/text_view_details"
+        style="@style/TextStyle.Title.Medium"
         android:layout_marginHorizontal="@dimen/spacing_medium"
         android:layout_marginTop="@dimen/spacing_normal"
-        android:fontFamily="@font/roboto_medium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:text="@string/details_text"
-        android:textColor="@color/tertiary_87"
-        android:textSize="@dimen/font_size_title_medium"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/clean_ingredient_recycle" />
+        app:layout_constraintTop_toBottomOf="@id/recycler_view_clean_ingredient" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/details_container"
+        android:id="@+id/container_details"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/spacing_medium"
@@ -66,96 +57,82 @@
         android:paddingVertical="@dimen/spacing_normal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/Details_text">
+        app:layout_constraintTop_toBottomOf="@id/text_view_details">
 
         <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/timer_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/icon_timer"
+            style="@style/HorizontalIconStyle"
             android:layout_marginBottom="@dimen/spacing_small"
             android:src="@drawable/icon_timer"
-            android:tint="@color/tertiary_38"
-            app:layout_constraintBottom_toTopOf="@id/timer_text"
-            app:layout_constraintEnd_toEndOf="@id/timer_text"
-            app:layout_constraintStart_toStartOf="@id/timer_text"
+            app:layout_constraintBottom_toTopOf="@id/text_view_timer"
+            app:layout_constraintEnd_toEndOf="@id/text_view_timer"
+            app:layout_constraintStart_toStartOf="@id/text_view_timer"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/timer_text"
+            android:id="@+id/text_view_timer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/_45_min"
             android:textColor="@color/tertiary_60"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/line_first"
+            app:layout_constraintEnd_toStartOf="@id/divider_time_and_cuisine"
             app:layout_constraintStart_toStartOf="parent" />
 
         <View
-            android:id="@+id/line_first"
-            android:layout_width="0.25dp"
-            android:layout_height="0dp"
-            android:layout_marginVertical="4dp"
-            android:background="@color/tertiary_38"
-            android:rotation="180"
-            app:layout_constraintBottom_toBottomOf="@id/timer_text"
-            app:layout_constraintEnd_toStartOf="@+id/cuisine_text"
-            app:layout_constraintStart_toEndOf="@+id/timer_text"
-            app:layout_constraintTop_toTopOf="@id/timer_icon" />
+            android:id="@+id/divider_time_and_cuisine"
+            style="@style/detailsDivider"
+            app:layout_constraintBottom_toBottomOf="@id/text_view_timer"
+            app:layout_constraintEnd_toStartOf="@+id/text_view_cuisine"
+            app:layout_constraintStart_toEndOf="@+id/text_view_timer"
+            app:layout_constraintTop_toTopOf="@id/icon_timer" />
 
         <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/cuisine_icon"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:src="@drawable/icon_cuisin"
-            android:tint="@color/tertiary_38"
-            app:layout_constraintEnd_toEndOf="@id/cuisine_text"
-            app:layout_constraintStart_toStartOf="@id/cuisine_text"
+            android:id="@+id/icon_cuisine"
+            style="@style/HorizontalIconStyle"
+            android:layout_marginBottom="@dimen/spacing_small"
+            android:src="@drawable/icon_cuisine"
+            app:layout_constraintEnd_toEndOf="@id/text_view_cuisine"
+            app:layout_constraintStart_toStartOf="@id/text_view_cuisine"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/cuisine_text"
+            android:id="@+id/text_view_cuisine"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/indian"
             android:textColor="@color/tertiary_60"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/line_second"
-            app:layout_constraintStart_toEndOf="@id/line_first" />
-
+            app:layout_constraintEnd_toStartOf="@id/divider_cuisine_and_ingredients"
+            app:layout_constraintStart_toEndOf="@id/divider_time_and_cuisine" />
 
         <View
-            android:id="@+id/line_second"
-            android:layout_width="0.25dp"
-            android:layout_height="0dp"
-            android:layout_marginVertical="4dp"
-            android:background="@color/tertiary_38"
-            android:rotation="180"
-            app:layout_constraintBottom_toBottomOf="@id/cuisine_text"
-            app:layout_constraintEnd_toStartOf="@+id/ingredient_count"
-            app:layout_constraintStart_toEndOf="@+id/cuisine_text"
-            app:layout_constraintTop_toTopOf="@id/cuisine_icon" />
+            android:id="@+id/divider_cuisine_and_ingredients"
+            style="@style/detailsDivider"
+            app:layout_constraintBottom_toBottomOf="@id/text_view_cuisine"
+            app:layout_constraintEnd_toStartOf="@+id/text_view_ingredient_count"
+            app:layout_constraintStart_toEndOf="@+id/text_view_cuisine"
+            app:layout_constraintTop_toTopOf="@id/icon_cuisine" />
 
         <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/ingredient_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/spacing_small"
+            android:id="@+id/icon_ingredient"
+            style="@style/HorizontalIconStyle"
             android:src="@drawable/icon_whisk"
-            android:tint="@color/tertiary_38"
-            app:layout_constraintBottom_toTopOf="@id/ingredient_count"
-            app:layout_constraintEnd_toEndOf="@id/ingredient_count"
-            app:layout_constraintStart_toStartOf="@id/ingredient_count"
+            android:layout_marginBottom="@dimen/spacing_small"
+            app:layout_constraintBottom_toTopOf="@id/text_view_ingredient_count"
+            app:layout_constraintEnd_toEndOf="@id/text_view_ingredient_count"
+            app:layout_constraintStart_toStartOf="@id/text_view_ingredient_count"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/ingredient_count"
+            android:id="@+id/text_view_ingredient_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/_12"
             android:textColor="@color/tertiary_60"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/line_second" />
+            app:layout_constraintStart_toEndOf="@id/divider_cuisine_and_ingredients" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

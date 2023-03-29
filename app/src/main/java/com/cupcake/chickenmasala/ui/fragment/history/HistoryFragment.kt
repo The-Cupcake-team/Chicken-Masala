@@ -30,9 +30,9 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding>() {
     private fun initView() {
         val imagesUrl = repository.getHistoryImagesUrl()
         with(binding) {
-            imageHistoryOne.setImage(imagesUrl[0])
-            imageHistoryTwo.setImage(imagesUrl[1])
-            imageHistoryThree.setImage(imagesUrl[2])
+            imageViewHistoryFirstSection.setImage(imagesUrl[0])
+            imageViewHistorySecondSection.setImage(imagesUrl[1])
+            imageViewHistoryThirdSection.setImage(imagesUrl[2])
         }
     }
 
