@@ -19,6 +19,7 @@ import com.cupcake.chickenmasala.ui.base.BaseFragment
 import com.cupcake.chickenmasala.ui.util.OnItemClickListener
 import com.cupcake.chickenmasala.ui.fragment.health.HealthyFragment
 import com.cupcake.chickenmasala.ui.fragment.details.DetailsFragment
+import com.cupcake.chickenmasala.ui.fragment.dishes.DishesFragment
 import com.cupcake.chickenmasala.ui.fragment.home.adapter.HorizontalRecipeRecyclerAdapter
 import com.cupcake.chickenmasala.ui.fragment.home.adapter.VerticalRecipeRecyclerAdapter
 import com.cupcake.chickenmasala.ui.fragment.home.adapter.ViewPagerAdapter
@@ -78,8 +79,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnItemClickListener<Re
         })
 
         binding.viewAll.setOnClickListener {
-            // DishesFragment not implemented yet
-            //  navigateToFragment(DishesFragment)
+             navigateToFragment(DishesFragment())
         }
 
         binding.viewPager.setOnClickListener {
@@ -89,7 +89,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnItemClickListener<Re
 
         binding.chipsFilter.setOnCheckedStateChangeListener { group, checkedIds ->
             val chip = group.findViewById<Chip>(checkedIds[0])
-            if(chip.text.toString() == "All recipes"){
+            if(chip.text.toString() == ALL_RECIPES){
                 val data = repository.getRecipes()
                 verticalRecipeRecyclerAdapter.submitList(data)
             }else{
@@ -116,7 +116,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnItemClickListener<Re
 
     private fun setUpTransformer() {
         val transformer = CompositePageTransformer()
-        transformer.addTransformer(MarginPageTransformer(40))
+        transformer.addTransformer(MarginPageTransformer(20))
         transformer.addTransformer { page, position ->
             val r = 1 - kotlin.math.abs(position)
             page.scaleY = 0.85f + r * 0.14f
@@ -154,6 +154,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnItemClickListener<Re
     companion object {
         const val RECENT_FOOD_LIMIT = 10
         const val ADVICES_LIMIT = 7
+        const val ALL_RECIPES = "All recipes"
     }
 
 }
