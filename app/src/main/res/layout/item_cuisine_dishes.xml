@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_margin="@dimen/spacing_small"
+    android:layout_height="@dimen/home_card_height"
+    style="@style/CardViewStyle">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/image_view_recipe_image"
+            android:layout_width="@dimen/zero"
+            android:layout_height="@dimen/zero"
+            android:contentDescription="@string/image"
+            android:foreground="@drawable/linear_overlay"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+        <TextView
+            android:id="@+id/text_view_recipe_name"
+            android:layout_width="@dimen/zero"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/radius_normal"
+            android:layout_marginBottom="@dimen/spacing_small"
+            android:fontFamily="@font/roboto_medium"
+            android:gravity="start|center"
+            android:text="@string/spaghetti_meatballs"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_size_body"
+            app:layout_constraintBottom_toTopOf="@+id/text_view_cuisine"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/image_view_recipe_image" />
+
+        <TextView
+            android:id="@+id/text_view_cuisine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:layout_marginBottom="@dimen/spacing_normal"
+            android:drawablePadding="@dimen/spacing_small"
+            android:text="@string/indian"
+            android:textColor="@color/white"
+            app:drawableStartCompat="@drawable/icon_whisk"
+            app:drawableTint="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/image_view_recipe_image"
+            app:layout_constraintStart_toStartOf="@+id/text_view_recipe_name" />
+
+        <TextView
+            android:id="@+id/text_view_time"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/zero"
+            android:layout_marginStart="@dimen/spacing_large"
+            android:drawablePadding="@dimen/spacing_small"
+            android:text="@string/_5_min"
+            android:textColor="@color/white"
+            app:drawableStartCompat="@drawable/icon_timer"
+            app:drawableTint="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/text_view_cuisine"
+            app:layout_constraintStart_toEndOf="@id/text_view_cuisine"
+            app:layout_constraintTop_toTopOf="@id/text_view_cuisine" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>
