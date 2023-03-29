@@ -116,13 +116,16 @@
         <item name="android:layout_marginBottom">@dimen/spacing_normal</item>
     </style>
 
+    <style name="CardViewStyle" parent="@style/Widget.Material3.CardView.Filled">
+        <item name="cardCornerRadius">@dimen/radius_medium</item>
+        <item name="cardElevation">@dimen/zero</item>
+    </style>
 
-    <style name="searchCardView" parent="@style/Widget.Material3.CardView.Filled">
+    <style name="searchCardView" parent="CardViewStyle">
         <item name="android:width">@dimen/item_card_recent_food_width</item>
         <item name="android:height">@dimen/item_card_recent_food_height</item>
         <item name="android:layout_marginStart">@dimen/spacing_normal</item>
-        <item name="cardCornerRadius">@dimen/radius_medium</item>
-        <item name="cardElevation">@dimen/zero</item>
+
     </style>
 
     <style name="SearchBoxStyle" parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
