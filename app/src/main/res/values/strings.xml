@@ -37,9 +37,10 @@
     <string name="spaghetti_meatballs">Spaghetti Meatballs</string>
     <string name="spicy_tomato_rice_recipe">Spicy Tomato Rice (Recipe)</string>
     <string name="all_recipes">All recipes</string>
-    <string name="meat">Meat</string>
-    <string name="cheese">Cheese</string>
-    <string name="avocado">Avocado</string>
+    <string name="breakfast">World Breakfast</string>
+    <string name="dessert">Dessert</string>
+    <string name="dinner">Dinner</string>
+    <string name="snack">Snack</string>
     <string name="view_all_cards_icon">view all cards icon</string>
     <string name="timer_icon_string">Timer icon</string>
     <string name="cuisine_icon_string">cuisine icon</string>

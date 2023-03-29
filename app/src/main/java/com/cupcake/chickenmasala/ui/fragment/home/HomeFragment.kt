@@ -19,13 +19,16 @@ import com.cupcake.chickenmasala.ui.base.BaseFragment
 import com.cupcake.chickenmasala.ui.util.OnItemClickListener
 import com.cupcake.chickenmasala.ui.fragment.health.HealthyFragment
 import com.cupcake.chickenmasala.ui.fragment.details.DetailsFragment
+import com.cupcake.chickenmasala.ui.fragment.dishes.DishesFragment
 import com.cupcake.chickenmasala.ui.fragment.home.adapter.HorizontalRecipeRecyclerAdapter
 import com.cupcake.chickenmasala.ui.fragment.home.adapter.VerticalRecipeRecyclerAdapter
 import com.cupcake.chickenmasala.ui.fragment.home.adapter.ViewPagerAdapter
 import com.cupcake.chickenmasala.usecase.Repository
+import com.cupcake.chickenmasala.usecase.home.GetFilteredFoodUseCase
 import com.cupcake.chickenmasala.usecase.home.GetHealthAdvicesUseCase
 import com.cupcake.chickenmasala.usecase.home.GetRecentFoodUseCase
 import com.cupcake.chickenmasala.utill.DataSourceProvider
+import com.google.android.material.chip.Chip
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnItemClickListener<Recipe> {
     override val LOG_TAG: String = this::class.java.name
@@ -47,24 +50,23 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnItemClickListener<Re
         super.onViewCreated(view, savedInstanceState)
 
         setupViewPager()
-        horizontalRecipeRecycler()
+        setupHorizontalRecipeRecycler()
         setupVerticalRecipeRecyclerView()
         setUpTransformer()
         addCallbacks()
     }
 
-    private fun horizontalRecipeRecycler() {
+    private fun setupHorizontalRecipeRecycler() {
         horizontalRecipeRecyclerAdapter = HorizontalRecipeRecyclerAdapter(this)
         val data = GetRecentFoodUseCase(repository)(RECENT_FOOD_LIMIT)
         horizontalRecipeRecyclerAdapter.submitList(data)
-        binding.horizontalRecyclerView.adapter = horizontalRecipeRecyclerAdapter
+        binding.recyclerViewHorizontal.adapter = horizontalRecipeRecyclerAdapter
     }
-
 
     private fun setupVerticalRecipeRecyclerView() {
         verticalRecipeRecyclerAdapter = VerticalRecipeRecyclerAdapter(this)
         verticalRecipeRecyclerAdapter.submitList(repository.getRecipes())
-        binding.verticalRecycler.adapter = verticalRecipeRecyclerAdapter
+        binding.recyclerViewVertical.adapter = verticalRecipeRecyclerAdapter
     }
 
     private fun addCallbacks() {
@@ -76,9 +78,24 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnItemClickListener<Re
             }
         })
 
-        binding.viewAllIcon.setOnClickListener {
-            // DishesFragment not implemented yet
-            //  navigateToFragment(DishesFragment)
+        binding.viewAll.setOnClickListener {
+             navigateToFragment(DishesFragment())
+        }
+
+        binding.viewPager.setOnClickListener {
+            val healthyFragment = HealthyFragment.newInstance(id)
+            navigateToFragment(healthyFragment)
+        }
+
+        binding.chipsFilter.setOnCheckedStateChangeListener { group, checkedIds ->
+            val chip = group.findViewById<Chip>(checkedIds[0])
+            if(chip.text.toString() == ALL_RECIPES){
+                val data = repository.getRecipes()
+                verticalRecipeRecyclerAdapter.submitList(data)
+            }else{
+                val data = GetFilteredFoodUseCase(repository)(chip.text.toString())
+                verticalRecipeRecyclerAdapter.submitList(data)
+            }
         }
     }
 
@@ -90,7 +107,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnItemClickListener<Re
         viewPagerAdapter = ViewPagerAdapter(viewPager, advices)
         viewPagerAdapter.submitList(advices)
 
-
         viewPager.adapter = viewPagerAdapter
         viewPager.offscreenPageLimit = 3
         viewPager.clipToPadding = false
@@ -98,23 +114,27 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnItemClickListener<Re
         viewPager.getChildAt(0).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
     }
 
-    private fun navigateToHealthFragment(id: Int) {
-        val healthFragment = HealthyFragment.newInstance(id)
-        requireActivity().supportFragmentManager.beginTransaction().apply {
-            replace(R.id.fragmentContainer, healthFragment)
-            addToBackStack(healthFragment.javaClass.simpleName)
-            commit()
-        }
-    }
-
     private fun setUpTransformer() {
         val transformer = CompositePageTransformer()
-        transformer.addTransformer(MarginPageTransformer(40))
+        transformer.addTransformer(MarginPageTransformer(20))
         transformer.addTransformer { page, position ->
             val r = 1 - kotlin.math.abs(position)
             page.scaleY = 0.85f + r * 0.14f
         }
         viewPager.setPageTransformer(transformer)
+    }
+
+    override fun onItemClicked(item: Recipe) {
+        val detailsFragment = DetailsFragment.newInstance(item.id)
+        navigateToFragment(detailsFragment)
+    }
+
+    private fun navigateToFragment(fragment: Fragment) {
+        requireActivity().supportFragmentManager.beginTransaction().apply {
+            add(R.id.fragmentContainer, fragment)
+            addToBackStack(fragment.javaClass.simpleName)
+            commit()
+        }
     }
 
     override fun onPause() {
@@ -131,24 +151,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnItemClickListener<Re
         viewPager.currentItem = viewPager.currentItem + 1
     }
 
-    override fun onItemClicked(item: Recipe) {
-        val detailsFragment = DetailsFragment.newInstance(item.id)
-        requireActivity().supportFragmentManager.beginTransaction().apply {
-            replace(R.id.fragmentContainer, detailsFragment)
-            addToBackStack(detailsFragment.javaClass.simpleName)
-            commit()
-        }
-    }
-
-    private fun navigateToFragment(fragment: Fragment) {
-        val transition = requireActivity().supportFragmentManager.beginTransaction()
-        transition.add(R.id.fragmentContainer, fragment)
-        transition.commit()
-    }
-
     companion object {
         const val RECENT_FOOD_LIMIT = 10
         const val ADVICES_LIMIT = 7
+        const val ALL_RECIPES = "All recipes"
     }
 
 }
