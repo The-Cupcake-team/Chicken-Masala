@@ -19,8 +19,12 @@ fun ImageView.setImage(url: String) {
 fun Int.toFormatTime(): String{
     val hours = this/60
     val min = this % 60
-    return (if(hours!= 0)
-        "${hours}h ${min}m\"
-    else
-        "${min}m")
+    var formatTime = ""
+    if (hours != 0){
+        formatTime = "${hours}h "
+    }
+    if (min != 0){
+        formatTime += "${min}m"
+    }
+    return formatTime
 }
