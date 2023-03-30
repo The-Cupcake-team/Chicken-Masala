@@ -6,5 +6,5 @@ interface HomeInteractorListener {
     fun onViewPagerClicked(id: Int)
     fun onViewAllButtonClicked()
     fun onCardClicked(id: Int)
-    fun onChipClicked(group: ChipGroup ,chipId: Int)
+    fun onChipClicked(chipId: Int)
 }

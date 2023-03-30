@@ -63,8 +63,8 @@ class HomeRecyclerAdapter(
     }
 
     private fun bindChipsFiltered(holder: ChipsViewHolder, position: Int) {
-        holder.binding.chipsFilter.setOnCheckedStateChangeListener { group, checkedIds ->
-            listener.onChipClicked(group, checkedIds[0])
+        holder.binding.chipsFilter.setOnCheckedStateChangeListener { _, checkedIds ->
+            listener.onChipClicked(checkedIds[0])
         }
     }
 
@@ -220,7 +220,6 @@ class HomeRecyclerAdapter(
         const val RECENT_FOOD = 1
         const val CHIPS_FILTER = 2
         const val HORIZONTAL_RECIPE = 3
-        const val ALL_RECIPES = "All recipes"
     }
 
 }
