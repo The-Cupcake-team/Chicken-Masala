@@ -5,11 +5,11 @@ import android.view.ViewGroup
 import com.cupcake.chickenmasala.data.model.Recipe
 import com.cupcake.chickenmasala.databinding.SearchCardViewBinding
 import com.cupcake.chickenmasala.ui.base.BaseAdapter
-import com.cupcake.chickenmasala.ui.util.OnItemClickListener
+import com.cupcake.chickenmasala.usecase.home.HomeInteractorListener
 import com.cupcake.chickenmasala.utill.setImage
 
 
-class HorizontalRecipeRecyclerAdapter(private val listener: OnItemClickListener<Recipe>) :
+class HorizontalRecipeRecyclerAdapter(private val listener: HomeInteractorListener) :
     BaseAdapter<Recipe, SearchCardViewBinding>() {
     override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) ->
     SearchCardViewBinding = SearchCardViewBinding::inflate
@@ -27,7 +27,7 @@ class HorizontalRecipeRecyclerAdapter(private val listener: OnItemClickListener<
             cuisineName.text = item.cuisine
             prepareTime.text = item.totalTimeInMin.toString()
             root.setOnClickListener{
-                listener.onItemClicked(item)
+                listener.onCardClicked(item.id)
             }
         }
     }
