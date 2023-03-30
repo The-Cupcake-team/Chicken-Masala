@@ -7,20 +7,17 @@ import androidx.viewpager2.widget.ViewPager2
 import com.cupcake.chickenmasala.data.model.HealthAdvice
 import com.cupcake.chickenmasala.databinding.SliderImageContainerBinding
 import com.cupcake.chickenmasala.ui.base.BaseAdapter
+import com.cupcake.chickenmasala.usecase.home.HomeInteractorListener
 import com.cupcake.chickenmasala.utill.setImage
 
 class ViewPagerAdapter(
     private val viewPager: ViewPager2,
-    private val advices: List<HealthAdvice>
+    private val advices: List<HealthAdvice>,
+    private val listener: HomeInteractorListener
 ) : BaseAdapter<HealthAdvice, SliderImageContainerBinding>() {
 
     override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> SliderImageContainerBinding =
         SliderImageContainerBinding::inflate
-
-    private var onItemClickListener: ((Int) -> Unit)? = null
-    fun onItemClickListener(listener: (Int) -> Unit) {
-        onItemClickListener = listener
-    }
 
     override fun bindItem(binding: SliderImageContainerBinding, item: HealthAdvice) {
         binding.apply {
@@ -28,7 +25,8 @@ class ViewPagerAdapter(
             healthImage.setImage(item.imageUrl)
             adviceName.text = item.title
             healthImage.setOnClickListener {
-                onItemClickListener?.let { it(item.id) } }
+                listener.onViewPagerClicked(item.id)
+            }
         }
     }
 
