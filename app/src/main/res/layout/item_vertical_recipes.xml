@@ -1,20 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/card_height_small"
+    android:layout_marginBottom="@dimen/spacing_normal"
+    android:backgroundTint="@color/card"
+    android:layout_marginHorizontal="@dimen/spacing_medium"
+    app:cardCornerRadius="@dimen/radius_medium"
+    app:cardElevation="@dimen/zero"
+    app:strokeWidth="@dimen/zero">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view_vertical"
-        android:layout_width="@dimen/zero"
-        android:layout_height="wrap_content"
-        android:clipToPadding="false"
-        android:orientation="vertical"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/recipe_card_horizontal" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.utils.widget.ImageFilterView
+            android:id="@+id/card_image"
+            android:layout_width="@dimen/card_width"
+            android:layout_height="@dimen/zero"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:round="@dimen/radius_medium"
+            tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+        <TextView
+            android:id="@+id/recipe_name"
+            style="@style/TitleTwoLine"
+            app:layout_constraintBottom_toTopOf="@+id/cuisine_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/card_image"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/spicy_tomato_rice_recipe" />
+
+        <TextView
+            android:id="@+id/cuisine_name"
+            style="@style/CuisineNameStyle"
+            android:layout_width="@dimen/zero"
+            android:layout_marginEnd="@dimen/spacing_small"
+            android:layout_marginBottom="@dimen/spacing_normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/recipe_time"
+            app:layout_constraintStart_toStartOf="@+id/recipe_name"
+            tools:text="@string/indian" />
+
+        <TextView
+            android:id="@+id/recipe_time"
+            style="@style/TimerDifferentColorStyle"
+            android:layout_width="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/cuisine_name"
+            app:layout_constraintEnd_toEndOf="@+id/recipe_name"
+            app:layout_constraintTop_toTopOf="@+id/cuisine_name"
+            tools:text="@string/_5_min" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</com.google.android.material.card.MaterialCardView>

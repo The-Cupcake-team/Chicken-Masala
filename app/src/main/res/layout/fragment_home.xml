@@ -1,151 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_home"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/view_pager"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/zero"
-            app:layout_constraintDimensionRatio="16:9"
-            android:layout_marginTop="@dimen/spacing_medium"
-            android:paddingHorizontal="@dimen/spacing_medium"
-            app:layout_constraintBottom_toTopOf="@id/header_row"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <LinearLayout
-            android:id="@+id/header_row"
-            android:layout_width="@dimen/zero"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_medium"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/view_pager">
-
-            <TextView
-                android:id="@+id/header_title"
-                android:layout_width="@dimen/zero"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginStart="@dimen/spacing_medium"
-                android:fontFamily="@font/roboto_medium"
-                android:text="@string/recent_food"
-                android:textColor="@color/tertiary_87"
-                android:textSize="@dimen/font_size_title_medium"
-                tools:ignore="InefficientWeight" />
-
-            <TextView
-                android:id="@+id/view_all"
-                style="@style/TextStyle.Body.Small"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/spacing_medium"
-                android:gravity="end"
-                android:background="@drawable/button_rectangle_ripple"
-                android:clickable="true"
-                android:drawablePadding="@dimen/spacing_small"
-                android:focusable="true"
-                android:padding="@dimen/spacing_normal"
-                android:text="@string/view_all"
-                android:textColor="@color/tertiary_60"
-                app:drawableEndCompat="@drawable/icon_forward" />
+        android:layout_height="match_parent"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
+    </androidx.recyclerview.widget.RecyclerView>
 
 
-        </LinearLayout>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view_horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_normal"
-            android:clipToPadding="false"
-            android:orientation="horizontal"
-            android:paddingStart="@dimen/spacing_normal"
-            android:paddingEnd="@dimen/spacing_medium"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/header_row"
-            tools:listitem="@layout/search_card_view" />
-
-        <HorizontalScrollView
-            android:id="@+id/chips_horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/spacing_medium"
-            android:layout_marginTop="@dimen/spacing_medium"
-            android:scrollbars="none"
-            app:layout_constraintTop_toBottomOf="@+id/recycler_view_horizontal">
-
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/chips_filter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:checkedChip="@+id/chip_all_recipes"
-                app:chipSpacingHorizontal="@dimen/spacing_small"
-                app:selectionRequired="true"
-                app:singleSelection="true">
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip_all_recipes"
-                    style="@style/ChipStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/all_recipes" />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip_breakfast"
-                    style="@style/ChipStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/breakfast" />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip_desert"
-                    style="@style/ChipStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/dessert" />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip_dinner"
-                    style="@style/ChipStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/dinner" />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip_snack"
-                    style="@style/ChipStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/snack" />
-
-            </com.google.android.material.chip.ChipGroup>
-        </HorizontalScrollView>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view_vertical"
-            android:layout_width="@dimen/zero"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_normal"
-            android:clipToPadding="false"
-            android:orientation="vertical"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintEnd_toEndOf="@id/chips_horizontal"
-            app:layout_constraintStart_toStartOf="@id/chips_horizontal"
-            app:layout_constraintTop_toBottomOf="@+id/chips_horizontal"
-            tools:listitem="@layout/recipe_card_horizontal" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
 
 
