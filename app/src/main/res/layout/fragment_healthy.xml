@@ -17,32 +17,35 @@
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/collapsingToolbarLayout"
-            style="@style/TextStyle.Title.Medium"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clipToPadding="true"
             android:fitsSystemWindows="true"
-            app:collapsedTitleTextColor="@color/black"
+            app:collapsedTitleTextAppearance="@style/TextStyle.Title.Medium"
+            app:collapsedTitleTextColor="@color/tertiary_60"
             app:contentScrim="@color/background"
-            app:expandedTitleTextColor="@color/white"
+            app:expandedTitleTextAppearance="@style/TextStyle.Title.Medium"
+            app:expandedTitleTextColor="@color/tertiary_60"
+            app:layout_collapseMode="parallax"
+            app:layout_collapseParallaxMultiplier="0.5"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:maxLines="1"
             app:titleTextEllipsize="end">
 
-            <ImageView
+            <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/healthy_image"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fitsSystemWindows="true"
+                android:layout_height="@dimen/healthy_card_height"
+                android:cropToPadding="true"
+                android:fitsSystemWindows="false"
                 android:scaleType="centerCrop"
-                android:contentDescription="@string/image"
                 tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
             <View
                 android:id="@+id/shadow"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/linear_overlay" />
+                android:background="@drawable/linear_collapsing_overlay" />
 
 
             <com.google.android.material.appbar.MaterialToolbar
@@ -51,9 +54,9 @@
                 android:layout_height="?attr/actionBarSize"
                 android:background="@android:color/transparent"
                 android:minHeight="?attr/actionBarSize"
-                android:paddingBottom="@dimen/spacing_large"
                 app:layout_collapseMode="pin"
                 app:navigationIcon="@drawable/icon_back"
+                app:navigationIconTint="@color/black"
                 app:title="Avoid ultra-processed food" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
