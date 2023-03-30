@@ -33,7 +33,7 @@
             app:titleTextEllipsize="end">
 
             <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/healthy_image"
+                android:id="@+id/image_view_healthy"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/healthy_card_height"
                 android:cropToPadding="true"
@@ -56,8 +56,8 @@
                 android:minHeight="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
                 app:navigationIcon="@drawable/icon_back"
-                app:navigationIconTint="@color/black"
-                app:title="Avoid ultra-processed food" />
+                app:navigationIconTint="@color/tertiary_87"
+                tools:title="Avoid ultra-processed food" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
