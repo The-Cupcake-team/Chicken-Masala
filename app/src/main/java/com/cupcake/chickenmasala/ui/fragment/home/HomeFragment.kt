@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.cupcake.chickenmasala.R
 import com.cupcake.chickenmasala.data.RepositoryImpl
+import com.cupcake.chickenmasala.data.model.Recipe
 import com.cupcake.chickenmasala.databinding.FragmentHomeBinding
 import com.cupcake.chickenmasala.ui.base.BaseFragment
 import com.cupcake.chickenmasala.ui.fragment.details.DetailsFragment
@@ -16,13 +17,12 @@ import com.cupcake.chickenmasala.ui.fragment.home.adapter.HomeRecyclerAdapter
 import com.cupcake.chickenmasala.ui.fragment.home.enums.HomeItem
 import com.cupcake.chickenmasala.ui.fragment.home.enums.HomeItemType
 import com.cupcake.chickenmasala.usecase.Repository
+import com.cupcake.chickenmasala.usecase.home.GetAllFoodUseCase
 import com.cupcake.chickenmasala.usecase.home.GetFilteredFoodUseCase
 import com.cupcake.chickenmasala.usecase.home.GetHealthAdvicesUseCase
 import com.cupcake.chickenmasala.usecase.home.GetRecentFoodUseCase
 import com.cupcake.chickenmasala.utill.DataSourceProvider
 import com.cupcake.chickenmasala.utill.toHomeItem
-import com.google.android.material.chip.Chip
-import com.google.android.material.chip.ChipGroup
 
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(), HomeInteractorListener {
@@ -44,19 +44,32 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), HomeInteractorListener
     }
 
     private fun setup(){
-        val advices = GetHealthAdvicesUseCase(repository)(ADVICES_LIMIT)
-        itemsList.add(HomeItem(advices,HomeItemType.HEALTHY_VIEW_PAGER))
 
-        val recentFood = GetRecentFoodUseCase(repository)(RECENT_FOOD_LIMIT)
-        itemsList.add(HomeItem(recentFood,HomeItemType.HORIZONTAL_RECYCLER))
-
-        itemsList.add(HomeItem(emptyList<String>(),HomeItemType.CHIPS_FILTERED))
-
-        val allRecipes = repository.getRecipes().shuffled()
-        itemsList.addAll(allRecipes.map { it.toHomeItem() })
+        setupViewPager()
+        setupRecentFoodRecycler()
+        setupChips()
+        setupFilteredFoodRecycler()
 
         homeRecyclerAdapter = HomeRecyclerAdapter(this,itemsList)
         binding.recyclerViewHome.adapter = homeRecyclerAdapter
+    }
+
+    private fun setupViewPager(){
+        val advices = GetHealthAdvicesUseCase(repository)(ADVICES_LIMIT)
+        itemsList.add(HomeItem(advices,HomeItemType.HEALTHY_VIEW_PAGER))
+    }
+
+    private fun setupRecentFoodRecycler(){
+        val recentFood = GetRecentFoodUseCase(repository)(RECENT_FOOD_LIMIT)
+        itemsList.add(HomeItem(recentFood,HomeItemType.HORIZONTAL_RECYCLER))
+    }
+
+    private fun setupFilteredFoodRecycler(){
+        val allRecipes = getAllRecipes()
+        itemsList.addAll(allRecipes.map { it.toHomeItem() })
+    }
+    private fun setupChips(){
+        itemsList.add(HomeItem(emptyList<String>(),HomeItemType.CHIPS_FILTERED))
     }
     override fun onViewPagerClicked(id: Int) {
         val healthyFragment = HealthyFragment.newInstance(id)
@@ -73,17 +86,20 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), HomeInteractorListener
         navigateToFragment(detailsFragment)
     }
 
-    override fun onChipClicked(group: ChipGroup, chipId: Int) {
-        val chip = group.findViewById<Chip>(chipId)
-        if(chip.text.toString() == ALL_RECIPES){
-            val allRecipes = repository.getRecipes().shuffled()
+    override fun onChipClicked(chipId: Int) {
+        if(chipId == ALL_RECIPES_ID){
             itemsList = itemsList.take(3).toMutableList()
-            itemsList.addAll(
-                allRecipes.map { it.toHomeItem() }
-            )
+            setupFilteredFoodRecycler()
             homeRecyclerAdapter.submitList(itemsList)
         }else{
-            val data = GetFilteredFoodUseCase(repository)(chip.text.toString())
+            var cuisine = ALL_RECIPES_TEXT
+            when(chipId){
+                WORLD_BREAKFAST_ID -> cuisine = WORLD_BREAKFAST_TEXT
+                DESSERT_ID -> cuisine = DESSERT_TEXT
+                DINNER_ID -> cuisine = DINNER_TEXT
+                SNACKS_ID -> cuisine = SNACKS_TEXT
+            }
+            val data = GetFilteredFoodUseCase(repository)(cuisine)
             itemsList = itemsList.take(3).toMutableList()
             itemsList.addAll(
                 data.map { it.toHomeItem() }
@@ -99,10 +115,28 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), HomeInteractorListener
             commit()
         }
     }
+
+    private fun getAllRecipes(): List<Recipe> {
+        return GetAllFoodUseCase(repository)()
+    }
     companion object {
         const val RECENT_FOOD_LIMIT = 10
+
         const val ADVICES_LIMIT = 7
-        const val ALL_RECIPES = "All recipes"
+
+        const val ALL_RECIPES_ID = R.id.chip_all_recipes
+        const val WORLD_BREAKFAST_ID=  R.id.chip_breakfast
+        const val DESSERT_ID = R.id.chip_desert
+        const val DINNER_ID = R.id.chip_dinner
+        const val SNACKS_ID = R.id.chip_snack
+
+        const val ALL_RECIPES_TEXT = "All Recipes"
+        const val WORLD_BREAKFAST_TEXT=  "World Breakfast"
+        const val DESSERT_TEXT = "Dessert"
+        const val DINNER_TEXT = "Dinner"
+        const val SNACKS_TEXT = "Snacks"
+
+
     }
 }
 
