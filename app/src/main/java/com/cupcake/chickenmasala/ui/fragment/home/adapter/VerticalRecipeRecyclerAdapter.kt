@@ -7,6 +7,7 @@ import com.cupcake.chickenmasala.databinding.RecipeCardHorizontalBinding
 import com.cupcake.chickenmasala.ui.base.BaseAdapter
 import com.cupcake.chickenmasala.ui.util.OnItemClickListener
 import com.cupcake.chickenmasala.utill.setImage
+import com.cupcake.chickenmasala.utill.toFormatTime
 
 class VerticalRecipeRecyclerAdapter(private val listener: OnItemClickListener<Recipe>) : BaseAdapter<Recipe, RecipeCardHorizontalBinding>() {
     override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> RecipeCardHorizontalBinding
@@ -23,7 +24,7 @@ class VerticalRecipeRecyclerAdapter(private val listener: OnItemClickListener<Re
         with(binding){
             cuisineName.text = item.cuisine
             recipeName.text = item.translatedRecipeName
-            recipeTime.text = item.totalTimeInMin.toString()
+            recipeTime.text = item.totalTimeInMin.toFormatTime()
             cardImage.setImage(item.imageUrl)
             root.setOnClickListener{
                 listener.onItemClicked(item)

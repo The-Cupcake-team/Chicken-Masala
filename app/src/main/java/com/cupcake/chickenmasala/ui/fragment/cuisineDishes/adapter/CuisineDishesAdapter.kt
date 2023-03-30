@@ -6,6 +6,7 @@ import com.cupcake.chickenmasala.data.model.Recipe
 import com.cupcake.chickenmasala.databinding.ItemCuisineDishesBinding
 import com.cupcake.chickenmasala.ui.base.BaseAdapter
 import com.cupcake.chickenmasala.utill.setImage
+import com.cupcake.chickenmasala.utill.toFormatTime
 
 class CuisineDishesAdapter(private val listener: CuisineDishesInteractionListener) :
     BaseAdapter<Recipe, ItemCuisineDishesBinding>() {
@@ -21,7 +22,7 @@ class CuisineDishesAdapter(private val listener: CuisineDishesInteractionListene
 
     override fun bindItem(binding: ItemCuisineDishesBinding, item: Recipe) {
         with(binding) {
-            textViewTime.text = item.totalTimeInMin.toString()
+            textViewTime.text = item.totalTimeInMin.toFormatTime()
             textViewCuisine.text = item.ingredientCounts.toString()
             imageViewRecipeImage.setImage(item.imageUrl)
             root.setOnClickListener { listener.onClickCuisineDishes(item) }

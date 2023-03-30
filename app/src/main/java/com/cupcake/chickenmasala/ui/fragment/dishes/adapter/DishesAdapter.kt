@@ -8,6 +8,7 @@ import com.cupcake.chickenmasala.databinding.RecipeCardVerticalBinding
 import com.cupcake.chickenmasala.ui.base.BaseAdapter
 import com.cupcake.chickenmasala.ui.util.OnItemClickListener
 import com.cupcake.chickenmasala.utill.setImage
+import com.cupcake.chickenmasala.utill.toFormatTime
 
 class DishesAdapter(private val listener: OnItemClickListener<Recipe>) :
     BaseAdapter<Recipe, RecipeCardVerticalBinding>() {
@@ -32,7 +33,7 @@ class DishesAdapter(private val listener: OnItemClickListener<Recipe>) :
             cardImage.setImage(item.imageUrl)
             recipeName.text = item.translatedRecipeName
             cuisine.text = item.cuisine
-            time.text = item.totalTimeInMin.toString()
+            time.text = item.totalTimeInMin.toFormatTime()
             root.setOnClickListener {
                 listener.onItemClicked(item)
             }
