@@ -1,4 +1,4 @@
-package com.cupcake.chickenmasala.usecase.home
+package com.cupcake.chickenmasala.ui.fragment.home
 
 import com.google.android.material.chip.ChipGroup
 

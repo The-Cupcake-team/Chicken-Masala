@@ -7,7 +7,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.cupcake.chickenmasala.data.model.HealthAdvice
 import com.cupcake.chickenmasala.databinding.SliderImageContainerBinding
 import com.cupcake.chickenmasala.ui.base.BaseAdapter
-import com.cupcake.chickenmasala.usecase.home.HomeInteractorListener
+import com.cupcake.chickenmasala.ui.fragment.home.HomeInteractorListener
 import com.cupcake.chickenmasala.utill.setImage
 
 class ViewPagerAdapter(

@@ -19,7 +19,6 @@ import com.cupcake.chickenmasala.usecase.Repository
 import com.cupcake.chickenmasala.usecase.home.GetFilteredFoodUseCase
 import com.cupcake.chickenmasala.usecase.home.GetHealthAdvicesUseCase
 import com.cupcake.chickenmasala.usecase.home.GetRecentFoodUseCase
-import com.cupcake.chickenmasala.usecase.home.HomeInteractorListener
 import com.cupcake.chickenmasala.utill.DataSourceProvider
 import com.cupcake.chickenmasala.utill.toHomeItem
 import com.google.android.material.chip.Chip

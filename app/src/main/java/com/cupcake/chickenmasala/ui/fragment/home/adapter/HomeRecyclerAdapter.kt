@@ -19,7 +19,7 @@ import com.cupcake.chickenmasala.databinding.ItemVerticalRecipesBinding
 import com.cupcake.chickenmasala.databinding.ItemViewPagerBinding
 import com.cupcake.chickenmasala.ui.fragment.home.enums.HomeItem
 import com.cupcake.chickenmasala.ui.fragment.home.enums.HomeItemType
-import com.cupcake.chickenmasala.usecase.home.HomeInteractorListener
+import com.cupcake.chickenmasala.ui.fragment.home.HomeInteractorListener
 import com.cupcake.chickenmasala.utill.setImage
 
 class HomeRecyclerAdapter(
