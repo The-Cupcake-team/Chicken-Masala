@@ -24,10 +24,10 @@ class HorizontalRecipeRecyclerAdapter(private val listener: HomeInteractorListen
         with(binding) {
             saveCardImage.setImage(item.imageUrl)
             dishName.text = item.translatedRecipeName
-            cuisineName.text = item.cuisine
+            textViewCuisineName.text = item.cuisine
             prepareTime.text = item.totalTimeInMin.toString()
             root.setOnClickListener{
-                listener.onCardClicked(item.id)
+                listener.onRecipeCardClicked(item.id)
             }
         }
     }
