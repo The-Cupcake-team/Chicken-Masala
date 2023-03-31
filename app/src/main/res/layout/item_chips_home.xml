@@ -5,6 +5,8 @@
     android:layout_height="wrap_content"
     android:scrollbars="none"
     android:paddingHorizontal="@dimen/spacing_medium"
+    android:layout_marginBottom="@dimen/spacing_normal"
+    android:layout_marginTop="@dimen/spacing_medium"
     android:clipToPadding="false"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -14,7 +16,6 @@
         android:layout_height="wrap_content"
         app:checkedChip="@+id/chip_all_recipes"
         app:chipSpacingHorizontal="@dimen/spacing_small"
-        android:layout_marginVertical="@dimen/spacing_small"
         app:selectionRequired="true"
         app:singleSelection="true">
 

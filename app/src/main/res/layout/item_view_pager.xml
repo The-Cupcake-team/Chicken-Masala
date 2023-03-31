@@ -17,7 +17,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/header_title"
+            android:id="@+id/text_view_header_title"
             style="@style/TextStyle.Title.Large"
             android:layout_marginTop="@dimen/spacing_medium"
             android:layout_width="@dimen/zero"
@@ -31,7 +31,7 @@
 
 
         <TextView
-            android:id="@+id/view_all"
+            android:id="@+id/text_view_view_all"
             style="@style/TextStyle.Body.Small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -44,7 +44,7 @@
             android:text="@string/view_all"
             android:textColor="@color/tertiary_60"
             app:drawableEndCompat="@drawable/icon_forward"
-            app:layout_constraintBaseline_toBaselineOf="@+id/header_title"
+            app:layout_constraintBaseline_toBaselineOf="@+id/text_view_header_title"
             app:layout_constraintEnd_toEndOf="parent" />
 
 

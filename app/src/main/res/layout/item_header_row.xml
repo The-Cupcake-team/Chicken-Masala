@@ -14,7 +14,7 @@
         tools:ignore="UselessParent">
 
         <TextView
-            android:id="@+id/header_title"
+            android:id="@+id/text_view_header_title"
             android:layout_width="@dimen/zero"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/spacing_medium"
@@ -27,7 +27,7 @@
 
 
         <TextView
-            android:id="@+id/view_all"
+            android:id="@+id/text_view_view_all"
             style="@style/TextStyle.Body.Small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
