@@ -17,8 +17,8 @@ import com.cupcake.chickenmasala.databinding.ItemChipsHomeBinding
 import com.cupcake.chickenmasala.databinding.ItemHorizontalRecipesBinding
 import com.cupcake.chickenmasala.databinding.ItemVerticalRecipesBinding
 import com.cupcake.chickenmasala.databinding.ItemViewPagerBinding
-import com.cupcake.chickenmasala.ui.fragment.home.enums.HomeItem
-import com.cupcake.chickenmasala.ui.fragment.home.enums.HomeItemType
+import com.cupcake.chickenmasala.ui.fragment.home.homeModel.HomeItem
+import com.cupcake.chickenmasala.ui.fragment.home.homeModel.HomeItemType
 import com.cupcake.chickenmasala.ui.fragment.home.HomeInteractorListener
 import com.cupcake.chickenmasala.utill.setImage
 
@@ -71,12 +71,12 @@ class HomeRecyclerAdapter(
     private fun bindFilteredFood(holder: FilteredFoodViewHolder, position: Int) {
         val recipe = items[position].item as Recipe
         holder.binding.apply {
-            cuisineName.text = recipe.cuisine
-            recipeName.text = recipe.translatedRecipeName
-            recipeTime.text = recipe.totalTimeInMin.toString()
-            cardImage.setImage(recipe.imageUrl)
+            textViewCuisineName.text = recipe.cuisine
+            textViewRecipeName.text = recipe.translatedRecipeName
+            textViewRecipeTime.text = recipe.totalTimeInMin.toString()
+            imageViewCardImage.setImage(recipe.imageUrl)
             root.setOnClickListener {
-                listener.onCardClicked(recipe.id)
+                listener.onRecipeCardClicked(recipe.id)
             }
         }
     }
@@ -97,16 +97,14 @@ class HomeRecyclerAdapter(
         val adapter = ViewPagerAdapter(viewPager, advices, listener)
         holder.binding.apply {
             viewPager.adapter = adapter
-            setupViewPager(viewPager, advices)
+            setupViewPager(viewPager,advices)
             setUpTransformer(viewPager)
-            viewAll.setOnClickListener {
+            textViewViewAll.setOnClickListener {
                 listener.onViewAllButtonClicked()
             }
-
         }
     }
-
-    private fun ItemViewPagerBinding.setupViewPager(
+    private fun setupViewPager(
         viewPager: ViewPager2,
         advices: List<HealthAdvice>
     ) {
@@ -114,6 +112,8 @@ class HomeRecyclerAdapter(
             viewPager.currentItem = viewPager.currentItem + 1
         }
 
+        val viewPagerAdapter = ViewPagerAdapter(viewPager, advices, listener)
+        viewPagerAdapter.submitList(advices)
         val handler = Handler(Looper.myLooper()!!)
         viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
@@ -122,8 +122,6 @@ class HomeRecyclerAdapter(
                 handler.postDelayed(runnable, 4000)
             }
         })
-        val viewPagerAdapter = ViewPagerAdapter(viewPager, advices, listener)
-        viewPagerAdapter.submitList(advices)
 
         viewPager.adapter = viewPagerAdapter
         viewPager.post(runnable)
@@ -131,36 +129,30 @@ class HomeRecyclerAdapter(
         viewPager.clipToPadding = false
         viewPager.clipChildren = false
         viewPager.getChildAt(0).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
-
     }
-
-    private fun ItemViewPagerBinding.setUpTransformer(viewPager: ViewPager2) {
+    private fun setUpTransformer(viewPager: ViewPager2) {
         val transformer = CompositePageTransformer()
         transformer.addTransformer(MarginPageTransformer(20))
         transformer.addTransformer { page, position ->
-            val r = 1 - kotlin.math.abs(position)
+            val r = 1 - Math.abs(position)
             page.scaleY = 0.85f + r * 0.14f
         }
         viewPager.setPageTransformer(transformer)
     }
 
-    abstract class BaseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+    open class BaseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
     class ViewPagerViewHolder(itemView: View) : BaseViewHolder(itemView) {
         val binding = ItemViewPagerBinding.bind(itemView)
     }
-
     class RecentFoodViewHolder(itemView: View) : BaseViewHolder(itemView) {
         val binding = ItemHorizontalRecipesBinding.bind(itemView)
     }
-
     class ChipsViewHolder(itemView: View) : BaseViewHolder(itemView) {
         val binding = ItemChipsHomeBinding.bind(itemView)
     }
-
     class FilteredFoodViewHolder(itemView: View) : BaseViewHolder(itemView) {
         val binding = ItemVerticalRecipesBinding.bind(itemView)
     }
-
 
     override fun getItemCount() = items.size
 
@@ -180,42 +172,34 @@ class HomeRecyclerAdapter(
             }
         }
     }
-
     fun submitList(newItems: List<HomeItem<Any>>) {
         val diffResult = DiffUtil.calculateDiff(
             AppDiffUtil(
                 items,
                 newItems,
-                ::areItemsTheSame
             )
         )
         items = newItems
         diffResult.dispatchUpdatesTo(this)
     }
 
-    private fun areItemsTheSame(i: Int, i1: Int, homeItems: List<HomeItem<Any>>): Boolean {
-        return items[i] == homeItems[i1]
-    }
-
     private class AppDiffUtil<Recipe>(
         private val oldList: List<Recipe>,
         private val newList: List<Recipe>,
-        val function: (Int, Int, List<Recipe>) -> Boolean
     ) : DiffUtil.Callback() {
 
         override fun getOldListSize() = oldList.size
 
         override fun getNewListSize() = newList.size
 
-        override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int) =
-            function(oldItemPosition, newItemPosition, newList)
+        override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int) = oldList[oldItemPosition] == newList[newItemPosition]
 
         override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int) =
             oldList[oldItemPosition] == newList[newItemPosition]
 
     }
 
-    companion object {
+    private companion object {
         const val HEALTHY_VIEW_PAGER = 0
         const val RECENT_FOOD = 1
         const val CHIPS_FILTER = 2
