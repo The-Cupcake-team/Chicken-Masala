@@ -1,4 +1,4 @@
-package com.cupcake.chickenmasala.ui.fragment.home.enums
+package com.cupcake.chickenmasala.ui.fragment.home.homeModel
 
 enum class HomeItemType(){
     HEALTHY_VIEW_PAGER,

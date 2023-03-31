@@ -4,8 +4,8 @@ import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.cupcake.chickenmasala.R
 import com.cupcake.chickenmasala.data.model.Recipe
-import com.cupcake.chickenmasala.ui.fragment.home.enums.HomeItem
-import com.cupcake.chickenmasala.ui.fragment.home.enums.HomeItemType
+import com.cupcake.chickenmasala.ui.fragment.home.homeModel.HomeItem
+import com.cupcake.chickenmasala.ui.fragment.home.homeModel.HomeItemType
 
 fun ImageView.setImage(url: String) {
 
