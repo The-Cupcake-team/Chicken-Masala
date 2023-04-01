@@ -2,9 +2,9 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/SearchCardViewStyle"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/home_card_height"
-    style="@style/SearchCardViewStyle">
+    android:layout_height="@dimen/home_card_height">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -31,8 +31,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/radius_normal"
             android:layout_marginBottom="@dimen/spacing_small"
+            android:ellipsize="end"
             android:fontFamily="@font/roboto_medium"
             android:gravity="start|center"
+            android:maxLines="1"
             android:text="@string/spaghetti_meatballs"
             android:textColor="@color/white"
             android:textSize="@dimen/font_size_body"
@@ -42,30 +44,33 @@
 
         <TextView
             android:id="@+id/cuisine"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/zero"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_small"
+            android:layout_marginStart="@dimen/spacing_normal"
             android:layout_marginBottom="@dimen/spacing_normal"
             android:drawablePadding="@dimen/spacing_small"
+            android:ellipsize="end"
+            android:maxLines="1"
             android:text="@string/indian"
             android:textColor="@color/white"
             app:drawableStartCompat="@drawable/icon_cuisine"
             app:drawableTint="@color/white"
             app:layout_constraintBottom_toBottomOf="@+id/card_Image"
-            app:layout_constraintStart_toStartOf="@+id/recipe_name" />
+            app:layout_constraintEnd_toStartOf="@+id/time"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/time"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/zero"
-            android:layout_marginStart="@dimen/spacing_large"
+            android:layout_marginEnd="@dimen/spacing_medium"
             android:drawablePadding="@dimen/spacing_small"
             android:text="@string/_5_min"
             android:textColor="@color/white"
             app:drawableStartCompat="@drawable/icon_timer"
             app:drawableTint="@color/white"
             app:layout_constraintBottom_toBottomOf="@+id/cuisine"
-            app:layout_constraintStart_toEndOf="@id/cuisine"
+            app:layout_constraintEnd_toEndOf="@id/card_Image"
             app:layout_constraintTop_toTopOf="@id/cuisine" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -40,7 +40,6 @@ class DishesFragment : BaseFragment<FragmentDishesBinding>(), OnItemClickListene
         binding.recyclerViewDishes.adapter = adapter
     }
 
-
     override fun onItemClicked(item: Recipe) {
         val detailsFragment = DetailsFragment.newInstance(item.id)
         requireActivity().supportFragmentManager.beginTransaction().apply {
