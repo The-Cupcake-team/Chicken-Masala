@@ -71,7 +71,7 @@ class DataSourceImpl(private val context: Application) : DataSource {
         val hourChar = context.getString(R.string.hours_char)
         val minuteChar = context.getString(R.string.mimute_char)
         if (hours != 0){
-            formatTime = "${hours}$hourChar"
+            formatTime = "${hours}$hourChar "
         }
         if (min != 0){
             formatTime += "${min}$minuteChar"
