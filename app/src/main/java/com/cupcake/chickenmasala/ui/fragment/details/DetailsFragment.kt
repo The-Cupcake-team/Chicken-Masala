@@ -14,60 +14,58 @@ import com.cupcake.chickenmasala.ui.fragment.details.adapter.DetailsAdapter
 import com.cupcake.chickenmasala.ui.fragment.details.adapter.DetailsItem
 import com.cupcake.chickenmasala.ui.fragment.details.adapter.DetailsItemType
 import com.cupcake.chickenmasala.usecase.Repository
+import com.cupcake.chickenmasala.usecase.core.GetRecipeByIdUseCase
 import com.cupcake.chickenmasala.utill.DataSourceProvider
-
 
 class DetailsFragment : BaseFragment<FragmentDetailsBinding>() {
 
     override val LOG_TAG: String = "Details_Fragment"
-
-
     override val bindingInflater: (LayoutInflater, ViewGroup, Boolean) -> FragmentDetailsBinding =
         FragmentDetailsBinding::inflate
 
     private val repository: Repository by lazy {
         RepositoryImpl(DataSourceProvider.getDataSource(requireActivity().application))
     }
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        val idRecipe = arguments.let { it?.getInt(ID) }
-        idRecipe?.let { setup(getRecipeById(it)) }
-
+    private val getRecipeById: GetRecipeByIdUseCase by lazy {
+        GetRecipeByIdUseCase(repository)
     }
 
-    private fun setup(recipe: Recipe) {
-        setUpRecyclerDetails(recipe)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setup()
+    }
+
+    private fun setup() {
+        getRecipeId()?.let { id ->
+            val recipe = getRecipeById(id)
+            setUpRecyclerDetails(recipe)
+            setUpShareButton(recipe.urlDetailsRecipe)
+        }
         setupBackButton()
-        setUpShareButton(recipe.urlDetailsRecipe)
+    }
+
+    private fun getRecipeId(): Int? {
+        return arguments.let { it?.getInt(ID) }
     }
 
     private fun setUpRecyclerDetails(recipe: Recipe) {
-
         val itemList: MutableList<DetailsItem<Any>> = mutableListOf()
-
         itemList.add(DetailsItem(recipe, DetailsItemType.INFO))
         itemList.add(DetailsItem(recipe.translatedIngredients, DetailsItemType.STEP_INGREDIENTS))
         itemList.add(DetailsItem(recipe.translatedInstructions, DetailsItemType.STEP_INSTRUCTIONS))
-
         val adapter = DetailsAdapter(itemList)
         binding.recycler.adapter = adapter
     }
 
     private fun setUpShareButton(url: String) {
         binding.toolBar.setOnMenuItemClickListener {
-            when (it.itemId) {
-                R.id.icon_share -> {
-                    shareLink(url)
-                }
+            if (it.itemId == R.id.icon_share) {
+                shareLink(url)
             }
             true
         }
     }
 
-    private fun getRecipeById(id: Int): Recipe {
-        return repository.getRecipes()[id]
-    }
 
     private fun shareLink(link: String) {
         val sharingIntent = Intent(Intent.ACTION_SEND)
@@ -83,7 +81,6 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>() {
             requireActivity().supportFragmentManager.popBackStack()
         }
     }
-
 
     companion object {
         fun newInstance(id: Int) = DetailsFragment().apply {
