@@ -20,16 +20,19 @@ import com.cupcake.chickenmasala.utill.DataSourceProvider
 class DetailsFragment : BaseFragment<FragmentDetailsBinding>() {
 
     override val LOG_TAG: String = "Details_Fragment"
-    private lateinit var repository: Repository
+
 
     override val bindingInflater: (LayoutInflater, ViewGroup, Boolean) -> FragmentDetailsBinding =
         FragmentDetailsBinding::inflate
 
+    private val repository: Repository by lazy {
+        RepositoryImpl(DataSourceProvider.getDataSource(requireActivity().application))
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        repository = RepositoryImpl(DataSourceProvider.getDataSource(requireActivity().application))
-        val id = arguments.let { it?.getInt(ID) }
-        setup(getRecipeById(id!!))
+
+        val idRecipe = arguments.let { it?.getInt(ID) }
+        idRecipe?.let { setup(getRecipeById(it)) }
 
     }
 
