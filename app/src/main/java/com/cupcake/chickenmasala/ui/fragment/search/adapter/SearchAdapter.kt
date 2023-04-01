@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.cupcake.chickenmasala.R
 import com.cupcake.chickenmasala.data.model.Recipe
 import com.cupcake.chickenmasala.databinding.SearchCardBinding
-import com.cupcake.chickenmasala.databinding.SearchCardSmallBinding
 import com.cupcake.chickenmasala.utill.setImage
 
 class SearchAdapter(
@@ -29,56 +28,44 @@ class SearchAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseSearchHolder {
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.search_card, parent, false)
         return when (viewType) {
-            LARGE -> {
-                val view =
-                    LayoutInflater.from(parent.context).inflate(R.layout.search_card, parent, false)
-                RecipeHolder(view)
-            }
-            else -> {
-                val view =
-                    LayoutInflater.from(parent.context)
-                        .inflate(R.layout.search_card_small, parent, false)
-                SmallRecipeHolder(view)
-            }
+            LARGE -> { RecipeHolder(view) }
+            else -> { SmallRecipeHolder(view) }
         }
     }
 
     override fun getItemViewType(position: Int): Int {
-         return if (isEvenPosition(position)) LARGE else SMALL
+        return if (isEvenPosition(position)) LARGE else SMALL
     }
 
     private fun isEvenPosition(position: Int): Boolean {
-       return position % 2 == 0
+        return position % 2 == 0
     }
 
     abstract class BaseSearchHolder(viewItem: View) : RecyclerView.ViewHolder(viewItem) {
         abstract fun bind(recipe: Recipe, recipeClickListener: RecipeClickListener)
     }
 
-    class SmallRecipeHolder(viewItem: View) : BaseSearchHolder(viewItem) {
-        val binding = SearchCardSmallBinding.bind(viewItem)
+    open class RecipeHolder(viewItem: View) : BaseSearchHolder(viewItem) {
+        val binding = SearchCardBinding.bind(viewItem)
         override fun bind(recipe: Recipe, recipeClickListener: RecipeClickListener) {
             with(binding) {
                 textViewRecipeName.text = recipe.translatedRecipeName
-                textViewRecipeCusine.text = recipe.cuisine
-                textViewTotalTime.text = recipe.totalTimeInMin.toString()
+                textViewRecipeCuisine.text = recipe.cuisine
+                textViewTotalTime.text = recipe.formattedTime
                 imageView.setImage(recipe.imageUrl)
                 root.setOnClickListener { recipeClickListener.onRecipeClick(recipe.id) }
             }
         }
     }
 
-    class RecipeHolder(viewItem: View) : BaseSearchHolder(viewItem) {
-        val binding = SearchCardBinding.bind(viewItem)
+    class SmallRecipeHolder(viewItem: View) : RecipeHolder(viewItem) {
         override fun bind(recipe: Recipe, recipeClickListener: RecipeClickListener) {
-            with(binding) {
-                textViewRecipeName.text = recipe.translatedRecipeName
-                textViewRecipeCusine.text = recipe.cuisine
-                textViewTotalTime.text = recipe.totalTimeInMin.toString()
-                imageView.setImage(recipe.imageUrl)
-                root.setOnClickListener { recipeClickListener.onRecipeClick(recipe.id) }
-            }
+            super.bind(recipe, recipeClickListener)
+            (binding.root.layoutParams as ViewGroup.LayoutParams).height =
+                itemView.resources.getDimensionPixelSize(R.dimen.small_search_card)
         }
     }
 

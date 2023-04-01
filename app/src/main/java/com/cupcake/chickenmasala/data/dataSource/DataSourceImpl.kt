@@ -1,6 +1,7 @@
 package com.cupcake.chickenmasala.data.data_sourse
 
 import android.app.Application
+import com.cupcake.chickenmasala.R
 import com.cupcake.chickenmasala.data.dataSource.DataSource
 import com.cupcake.chickenmasala.data.model.HealthAdvice
 import com.cupcake.chickenmasala.data.model.Recipe
@@ -38,10 +39,11 @@ class DataSourceImpl(private val context: Application) : DataSource {
             translatedIngredients = this[TRANSLATED_INGREDIENTS].split(";"),
             cleanedIngredients = this[CLEANED_INGREDIENTS].split(";"),
             totalTimeInMin = this[TOTAL_TIME_IN_MIN].toInt(),
+            formattedTime = toFormattedTime(this[TOTAL_TIME_IN_MIN].toInt()),
             cuisine = this[CUISINE],
             translatedInstructions = this[TRANSLATED_INSTRUCTIONS].split(";"),
             urlDetailsRecipe = this[URL],
-            imageUrl = this[IMAGE_URL],
+            imageUrl = this[IMAGE_RECIPE_URL],
             ingredientCounts = this[INGREDIENT_COUNTS].toInt()
         )
     }
@@ -60,9 +62,26 @@ class DataSourceImpl(private val context: Application) : DataSource {
             id = key,
             title = this[TITLE],
             description = this[DESCRIPTION],
-            imageUrl = this[IMAGEURL]
+            imageUrl = this[IMAGE_HEALTH_URL]
         )
 
+    }
+
+    private fun toFormattedTime(time: Int): String{
+        val hours = time / 60
+        val min = time % 60
+        var formatTime = ""
+        val hourChar = context.getString(R.string.hours_char)
+        val minuteChar = context.getString(R.string.mimute_char)
+        if (hours != 0){
+            formatTime = "${hours}$hourChar "
+        }
+        if (min != 0){
+            formatTime += "${min}$minuteChar"
+        }else{
+            formatTime = "0$minuteChar"
+        }
+        return formatTime
     }
 
     companion object {
@@ -73,13 +92,13 @@ class DataSourceImpl(private val context: Application) : DataSource {
         private const val TRANSLATED_INSTRUCTIONS = 4
         private const val URL = 5
         private const val CLEANED_INGREDIENTS = 6
-        private const val IMAGE_URL = 7
+        private const val IMAGE_RECIPE_URL = 7
         private const val INGREDIENT_COUNTS = 8
 
 
         private const val TITLE = 0
         private const val DESCRIPTION = 1
-        private const val IMAGEURL = 2
+        private const val IMAGE_HEALTH_URL = 2
 
         private const val INDIAN_FOOD_FILE_PATH = "Indian_food.csv"
         private const val HEALTH_ADVICES_FILE_PATH = "health_advices.csv"

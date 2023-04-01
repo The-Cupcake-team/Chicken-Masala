@@ -4,8 +4,8 @@
     xmlns:tool="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="@dimen/item_card_cuisine_height"
-    android:layout_marginEnd="@dimen/spacing_normal"
-    android:layout_marginBottom="@dimen/spacing_normal"
+    android:layout_marginHorizontal="@dimen/spacing_small"
+    android:layout_marginVertical="@dimen/spacing_small"
     android:backgroundTint="@color/card"
     app:cardCornerRadius="@dimen/radius_medium">
 

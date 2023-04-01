@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+   >
+
+    <LinearLayout
+        android:id="@+id/header_row"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_medium"
+        tools:ignore="UselessParent">
+
+        <TextView
+            android:id="@+id/text_view_header_title"
+            android:layout_width="@dimen/zero"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_medium"
+            android:layout_weight="1"
+            android:fontFamily="@font/roboto_medium"
+            android:text="@string/recent_food"
+            android:textColor="@color/tertiary_87"
+            android:textSize="@dimen/font_size_title_medium"
+            tools:ignore="InefficientWeight" />
+
+
+        <TextView
+            android:id="@+id/text_view_view_all"
+            style="@style/TextStyle.Body.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/spacing_medium"
+            android:gravity="end"
+            android:background="@drawable/button_rectangle_ripple"
+            android:clickable="true"
+            android:drawablePadding="@dimen/spacing_small"
+            android:focusable="true"
+            android:padding="@dimen/spacing_normal"
+            android:text="@string/view_all"
+            android:textColor="@color/tertiary_60"
+            tools:drawableEndCompat="@drawable/icon_forward" />
+
+
+    </LinearLayout>
+
+</LinearLayout>

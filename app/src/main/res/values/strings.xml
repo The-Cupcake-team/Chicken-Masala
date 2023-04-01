@@ -6,11 +6,12 @@
     <string name="advice_one_content">Sugary drinks like sodas- fruit juices- and sweetened teas are the primary source of added sugar in the American diet.</string>
     <string name="kitchen_history">kitchen History</string>
     <string name="history_of_indian_food">History of Indian food</string>
-    <string name="history_content_one">The history of Indian food is as diverse and colorful as the country itself. India is a land of numerous religions, cultures, and traditions, each of which has contributed to the evolution of its culinary heritage.</string>
-    <string name="history_content_two">The earliest Indian cuisine can be traced back to the Indus Valley Civilization, which existed around 2500 BCE. The people of this civilization relied on hunting, fishing, and agriculture for their food, and they ate a variety of grains, fruits, vegetables, and dairy products.</string>
-    <string name="history_content_three">Over time, Indian cuisine was influenced by a number of factors, including the arrival of foreign rulers and traders, the spread of different religions, and the development of regional cuisines. The Mughal Empire, which ruled India from the 16th to the 19th century, had a significant impact on Indian food, introducing techniques such as the use of nuts and spices, the tandoor oven, and the art of dum cooking.</string>
-    <string name="history_content_four">Regional cuisines in India are also a significant part of its culinary heritage. Each state has its own unique cuisine, with distinct flavors and cooking styles. For example, the cuisine of the South Indian state of Kerala is known for its use of coconut milk and seafood, while the cuisine of the North Indian state of Punjab is known for its use of tandoor cooking and dairy products.</string>
-    <string name="history_content_five">Indian food has also had a significant impact on other parts of the world, with many Indian dishes becoming popular in other countries. For example, dishes such as curry, biryani, and tandoori chicken are now widely popular in many parts of the world.Today, Indian cuisine continues to evolve, with new dishes and variations being created all the time. With its rich history and diverse influences, Indian food remains one of the most beloved and fascinating cuisines in the world.</string>
+    <string name="history_first_description">The history of Indian food is as diverse and colorful as the country itself.India is a land of numerous religions, cultures, and traditions, each of which has contributed to the evolution of its culinary heritage.
+        \n\nThe earliest Indian cuisine can be traced back to the Indus Valley Civilization, which existed around 2500 BCE. The people of this civilization relied on hunting, fishing, and agriculture for their food, and they ate a variety of grains, fruits, vegetables, and dairy products.
+    </string>
+    <string name="history_second_description">Over time, Indian cuisine was influenced by a number of factors, including the arrival of foreign rulers and traders, the spread of different religions, and the development of regional cuisines. The Mughal Empire, which ruled India from the 16th to the 19th century, had a significant impact on Indian food, introducing techniques such as the use of nuts and spices, the tandoor oven, and the art of dum cooking.
+    \n\nRegional cuisines in India are also a significant part of its culinary heritage. Each state has its own unique cuisine, with distinct flavors and cooking styles. For example, the cuisine of the South Indian state of Kerala is known for its use of coconut milk and seafood, while the cuisine of the North Indian state of Punjab is known for its use of tandoor cooking and dairy products.</string>
+    <string name="history_third_description">Indian food has also had a significant impact on other parts of the world, with many Indian dishes becoming popular in other countries. For example, dishes such as curry, biryani, and tandoori chicken are now widely popular in many parts of the world.Today, Indian cuisine continues to evolve, with new dishes and variations being created all the time. With its rich history and diverse influences, Indian food remains one of the most beloved and fascinating cuisines in the world.</string>
     <string name="theres_no_result_for">There’s no result for %1$s</string>
     <string name="recent_food">Recent Food</string>
     <string name="view_all">View All</string>
@@ -36,9 +37,10 @@
     <string name="spaghetti_meatballs">Spaghetti Meatballs</string>
     <string name="spicy_tomato_rice_recipe">Spicy Tomato Rice (Recipe)</string>
     <string name="all_recipes">All recipes</string>
-    <string name="meat">Meat</string>
-    <string name="cheese">Cheese</string>
-    <string name="avocado">Avocado</string>
+    <string name="breakfast">World Breakfast</string>
+    <string name="dessert">Dessert</string>
+    <string name="dinner">Dinner</string>
+    <string name="snack">Snack</string>
     <string name="view_all_cards_icon">view all cards icon</string>
     <string name="timer_icon_string">Timer icon</string>
     <string name="cuisine_icon_string">cuisine icon</string>
@@ -46,7 +48,7 @@
 
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="ragi_semiya_upma_recipe_ragi_millet_vermx_icelli_breakfast">Ragi Semiya Upma Recipe - Ragi Millet Vermx icelli Breakfast.</string>
+    <string name="recipe_name">Ragi Semiya Upma Recipe - Ragi Millet Vermx icelli Breakfast.</string>
     <string name="onion">Onion</string>
     <string name="amchuer">Amchuer</string>
     <string name="gram_flour">Gram flour</string>
@@ -68,7 +70,7 @@
     <string name="cloves_laung">cloves (laung)</string>
     <string name="red_chill_powder">Red chill Powder</string>
     <string name="amchur">Amchur</string>
-    <string name="karela">Karela</string>
+    <string name="karela">karela (bitter gourd pavakkai)</string>
     <string name="salt">Salt</string>
     <string name="cuisine_dishes">Cuisine Dishes</string>
     <string name="image">image</string>
@@ -79,5 +81,9 @@
     <string name="filter">Filter</string>
 
     <string name="sugary_drinks_like_sodas_fruit_juices_and_sweetened_teas_are_the_primary_source_of_added_sugar_in_the_american_diet">Sugary drinks like sodas- fruit juices- and sweetened teas are the primary source of added sugar in the American diet.</string>
+    <string name="icon_share" translatable="false">icon share</string>
+
+    <string name="hours_char" translatable="false">h </string>
+    <string name="mimute_char" translatable="false">m </string>
 
 </resources>

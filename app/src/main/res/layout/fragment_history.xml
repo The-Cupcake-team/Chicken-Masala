@@ -7,23 +7,24 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragment.history.HistoryFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/image_history_one"
+            android:id="@+id/image_view_history_first_section"
             style="@style/CardImageStyle"
-            android:layout_width="@dimen/zero"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/photo_card_height"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="@dimen/spacing_medium"
             tools:srcCompat="@tools:sample/backgrounds/scenic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/history_title"
+            android:id="@+id/text_view_history_title"
             style="@style/TextStyle.Title.Large"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -31,36 +32,26 @@
             android:layout_marginTop="@dimen/spacing_medium"
             android:text="@string/history_of_indian_food"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/image_history_one" />
+            app:layout_constraintTop_toBottomOf="@+id/image_view_history_first_section" />
 
         <TextView
-            android:id="@+id/text_content_one"
+            android:id="@+id/text_view_history_first_description"
             style="style/TextStyle.Body.Medium"
-            android:layout_width="@dimen/zero"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_medium"
             android:layout_marginTop="@dimen/spacing_small"
             android:layout_marginEnd="@dimen/spacing_medium"
-            android:text="@string/history_content_one"
+            android:text="@string/history_first_description"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/history_title"
-            app:layout_constraintTop_toBottomOf="@+id/history_title" />
+            app:layout_constraintStart_toStartOf="@+id/text_view_history_title"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_history_title" />
 
-        <TextView
-            android:id="@+id/text_content_two"
-            style="style/TextStyle.Body.Medium"
-            android:layout_width="@dimen/zero"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_small"
-            android:layout_marginEnd="@dimen/spacing_medium"
-            android:text="@string/history_content_two"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/text_content_one"
-            app:layout_constraintTop_toBottomOf="@+id/text_content_one" />
 
         <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/image_history_two"
+            android:id="@+id/image_view_history_second_section"
             style="@style/CardImageStyle"
-            android:layout_width="@dimen/zero"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/photo_card_height"
             tools:srcCompat="@tools:sample/backgrounds/scenic"
             app:layout_constraintEnd_toEndOf="parent"
@@ -68,33 +59,22 @@
             app:layout_constraintTop_toBottomOf="@+id/text_content_two" />
 
         <TextView
-            android:id="@+id/text_content_three"
+            android:id="@+id/text_view_history_second_description"
             style="style/TextStyle.Body.Medium"
-            android:layout_width="@dimen/zero"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_medium"
             android:layout_marginEnd="@dimen/spacing_medium"
-            android:text="@string/history_content_three"
+            android:text="@string/history_second_description"
+            android:layout_marginStart="@dimen/spacing_medium"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/image_history_two"
-            app:layout_constraintTop_toBottomOf="@+id/image_history_two" />
-
-        <TextView
-            android:id="@+id/text_content_four"
-            style="style/TextStyle.Body.Medium"
-            android:layout_width="@dimen/zero"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_small"
-            android:layout_marginEnd="@dimen/spacing_medium"
-            android:text="@string/history_content_four"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/text_content_three"
-            app:layout_constraintTop_toBottomOf="@+id/text_content_three" />
+            app:layout_constraintStart_toStartOf="@+id/image_view_history_second_section"
+            app:layout_constraintTop_toBottomOf="@+id/image_view_history_second_section" />
 
         <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/image_history_three"
+            android:id="@+id/image_view_history_third_section"
             style="@style/CardImageStyle"
-            android:layout_width="@dimen/zero"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/photo_card_height"
             tools:srcCompat="@tools:sample/backgrounds/scenic"
             app:layout_constraintEnd_toEndOf="parent"
@@ -102,16 +82,17 @@
             app:layout_constraintTop_toBottomOf="@+id/text_content_four" />
 
         <TextView
-            android:id="@+id/text_content_five"
+            android:id="@+id/text_view_history_third_description"
             style="style/TextStyle.Body.Medium"
-            android:layout_width="@dimen/zero"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_medium"
             android:layout_marginBottom="@dimen/spacing_medium"
-            android:text="@string/history_content_five"
+            android:text="@string/history_third_description"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/image_history_three"
-            app:layout_constraintStart_toStartOf="@+id/image_history_three"
-            app:layout_constraintTop_toBottomOf="@+id/image_history_three" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            android:layout_marginStart="@dimen/spacing_medium"
+            app:layout_constraintEnd_toEndOf="@+id/image_view_history_third_section"
+            app:layout_constraintStart_toStartOf="@+id/image_view_history_third_section"
+            app:layout_constraintTop_toBottomOf="@+id/image_view_history_third_section" />
+    </LinearLayout>
 </ScrollView>

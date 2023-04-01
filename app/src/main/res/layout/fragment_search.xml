@@ -14,35 +14,43 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/spacing_medium"
         android:layout_marginTop="@dimen/spacing_large"
-        android:textColorHint="@color/tertiary_60"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edit_text_name"
+            style="@style/SearchEditTextStyle"
             android:layout_width="match_parent"
             android:layout_height="@dimen/input_height"
-            android:hint="@string/search"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:textColor="@color/tertiary_87" />
+            android:hint="@string/search" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_search"
         android:layout_width="match_parent"
         android:layout_height="@dimen/zero"
-        android:layout_marginTop="@dimen/spacing_normal"
         android:clipToPadding="false"
         android:orientation="vertical"
-        android:paddingVertical="@dimen/spacing_normal"
-        android:paddingStart="@dimen/spacing_normal"
-        android:paddingEnd="@dimen/spacing_medium"
+        android:padding="@dimen/padding_normal"
+        android:visibility="visible"
         app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/search_box"
         app:spanCount="2"
         tools:listitem="@layout/search_card" />
 
+    <TextView
+        android:id="@+id/text_view_search_error"
+        style="@style/TextStyle.Title.Medium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawablePadding="0dp"
+        android:gravity="center"
+        android:textColor="@color/tertiary_60"
+        android:visibility="invisible"
+        app:drawableTint="@color/tertiary_60"
+        app:drawableTopCompat="@drawable/icon_cock"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/search_box"
+        android:text="@string/theres_no_result_for"
+        tools:text="There is no result for “Andrew“" />
 </androidx.constraintlayout.widget.ConstraintLayout>
