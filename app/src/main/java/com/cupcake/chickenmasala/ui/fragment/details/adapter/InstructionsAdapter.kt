@@ -2,6 +2,7 @@ package com.cupcake.chickenmasala.ui.fragment.details.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import com.cupcake.chickenmasala.R
 import com.cupcake.chickenmasala.data.model.Recipe
 import com.cupcake.chickenmasala.databinding.ItemInstructionsBinding
 import com.cupcake.chickenmasala.ui.base.BaseAdapter
@@ -18,7 +19,9 @@ class InstructionsAdapter:BaseAdapter<String,ItemInstructionsBinding>() {
 
     override fun bindItem(binding: ItemInstructionsBinding, item: String) {
        with(binding){
+           val step = root.context.resources.getString(R.string.step, 1);
            instructionsDetails.text = item
+           textViewStepInstructions.text = step
        }
     }
 
