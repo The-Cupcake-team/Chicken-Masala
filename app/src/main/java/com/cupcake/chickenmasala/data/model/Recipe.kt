@@ -8,7 +8,7 @@ data class Recipe(
     val formattedTime: String,
     val cleanedIngredients: List<String>,
     val cuisine: String,
-    val translatedInstructions: List<String>,
+    val translatedInstructions: List<StepInstructions>,
     val urlDetailsRecipe: String,
     val imageUrl: String,
     val ingredientCounts: Int

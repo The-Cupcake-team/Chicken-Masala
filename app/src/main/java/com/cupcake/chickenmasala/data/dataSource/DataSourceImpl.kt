@@ -5,6 +5,7 @@ import com.cupcake.chickenmasala.R
 import com.cupcake.chickenmasala.data.dataSource.DataSource
 import com.cupcake.chickenmasala.data.model.HealthAdvice
 import com.cupcake.chickenmasala.data.model.Recipe
+import com.cupcake.chickenmasala.data.model.StepInstructions
 import java.io.InputStreamReader
 
 class DataSourceImpl(private val context: Application) : DataSource {
@@ -41,7 +42,8 @@ class DataSourceImpl(private val context: Application) : DataSource {
             totalTimeInMin = this[TOTAL_TIME_IN_MIN].toInt(),
             formattedTime = toFormattedTime(this[TOTAL_TIME_IN_MIN].toInt()),
             cuisine = this[CUISINE],
-            translatedInstructions = this[TRANSLATED_INSTRUCTIONS].split(";"),
+            translatedInstructions = this[TRANSLATED_INSTRUCTIONS].split(";")
+                .toStepInstructions(),
             urlDetailsRecipe = this[URL],
             imageUrl = this[IMAGE_RECIPE_URL],
             ingredientCounts = this[INGREDIENT_COUNTS].toInt()
@@ -57,7 +59,8 @@ class DataSourceImpl(private val context: Application) : DataSource {
         fileReader.close()
         return advices
     }
-    private fun List<String>.toHealthAdvices(key: Int):HealthAdvice{
+
+    private fun List<String>.toHealthAdvices(key: Int): HealthAdvice {
         return HealthAdvice(
             id = key,
             title = this[TITLE],
@@ -67,18 +70,27 @@ class DataSourceImpl(private val context: Application) : DataSource {
 
     }
 
-    private fun toFormattedTime(time: Int): String{
+    private fun List<String>.toStepInstructions(): List<StepInstructions> {
+        return filter { it.isNotBlank() }.mapIndexed { step, item ->
+            StepInstructions(
+                step = step+1,
+                description = item
+            )
+        }
+    }
+
+    private fun toFormattedTime(time: Int): String {
         val hours = time / 60
         val min = time % 60
         var formatTime = ""
         val hourChar = context.getString(R.string.hours_char)
         val minuteChar = context.getString(R.string.mimute_char)
-        if (hours != 0){
+        if (hours != 0) {
             formatTime = "${hours}$hourChar "
         }
-        if (min != 0){
+        if (min != 0) {
             formatTime += "${min}$minuteChar"
-        }else{
+        } else {
             formatTime = "0$minuteChar"
         }
         return formatTime

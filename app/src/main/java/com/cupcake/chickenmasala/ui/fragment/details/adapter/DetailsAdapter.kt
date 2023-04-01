@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.cupcake.chickenmasala.R
 import com.cupcake.chickenmasala.data.model.Recipe
+import com.cupcake.chickenmasala.data.model.StepInstructions
 import com.cupcake.chickenmasala.databinding.ItemInfoDetailsBinding
 import com.cupcake.chickenmasala.databinding.ListStepIngredientsBinding
 import com.cupcake.chickenmasala.databinding.ListStepInstructionsBinding
@@ -93,7 +94,7 @@ class DetailsAdapter(private val detailsItem: List<DetailsItem<Any>>) :
         holder: ListStepInstructionsViewHolder,
         position: Int
     ) {
-        val currentStep: List<String> = detailsItem[position].item as List<String>
+        val currentStep: List<StepInstructions> = detailsItem[position].item as List<StepInstructions>
         val adapter = InstructionsAdapter()
         adapter.submitList(currentStep)
         holder.binding.recyclerInstructions.adapter = adapter
