@@ -5,6 +5,7 @@ data class Recipe(
     val translatedRecipeName: String,
     val translatedIngredients: List<String>,
     val totalTimeInMin: Int,
+    val formattedTime: String,
     val cleanedIngredients: List<String>,
     val cuisine: String,
     val translatedInstructions: List<String>,

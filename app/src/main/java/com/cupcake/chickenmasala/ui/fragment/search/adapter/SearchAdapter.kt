@@ -54,7 +54,7 @@ class SearchAdapter(
             with(binding) {
                 textViewRecipeName.text = recipe.translatedRecipeName
                 textViewRecipeCuisine.text = recipe.cuisine
-                textViewTotalTime.text = recipe.totalTimeInMin.toString()
+                textViewTotalTime.text = recipe.formattedTime
                 imageView.setImage(recipe.imageUrl)
                 root.setOnClickListener { recipeClickListener.onRecipeClick(recipe.id) }
             }

@@ -6,6 +6,7 @@
     android:layout_height="@dimen/card_height_small"
     android:layout_marginBottom="@dimen/spacing_normal"
     android:backgroundTint="@color/card"
+    android:layout_marginHorizontal="@dimen/spacing_medium"
     app:cardCornerRadius="@dimen/radius_medium"
     app:cardElevation="@dimen/zero"
     app:strokeWidth="@dimen/zero">

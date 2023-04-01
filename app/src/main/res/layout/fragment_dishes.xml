@@ -11,8 +11,8 @@
         android:id="@+id/top_bar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/app_bar_height"
-        app:layout_constraintStart_toStartOf="parent"
         android:background="@color/background"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.appbar.MaterialToolbar
@@ -25,7 +25,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:navigationIcon="@drawable/icon_back"
             app:title="Dishes"
-            app:titleTextColor="@color/tertiary_87"/>
+            app:titleTextColor="@color/tertiary_87" />
 
     </com.google.android.material.appbar.AppBarLayout>
 

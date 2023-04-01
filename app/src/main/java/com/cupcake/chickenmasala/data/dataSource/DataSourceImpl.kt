@@ -1,6 +1,7 @@
 package com.cupcake.chickenmasala.data.data_sourse
 
 import android.app.Application
+import com.cupcake.chickenmasala.R
 import com.cupcake.chickenmasala.data.dataSource.DataSource
 import com.cupcake.chickenmasala.data.model.HealthAdvice
 import com.cupcake.chickenmasala.data.model.Recipe
@@ -26,40 +27,61 @@ class DataSourceImpl(private val context: Application) : DataSource {
         val recipes = mutableListOf<Recipe>()
         val fileReader = openFile(INDIAN_FOOD_FILE_PATH)
         parseFile(fileReader).forEach { (key, data) ->
-            recipes.add(
-                Recipe(
-                    id = key,
-                    translatedRecipeName = data[TRANSLATED_RECIPE_NAME],
-                    translatedIngredients = data[TRANSLATED_INGREDIENTS].split(";"),
-                    cleanedIngredients = data[CLEANED_INGREDIENTS].split(";"),
-                    totalTimeInMin = data[TOTAL_TIME_IN_MIN].toInt(),
-                    cuisine = data[CUISINE],
-                    translatedInstructions = data[TRANSLATED_INSTRUCTIONS].split(";"),
-                    urlDetailsRecipe = data[URL],
-                    imageUrl = data[IMAGE_RECIPE_URL],
-                    ingredientCounts = data[INGREDIENT_COUNTS].toInt()
-                )
-            )
+            recipes.add(data.toRecipe(key))
         }
         fileReader.close()
         return recipes
+    }
+    private fun List<String>.toRecipe(key:Int):Recipe{
+        return Recipe(
+            id = key,
+            translatedRecipeName = this[TRANSLATED_RECIPE_NAME],
+            translatedIngredients = this[TRANSLATED_INGREDIENTS].split(";"),
+            cleanedIngredients = this[CLEANED_INGREDIENTS].split(";"),
+            totalTimeInMin = this[TOTAL_TIME_IN_MIN].toInt(),
+            formattedTime = toFormattedTime(this[TOTAL_TIME_IN_MIN].toInt()),
+            cuisine = this[CUISINE],
+            translatedInstructions = this[TRANSLATED_INSTRUCTIONS].split(";"),
+            urlDetailsRecipe = this[URL],
+            imageUrl = this[IMAGE_RECIPE_URL],
+            ingredientCounts = this[INGREDIENT_COUNTS].toInt()
+        )
     }
 
     override fun getHealthAdvices(): List<HealthAdvice> {
         val advices = mutableListOf<HealthAdvice>()
         val fileReader = openFile(HEALTH_ADVICES_FILE_PATH)
         parseFile(fileReader).forEach { (key, data) ->
-            advices.add(
-                HealthAdvice(
-                    id = key,
-                    title = data[TITLE],
-                    description = data[DESCRIPTION],
-                    imageUrl = data[IMAGE_HEALTH_URL]
-                )
-            )
+            advices.add(data.toHealthAdvices(key))
         }
         fileReader.close()
         return advices
+    }
+    private fun List<String>.toHealthAdvices(key: Int):HealthAdvice{
+        return HealthAdvice(
+            id = key,
+            title = this[TITLE],
+            description = this[DESCRIPTION],
+            imageUrl = this[IMAGE_HEALTH_URL]
+        )
+
+    }
+
+    private fun toFormattedTime(time: Int): String{
+        val hours = time / 60
+        val min = time % 60
+        var formatTime = ""
+        val hourChar = context.getString(R.string.hours_char)
+        val minuteChar = context.getString(R.string.mimute_char)
+        if (hours != 0){
+            formatTime = "${hours}$hourChar "
+        }
+        if (min != 0){
+            formatTime += "${min}$minuteChar"
+        }else{
+            formatTime = "0$minuteChar"
+        }
+        return formatTime
     }
 
     companion object {
