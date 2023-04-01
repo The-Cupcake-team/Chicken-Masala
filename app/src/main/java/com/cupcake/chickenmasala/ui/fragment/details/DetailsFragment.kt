@@ -15,7 +15,6 @@ import com.cupcake.chickenmasala.ui.fragment.details.adapter.InstructionsAdapter
 import com.cupcake.chickenmasala.usecase.Repository
 import com.cupcake.chickenmasala.utill.DataSourceProvider
 import com.cupcake.chickenmasala.utill.setImage
-import com.cupcake.chickenmasala.utill.toFormatTime
 
 
 class DetailsFragment : BaseFragment<FragmentDetailsBinding>() {
@@ -86,7 +85,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>() {
             textViewFoodName.text = recipe.translatedRecipeName
             textViewIngredientCount.text = recipe.ingredientCounts.toString()
             textViewCuisine.text = recipe.cuisine
-            textViewTimer.text = recipe.totalTimeInMin.toFormatTime()
+            textViewTimer.text = recipe.formattedTime
         }
 
         binding.buttonMoreDetails.setOnClickListener {

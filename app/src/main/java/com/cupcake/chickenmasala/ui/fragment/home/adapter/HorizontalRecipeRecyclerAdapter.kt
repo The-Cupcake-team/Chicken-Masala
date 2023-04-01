@@ -7,7 +7,7 @@ import com.cupcake.chickenmasala.databinding.SearchCardViewBinding
 import com.cupcake.chickenmasala.ui.base.BaseAdapter
 import com.cupcake.chickenmasala.ui.util.OnItemClickListener
 import com.cupcake.chickenmasala.utill.setImage
-import com.cupcake.chickenmasala.utill.toFormatTime
+
 
 
 class HorizontalRecipeRecyclerAdapter(private val listener: OnItemClickListener<Recipe>) :
@@ -26,7 +26,7 @@ class HorizontalRecipeRecyclerAdapter(private val listener: OnItemClickListener<
             saveCardImage.setImage(item.imageUrl)
             dishName.text = item.translatedRecipeName
             cuisineName.text = item.cuisine
-            prepareTime.text = item.totalTimeInMin.toFormatTime()
+            prepareTime.text = item.formattedTime
             root.setOnClickListener{
                 listener.onItemClicked(item)
             }

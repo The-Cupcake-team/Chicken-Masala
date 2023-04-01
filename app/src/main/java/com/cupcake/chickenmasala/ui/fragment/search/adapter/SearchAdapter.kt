@@ -9,7 +9,6 @@ import com.cupcake.chickenmasala.R
 import com.cupcake.chickenmasala.data.model.Recipe
 import com.cupcake.chickenmasala.databinding.SearchCardBinding
 import com.cupcake.chickenmasala.utill.setImage
-import com.cupcake.chickenmasala.utill.toFormatTime
 
 class SearchAdapter(
     private var recipes: List<Recipe>,
@@ -55,7 +54,7 @@ class SearchAdapter(
             with(binding) {
                 textViewRecipeName.text = recipe.translatedRecipeName
                 textViewRecipeCuisine.text = recipe.cuisine
-                textViewTotalTime.text = recipe.totalTimeInMin.toFormatTime()
+                textViewTotalTime.text = recipe.formattedTime
                 imageView.setImage(recipe.imageUrl)
                 root.setOnClickListener { recipeClickListener.onRecipeClick(recipe.id) }
             }
