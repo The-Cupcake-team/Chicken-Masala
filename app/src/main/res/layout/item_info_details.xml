@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/background">
 
     <com.google.android.material.imageview.ShapeableImageView
@@ -18,34 +18,34 @@
     <TextView
         android:id="@+id/text_view_food_name"
         style="@style/TextStyle.Title.Medium"
-        android:layout_marginHorizontal="@dimen/spacing_medium"
         android:layout_marginTop="@dimen/spacing_medium"
-        android:layout_width="match_parent"
+        android:layout_width="@dimen/zero"
         android:layout_height="wrap_content"
         android:text="@string/recipe_name"
+        app:layout_constraintEnd_toEndOf="@id/image_view_details"
+        app:layout_constraintStart_toStartOf="@id/image_view_details"
         app:layout_constraintTop_toBottomOf="@id/image_view_details" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view_clean_ingredient"
-        android:layout_width="match_parent"
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/chip_group_ingredient"
+        android:layout_width="@dimen/zero"
         android:layout_height="wrap_content"
-        android:paddingHorizontal="@dimen/spacing_medium"
         android:layout_marginTop="@dimen/spacing_normal"
-        android:clipToPadding="false"
-        android:orientation="horizontal"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintTop_toBottomOf="@id/text_view_food_name"
-        tools:listitem="@layout/item_chip" />
+        app:chipSpacingVertical="@dimen/zero"
+        app:layout_constraintEnd_toEndOf="@id/image_view_details"
+        app:layout_constraintStart_toStartOf="@id/image_view_details"
+        app:layout_constraintTop_toBottomOf="@id/text_view_food_name" />
 
     <TextView
         android:id="@+id/text_view_details"
         style="@style/TextStyle.Title.Medium"
-        android:layout_marginHorizontal="@dimen/spacing_medium"
         android:layout_marginTop="@dimen/spacing_normal"
-        android:layout_width="match_parent"
+        android:layout_width="@dimen/zero"
         android:layout_height="wrap_content"
         android:text="@string/details_text"
-        app:layout_constraintTop_toBottomOf="@id/recycler_view_clean_ingredient" />
+        app:layout_constraintEnd_toEndOf="@id/image_view_details"
+        app:layout_constraintStart_toStartOf="@id/image_view_details"
+        app:layout_constraintTop_toBottomOf="@id/chip_group_ingredient" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/container_details"
