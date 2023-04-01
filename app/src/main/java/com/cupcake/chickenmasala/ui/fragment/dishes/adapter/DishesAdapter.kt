@@ -32,7 +32,7 @@ class DishesAdapter(private val listener: OnItemClickListener<Recipe>) :
             cardImage.setImage(item.imageUrl)
             textViewRecipeName.text = item.translatedRecipeName
             textViewCuisine.text = item.cuisine
-            textViewTime.text = item.totalTimeInMin.toString()
+            textViewTime.text = item.formattedTime
             root.setOnClickListener {
                 listener.onItemClicked(item)
             }

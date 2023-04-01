@@ -85,7 +85,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>() {
             textViewFoodName.text = recipe.translatedRecipeName
             textViewIngredientCount.text = recipe.ingredientCounts.toString()
             textViewCuisine.text = recipe.cuisine
-            textViewTimer.text = recipe.totalTimeInMin.toString()
+            textViewTimer.text = recipe.formattedTime
         }
 
         binding.buttonMoreDetails.setOnClickListener {

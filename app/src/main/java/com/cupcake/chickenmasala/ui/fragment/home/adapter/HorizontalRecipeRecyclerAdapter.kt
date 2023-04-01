@@ -25,7 +25,7 @@ class HorizontalRecipeRecyclerAdapter(private val listener: HomeInteractorListen
             saveCardImage.setImage(item.imageUrl)
             dishName.text = item.translatedRecipeName
             textViewCuisineName.text = item.cuisine
-            prepareTime.text = item.totalTimeInMin.toString()
+            prepareTime.text = item.formattedTime
             root.setOnClickListener{
                 listener.onRecipeCardClicked(item.id)
             }
