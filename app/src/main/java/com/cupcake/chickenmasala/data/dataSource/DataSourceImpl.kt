@@ -1,6 +1,7 @@
 package com.cupcake.chickenmasala.data.data_sourse
 
 import android.app.Application
+import com.cupcake.chickenmasala.R
 import com.cupcake.chickenmasala.data.dataSource.DataSource
 import com.cupcake.chickenmasala.data.model.HealthAdvice
 import com.cupcake.chickenmasala.data.model.Recipe
@@ -33,6 +34,7 @@ class DataSourceImpl(private val context: Application) : DataSource {
                     translatedIngredients = data[TRANSLATED_INGREDIENTS].split(";"),
                     cleanedIngredients = data[CLEANED_INGREDIENTS].split(";"),
                     totalTimeInMin = data[TOTAL_TIME_IN_MIN].toInt(),
+                    formattedTime = toFormattedTime(data[TOTAL_TIME_IN_MIN].toInt()),
                     cuisine = data[CUISINE],
                     translatedInstructions = data[TRANSLATED_INSTRUCTIONS].split(";"),
                     urlDetailsRecipe = data[URL],
@@ -60,6 +62,23 @@ class DataSourceImpl(private val context: Application) : DataSource {
         }
         fileReader.close()
         return advices
+    }
+
+    private fun toFormattedTime(time: Int): String{
+        val hours = time / 60
+        val min = time % 60
+        var formatTime = ""
+        val hourChar = context.getString(R.string.hours_char)
+        val minuteChar = context.getString(R.string.mimute_char)
+        if (hours != 0){
+            formatTime = "${hours}$hourChar"
+        }
+        if (min != 0){
+            formatTime += "${min}$minuteChar"
+        }else{
+            formatTime = "0$minuteChar"
+        }
+        return formatTime
     }
 
     companion object {
