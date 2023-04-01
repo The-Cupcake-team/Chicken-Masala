@@ -15,10 +15,8 @@ import com.cupcake.chickenmasala.utill.setImage
 
 class HealthyFragment : BaseFragment<FragmentHealthyBinding>() {
     override val LOG_TAG = this::class.java.name
-
     override val bindingInflater: (LayoutInflater, ViewGroup, Boolean) -> FragmentHealthyBinding =
         FragmentHealthyBinding::inflate
-
     private val repository: Repository by lazy {
         RepositoryImpl(DataSourceProvider.getDataSource(requireActivity().application))
     }
@@ -26,7 +24,7 @@ class HealthyFragment : BaseFragment<FragmentHealthyBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
-
+        setupBackButton()
     }
 
     private fun initView() {
@@ -46,19 +44,25 @@ class HealthyFragment : BaseFragment<FragmentHealthyBinding>() {
     private fun bindViews(healthyAdvice: HealthAdvice) {
         with(binding) {
             toolbar.title = healthyAdvice.title
-            healthyImage.setImage(healthyAdvice.imageUrl)
+            imageViewHealthy.setImage(healthyAdvice.imageUrl)
             healthyDescription.text = healthyAdvice.description
         }
     }
 
+    private fun setupBackButton() {
+        binding.toolbar.setNavigationOnClickListener {
+            requireActivity().supportFragmentManager.popBackStack()
+        }
+    }
+
     companion object {
+        private const val ADVICE_ID = "adviceID"
+
         fun newInstance(id: Int) = HealthyFragment().apply {
             arguments = Bundle().apply {
                 putInt(ADVICE_ID, id)
             }
         }
-
-        private const val ADVICE_ID = "adviceID"
     }
 }
 

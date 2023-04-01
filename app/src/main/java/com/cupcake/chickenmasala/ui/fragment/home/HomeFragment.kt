@@ -1,134 +1,120 @@
 package com.cupcake.chickenmasala.ui.fragment.home
 
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager2.widget.CompositePageTransformer
-import androidx.viewpager2.widget.MarginPageTransformer
-import androidx.viewpager2.widget.ViewPager2
 import com.cupcake.chickenmasala.R
 import com.cupcake.chickenmasala.data.RepositoryImpl
 import com.cupcake.chickenmasala.data.model.Recipe
 import com.cupcake.chickenmasala.databinding.FragmentHomeBinding
 import com.cupcake.chickenmasala.ui.base.BaseFragment
-import com.cupcake.chickenmasala.ui.util.OnItemClickListener
-import com.cupcake.chickenmasala.ui.fragment.health.HealthyFragment
 import com.cupcake.chickenmasala.ui.fragment.details.DetailsFragment
 import com.cupcake.chickenmasala.ui.fragment.dishes.DishesFragment
-import com.cupcake.chickenmasala.ui.fragment.home.adapter.HorizontalRecipeRecyclerAdapter
-import com.cupcake.chickenmasala.ui.fragment.home.adapter.VerticalRecipeRecyclerAdapter
-import com.cupcake.chickenmasala.ui.fragment.home.adapter.ViewPagerAdapter
+import com.cupcake.chickenmasala.ui.fragment.health.HealthyFragment
+import com.cupcake.chickenmasala.ui.fragment.home.adapter.HomeRecyclerAdapter
+import com.cupcake.chickenmasala.ui.fragment.home.homeModel.HomeItem
+import com.cupcake.chickenmasala.ui.fragment.home.homeModel.HomeItemType
 import com.cupcake.chickenmasala.usecase.Repository
+import com.cupcake.chickenmasala.usecase.home.GetAllFoodUseCase
 import com.cupcake.chickenmasala.usecase.home.GetFilteredFoodUseCase
 import com.cupcake.chickenmasala.usecase.home.GetHealthAdvicesUseCase
 import com.cupcake.chickenmasala.usecase.home.GetRecentFoodUseCase
 import com.cupcake.chickenmasala.utill.DataSourceProvider
-import com.google.android.material.chip.Chip
+import com.cupcake.chickenmasala.utill.toHomeItem
 
-class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnItemClickListener<Recipe> {
+
+class HomeFragment : BaseFragment<FragmentHomeBinding>(), HomeInteractorListener {
     override val LOG_TAG: String = this::class.java.name
 
     override val bindingInflater: (LayoutInflater, ViewGroup, Boolean) -> FragmentHomeBinding
-        get() = FragmentHomeBinding::inflate
+      = FragmentHomeBinding::inflate
 
-    private lateinit var horizontalRecipeRecyclerAdapter: HorizontalRecipeRecyclerAdapter
-    private lateinit var viewPager: ViewPager2
-    private lateinit var handler: Handler
-    private lateinit var viewPagerAdapter: ViewPagerAdapter
-    private lateinit var verticalRecipeRecyclerAdapter: VerticalRecipeRecyclerAdapter
+    private lateinit var homeRecyclerAdapter: HomeRecyclerAdapter
+    private var itemsList: MutableList<HomeItem<Any>> = mutableListOf()
 
     private val repository: Repository by lazy {
         RepositoryImpl(DataSourceProvider.getDataSource(requireActivity().application))
     }
+    private val allRecipesUseCase : GetAllFoodUseCase by  lazy {
+        GetAllFoodUseCase(repository)
+    }
+    private val filteredRecipesUseCase : GetFilteredFoodUseCase by  lazy {
+        GetFilteredFoodUseCase(repository)
+    }
+    private val recentRecipesUseCase : GetRecentFoodUseCase by  lazy {
+        GetRecentFoodUseCase(repository)
+    }
+    private val healthyAdvicesUseCase : GetHealthAdvicesUseCase by  lazy {
+        GetHealthAdvicesUseCase(repository)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        setup()
+    }
+    private fun setup(){
         setupViewPager()
-        setupHorizontalRecipeRecycler()
-        setupVerticalRecipeRecyclerView()
-        setUpTransformer()
-        addCallbacks()
+        setupRecentFoodRecycler()
+        setupChips()
+        setupFilteredFoodRecycler()
+        homeRecyclerAdapter = HomeRecyclerAdapter(this,itemsList)
+        binding.recyclerViewHome.adapter = homeRecyclerAdapter
     }
 
-    private fun setupHorizontalRecipeRecycler() {
-        horizontalRecipeRecyclerAdapter = HorizontalRecipeRecyclerAdapter(this)
-        val data = GetRecentFoodUseCase(repository)(RECENT_FOOD_LIMIT)
-        horizontalRecipeRecyclerAdapter.submitList(data)
-        binding.recyclerViewHorizontal.adapter = horizontalRecipeRecyclerAdapter
+    private fun setupViewPager(){
+        val advices = healthyAdvicesUseCase(ADVICES_LIMIT)
+        itemsList.add(HomeItem(advices, HomeItemType.HEALTHY_VIEW_PAGER))
+    }
+    private fun setupRecentFoodRecycler(){
+        val recentFood = recentRecipesUseCase(RECENT_FOOD_LIMIT)
+        itemsList.add(HomeItem(recentFood, HomeItemType.HORIZONTAL_RECYCLER))
+    }
+    private fun setupFilteredFoodRecycler(){
+        val data = allRecipesUseCase()
+        itemsList.addAll(data.map { it.toHomeItem() })
+    }
+    private fun setupChips(){
+        itemsList.add(HomeItem(emptyList<String>(), HomeItemType.CHIPS_FILTERED))
     }
 
-    private fun setupVerticalRecipeRecyclerView() {
-        verticalRecipeRecyclerAdapter = VerticalRecipeRecyclerAdapter(this)
-        verticalRecipeRecyclerAdapter.submitList(repository.getRecipes())
-        binding.recyclerViewVertical.adapter = verticalRecipeRecyclerAdapter
+    override fun onViewPagerClicked(id: Int) {
+        val healthyFragment = HealthyFragment.newInstance(id)
+        navigateToFragment(healthyFragment)
     }
-
-    private fun addCallbacks() {
-        viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-            override fun onPageSelected(position: Int) {
-                super.onPageSelected(position)
-                handler.removeCallbacks(runnable)
-                handler.postDelayed(runnable, 4000)
-            }
-        })
-
-        binding.viewAll.setOnClickListener {
-             navigateToFragment(DishesFragment())
-        }
-
-        binding.viewPager.setOnClickListener {
-            val healthyFragment = HealthyFragment.newInstance(id)
-            navigateToFragment(healthyFragment)
-        }
-
-        binding.chipsFilter.setOnCheckedStateChangeListener { group, checkedIds ->
-            val chip = group.findViewById<Chip>(checkedIds[0])
-            if(chip.text.toString() == ALL_RECIPES){
-                val data = repository.getRecipes()
-                verticalRecipeRecyclerAdapter.submitList(data)
-            }else{
-                val data = GetFilteredFoodUseCase(repository)(chip.text.toString())
-                verticalRecipeRecyclerAdapter.submitList(data)
-            }
-        }
+    override fun onViewAllButtonClicked() {
+        val dishesFragment = DishesFragment()
+        navigateToFragment(dishesFragment)
     }
-
-    private fun setupViewPager() {
-        handler = Handler(Looper.myLooper()!!)
-        viewPager = binding.viewPager
-
-        val advices = GetHealthAdvicesUseCase(repository)(ADVICES_LIMIT)
-        viewPagerAdapter = ViewPagerAdapter(viewPager, advices)
-        viewPagerAdapter.submitList(advices)
-
-        viewPager.adapter = viewPagerAdapter
-        viewPager.offscreenPageLimit = 3
-        viewPager.clipToPadding = false
-        viewPager.clipChildren = false
-        viewPager.getChildAt(0).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
-    }
-
-    private fun setUpTransformer() {
-        val transformer = CompositePageTransformer()
-        transformer.addTransformer(MarginPageTransformer(20))
-        transformer.addTransformer { page, position ->
-            val r = 1 - kotlin.math.abs(position)
-            page.scaleY = 0.85f + r * 0.14f
-        }
-        viewPager.setPageTransformer(transformer)
-    }
-
-    override fun onItemClicked(item: Recipe) {
-        val detailsFragment = DetailsFragment.newInstance(item.id)
+    override fun onRecipeCardClicked(id: Int) {
+        val detailsFragment = DetailsFragment.newInstance(id)
         navigateToFragment(detailsFragment)
     }
+    override fun onChipClicked(chipId: Int) {
+        val data: List<Recipe> = if(chipId == ALL_RECIPES_ID){
+            allRecipesUseCase()
+        }else{
+            val cuisine = getCuisineAccordingToChipId(chipId)
+            filteredRecipesUseCase(cuisine)
+        }
+        updateList(data)
+    }
 
+    private fun updateList(data:List<Recipe>){
+        itemsList = itemsList.take(3).toMutableList()
+        itemsList.addAll(data.map { it.toHomeItem() })
+        homeRecyclerAdapter.submitList(itemsList)
+    }
+    private fun getCuisineAccordingToChipId(chipId: Int): String{
+        return when(chipId){
+            WORLD_BREAKFAST_ID -> WORLD_BREAKFAST_TEXT
+            DESSERT_ID ->  DESSERT_TEXT
+            DINNER_ID ->  DINNER_TEXT
+            SNACKS_ID -> SNACKS_TEXT
+            else -> ALL_RECIPES_TEXT
+        }
+    }
     private fun navigateToFragment(fragment: Fragment) {
         requireActivity().supportFragmentManager.beginTransaction().apply {
             add(R.id.fragmentContainer, fragment)
@@ -137,26 +123,23 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnItemClickListener<Re
         }
     }
 
-    override fun onPause() {
-        super.onPause()
-        handler.removeCallbacks(runnable)
-    }
-
-    override fun onResume() {
-        super.onResume()
-        handler.postDelayed(runnable, 4000)
-    }
-
-    private val runnable = Runnable {
-        viewPager.currentItem = viewPager.currentItem + 1
-    }
-
-    companion object {
+    private companion object {
         const val RECENT_FOOD_LIMIT = 10
-        const val ADVICES_LIMIT = 7
-        const val ALL_RECIPES = "All recipes"
-    }
 
+        const val ADVICES_LIMIT = 7
+
+        const val ALL_RECIPES_ID = R.id.chip_all_recipes
+        const val WORLD_BREAKFAST_ID=  R.id.chip_breakfast
+        const val DESSERT_ID = R.id.chip_desert
+        const val DINNER_ID = R.id.chip_dinner
+        const val SNACKS_ID = R.id.chip_snack
+
+        const val ALL_RECIPES_TEXT = "All Recipes"
+        const val WORLD_BREAKFAST_TEXT=  "World Breakfast"
+        const val DESSERT_TEXT = "Dessert"
+        const val DINNER_TEXT = "Dinner"
+        const val SNACKS_TEXT = "Snacks"
+    }
 }
 
 

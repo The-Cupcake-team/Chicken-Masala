@@ -4,6 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:scrollbars="none"
+    android:paddingHorizontal="@dimen/spacing_medium"
+    android:layout_marginBottom="@dimen/spacing_normal"
+    android:layout_marginTop="@dimen/spacing_medium"
+    android:clipToPadding="false"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.google.android.material.chip.ChipGroup
