@@ -2,7 +2,7 @@ package com.cupcake.chickenmasala.utill
 
 import android.app.Application
 import com.cupcake.chickenmasala.data.dataSource.DataSource
-import com.cupcake.chickenmasala.data.data_sourse.DataSourceImpl
+import com.cupcake.chickenmasala.data.dataSource.DataSourceImpl
 
 class DataSourceProvider {
 

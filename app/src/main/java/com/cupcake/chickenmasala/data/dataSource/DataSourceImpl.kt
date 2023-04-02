@@ -1,8 +1,7 @@
-package com.cupcake.chickenmasala.data.data_sourse
+package com.cupcake.chickenmasala.data.dataSource
 
 import android.app.Application
 import com.cupcake.chickenmasala.R
-import com.cupcake.chickenmasala.data.dataSource.DataSource
 import com.cupcake.chickenmasala.data.model.HealthAdvice
 import com.cupcake.chickenmasala.data.model.Recipe
 import com.cupcake.chickenmasala.data.model.StepInstructions
@@ -40,10 +39,9 @@ class DataSourceImpl(private val context: Application) : DataSource {
             translatedIngredients = this[TRANSLATED_INGREDIENTS].split(";"),
             cleanedIngredients = this[CLEANED_INGREDIENTS].split(";"),
             totalTimeInMin = this[TOTAL_TIME_IN_MIN].toInt(),
-            formattedTime = toFormattedTime(this[TOTAL_TIME_IN_MIN].toInt()),
+            formattedTime = formatTime(this[TOTAL_TIME_IN_MIN].toInt()),
             cuisine = this[CUISINE],
-            translatedInstructions = this[TRANSLATED_INSTRUCTIONS].split(";")
-                .toStepInstructions(),
+            translatedInstructions = this[TRANSLATED_INSTRUCTIONS].split(";").toStepInstructions(),
             urlDetailsRecipe = this[URL],
             imageUrl = this[IMAGE_RECIPE_URL],
             ingredientCounts = this[INGREDIENT_COUNTS].toInt()
@@ -79,21 +77,22 @@ class DataSourceImpl(private val context: Application) : DataSource {
         }
     }
 
-    private fun toFormattedTime(time: Int): String {
+    private fun formatTime(time: Int): String {
         val hours = time / 60
-        val min = time % 60
-        var formatTime = ""
-        val hourChar = context.getString(R.string.hours_char)
-        val minuteChar = context.getString(R.string.mimute_char)
+        val remainingMinutes = time % 60
+        var formattedTime = ""
+
+        val hoursStr  = context.getString(R.string.hours_char)
+        val minutesStr  = context.getString(R.string.mimute_char)
         if (hours != 0) {
-            formatTime = "${hours}$hourChar "
+            formattedTime = "$hours$hoursStr"
         }
-        if (min != 0) {
-            formatTime += "${min}$minuteChar"
+        if (remainingMinutes != 0) {
+            formattedTime += " $remainingMinutes$minutesStr"
         } else {
-            formatTime = "0$minuteChar"
+            formattedTime = "0$minutesStr"
         }
-        return formatTime
+        return formattedTime
     }
 
     companion object {
