@@ -3,7 +3,7 @@ package com.cupcake.chickenmasala.usecase.cuisine
 import com.cupcake.chickenmasala.data.model.Recipe
 import com.cupcake.chickenmasala.usecase.Repository
 
-class GetAllRecipesInCuisineUseCase(private val repository: Repository) {
+class GetAllRecipesCuisineUseCase(private val repository: Repository) {
     operator fun invoke(cuisine: String): List<Recipe> {
         return repository
             .getRecipes()

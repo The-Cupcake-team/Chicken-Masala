@@ -13,7 +13,7 @@ import com.cupcake.chickenmasala.ui.base.BaseFragment
 import com.cupcake.chickenmasala.ui.fragment.cuisineDishes.adapter.CuisineDishesAdapter
 import com.cupcake.chickenmasala.ui.fragment.details.DetailsFragment
 import com.cupcake.chickenmasala.usecase.Repository
-import com.cupcake.chickenmasala.usecase.cuisine.GetAllRecipesInCuisineUseCase
+import com.cupcake.chickenmasala.usecase.cuisine.GetAllRecipesCuisineUseCase
 import com.cupcake.chickenmasala.utill.DataSourceProvider
 
 class CuisineDishesFragment : BaseFragment<FragmentCuisineDishesBinding>(),
@@ -49,7 +49,7 @@ class CuisineDishesFragment : BaseFragment<FragmentCuisineDishesBinding>(),
     }
 
     private fun getCuisineDishes(cuisineName: String): List<Recipe> {
-        return GetAllRecipesInCuisineUseCase(repository).invoke(cuisineName)
+        return GetAllRecipesCuisineUseCase(repository).invoke(cuisineName)
     }
 
     override fun onClickCuisineDishes(recipe: Recipe) {
