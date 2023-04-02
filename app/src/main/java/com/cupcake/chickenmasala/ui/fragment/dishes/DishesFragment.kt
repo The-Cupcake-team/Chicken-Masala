@@ -13,7 +13,7 @@ import com.cupcake.chickenmasala.ui.fragment.details.DetailsFragment
 import com.cupcake.chickenmasala.ui.fragment.dishes.adapter.DishesAdapter
 import com.cupcake.chickenmasala.ui.util.OnItemClickListener
 import com.cupcake.chickenmasala.usecase.Repository
-import com.cupcake.chickenmasala.usecase.dishes.GetAllRecipeFoodUseCase
+import com.cupcake.chickenmasala.usecase.dishes.GetAllRecipesFoodUseCase
 import com.cupcake.chickenmasala.utill.DataSourceProvider
 
 class DishesFragment : BaseFragment<FragmentDishesBinding>(), OnItemClickListener<Recipe> {
@@ -34,7 +34,7 @@ class DishesFragment : BaseFragment<FragmentDishesBinding>(), OnItemClickListene
     }
 
     private fun setUpDishesAdapter() {
-        val dishes = GetAllRecipeFoodUseCase(repository).invoke(DISHES_LIMIT)
+        val dishes = GetAllRecipesFoodUseCase(repository).invoke(DISHES_LIMIT)
         val adapter = DishesAdapter(this)
         adapter.submitList(dishes)
         binding.recyclerViewDishes.adapter = adapter
