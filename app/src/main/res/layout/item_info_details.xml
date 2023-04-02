@@ -82,6 +82,7 @@
         <View
             android:id="@+id/divider_time_and_cuisine"
             style="@style/detailsDivider"
+            android:alpha="0.5"
             app:layout_constraintBottom_toBottomOf="@id/text_view_timer"
             app:layout_constraintEnd_toStartOf="@+id/text_view_cuisine"
             app:layout_constraintStart_toEndOf="@+id/text_view_timer"

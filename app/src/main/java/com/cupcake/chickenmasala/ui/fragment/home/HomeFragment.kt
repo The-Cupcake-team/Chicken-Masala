@@ -138,7 +138,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), HomeInteractorListener
         const val WORLD_BREAKFAST_TEXT=  "World Breakfast"
         const val DESSERT_TEXT = "Dessert"
         const val DINNER_TEXT = "Dinner"
-        const val SNACKS_TEXT = "Snacks"
+        const val SNACKS_TEXT = "Snack"
     }
 }
 

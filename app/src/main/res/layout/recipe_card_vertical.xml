@@ -17,6 +17,7 @@
             android:contentDescription="@string/image"
             android:foreground="@drawable/linear_overlay"
             android:scaleType="centerCrop"
+            android:background="@color/card"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"

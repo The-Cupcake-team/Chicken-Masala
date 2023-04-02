@@ -87,4 +87,6 @@
     <string name="hours_char" translatable="false">h </string>
     <string name="mimute_char" translatable="false">m </string>
 
+    <string name="snacks">m </string>
+
 </resources>

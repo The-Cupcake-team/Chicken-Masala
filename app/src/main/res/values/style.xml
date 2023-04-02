@@ -121,6 +121,8 @@
     <style name="CardViewStyle" parent="@style/Widget.Material3.CardView.Filled">
         <item name="cardCornerRadius">@dimen/radius_medium</item>
         <item name="cardElevation">@dimen/zero</item>
+        <item name="backgroundTint">@color/primary</item>
+        <item name="background">@color/primary</item>
     </style>
 
     <style name="SearchCardViewStyle" parent="CardViewStyle">

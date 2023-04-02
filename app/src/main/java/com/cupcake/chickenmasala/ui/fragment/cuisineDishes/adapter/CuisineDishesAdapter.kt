@@ -22,6 +22,7 @@ class CuisineDishesAdapter(private val listener: CuisineDishesInteractionListene
 
     override fun bindItem(binding: ItemCuisineDishesBinding, item: Recipe) {
         with(binding) {
+            textViewRecipeName.text = item.translatedRecipeName
             textViewTime.text = item.formattedTime
             textViewCuisine.text = item.ingredientCounts.toString()
             imageViewRecipeImage.setImage(item.imageUrl)

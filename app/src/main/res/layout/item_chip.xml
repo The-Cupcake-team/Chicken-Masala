@@ -7,6 +7,7 @@
     android:layout_height="wrap_content"
     android:layout_marginEnd="@dimen/spacing_small"
     android:clickable="false"
-    android:checkable="false"
+    android:checkable="true"
+    android:checked="true"
     android:text="@string/onion"
     app:chipIconTint="@color/black" />

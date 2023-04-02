@@ -16,6 +16,7 @@
             android:layout_height="match_parent"
             android:foreground="@drawable/linear_overlay"
             android:scaleType="centerCrop"
+            android:background="@color/card"
             android:contentDescription="@string/image"
             tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
