@@ -3,124 +3,65 @@ package com.cupcake.chickenmasala.ui.fragment.details.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewbinding.ViewBinding
 import com.cupcake.chickenmasala.R
-import com.cupcake.chickenmasala.data.model.Recipe
-import com.cupcake.chickenmasala.data.model.StepInstructions
+import com.cupcake.chickenmasala.data.model.DetailsItem
 import com.cupcake.chickenmasala.databinding.ItemInfoDetailsBinding
 import com.cupcake.chickenmasala.databinding.ListStepIngredientsBinding
 import com.cupcake.chickenmasala.databinding.ListStepInstructionsBinding
-import com.cupcake.chickenmasala.ui.base.BaseViewHolder
-import com.cupcake.chickenmasala.utill.setImage
-import com.google.android.material.chip.Chip
+import com.cupcake.chickenmasala.ui.fragment.details.adapter.viewholder.ItemDetailsViewHolder
+import com.cupcake.chickenmasala.ui.fragment.details.adapter.viewholder.ListStepIngredientsViewHolder
+import com.cupcake.chickenmasala.ui.fragment.details.adapter.viewholder.ListStepInstructionsViewHolder
 
 
-class DetailsAdapter(private val detailsItem: List<DetailsItem<Any>>) :
-    RecyclerView.Adapter<BaseViewHolder>() {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
+class DetailsAdapter(private val items: List<DetailsItem>) :
+    RecyclerView.Adapter<DetailsAdapter.BaseDetailsViewHolder>() {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseDetailsViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-
         return when (viewType) {
-            
             VIEW_INFO -> {
                 val view = ItemInfoDetailsBinding.inflate(inflater, parent, false)
                 ItemDetailsViewHolder(view)
             }
-
             VIEW_STEP_INGREDIENTS -> {
                 val view = ListStepIngredientsBinding.inflate(inflater, parent, false)
                 ListStepIngredientsViewHolder(view)
             }
-
-            VIEW_STEP_INSTRUCTIONS -> {
+            else -> {
                 val view = ListStepInstructionsBinding.inflate(inflater, parent, false)
                 ListStepInstructionsViewHolder(view)
             }
-
-            else -> throw Exception("Unknown view type")
-
         }
     }
 
-    override fun getItemCount(): Int = detailsItem.size
+    override fun getItemCount(): Int = items.size
 
-    override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
-        when (holder) {
-            is ItemDetailsViewHolder -> bindInfoDetails(holder, position)
-            is ListStepIngredientsViewHolder -> bindListStepIngredients(
-                holder,
-                position
-            )
-            is ListStepInstructionsViewHolder -> bindListStepInstructions(
-                holder,
-                position
+    override fun onBindViewHolder(holder: BaseDetailsViewHolder, position: Int) {
+        when (val item = items[position]) {
+            is DetailsItem.DetailsRecipe -> (holder as ItemDetailsViewHolder).bindItem(item.recipe)
+            is DetailsItem.StepIngredient -> (holder as ListStepIngredientsViewHolder).bindItem(item.ingredients)
+            is DetailsItem.StepInstruction -> (holder as ListStepInstructionsViewHolder).bindItem(
+                item.instructions
             )
         }
-    }
-
-    private fun bindInfoDetails(holder: ItemDetailsViewHolder, position: Int) {
-        val recipe: Recipe = detailsItem[position].item as Recipe
-        holder.binding.apply {
-            imageViewDetails.setImage(recipe.imageUrl)
-            textViewFoodName.text = recipe.translatedRecipeName
-            textViewIngredientCount.text = recipe.ingredientCounts.toString()
-            textViewCuisine.text = recipe.cuisine
-            textViewTimer.text = recipe.totalTimeInMin.toString()
-            recipe.cleanedIngredients.forEach { item ->
-                chipGroupIngredient.addView(createChipView(holder, item))
-            }
-
-        }
-    }
-
-    private fun createChipView(holder: ItemDetailsViewHolder, text: String): Chip {
-        val chip = LayoutInflater.from(holder.itemView.context)
-            .inflate(R.layout.item_chip, holder.binding.root, false) as Chip
-        chip.text = text
-        return chip
-    }
-    
-    private fun bindListStepIngredients(
-        holder: ListStepIngredientsViewHolder,
-        position: Int
-    ) {
-        val currentStep: List<String> = detailsItem[position].item as List<String>
-        val adapter = IngredientsAdapter()
-        adapter.submitList(currentStep)
-        holder.binding.recyclerIngredients.adapter = adapter
-    }
-
-
-    private fun bindListStepInstructions(
-        holder: ListStepInstructionsViewHolder,
-        position: Int
-    ) {
-        val currentStep: List<StepInstructions> = detailsItem[position].item as List<StepInstructions>
-        val adapter = InstructionsAdapter()
-        adapter.submitList(currentStep)
-        holder.binding.recyclerInstructions.adapter = adapter
     }
 
     override fun getItemViewType(position: Int): Int {
-        return when (detailsItem[position].type) {
-            DetailsItemType.INFO -> VIEW_INFO
-            DetailsItemType.STEP_INGREDIENTS -> VIEW_STEP_INGREDIENTS
-            DetailsItemType.STEP_INSTRUCTIONS -> VIEW_STEP_INSTRUCTIONS
+        return when (items[position]) {
+            is DetailsItem.DetailsRecipe -> VIEW_INFO
+            is DetailsItem.StepIngredient -> VIEW_STEP_INGREDIENTS
+            is DetailsItem.StepInstruction -> VIEW_STEP_INSTRUCTIONS
         }
     }
 
-
-    class ItemDetailsViewHolder(val binding: ItemInfoDetailsBinding) :
-        BaseViewHolder(binding)
-
-    class ListStepIngredientsViewHolder(val binding: ListStepIngredientsBinding) :
-        BaseViewHolder(binding)
-
-    class ListStepInstructionsViewHolder(val binding: ListStepInstructionsBinding) :
-        BaseViewHolder(binding)
+    abstract class BaseDetailsViewHolder(viewItem: ViewBinding) :
+        RecyclerView.ViewHolder(viewItem.root) {
+        abstract fun <T> bindItem(items: T)
+    }
 
     companion object {
-        const val VIEW_INFO = 0
-        const val VIEW_STEP_INGREDIENTS = 1
-        const val VIEW_STEP_INSTRUCTIONS = 2
+        const val VIEW_INFO = R.layout.item_info_details
+        const val VIEW_STEP_INGREDIENTS = R.layout.list_step_ingredients
+        const val VIEW_STEP_INSTRUCTIONS = R.layout.list_step_instructions
     }
 }

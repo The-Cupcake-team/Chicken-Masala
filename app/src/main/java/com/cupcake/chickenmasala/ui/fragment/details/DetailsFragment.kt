@@ -7,12 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import com.cupcake.chickenmasala.R
 import com.cupcake.chickenmasala.data.RepositoryImpl
+import com.cupcake.chickenmasala.data.model.DetailsItem
 import com.cupcake.chickenmasala.data.model.Recipe
 import com.cupcake.chickenmasala.databinding.FragmentDetailsBinding
 import com.cupcake.chickenmasala.ui.base.BaseFragment
 import com.cupcake.chickenmasala.ui.fragment.details.adapter.DetailsAdapter
-import com.cupcake.chickenmasala.ui.fragment.details.adapter.DetailsItem
-import com.cupcake.chickenmasala.ui.fragment.details.adapter.DetailsItemType
 import com.cupcake.chickenmasala.usecase.Repository
 import com.cupcake.chickenmasala.usecase.core.GetRecipeByIdUseCase
 import com.cupcake.chickenmasala.utill.DataSourceProvider
@@ -49,10 +48,11 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>() {
     }
 
     private fun setUpRecyclerDetails(recipe: Recipe) {
-        val itemList: MutableList<DetailsItem<Any>> = mutableListOf()
-        itemList.add(DetailsItem(recipe, DetailsItemType.INFO))
-        itemList.add(DetailsItem(recipe.translatedIngredients, DetailsItemType.STEP_INGREDIENTS))
-        itemList.add(DetailsItem(recipe.translatedInstructions, DetailsItemType.STEP_INSTRUCTIONS))
+        val itemList: MutableList<DetailsItem> = mutableListOf()
+        itemList.add(DetailsItem.DetailsRecipe(recipe))
+        itemList.add(DetailsItem.StepIngredient(recipe.translatedIngredients))
+        itemList.add(DetailsItem.StepInstruction(recipe.translatedInstructions))
+        itemList.sortBy { it.priority }
         val adapter = DetailsAdapter(itemList)
         binding.recycler.adapter = adapter
     }
