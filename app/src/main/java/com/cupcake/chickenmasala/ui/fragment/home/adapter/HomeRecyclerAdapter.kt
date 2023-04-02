@@ -3,14 +3,13 @@ package com.cupcake.chickenmasala.ui.fragment.home.adapter
 import android.os.Handler
 import android.os.Looper
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewbinding.ViewBinding
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
-import com.cupcake.chickenmasala.R
 import com.cupcake.chickenmasala.data.model.HealthAdvice
 import com.cupcake.chickenmasala.data.model.Recipe
 import com.cupcake.chickenmasala.databinding.ItemCardRecipesFoodBinding
@@ -28,26 +27,23 @@ class HomeRecyclerAdapter(
 ) : RecyclerView.Adapter<HomeRecyclerAdapter.BaseViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
+        val inflater = LayoutInflater.from(parent.context)
         return when (viewType) {
             HEALTHY_VIEW_PAGER -> {
-                val view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.item_view_pager, parent, false)
+                val view = ItemViewPagerBinding.inflate(inflater, parent, false)
                 ViewPagerViewHolder(view)
             }
             RECENT_FOOD -> {
-                val view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.item_recycler_recent_food, parent, false)
+                val view = ItemRecyclerRecentFoodBinding.inflate(inflater, parent, false)
                 RecentFoodViewHolder(view)
             }
             CHIPS_FILTER -> {
-                val view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.item_chips_recipe_food, parent, false)
+                val view = ItemChipsRecipeFoodBinding.inflate(inflater, parent, false)
                 ChipsViewHolder(view)
             }
             HORIZONTAL_RECIPE -> {
-                val view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.item_card_recipes_food, parent, false)
-                FilteredFoodViewHolder(view)
+                val view = ItemCardRecipesFoodBinding.inflate(inflater, parent, false)
+                RecipeFoodViewHolder(view)
             }
             else -> throw Exception(" UNKNOWN VIEW TYPE")
         }
@@ -58,7 +54,7 @@ class HomeRecyclerAdapter(
             is ViewPagerViewHolder -> bindViewPager(holder, position)
             is RecentFoodViewHolder -> bindRecentFood(holder, position)
             is ChipsViewHolder -> bindChipsFiltered(holder, position)
-            is FilteredFoodViewHolder -> bindFilteredFood(holder, position)
+            is RecipeFoodViewHolder -> bindFilteredFood(holder, position)
         }
     }
 
@@ -68,7 +64,7 @@ class HomeRecyclerAdapter(
         }
     }
 
-    private fun bindFilteredFood(holder: FilteredFoodViewHolder, position: Int) {
+    private fun bindFilteredFood(holder: RecipeFoodViewHolder, position: Int) {
         val recipe = items[position].item as Recipe
         holder.binding.apply {
             textViewCuisineName.text = recipe.cuisine
@@ -97,13 +93,14 @@ class HomeRecyclerAdapter(
         val adapter = ViewPagerAdapter(viewPager, advices, listener)
         holder.binding.apply {
             viewPager.adapter = adapter
-            setupViewPager(viewPager,advices)
+            setupViewPager(viewPager, advices)
             setUpTransformer(viewPager)
             textViewViewAll.setOnClickListener {
                 listener.onViewAllButtonClicked()
             }
         }
     }
+
     private fun setupViewPager(
         viewPager: ViewPager2,
         advices: List<HealthAdvice>
@@ -130,6 +127,7 @@ class HomeRecyclerAdapter(
         viewPager.clipChildren = false
         viewPager.getChildAt(0).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
     }
+
     private fun setUpTransformer(viewPager: ViewPager2) {
         val transformer = CompositePageTransformer()
         transformer.addTransformer(MarginPageTransformer(20))
@@ -140,19 +138,14 @@ class HomeRecyclerAdapter(
         viewPager.setPageTransformer(transformer)
     }
 
-    open class BaseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
-    class ViewPagerViewHolder(itemView: View) : BaseViewHolder(itemView) {
-        val binding = ItemViewPagerBinding.bind(itemView)
-    }
-    class RecentFoodViewHolder(itemView: View) : BaseViewHolder(itemView) {
-        val binding = ItemRecyclerRecentFoodBinding.bind(itemView)
-    }
-    class ChipsViewHolder(itemView: View) : BaseViewHolder(itemView) {
-        val binding = ItemChipsRecipeFoodBinding.bind(itemView)
-    }
-    class FilteredFoodViewHolder(itemView: View) : BaseViewHolder(itemView) {
-        val binding = ItemCardRecipesFoodBinding.bind(itemView)
-    }
+    abstract class BaseViewHolder(binding: ViewBinding) : RecyclerView.ViewHolder(binding.root)
+    class ViewPagerViewHolder(val binding: ItemViewPagerBinding) : BaseViewHolder(binding)
+
+    class RecentFoodViewHolder(val binding: ItemRecyclerRecentFoodBinding) : BaseViewHolder(binding)
+
+    class ChipsViewHolder(val binding: ItemChipsRecipeFoodBinding) : BaseViewHolder(binding)
+
+    class RecipeFoodViewHolder(val binding: ItemCardRecipesFoodBinding) : BaseViewHolder(binding)
 
     override fun getItemCount() = items.size
 
@@ -172,6 +165,7 @@ class HomeRecyclerAdapter(
             }
         }
     }
+
     fun submitList(newItems: List<HomeItem<Any>>) {
         val diffResult = DiffUtil.calculateDiff(
             AppDiffUtil(
@@ -192,7 +186,8 @@ class HomeRecyclerAdapter(
 
         override fun getNewListSize() = newList.size
 
-        override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int) = oldList[oldItemPosition] == newList[newItemPosition]
+        override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int) =
+            oldList[oldItemPosition] == newList[newItemPosition]
 
         override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int) =
             oldList[oldItemPosition] == newList[newItemPosition]
