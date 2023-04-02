@@ -7,12 +7,11 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.cupcake.chickenmasala.R
+import com.cupcake.chickenmasala.data.model.HomeItem
 import com.cupcake.chickenmasala.databinding.ItemCardRecipesFoodBinding
 import com.cupcake.chickenmasala.databinding.ItemChipsRecipeFoodBinding
 import com.cupcake.chickenmasala.databinding.ItemRecyclerRecentFoodBinding
 import com.cupcake.chickenmasala.databinding.ItemViewPagerBinding
-import com.cupcake.chickenmasala.ui.fragment.home.homeModel.HomeItem
-import com.cupcake.chickenmasala.ui.fragment.home.homeModel.HomeItemType
 import com.cupcake.chickenmasala.ui.fragment.home.HomeInteractorListener
 import com.cupcake.chickenmasala.ui.fragment.home.adapter.viewholder.ChipsViewHolder
 import com.cupcake.chickenmasala.ui.fragment.home.adapter.viewholder.RecentFoodViewHolder
@@ -21,8 +20,9 @@ import com.cupcake.chickenmasala.ui.fragment.home.adapter.viewholder.ViewPagerVi
 
 class HomeRecyclerAdapter(
     private val listener: HomeInteractorListener,
-    private var items: List<HomeItem<Any>>
+    private var items: List<HomeItem> = emptyList()
 ) : RecyclerView.Adapter<HomeRecyclerAdapter.BaseHomeViewHolder>() {
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseHomeViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -39,20 +39,20 @@ class HomeRecyclerAdapter(
                 val view = ItemChipsRecipeFoodBinding.inflate(inflater, parent, false)
                 ChipsViewHolder(view, listener)
             }
-            TYPE_RECIPE_FOOD -> {
+
+            else -> {
                 val view = ItemCardRecipesFoodBinding.inflate(inflater, parent, false)
                 RecipeFoodViewHolder(view, listener)
             }
-            else -> throw Exception(" UNKNOWN VIEW TYPE")
         }
     }
 
     override fun onBindViewHolder(holder: BaseHomeViewHolder, position: Int) {
-        when (holder) {
-            is ViewPagerViewHolder -> holder.bindItem(items[position].item)
-            is RecentFoodViewHolder -> holder.bindItem(items[position].item)
-            is ChipsViewHolder -> holder.bindItem(position)
-            is RecipeFoodViewHolder -> holder.bindItem(items[position].item)
+        when (val item = items[position]) {
+            is HomeItem.Advice -> (holder as ViewPagerViewHolder).bindItem(item.advices)
+            is HomeItem.RecentFood -> (holder as RecentFoodViewHolder).bindItem(item.recent)
+            is HomeItem.ChipFood -> (holder as ChipsViewHolder).bindItem(item.items)
+            is HomeItem.RecipeFood -> (holder as RecipeFoodViewHolder).bindItem(item.recipe)
         }
     }
 
@@ -65,23 +65,18 @@ class HomeRecyclerAdapter(
     override fun getItemCount() = items.size
 
     override fun getItemViewType(position: Int): Int {
-        return when (items[position].type) {
-            HomeItemType.HEALTHY_VIEW_PAGER -> {
-                TYPE_VIEW_PAGER
-            }
-            HomeItemType.HORIZONTAL_RECYCLER -> {
-                TYPE_RECENT_FOOD
-            }
-            HomeItemType.VERTICAL_RECYCLER -> {
-                TYPE_RECIPE_FOOD
-            }
-            HomeItemType.CHIPS_FILTERED -> {
-                TYPE_CHIPS_RECIPE_FOOD
-            }
+        return when (items[position]) {
+            is HomeItem.Advice -> TYPE_VIEW_PAGER
+            is HomeItem.RecentFood -> TYPE_RECENT_FOOD
+            is HomeItem.ChipFood -> TYPE_CHIPS_RECIPE_FOOD
+            is HomeItem.RecipeFood -> TYPE_RECIPE_FOOD
         }
     }
 
-    fun submitList(newItems: List<HomeItem<Any>>) {
+    fun submitList(newItems: List<HomeItem>) {
+
+        items = newItems.sortedBy { it.priority }
+
         val diffResult = DiffUtil.calculateDiff(
             AppDiffUtil(
                 items,
