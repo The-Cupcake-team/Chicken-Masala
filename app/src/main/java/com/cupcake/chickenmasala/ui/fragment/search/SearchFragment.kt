@@ -1,5 +1,6 @@
 package com.cupcake.chickenmasala.ui.fragment.search
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -72,7 +73,6 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), TextWatcher, Recip
         }
 
         dialog.apply {
-            setCancelable(false)
             setContentView(bottomSheetBinding.root)
             show()
         }
@@ -218,6 +218,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), TextWatcher, Recip
         }
     }
 
+    @SuppressLint("StringFormatInvalid")
     private fun showErrorMessage(searchQueryRecipeName: String) {
         with(binding) {
             textViewSearchError.text =
