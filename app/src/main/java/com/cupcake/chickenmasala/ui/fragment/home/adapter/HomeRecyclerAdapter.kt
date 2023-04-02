@@ -13,9 +13,9 @@ import androidx.viewpager2.widget.ViewPager2
 import com.cupcake.chickenmasala.R
 import com.cupcake.chickenmasala.data.model.HealthAdvice
 import com.cupcake.chickenmasala.data.model.Recipe
-import com.cupcake.chickenmasala.databinding.ItemChipsHomeBinding
-import com.cupcake.chickenmasala.databinding.ItemHorizontalRecipesBinding
-import com.cupcake.chickenmasala.databinding.ItemVerticalRecipesBinding
+import com.cupcake.chickenmasala.databinding.ItemCardRecipesFoodBinding
+import com.cupcake.chickenmasala.databinding.ItemChipsRecipeFoodBinding
+import com.cupcake.chickenmasala.databinding.ItemRecyclerRecentFoodBinding
 import com.cupcake.chickenmasala.databinding.ItemViewPagerBinding
 import com.cupcake.chickenmasala.ui.fragment.home.homeModel.HomeItem
 import com.cupcake.chickenmasala.ui.fragment.home.homeModel.HomeItemType
@@ -36,17 +36,17 @@ class HomeRecyclerAdapter(
             }
             RECENT_FOOD -> {
                 val view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.item_horizontal_recipes, parent, false)
+                    .inflate(R.layout.item_recycler_recent_food, parent, false)
                 RecentFoodViewHolder(view)
             }
             CHIPS_FILTER -> {
                 val view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.item_chips_home, parent, false)
+                    .inflate(R.layout.item_chips_recipe_food, parent, false)
                 ChipsViewHolder(view)
             }
             HORIZONTAL_RECIPE -> {
                 val view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.item_vertical_recipes, parent, false)
+                    .inflate(R.layout.item_card_recipes_food, parent, false)
                 FilteredFoodViewHolder(view)
             }
             else -> throw Exception(" UNKNOWN VIEW TYPE")
@@ -87,7 +87,7 @@ class HomeRecyclerAdapter(
             HorizontalRecipeRecyclerAdapter(listener)
         horizontalAdapter.submitList(recentRecipes)
         holder.binding.apply {
-            recyclerViewHorizontal.adapter = horizontalAdapter
+            recyclerViewRecentFood.adapter = horizontalAdapter
         }
     }
 
@@ -145,13 +145,13 @@ class HomeRecyclerAdapter(
         val binding = ItemViewPagerBinding.bind(itemView)
     }
     class RecentFoodViewHolder(itemView: View) : BaseViewHolder(itemView) {
-        val binding = ItemHorizontalRecipesBinding.bind(itemView)
+        val binding = ItemRecyclerRecentFoodBinding.bind(itemView)
     }
     class ChipsViewHolder(itemView: View) : BaseViewHolder(itemView) {
-        val binding = ItemChipsHomeBinding.bind(itemView)
+        val binding = ItemChipsRecipeFoodBinding.bind(itemView)
     }
     class FilteredFoodViewHolder(itemView: View) : BaseViewHolder(itemView) {
-        val binding = ItemVerticalRecipesBinding.bind(itemView)
+        val binding = ItemCardRecipesFoodBinding.bind(itemView)
     }
 
     override fun getItemCount() = items.size
