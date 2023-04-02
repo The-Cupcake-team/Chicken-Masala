@@ -19,14 +19,18 @@ import com.cupcake.chickenmasala.databinding.ItemViewPagerBinding
 import com.cupcake.chickenmasala.ui.fragment.home.homeModel.HomeItem
 import com.cupcake.chickenmasala.ui.fragment.home.homeModel.HomeItemType
 import com.cupcake.chickenmasala.ui.fragment.home.HomeInteractorListener
+import com.cupcake.chickenmasala.ui.fragment.home.adapter.viewholder.ChipsViewHolder
+import com.cupcake.chickenmasala.ui.fragment.home.adapter.viewholder.RecentFoodViewHolder
+import com.cupcake.chickenmasala.ui.fragment.home.adapter.viewholder.RecipeFoodViewHolder
+import com.cupcake.chickenmasala.ui.fragment.home.adapter.viewholder.ViewPagerViewHolder
 import com.cupcake.chickenmasala.utill.setImage
 
 class HomeRecyclerAdapter(
     private val listener: HomeInteractorListener,
     private var items: List<HomeItem<Any>>
-) : RecyclerView.Adapter<HomeRecyclerAdapter.BaseViewHolder>() {
+) : RecyclerView.Adapter<HomeRecyclerAdapter.BaseHomeViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseHomeViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         return when (viewType) {
             HEALTHY_VIEW_PAGER -> {
@@ -49,7 +53,7 @@ class HomeRecyclerAdapter(
         }
     }
 
-    override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: BaseHomeViewHolder, position: Int) {
         when (holder) {
             is ViewPagerViewHolder -> bindViewPager(holder, position)
             is RecentFoodViewHolder -> bindRecentFood(holder, position)
@@ -138,14 +142,7 @@ class HomeRecyclerAdapter(
         viewPager.setPageTransformer(transformer)
     }
 
-    abstract class BaseViewHolder(binding: ViewBinding) : RecyclerView.ViewHolder(binding.root)
-    class ViewPagerViewHolder(val binding: ItemViewPagerBinding) : BaseViewHolder(binding)
-
-    class RecentFoodViewHolder(val binding: ItemRecyclerRecentFoodBinding) : BaseViewHolder(binding)
-
-    class ChipsViewHolder(val binding: ItemChipsRecipeFoodBinding) : BaseViewHolder(binding)
-
-    class RecipeFoodViewHolder(val binding: ItemCardRecipesFoodBinding) : BaseViewHolder(binding)
+    abstract class BaseHomeViewHolder(binding: ViewBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun getItemCount() = items.size
 
