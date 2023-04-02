@@ -26,7 +26,7 @@ import java.util.TimerTask
 
 class SearchFragment : BaseFragment<FragmentSearchBinding>(), TextWatcher, RecipeClickListener {
     override val LOG_TAG = "SearchScreen"
-    override val bindingInflater: (LayoutInflater, ViewGroup, Boolean) -> FragmentSearchBinding =
+    override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentSearchBinding =
         FragmentSearchBinding::inflate
 
     private val dataSource: DataSource by lazy {
@@ -176,7 +176,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), TextWatcher, Recip
 
     private fun navigateToDetailsFragment(id: Int) {
         val detailsFragment = DetailsFragment.newInstance(id)
-        requireActivity().supportFragmentManager.beginTransaction().apply {
+        activity?.supportFragmentManager?.beginTransaction()?.apply {
             add(R.id.fragmentContainer, detailsFragment)
             addToBackStack(detailsFragment.javaClass.simpleName)
             commit()

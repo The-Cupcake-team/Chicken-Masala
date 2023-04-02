@@ -20,7 +20,7 @@ class CuisineDishesFragment : BaseFragment<FragmentCuisineDishesBinding>(),
     CuisineDishesAdapter.CuisineDishesInteractionListener {
 
     override val LOG_TAG: String = "CUISINE_DISHES"
-    override val bindingInflater: (LayoutInflater, ViewGroup, Boolean) -> FragmentCuisineDishesBinding
+    override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentCuisineDishesBinding
         get() = FragmentCuisineDishesBinding::inflate
 
 

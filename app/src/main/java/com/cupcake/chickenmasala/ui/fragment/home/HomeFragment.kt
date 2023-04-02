@@ -28,7 +28,7 @@ import com.cupcake.chickenmasala.utill.toHomeItem
 class HomeFragment : BaseFragment<FragmentHomeBinding>(), HomeInteractorListener {
     override val LOG_TAG: String = this::class.java.name
 
-    override val bindingInflater: (LayoutInflater, ViewGroup, Boolean) -> FragmentHomeBinding
+    override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentHomeBinding
       = FragmentHomeBinding::inflate
 
     private lateinit var homeRecyclerAdapter: HomeRecyclerAdapter

@@ -20,7 +20,7 @@ import com.cupcake.chickenmasala.utill.DataSourceProvider
 class DetailsFragment : BaseFragment<FragmentDetailsBinding>() {
 
     override val LOG_TAG: String = "Details_Fragment"
-    override val bindingInflater: (LayoutInflater, ViewGroup, Boolean) -> FragmentDetailsBinding =
+    override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentDetailsBinding =
         FragmentDetailsBinding::inflate
 
     private val repository: Repository by lazy {

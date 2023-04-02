@@ -19,7 +19,7 @@ import com.cupcake.chickenmasala.utill.DataSourceProvider
 class DishesFragment : BaseFragment<FragmentDishesBinding>(), OnItemClickListener<Recipe> {
     override val LOG_TAG = this::class.java.name
 
-    override val bindingInflater: (LayoutInflater, ViewGroup, Boolean) -> FragmentDishesBinding =
+    override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentDishesBinding =
         FragmentDishesBinding::inflate
 
     private val repository: Repository by lazy {
