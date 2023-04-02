@@ -188,7 +188,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), TextWatcher, Recip
         timerForDelaySearch = Timer()
         timerForDelaySearch!!.schedule(object : TimerTask() {
             override fun run() {
-                requireActivity().runOnUiThread {
+                activity?.runOnUiThread {
                     searchQuery = searchQuery.copy(name = recipeName.toString())
                     applySearch()
                 }
