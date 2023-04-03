@@ -15,7 +15,7 @@ import com.cupcake.chickenmasala.utill.setImage
 
 class HealthyFragment : BaseFragment<FragmentHealthyBinding>() {
     override val LOG_TAG = this::class.java.name
-    override val bindingInflater: (LayoutInflater, ViewGroup, Boolean) -> FragmentHealthyBinding =
+    override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentHealthyBinding =
         FragmentHealthyBinding::inflate
     private val repository: Repository by lazy {
         RepositoryImpl(DataSourceProvider.getDataSource(requireActivity().application))
