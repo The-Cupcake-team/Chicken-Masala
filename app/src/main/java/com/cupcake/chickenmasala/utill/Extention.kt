@@ -17,7 +17,6 @@ fun ImageView.setImage(url: String) {
         .fitCenter()
         .centerCrop()
         .into(this)
-
 }
 
 fun Recipe.toHomeItem(): HomeItem<Any>{
