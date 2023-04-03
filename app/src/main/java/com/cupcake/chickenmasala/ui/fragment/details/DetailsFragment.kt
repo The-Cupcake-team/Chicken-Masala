@@ -16,10 +16,12 @@ import com.cupcake.chickenmasala.ui.fragment.details.adapter.DetailsItemType
 import com.cupcake.chickenmasala.usecase.Repository
 import com.cupcake.chickenmasala.usecase.core.GetRecipeByIdUseCase
 import com.cupcake.chickenmasala.utill.DataSourceProvider
+import com.cupcake.chickenmasala.utill.toIngredientItem
+import com.cupcake.chickenmasala.utill.toInstructionItem
 
-class DetailsFragment : BaseFragment<FragmentDetailsBinding>() {
+class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsInteractorListener {
 
-    override val LOG_TAG: String = "Details_Fragment"
+    override val LOG_TAG: String = this::class.java.name
     override val bindingInflater: (LayoutInflater, ViewGroup, Boolean) -> FragmentDetailsBinding =
         FragmentDetailsBinding::inflate
 
@@ -29,6 +31,9 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>() {
     private val getRecipeById: GetRecipeByIdUseCase by lazy {
         GetRecipeByIdUseCase(repository)
     }
+    private var itemList: MutableList<DetailsItem<Any>> = mutableListOf()
+    private lateinit var detailsAdapter: DetailsAdapter
+    private lateinit var recipe: Recipe
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -37,7 +42,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>() {
 
     private fun setup() {
         getRecipeId()?.let { id ->
-            val recipe = getRecipeById(id)
+            recipe = getRecipeById(id)
             setUpRecyclerDetails(recipe)
             setUpShareButton(recipe.urlDetailsRecipe)
         }
@@ -49,12 +54,13 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>() {
     }
 
     private fun setUpRecyclerDetails(recipe: Recipe) {
-        val itemList: MutableList<DetailsItem<Any>> = mutableListOf()
         itemList.add(DetailsItem(recipe, DetailsItemType.INFO))
-        itemList.add(DetailsItem(recipe.translatedIngredients, DetailsItemType.STEP_INGREDIENTS))
-        itemList.add(DetailsItem(recipe.translatedInstructions, DetailsItemType.STEP_INSTRUCTIONS))
-        val adapter = DetailsAdapter(itemList)
-        binding.recycler.adapter = adapter
+
+        val ingredients = recipe.translatedIngredients
+        itemList.addAll(ingredients.map { it.toIngredientItem() })
+
+        detailsAdapter = DetailsAdapter(this, itemList)
+        binding.recycler.adapter = detailsAdapter
     }
 
     private fun setUpShareButton(url: String) {
@@ -65,7 +71,6 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>() {
             true
         }
     }
-
 
     private fun shareLink(link: String) {
         val sharingIntent = Intent(Intent.ACTION_SEND)
@@ -91,4 +96,19 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>() {
 
         private const val ID = "ID"
     }
+
+    override fun onIngredientToggleClicked() {
+        itemList = itemList.take(1).toMutableList()
+        val ingredients = recipe.translatedIngredients
+        itemList.addAll(ingredients.map { it.toIngredientItem() })
+        detailsAdapter.submitList(itemList)
+    }
+
+    override fun onInstructionToggleClicked() {
+        itemList = itemList.take(1).toMutableList()
+        val instructions = recipe.translatedInstructions
+        itemList.addAll(instructions.map { it.toInstructionItem() })
+        detailsAdapter.submitList(itemList)
+    }
+
 }
