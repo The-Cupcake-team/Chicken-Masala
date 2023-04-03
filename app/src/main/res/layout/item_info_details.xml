@@ -106,50 +106,46 @@
             android:textColor="@color/tertiary_60"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/divider_time_and_cuisine"/>
+            app:layout_constraintStart_toEndOf="@id/divider_time_and_cuisine" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <TextView
-        android:id="@+id/text_view_step"
-        style="@style/TextStyle.Title.Medium"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/background_toggle_button"
+        android:layout_width="@dimen/zero"
+        android:layout_height="@dimen/zero"
+        app:cardElevation="@dimen/zero"
+        android:backgroundTint="@color/card"
+        app:cardCornerRadius="@dimen/radius_normal"
+        app:layout_constraintBottom_toBottomOf="@+id/toggle_ingredients"
+        app:layout_constraintEnd_toEndOf="@+id/toggle_instructions"
+        app:layout_constraintStart_toStartOf="@+id/toggle_ingredients"
+        app:layout_constraintTop_toTopOf="@+id/toggle_ingredients" />
+
+    <ToggleButton
+        android:id="@+id/toggle_ingredients"
+        style="@style/ToggleButtonStyle"
         android:layout_width="@dimen/zero"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_normal"
-        android:text="@string/step"
-        app:layout_constraintTop_toBottomOf="@id/container_details"
-        app:layout_constraintStart_toStartOf="@id/container_details"
-        />
+        android:layout_marginTop="@dimen/spacing_medium"
+        android:checked="true"
+        android:textOff="@string/ingredients"
+        android:textOn="@string/ingredients"
+        app:layout_constraintBottom_toBottomOf="@+id/toggle_instructions"
+        app:layout_constraintEnd_toStartOf="@+id/toggle_instructions"
+        app:layout_constraintStart_toEndOf="@+id/toggle_instructions"
+        app:layout_constraintStart_toStartOf="@+id/container_details"
+        app:layout_constraintTop_toBottomOf="@+id/container_details" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <ToggleButton
+        android:id="@+id/toggle_instructions"
+        style="@style/ToggleButtonStyle"
+        android:layout_width="@dimen/zero"
         android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:paddingHorizontal="@dimen/spacing_medium"
-        android:layout_marginTop="@dimen/spacing_normal"
-        android:layout_marginBottom="@dimen/spacing_medium"
-        app:layout_constraintTop_toBottomOf="@id/text_view_step">
-
-        <ToggleButton
-            android:id="@+id/toggle_ingredients"
-            style="@style/toggleStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:checked="true"
-            android:textOff="@string/ingredients"
-            android:textOn="@string/ingredients"
-            tools:text="@string/ingredients" />
-
-        <ToggleButton
-            android:id="@+id/toggle_instructions"
-            style="@style/toggleStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textOn="@string/instructions"
-            android:textOff="@string/instructions"
-            tools:text="@string/instructions"/>
-    </LinearLayout>
+        android:textOff="@string/instructions"
+        android:textOn="@string/instructions"
+        app:layout_constraintEnd_toEndOf="@+id/container_details"
+        app:layout_constraintStart_toEndOf="@+id/toggle_ingredients"
+        app:layout_constraintTop_toTopOf="@+id/toggle_ingredients" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
