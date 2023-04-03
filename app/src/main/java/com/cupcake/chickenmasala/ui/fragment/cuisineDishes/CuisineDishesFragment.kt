@@ -1,7 +1,6 @@
 package com.cupcake.chickenmasala.ui.fragment.cuisineDishes
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -48,7 +47,6 @@ class CuisineDishesFragment : BaseFragment<FragmentCuisineDishesBinding>(),
     }
 
     private fun initCuisineDishesAdapter(cuisineName: String) {
-        Log.v("ameer", "initCuisineDishesAdapter")
         val cuisineDishes = getCuisineDishes(cuisineName)
         val adapter = CuisineDishesAdapter(this)
         adapter.submitList(cuisineDishes)
