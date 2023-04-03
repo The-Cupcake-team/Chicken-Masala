@@ -20,9 +20,8 @@ class CuisineDishesFragment : BaseFragment<FragmentCuisineDishesBinding>(),
     CuisineDishesAdapter.CuisineDishesInteractionListener {
 
     override val LOG_TAG: String = "CUISINE_DISHES"
-    override val bindingInflater: (LayoutInflater, ViewGroup, Boolean) -> FragmentCuisineDishesBinding
-        get() = FragmentCuisineDishesBinding::inflate
-
+    override val bindingInflater: (LayoutInflater, ViewGroup, Boolean) -> FragmentCuisineDishesBinding =
+        FragmentCuisineDishesBinding::inflate
 
     private val repository: Repository by lazy {
         RepositoryImpl(DataSourceProvider.getDataSource(requireActivity().application))
@@ -31,12 +30,20 @@ class CuisineDishesFragment : BaseFragment<FragmentCuisineDishesBinding>(),
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
+        setupBackButton()
     }
 
     private fun initView() {
         val cuisineDishes = arguments.let { it?.getString(CUISINE_DISHES) }
+        binding.toolbar.title = cuisineDishes
         cuisineDishes?.let {
             initCuisineDishesAdapter(cuisineDishes)
+        }
+    }
+
+    private fun setupBackButton() {
+        binding.toolbar.setNavigationOnClickListener {
+            requireActivity().supportFragmentManager.popBackStack()
         }
     }
 

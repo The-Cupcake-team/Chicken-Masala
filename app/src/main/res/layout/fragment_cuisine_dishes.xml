@@ -10,50 +10,17 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/app_bar_height"
         android:background="@color/background"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/action_bar"
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="@dimen/app_bar_height"
-            android:backgroundTint="@color/background"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_alignParentBottom="false"
             app:layout_constraintTop_toTopOf="parent"
-            app:strokeWidth="@dimen/zero">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageButton
-                    android:id="@+id/back_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:contentDescription="@string/content_description_back"
-                    android:padding="@dimen/padding_normal"
-                    android:src="@drawable/icon_back"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/action_bar_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/spacing_small"
-                    android:fontFamily="@font/roboto"
-                    android:text="@string/cuisine_dishes"
-                    android:textColor="@color/tertiary_87"
-                    android:textSize="@dimen/font_size_title_large"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/back_button"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </com.google.android.material.card.MaterialCardView>
+            app:navigationIcon="@drawable/icon_back"
+            app:titleTextColor="@color/tertiary_87" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
