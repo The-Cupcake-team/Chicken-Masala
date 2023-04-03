@@ -28,6 +28,11 @@
             app:titleTextColor="@color/tertiary_87" />
 
     </com.google.android.material.appbar.AppBarLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@drawable/shadow_bottom_navigation_bar"
+        app:layout_constraintTop_toBottomOf="@+id/top_bar" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_dishes"
