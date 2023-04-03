@@ -12,7 +12,6 @@ import com.cupcake.chickenmasala.databinding.ItemIngredientsBinding
 import com.cupcake.chickenmasala.databinding.ItemInstructionsBinding
 import com.cupcake.chickenmasala.ui.base.BaseViewHolder
 import com.cupcake.chickenmasala.ui.fragment.details.DetailsInteractorListener
-import com.cupcake.chickenmasala.ui.fragment.home.homeModel.HomeItem
 import com.cupcake.chickenmasala.utill.setImage
 import com.google.android.material.chip.Chip
 
@@ -63,14 +62,28 @@ class DetailsAdapter(
             recipe.cleanedIngredients.forEach { item ->
                 chipGroupIngredient.addView(createChipView(holder, item))
             }
-            toggleIngredients.setOnCheckedChangeListener{_,isChecked ->
-                toggleInstructions.isChecked = !isChecked
+            toggleIngredients.setOnClickListener {
+                enableIngredients(this)
                 listener.onIngredientToggleClicked()
             }
-            toggleInstructions.setOnCheckedChangeListener{_,isChecked->
-                toggleIngredients.isChecked = !isChecked
+            toggleInstructions.setOnClickListener {
+                enableInstructions(this)
                 listener.onInstructionToggleClicked()
             }
+        }
+    }
+
+    private fun enableInstructions(itemInfoDetailsBinding: ItemInfoDetailsBinding) {
+        with(itemInfoDetailsBinding) {
+            toggleInstructions.isChecked = true
+            toggleIngredients.isChecked = false
+        }
+    }
+
+    private fun enableIngredients(itemInfoDetailsBinding: ItemInfoDetailsBinding) {
+        with(itemInfoDetailsBinding) {
+            toggleIngredients.isChecked = true
+            toggleInstructions.isChecked = false
         }
     }
 
@@ -131,9 +144,9 @@ class DetailsAdapter(
         diffResult.dispatchUpdatesTo(this)
     }
 
-    private class AppDiffUtil<Recipe>(
-        private val oldList: List<Recipe>,
-        private val newList: List<Recipe>,
+    private class AppDiffUtil(
+        private val oldList: List<DetailsItem<Any>>,
+        private val newList: List<DetailsItem<Any>>,
     ) : DiffUtil.Callback() {
 
         override fun getOldListSize() = oldList.size
@@ -141,10 +154,10 @@ class DetailsAdapter(
         override fun getNewListSize() = newList.size
 
         override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int) =
-            oldList[oldItemPosition] == newList[newItemPosition]
+            oldList[oldItemPosition].item == newList[newItemPosition].item
 
         override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int) =
-            false
+            oldList[oldItemPosition] == newList[newItemPosition]
 
     }
 
