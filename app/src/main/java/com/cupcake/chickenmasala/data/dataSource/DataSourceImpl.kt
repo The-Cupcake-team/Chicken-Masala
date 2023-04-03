@@ -33,7 +33,8 @@ class DataSourceImpl(private val context: Application) : DataSource {
         fileReader.close()
         return recipes
     }
-    private fun List<String>.toRecipe(key:Int):Recipe{
+
+    private fun List<String>.toRecipe(key: Int): Recipe {
         return Recipe(
             id = key,
             translatedRecipeName = this[TRANSLATED_RECIPE_NAME],
@@ -73,8 +74,8 @@ class DataSourceImpl(private val context: Application) : DataSource {
     private fun List<String>.toStepInstructions(): List<StepInstructions> {
         return filter { it.isNotBlank() }.mapIndexed { step, item ->
             StepInstructions(
-                step = step+1,
-                description = item
+                step = step + 1,
+                description = item.trim()
             )
         }
     }

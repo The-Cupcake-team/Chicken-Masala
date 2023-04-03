@@ -110,8 +110,11 @@ class DetailsAdapter(
         position: Int
     ) {
         val currentStep = detailsItem[position].item as StepInstructions
+        val formattedStep =
+            if (currentStep.step < 10) "0${currentStep.step}" else currentStep.step.toString()
         holder.binding.apply {
-            textViewStepNumber.text = currentStep.step.toString()
+            step.text =
+                holder.itemView.context.getString(R.string.step, formattedStep)
             instructionsDetails.text = currentStep.description
         }
     }

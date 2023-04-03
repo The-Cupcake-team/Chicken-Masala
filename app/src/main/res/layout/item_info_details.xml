@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/background">
+    android:background="@color/background"
+    android:paddingBottom="@dimen/spacing_small">
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/image_view_details"
@@ -114,9 +115,9 @@
         android:id="@+id/background_toggle_button"
         android:layout_width="@dimen/zero"
         android:layout_height="@dimen/zero"
-        app:cardElevation="@dimen/zero"
         android:backgroundTint="@color/card"
         app:cardCornerRadius="@dimen/radius_normal"
+        app:cardElevation="@dimen/zero"
         app:layout_constraintBottom_toBottomOf="@+id/toggle_ingredients"
         app:layout_constraintEnd_toEndOf="@+id/toggle_instructions"
         app:layout_constraintStart_toStartOf="@+id/toggle_ingredients"
