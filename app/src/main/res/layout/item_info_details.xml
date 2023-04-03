@@ -9,18 +9,18 @@
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/image_view_details"
         style="@style/CardImageStyle"
-        tools:srcCompat="@tools:sample/backgrounds/scenic"
         android:layout_width="match_parent"
         android:layout_height="@dimen/zero"
         app:layout_constraintDimensionRatio="16:9"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
     <TextView
         android:id="@+id/text_view_food_name"
         style="@style/TextStyle.Title.Medium"
-        android:layout_marginTop="@dimen/spacing_medium"
         android:layout_width="@dimen/zero"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_medium"
         android:text="@string/recipe_name"
         app:layout_constraintEnd_toEndOf="@id/image_view_details"
         app:layout_constraintStart_toStartOf="@id/image_view_details"
@@ -39,9 +39,9 @@
     <TextView
         android:id="@+id/text_view_details"
         style="@style/TextStyle.Title.Medium"
-        android:layout_marginTop="@dimen/spacing_normal"
         android:layout_width="@dimen/zero"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_normal"
         android:text="@string/details_text"
         app:layout_constraintEnd_toEndOf="@id/image_view_details"
         app:layout_constraintStart_toStartOf="@id/image_view_details"
@@ -84,42 +84,15 @@
             style="@style/detailsDivider"
             android:alpha="0.5"
             app:layout_constraintBottom_toBottomOf="@id/text_view_timer"
-            app:layout_constraintEnd_toStartOf="@+id/text_view_cuisine"
-            app:layout_constraintStart_toEndOf="@+id/text_view_timer"
+            app:layout_constraintEnd_toStartOf="@+id/icon_ingredient"
+            app:layout_constraintStart_toEndOf="@+id/icon_timer"
             app:layout_constraintTop_toTopOf="@id/icon_timer" />
-
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/icon_cuisine"
-            style="@style/HorizontalIconStyle"
-            android:layout_marginBottom="@dimen/spacing_small"
-            android:src="@drawable/icon_cuisine"
-            app:layout_constraintEnd_toEndOf="@id/text_view_cuisine"
-            app:layout_constraintStart_toStartOf="@id/text_view_cuisine"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/text_view_cuisine"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/indian"
-            android:textColor="@color/tertiary_60"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/divider_cuisine_and_ingredients"
-            app:layout_constraintStart_toEndOf="@id/divider_time_and_cuisine" />
-
-        <View
-            android:id="@+id/divider_cuisine_and_ingredients"
-            style="@style/detailsDivider"
-            app:layout_constraintBottom_toBottomOf="@id/text_view_cuisine"
-            app:layout_constraintEnd_toStartOf="@+id/text_view_ingredient_count"
-            app:layout_constraintStart_toEndOf="@+id/text_view_cuisine"
-            app:layout_constraintTop_toTopOf="@id/icon_cuisine" />
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/icon_ingredient"
             style="@style/HorizontalIconStyle"
-            android:src="@drawable/icon_whisk"
             android:layout_marginBottom="@dimen/spacing_small"
+            android:src="@drawable/icon_whisk"
             app:layout_constraintBottom_toTopOf="@id/text_view_ingredient_count"
             app:layout_constraintEnd_toEndOf="@id/text_view_ingredient_count"
             app:layout_constraintStart_toStartOf="@id/text_view_ingredient_count"
@@ -133,9 +106,50 @@
             android:textColor="@color/tertiary_60"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/divider_cuisine_and_ingredients" />
+            app:layout_constraintStart_toEndOf="@id/divider_time_and_cuisine"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <TextView
+        android:id="@+id/text_view_step"
+        style="@style/TextStyle.Title.Medium"
+        android:layout_width="@dimen/zero"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_normal"
+        android:text="@string/step"
+        app:layout_constraintTop_toBottomOf="@id/container_details"
+        app:layout_constraintStart_toStartOf="@id/container_details"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:paddingHorizontal="@dimen/spacing_medium"
+        android:layout_marginTop="@dimen/spacing_normal"
+        android:layout_marginBottom="@dimen/spacing_medium"
+        app:layout_constraintTop_toBottomOf="@id/text_view_step">
+
+        <ToggleButton
+            android:id="@+id/toggle_ingredients"
+            style="@style/toggleStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="true"
+            android:textOff="@string/ingredients"
+            android:textOn="@string/ingredients"
+            tools:text="@string/ingredients" />
+
+        <ToggleButton
+            android:id="@+id/toggle_instructions"
+            style="@style/toggleStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textOn="@string/instructions"
+            android:textOff="@string/instructions"
+            tools:text="@string/instructions"/>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

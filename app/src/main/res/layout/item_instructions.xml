@@ -3,18 +3,30 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/spacing_medium">
 
     <TextView
-        android:id="@+id/text_view_step_instructions"
+        android:id="@+id/text_view_step_number"
         style="@style/TextStyle.Label.Large"
         android:layout_width="@dimen/zero"
         android:layout_height="wrap_content"
         android:padding="@dimen/spacing_small"
         app:layout_constraintBottom_toTopOf="@+id/instructions_details"
-        app:layout_constraintStart_toStartOf="@+id/instructions_details"
+        app:layout_constraintStart_toEndOf="@+id/step"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="step 1" />
+        tools:text="1" />
+
+    <TextView
+        android:id="@+id/step"
+        style="@style/TextStyle.Label.Large"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/step"
+        app:layout_constraintBottom_toBottomOf="@id/text_view_step_number"
+        app:layout_constraintEnd_toStartOf="@id/text_view_step_number"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/instructions_details"

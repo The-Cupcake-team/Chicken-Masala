@@ -81,7 +81,7 @@
     <string name="filter">Filter</string>
 
     <string name="sugary_drinks_like_sodas_fruit_juices_and_sweetened_teas_are_the_primary_source_of_added_sugar_in_the_american_diet">Sugary drinks like sodas- fruit juices- and sweetened teas are the primary source of added sugar in the American diet.</string>
-    <string name="step">Step %1$d</string>
+    <string name="step">Step</string>
     <string name="icon_share" translatable="false">icon share</string>
 
     <string name="hours_char" translatable="false">h </string>

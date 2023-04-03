@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_checked="false">
+        <shape android:shape="rectangle" android:elevation="0dp">
+            <solid android:color="@color/card"/>
+            <corners android:radius="@dimen/radius_normal"/>
+            <alpha android:alpha="0.5" />
+        </shape>
+    </item>
+    <item android:state_checked="true">
+        <shape android:shape="rectangle" android:elevation="0dp">
+            <solid android:color="@color/primary"/>
+            <corners android:radius="@dimen/radius_normal"/>
+            <alpha android:alpha="0.5" />
+        </shape>
+    </item>
+</selector>
